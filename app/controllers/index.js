@@ -6,12 +6,7 @@ export default class IndexController extends Controller {
   @service router;
 
   @action
-  goToAvailable() {
-    this.router.transitionTo('todos.available');
-  }
-
-  @action
-  goToFuture() {
-    this.router.transitionTo('todos.future');
+  goToTodos(subroute) {
+    this.router.transitionTo(['todos', subroute].join('.'));
   }
 }

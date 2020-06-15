@@ -10,5 +10,7 @@ Router.map(function () {
   this.route('todos', function() {
     this.route('available');
     this.route('future');
+    this.route('completed');
+    this.route('deleted');
   });
 });

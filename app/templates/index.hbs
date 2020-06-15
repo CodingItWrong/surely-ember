@@ -1,13 +1,23 @@
 <PaperCard as |card|>
   <PaperList>
-    <PaperItem @class="md-2-line" @onClick={{this.goToAvailable}}>
+    <PaperItem @class="md-2-line" @onClick={{fn this.goToTodos 'available'}}>
       <div class="md-list-item-text">
         <h3>Available</h3>
       </div>
     </PaperItem>
-    <PaperItem @class="md-2-line" @onClick={{this.goToFuture}}>
+    <PaperItem @class="md-2-line" @onClick={{fn this.goToTodos 'future'}}>
       <div class="md-list-item-text">
         <h3>Future</h3>
+      </div>
+    </PaperItem>
+    <PaperItem @class="md-2-line" @onClick={{fn this.goToTodos 'completed'}}>
+      <div class="md-list-item-text">
+        <h3>Completed</h3>
+      </div>
+    </PaperItem>
+    <PaperItem @class="md-2-line" @onClick={{fn this.goToTodos 'deleted'}}>
+      <div class="md-list-item-text">
+        <h3>Deleted</h3>
       </div>
     </PaperItem>
   </PaperList>
