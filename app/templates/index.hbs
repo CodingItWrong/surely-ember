@@ -1,11 +1,11 @@
 <PaperCard as |card|>
   <PaperList>
-    <PaperItem @class="md-2-line">
+    <PaperItem @class="md-2-line" @onClick={{this.goToAvailable}}>
       <div class="md-list-item-text">
         <h3>Available</h3>
       </div>
     </PaperItem>
-    <PaperItem @class="md-2-line">
+    <PaperItem @class="md-2-line" @onClick={{this.goToFuture}}>
       <div class="md-list-item-text">
         <h3>Future</h3>
       </div>
