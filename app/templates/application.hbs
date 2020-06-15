@@ -1,10 +1,15 @@
-<h1 id="title">Welcome to Ember</h1>
+<div class="layout-fill">
+  <AppToolbar />
 
-{{#if this.session.isAuthenticated}}
-  Signed In.
-  <button onclick={{this.signOut}}>Sign Out</button>
-{{else}}
-  <LoginForm />
-{{/if}}
-
-{{outlet}}
+  <div class="layout-row">
+    <div class="hide show-gt-md flex-gt-md-10"></div>
+    <div class="flex-100 flex-gt-md-80">
+      {{#if this.session.isAuthenticated}}
+        {{outlet}}
+      {{else}}
+        <LoginForm />
+      {{/if}}
+    </div>
+    <div class="hide show-gt-md flex-gt-md-10"></div>
+  </div>
+</div>
