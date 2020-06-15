@@ -1,0 +1,11 @@
+<PaperCard as |card|>
+  <PaperList>
+    {{#each @todos as |todo|}}
+      <PaperItem @class="md-2-line">
+        <div class="md-list-item-text">
+          <h3>{{todo.name}}</h3>
+        </div>
+      </PaperItem>
+    {{/each}}
+  </PaperList>
+</PaperCard>

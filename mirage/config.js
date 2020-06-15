@@ -8,6 +8,8 @@ export default function () {
     };
   });
 
+  this.get('/todos');
+
   // These comments are here to help you get started. Feel free to delete them.
   /*
     Config (with defaults).

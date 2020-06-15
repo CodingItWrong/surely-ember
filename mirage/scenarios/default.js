@@ -18,13 +18,18 @@ export default function (server) {
     deletedAt: sub(now, { days: 1 }),
   });
   server.create('todo', {
+    name: 'Yesterday Todo',
+    deferredUntil: sub(now, { days: 1 }),
+    deferredAt: sub(now, { days: 2 }),
+  });
+  server.create('todo', {
     name: 'Tomorrow Todo',
-    deferredUnti: add(now, { days: 1 }),
+    deferredUntil: add(now, { days: 1 }),
     deferredAt: sub(now, { hours: 1 }),
   });
   server.create('todo', {
     name: 'Next Week Todo',
-    deferredUnti: add(now, { weeks: 1 }),
+    deferredUntil: add(now, { weeks: 1 }),
     deferredAt: sub(now, { hours: 1 }),
   });
 }
