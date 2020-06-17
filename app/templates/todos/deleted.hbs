@@ -1,3 +1,5 @@
 <h1>Deleted</h1>
 
-<TodoList @todos={{this.sortedTodos}} />
+<TodoList @todos={{this.sortedTodos}} as |todo|>
+  Deleted {{relative-date todo.deletedAt}}
+</TodoList>
