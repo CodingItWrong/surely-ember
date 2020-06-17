@@ -6,30 +6,34 @@
   </card.title>
   <card.content>
     <p>Created {{relative-date @todo.createdAt}}</p>
-    {{#if @todo.deferredUntil}}
+    {{#if @todo.isDeleted}}
+      <p>Deleted {{relative-date @todo.deletedAt}}</p>
+    {{else if @todo.isCompleted}}
+      <p>Completed {{relative-date @todo.completedAt}}</p>
+    {{else if @todo.deferredUntil}}
       <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
     {{/if}}
   </card.content>
   <card.actions>
     {{#if @todo.isDeleted}}
-      <PaperButton>
+      <PaperButton @onClick={{this.undelete}}>
         Undelete
       </PaperButton>
     {{else}}
       {{#if @todo.isCompleted}}
-        <PaperButton>
+        <PaperButton @onClick={{this.uncomplete}}>
           Uncomplete
         </PaperButton>
       {{else}}
-        <PaperButton>
+        <PaperButton @onClick={{this.complete}}>
           Complete
         </PaperButton>
       {{/if}}
-      <PaperButton>
+      <PaperButton @onClick={{this.delete}}>
         Delete
       </PaperButton>
       {{#unless @todo.isCompleted}}
-        <PaperButton>
+        <PaperButton @onClick={{this.defer}}>
           Defer
         </PaperButton>
       {{/unless}}
