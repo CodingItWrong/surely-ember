@@ -1,4 +1,3 @@
 import Route from '@ember/routing/route';
 
-export default class TodosDeletedDetailRoute extends Route {
-}
+export default class TodosDeletedDetailRoute extends Route {}
