@@ -1,0 +1,9 @@
+<h1>Completed</h1>
+
+<TodoList
+  @todos={{this.sortedTodos}}
+  @onChooseTodo={{this.handleChooseTodo}}
+  as |todo|
+>
+  Completed {{relative-date todo.completedAt}}
+</TodoList>

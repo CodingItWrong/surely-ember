@@ -1,7 +1,11 @@
 import Controller from '@ember/controller';
 import { filter, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
-export default class TodosCompletedController extends Controller {
+export default class TodosCompleteIndexController extends Controller {
+  @service router;
+
   sortPropertiesMostRecentlyCompleted = Object.freeze(['completedAt:desc']);
 
   @filter('model', function (todo) {
@@ -11,4 +15,9 @@ export default class TodosCompletedController extends Controller {
 
   @sort('filteredTodos', 'sortPropertiesMostRecentlyCompleted')
   sortedTodos;
+
+  @action
+  handleChooseTodo(todo) {
+    this.router.transitionTo('todos.completed.detail', todo.id);
+  }
 }

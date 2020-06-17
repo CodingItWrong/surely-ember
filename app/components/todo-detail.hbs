@@ -1,0 +1,38 @@
+<PaperCard as |card|>
+  <card.title as |title|>
+    <title.text as |text|>
+      <text.headline>{{@todo.name}}</text.headline>
+    </title.text>
+  </card.title>
+  <card.content>
+    <p>Created {{relative-date @todo.createdAt}}</p>
+    {{#if @todo.deferredUntil}}
+      <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
+    {{/if}}
+  </card.content>
+  <card.actions>
+    {{#if @todo.isDeleted}}
+      <PaperButton>
+        Undelete
+      </PaperButton>
+    {{else}}
+      {{#if @todo.isCompleted}}
+        <PaperButton>
+          Uncomplete
+        </PaperButton>
+      {{else}}
+        <PaperButton>
+          Complete
+        </PaperButton>
+      {{/if}}
+      <PaperButton>
+        Delete
+      </PaperButton>
+      {{#unless @todo.isCompleted}}
+        <PaperButton>
+          Defer
+        </PaperButton>
+      {{/unless}}
+    {{/if}}
+  </card.actions>
+</PaperCard>

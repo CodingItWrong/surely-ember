@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 
-export default class TodosCompletedRoute extends Route {
+export default class TodosDeletedIndexRoute extends Route {
   model() {
     return this.store.findAll('todo');
   }

@@ -1,0 +1,9 @@
+<h1>Future</h1>
+
+<TodoList
+  @todos={{this.sortedTodos}}
+  @onChooseTodo={{this.handleChooseTodo}}
+  as |todo|
+>
+  Deferred until {{relative-date todo.deferredUntil}}
+</TodoList>

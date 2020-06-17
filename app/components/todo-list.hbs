@@ -2,14 +2,14 @@
   <PaperList>
     {{#each @todos as |todo|}}
       {{#if (has-block)}}
-        <PaperItem @class="md-2-line">
+        <PaperItem @class="md-2-line" @onClick={{fn @onChooseTodo todo}}>
           <div class="md-list-item-text">
-            <h3>{{todo.name}}!!</h3>
+            <h3>{{todo.name}}</h3>
             <p>{{yield todo}}</p>
           </div>
         </PaperItem>
       {{else}}
-        <PaperItem>
+        <PaperItem @onClick={{fn @onChooseTodo todo}}>
           <h3>{{todo.name}}</h3>
         </PaperItem>
       {{/if}}
