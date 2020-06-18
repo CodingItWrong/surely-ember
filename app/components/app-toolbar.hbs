@@ -4,5 +4,20 @@
       {{paper-icon "home"}}
     </PaperButton>
     <h2>Surely</h2>
+    <span class="flex"></span>
+    {{#if this.session.isAuthenticated}}
+      <PaperMenu as |menu|>
+        <menu.trigger>
+          <PaperButton @iconButton={{true}}>
+            {{paper-icon "account_circle"}}
+          </PaperButton>
+        </menu.trigger>
+        <menu.content @width={{4}} as |content|>
+          <content.menu-item @onClick={{this.logOut}}>
+            <span>Log Out</span>
+          </content.menu-item>
+        </menu.content>
+      </PaperMenu>
+    {{/if}}
   </PaperToolbarTools>
 </PaperToolbar>
