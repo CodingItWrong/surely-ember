@@ -33,6 +33,7 @@ export default class TodoDetailComponent extends Component {
 
   @action
   defer() {
+    // eslint-disable-next-line no-console
     console.log('todo: defer');
   }
 }
