@@ -11,10 +11,10 @@ export default class TodoModel extends Model {
   @attr('date') deferredUntil;
 
   static STATUS = {
-    AVAILABLE: 'AVAILABLE',
-    COMPLETED: 'COMPLETED',
-    DELETED: 'DELETED',
-    FUTURE: 'FUTURE',
+    AVAILABLE: 'available',
+    COMPLETED: 'completed',
+    DELETED: 'deleted',
+    FUTURE: 'future',
   };
 
   @computed('deletedAt', 'completedAt', 'deferredUntil')
