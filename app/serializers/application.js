@@ -1,6 +1,6 @@
 import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-const attributeToOmit = ['updatedAt', 'deletedAt'];
+const attributeToOmit = ['createdAt', 'updatedAt', 'deletedAt'];
 
 export default class ApplicationSerializer extends JSONAPISerializer {
   serializeAttribute(snapshot, json, key, attributes) {
