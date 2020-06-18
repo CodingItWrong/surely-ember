@@ -14,9 +14,7 @@ export default class LoginFormComponent extends Component {
   errorMessage = '';
 
   @action
-  async logIn(event) {
-    event.preventDefault();
-
+  async logIn() {
     let { email, password } = this;
 
     try {

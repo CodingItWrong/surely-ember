@@ -1,16 +1,31 @@
-<form onsubmit={{this.logIn}}>
-  <p>{{this.errorMessage}}</p>
-  <div>
-    <label>
-      Email
-      <Input type="email" name="email" @value={{this.email}} />
-    </label>
-  </div>
-  <div>
-    <label>
-      Password
-      <Input type="password" name="password" @value={{this.password}} />
-    </label>
-  </div>
-  <button type="submit">Log In</button>
-</form>
+<PaperCard as |card|>
+  <PaperForm @onSubmit={{this.logIn}} as |form|>
+    <card.content>
+      <p>{{this.errorMessage}}</p>
+      <form.input
+        @type="email"
+        @block={{true}}
+        @label="Email"
+        @value={{this.email}}
+        @onChange={{action (mut this.email)}}
+        @required={{true}}
+      />
+      <form.input
+        @type="password"
+        @block={{true}}
+        @label="Password"
+        @value={{this.password}}
+        @onChange={{action (mut this.password)}}
+        @required={{true}}
+      />
+    </card.content>
+    <card.actions>
+      <form.submit-button
+        @raised="true"
+        @primary={{true}}
+      >
+        Log In
+      </form.submit-button>
+    </card.actions>
+  </PaperForm>
+</PaperCard>
