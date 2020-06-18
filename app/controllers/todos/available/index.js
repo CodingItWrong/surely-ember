@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { filter, sort } from '@ember/object/computed';
-import { action } from '@ember/object';
+import { sort } from '@ember/object/computed';
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
 export default class TodosAvailableIndexController extends Controller {
@@ -8,8 +8,8 @@ export default class TodosAvailableIndexController extends Controller {
 
   sortPropertiesAlphabetical = Object.freeze(['name:asc']);
 
-  @filter('model', function (todo) {
-    return todo.isAvailable;
+  @computed('model.@each.isAvailable', function () {
+    return this.model.filter(todo => todo.isAvailable);
   })
   filteredTodos;
 

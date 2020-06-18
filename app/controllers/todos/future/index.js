@@ -1,15 +1,15 @@
 import Controller from '@ember/controller';
-import { filter, sort } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 
 export default class TodosFutureIndexController extends Controller {
   @service router;
 
   sortPropertiesDeferredUntil = Object.freeze(['deferredUntil:asc']);
 
-  @filter('model', function (todo) {
-    return todo.isFuture;
+  @computed('model.@each.isFuture', function () {
+    return this.model.filter(todo => todo.isFuture);
   })
   filteredTodos;
 
