@@ -13,6 +13,10 @@
           <p>{{todo.name}}</p>
         </PaperItem>
       {{/if}}
+    {{else}}
+      <PaperItem>
+        <p><em>(no todos)</em></p>
+      </PaperItem>
     {{/each}}
   </PaperList>
 </PaperCard>
