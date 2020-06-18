@@ -20,15 +20,6 @@
         Undelete
       </PaperButton>
     {{else}}
-      {{#if @todo.isCompleted}}
-        <PaperButton @onClick={{this.uncomplete}}>
-          Uncomplete
-        </PaperButton>
-      {{else}}
-        <PaperButton @onClick={{this.complete}}>
-          Complete
-        </PaperButton>
-      {{/if}}
       <PaperButton @onClick={{this.delete}}>
         Delete
       </PaperButton>
@@ -37,6 +28,15 @@
           Defer
         </PaperButton>
       {{/unless}}
+      {{#if @todo.isCompleted}}
+        <PaperButton @onClick={{this.uncomplete}}>
+          Uncomplete
+        </PaperButton>
+      {{else}}
+        <PaperButton @onClick={{this.complete}} @raised={{true}} @primary={{true}}>
+          Complete
+        </PaperButton>
+      {{/if}}
     {{/if}}
   </card.actions>
 </PaperCard>
