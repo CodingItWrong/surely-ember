@@ -10,6 +10,10 @@ export default class NewTodoFormComponent extends Component {
 
   @action
   async createTodo() {
+    if (!this.newTodoName) {
+      return;
+    }
+
     const todo = this.store.createRecord('todo', {
       name: this.newTodoName,
     });
