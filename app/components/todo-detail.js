@@ -74,6 +74,10 @@ export default class TodoDetailComponent extends Component {
 
   @action
   async saveEnteredDeferredDate() {
+    if (!this.deferredUntil) {
+      return;
+    }
+
     const deferredUntilDate = parse(
       this.deferredUntil,
       'yyyy-MM-dd',
