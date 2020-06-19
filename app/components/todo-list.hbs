@@ -1,22 +1,31 @@
 <PaperCard as |card|>
-  <PaperList>
-    {{#each @todos as |todo|}}
-      {{#if (has-block)}}
-        <PaperItem @class="md-2-line" @onClick={{fn @onChooseTodo todo}}>
-          <div class="md-list-item-text">
-            <h3>{{todo.name}}</h3>
-            <p>{{yield todo}}</p>
-          </div>
-        </PaperItem>
+  <PaperToolbar>
+    <PaperToolbarTools>
+      <h2>{{@title}}</h2>
+    </PaperToolbarTools>
+  </PaperToolbar>
+  <PaperContent>
+    <PaperList>
+      {{#each @todos as |todo|}}
+        {{#if (has-block)}}
+          <PaperItem @class="md-2-line" @onClick={{fn @onChooseTodo todo}}>
+            <div class="md-list-item-text">
+              <h3>{{todo.name}}</h3>
+              <p>{{yield todo}}</p>
+            </div>
+            <PaperDivider />
+          </PaperItem>
+        {{else}}
+          <PaperItem @onClick={{fn @onChooseTodo todo}}>
+            <p>{{todo.name}}</p>
+            <PaperDivider />
+          </PaperItem>
+        {{/if}}
       {{else}}
-        <PaperItem @onClick={{fn @onChooseTodo todo}}>
-          <p>{{todo.name}}</p>
+        <PaperItem>
+          <p><em>(no todos)</em></p>
         </PaperItem>
-      {{/if}}
-    {{else}}
-      <PaperItem>
-        <p><em>(no todos)</em></p>
-      </PaperItem>
-    {{/each}}
-  </PaperList>
+      {{/each}}
+    </PaperList>
+  </PaperContent>
 </PaperCard>
