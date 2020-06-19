@@ -1,5 +1,7 @@
 import Model, { attr } from '@ember-data/model';
 import { computed } from '@ember/object';
+import addDays from 'date-fns/addDays';
+import startOfDay from 'date-fns/startOfDay';
 
 export default class TodoModel extends Model {
   @attr name;
@@ -48,5 +50,18 @@ export default class TodoModel extends Model {
   @computed('status')
   get isFuture() {
     return this.status === TodoModel.STATUS.FUTURE;
+  }
+
+  deferOneDay() {
+    const now = new Date();
+    const currentDate = this.deferredUntil || now;
+    const tomorrow = startOfDay(addDays(currentDate, 1));
+
+    this.deferUntilDate(tomorrow);
+  }
+
+  deferUntilDate(deferredUntil) {
+    this.deferredUntil = deferredUntil;
+    this.deferredAt = new Date();
   }
 }

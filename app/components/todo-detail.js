@@ -1,8 +1,6 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import addDays from 'date-fns/addDays';
-import startOfDay from 'date-fns/startOfDay';
 import parse from 'date-fns/parse';
 
 const BUTTON_SET = {
@@ -56,14 +54,11 @@ export default class TodoDetailComponent extends Component {
   }
 
   @action
-  deferOneDay() {
+  async deferOneDay() {
     const { todo } = this.args;
-
-    const now = new Date();
-    const currentDate = todo.deferredUntil || now;
-    const tomorrow = startOfDay(addDays(currentDate, 1));
-
-    this.saveDeferUntilDate(tomorrow);
+    todo.deferOneDay();
+    await todo.save();
+    this.buttonSet = BUTTON_SET.ACTIONS;
   }
 
   @action
@@ -83,18 +78,12 @@ export default class TodoDetailComponent extends Component {
       'yyyy-MM-dd',
       new Date(),
     );
-    await this.saveDeferUntilDate(deferredUntilDate);
-    this.deferredUntil = null;
-  }
 
-  async saveDeferUntilDate(deferredUntil) {
     const { todo } = this.args;
-
-    todo.deferredUntil = deferredUntil;
-    todo.deferredAt = new Date();
-
+    todo.deferUntilDate(deferredUntilDate);
     await todo.save();
-
     this.buttonSet = BUTTON_SET.ACTIONS;
+
+    this.deferredUntil = null;
   }
 }
