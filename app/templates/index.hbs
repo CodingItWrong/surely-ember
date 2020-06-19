@@ -1,15 +1,19 @@
 <PaperCard as |card|>
   <PaperList>
     <PaperItem @onClick={{fn this.goToTodos 'available'}}>
+      {{paper-icon "access_time"}}
       <p>Available</p>
     </PaperItem>
     <PaperItem @onClick={{fn this.goToTodos 'future'}}>
+      {{paper-icon "calendar_today"}}
       <p>Future</p>
     </PaperItem>
     <PaperItem @onClick={{fn this.goToTodos 'completed'}}>
+      {{paper-icon "check_circle"}}
       <p>Completed</p>
     </PaperItem>
     <PaperItem @onClick={{fn this.goToTodos 'deleted'}}>
+      {{paper-icon "delete"}}
       <p>Deleted</p>
     </PaperItem>
   </PaperList>
