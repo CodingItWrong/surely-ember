@@ -14,7 +14,7 @@
       <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
     {{/if}}
   </card.content>
-  <card.actions>
+  <card.actions class="app-button-container">
     {{#if (eq this.buttonSet 'actions')}}
       {{#if @todo.isDeleted}}
         <PaperButton @onClick={{this.undelete}}>
