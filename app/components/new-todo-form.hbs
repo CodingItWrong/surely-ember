@@ -4,7 +4,7 @@
   as |form|
 >
   <form.input
-    @label="Add Todo"
+    @placeholder="Add Todo"
     @value={{this.newTodoName}}
     @onChange={{action (mut this.newTodoName)}}
     @block={{true}}
