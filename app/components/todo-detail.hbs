@@ -15,28 +15,37 @@
     {{/if}}
   </card.content>
   <card.actions>
-    {{#if @todo.isDeleted}}
-      <PaperButton @onClick={{this.undelete}}>
-        Undelete
-      </PaperButton>
-    {{else}}
-      <PaperButton @onClick={{this.delete}}>
-        Delete
-      </PaperButton>
-      {{#unless @todo.isCompleted}}
-        <PaperButton @onClick={{this.defer}}>
-          Defer
-        </PaperButton>
-      {{/unless}}
-      {{#if @todo.isCompleted}}
-        <PaperButton @onClick={{this.uncomplete}}>
-          Uncomplete
+    {{#if (eq this.buttonSet 'actions')}}
+      {{#if @todo.isDeleted}}
+        <PaperButton @onClick={{this.undelete}}>
+          Undelete
         </PaperButton>
       {{else}}
-        <PaperButton @onClick={{this.complete}} @raised={{true}} @primary={{true}}>
-          Complete
+        <PaperButton @onClick={{this.delete}}>
+          Delete
         </PaperButton>
+        {{#unless @todo.isCompleted}}
+          <PaperButton @onClick={{this.defer}}>
+            Defer
+          </PaperButton>
+        {{/unless}}
+        {{#if @todo.isCompleted}}
+          <PaperButton @onClick={{this.uncomplete}}>
+            Uncomplete
+          </PaperButton>
+        {{else}}
+          <PaperButton @onClick={{this.complete}} @raised={{true}} @primary={{true}}>
+            Complete
+          </PaperButton>
+        {{/if}}
       {{/if}}
+    {{else if (eq this.buttonSet 'defer')}}
+      <PaperButton @onClick={{this.cancelDefer}}>
+        Cancel
+      </PaperButton>
+      <PaperButton @onClick={{this.deferOneDay}}>
+        Defer One Day
+      </PaperButton>
     {{/if}}
   </card.actions>
 </PaperCard>
