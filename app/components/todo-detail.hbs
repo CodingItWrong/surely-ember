@@ -11,7 +11,7 @@
     {{else if @todo.isCompleted}}
       <p>Completed {{relative-datetime @todo.completedAt}}</p>
     {{else if @todo.deferredUntil}}
-      <p>Deferred until {{relative-datetime @todo.deferredUntil}}</p>
+      <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
     {{/if}}
   </card.content>
   <card.actions class="app-button-container">
