@@ -17,28 +17,36 @@
   <card.actions class="app-button-container">
     {{#if (eq this.buttonSet 'actions')}}
       {{#if @todo.isDeleted}}
-        <PaperButton @onClick={{this.undelete}}>
+        <PaperButton
+          @raised={{true}}
+          @primary={{true}}
+          @onClick={{this.undelete}}
+        >
           {{paper-icon "restore_from_trash"}}
           Undelete
         </PaperButton>
       {{else}}
         <PaperButton @onClick={{this.delete}}>
-          {{paper-icon "delete"}}
           Delete
         </PaperButton>
-        {{#unless @todo.isCompleted}}
-          <PaperButton @onClick={{this.defer}}>
-            {{paper-icon "calendar_today"}}
-            Defer
-          </PaperButton>
-        {{/unless}}
         {{#if @todo.isCompleted}}
-          <PaperButton @onClick={{this.uncomplete}}>
+          <PaperButton
+            @raised={{true}}
+            @primary={{true}}
+            @onClick={{this.uncomplete}}
+          >
             {{paper-icon "check_box_outline_blank"}}
             Uncomplete
           </PaperButton>
         {{else}}
-          <PaperButton @onClick={{this.complete}} @raised={{true}} @primary={{true}}>
+          <PaperButton @onClick={{this.defer}}>
+            Defer
+          </PaperButton>
+          <PaperButton
+            @onClick={{this.complete}}
+            @raised={{true}}
+            @primary={{true}}
+          >
             {{paper-icon "check_box"}}
             Complete
           </PaperButton>
@@ -49,11 +57,9 @@
         Cancel
       </PaperButton>
       <PaperButton @onClick={{this.deferOneDay}}>
-        {{paper-icon "calendar_today"}}
         Defer One Day
       </PaperButton>
       <PaperButton @onClick={{this.deferUntilDate}}>
-        {{paper-icon "calendar_today"}}
         Defer Until Date
       </PaperButton>
     {{else if (eq this.buttonSet 'defer_until_date')}}
