@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import formatRelative from 'date-fns/formatRelative';
 
-export default helper(function relativeDate([date]) {
+export default helper(function relativeDatetime([date]) {
   if (!date) {
     return date;
   }

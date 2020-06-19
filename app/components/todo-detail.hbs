@@ -5,13 +5,13 @@
     </title.text>
   </card.title>
   <card.content>
-    <p>Created {{relative-date @todo.createdAt}}</p>
+    <p>Created {{relative-datetime @todo.createdAt}}</p>
     {{#if @todo.isDeleted}}
-      <p>Deleted {{relative-date @todo.deletedAt}}</p>
+      <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
     {{else if @todo.isCompleted}}
-      <p>Completed {{relative-date @todo.completedAt}}</p>
+      <p>Completed {{relative-datetime @todo.completedAt}}</p>
     {{else if @todo.deferredUntil}}
-      <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
+      <p>Deferred until {{relative-datetime @todo.deferredUntil}}</p>
     {{/if}}
   </card.content>
   <card.actions class="app-button-container">
