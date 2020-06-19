@@ -1,13 +1,13 @@
-<PaperCard as |card|>
-  <PaperForm @onSubmit={{this.createTodo}} as |form|>
-    <card.content>
-      <form.input
-        @label="Add Todo"
-        @value={{this.newTodoName}}
-        @onChange={{action (mut this.newTodoName)}}
-        @block={{true}}
-        autocapitalize="sentences"
-      />
-    </card.content>
-  </PaperForm>
-</PaperCard>
+<PaperForm
+  @onSubmit={{this.createTodo}}
+  class="layout-margin"
+  as |form|
+>
+  <form.input
+    @label="Add Todo"
+    @value={{this.newTodoName}}
+    @onChange={{action (mut this.newTodoName)}}
+    @block={{true}}
+    autocapitalize="sentences"
+  />
+</PaperForm>
