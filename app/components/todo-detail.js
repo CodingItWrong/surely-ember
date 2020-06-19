@@ -3,32 +3,32 @@ import { action } from '@ember/object';
 
 export default class TodoDetailComponent extends Component {
   @action
-  async complete() {
+  complete() {
     const { todo } = this.args;
     todo.completedAt = new Date();
-    await todo.save();
+    todo.save();
   }
 
   @action
-  async uncomplete() {
+  uncomplete() {
     const { todo } = this.args;
     todo.completedAt = null;
-    await todo.save();
+    todo.save();
   }
 
   @action
-  async delete() {
+  delete() {
     const { todo } = this.args;
     todo.deletedAt = new Date();
-    await todo.save();
+    todo.save();
   }
 
   @action
-  async undelete() {
+  undelete() {
     const { todo } = this.args;
     todo.deletedAt = null;
     todo.completedAt = null;
-    await todo.save();
+    todo.save();
   }
 
   @action
