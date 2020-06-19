@@ -46,6 +46,22 @@
       <PaperButton @onClick={{this.deferOneDay}}>
         Defer One Day
       </PaperButton>
+      <PaperButton @onClick={{this.deferUntilDate}}>
+        Defer Until Date
+      </PaperButton>
+    {{else if (eq this.buttonSet 'defer_until_date')}}
+      <PaperInput
+        @type="date"
+        @label="Defer Until Date"
+        @value={{this.deferredUntil}}
+        @onChange={{action (mut this.deferredUntil)}}
+      />
+      <PaperButton @onClick={{this.cancelDefer}}>
+        Cancel
+      </PaperButton>
+      <PaperButton @onClick={{this.saveEnteredDeferredDate}}>
+        Defer
+      </PaperButton>
     {{/if}}
   </card.actions>
 </PaperCard>
