@@ -5,13 +5,34 @@
     </title.text>
   </card.title>
   <card.content>
-    <p>Created {{relative-datetime @todo.createdAt}}</p>
     {{#if @todo.isDeleted}}
       <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
-    {{else if @todo.isCompleted}}
-      <p>Completed {{relative-datetime @todo.completedAt}}</p>
-    {{else if @todo.deferredUntil}}
-      <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
+    {{/if}}
+
+    {{#if @todo.isCompleted}}
+      {{#if @todo.isDeleted}}
+        <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
+      {{else}}
+        <p>Completed {{relative-datetime @todo.completedAt}}</p>
+      {{/if}}
+    {{/if}}
+
+    {{#if @todo.deferredUntil}}
+      {{#if (or @todo.isDeleted @todo.isCompleted)}}
+        <p><small>Deferred until {{relative-date @todo.deferredUntil}}</small></p>
+      {{else}}
+        <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
+      {{/if}}
+    {{/if}}
+
+    {{#if (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
+      <p><small>Created {{relative-datetime @todo.createdAt}}</small></p>
+    {{else}}
+      <p>Created {{relative-datetime @todo.createdAt}}</p>
+    {{/if}}
+
+    {{#if (and @todo.isDeleted @todo.isCompleted)}}
+      <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
     {{/if}}
   </card.content>
   <card.actions class="app-button-container">
