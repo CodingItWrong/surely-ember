@@ -4,98 +4,134 @@
       <text.headline>{{@todo.name}}</text.headline>
     </title.text>
   </card.title>
-  <card.content>
-    {{#if @todo.isDeleted}}
-      <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
-    {{/if}}
-
-    {{#if @todo.isCompleted}}
-      {{#if @todo.isDeleted}}
-        <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
-      {{else}}
-        <p>Completed {{relative-datetime @todo.completedAt}}</p>
-      {{/if}}
-    {{/if}}
-
-    {{#if @todo.deferredUntil}}
-      {{#if (or @todo.isDeleted @todo.isCompleted)}}
-        <p><small>Deferred until {{relative-date @todo.deferredUntil}}</small></p>
-      {{else}}
-        <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
-      {{/if}}
-    {{/if}}
-
-    {{#if (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
-      <p><small>Created {{relative-datetime @todo.createdAt}}</small></p>
-    {{else}}
-      <p>Created {{relative-datetime @todo.createdAt}}</p>
-    {{/if}}
-
-    {{#if (and @todo.isDeleted @todo.isCompleted)}}
-      <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
-    {{/if}}
-  </card.content>
-  <card.actions class="app-button-container">
-    {{#if (eq this.buttonSet 'actions')}}
-      {{#if @todo.isDeleted}}
-        <PaperButton
+  {{#if this.isEditing}}
+    <PaperForm @onSubmit={{this.handleSave}} as |form|>
+      <card.content>
+        <form.input
+          @label="Todo"
+          @value={{this.editedName}}
+          @onChange={{action (mut this.editedName)}}
+          @block={{true}}
+          autocapitalize="true"
+        />
+        <PaperInput
+          @type="date"
+          @label="Defer Until Date"
+          @value={{this.deferredUntil}}
+          @onChange={{action (mut this.deferredUntil)}}
+          @block={{true}}
+        />
+      </card.content>
+      <card.actions>
+        <PaperButton @onClick={{this.cancelEdit}}>
+          Cancel
+        </PaperButton>
+        <form.submit-button
           @raised={{true}}
           @primary={{true}}
-          @onClick={{this.undelete}}
         >
-          {{paper-icon "restore_from_trash"}}
-          Undelete
-        </PaperButton>
-      {{else}}
-        <PaperButton @onClick={{this.delete}}>
-          Delete
-        </PaperButton>
-        {{#if @todo.isCompleted}}
-          <PaperButton
-            @raised={{true}}
-            @primary={{true}}
-            @onClick={{this.uncomplete}}
-          >
-            {{paper-icon "check_box_outline_blank"}}
-            Uncomplete
-          </PaperButton>
+          {{paper-icon "save"}}
+          Save
+        </form.submit-button>
+      </card.actions>
+    </PaperForm>
+  {{else}}
+    <card.content>
+      {{#if @todo.isDeleted}}
+        <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
+      {{/if}}
+
+      {{#if @todo.isCompleted}}
+        {{#if @todo.isDeleted}}
+          <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
         {{else}}
-          <PaperButton @onClick={{this.defer}}>
-            Defer
-          </PaperButton>
-          <PaperButton
-            @onClick={{this.complete}}
-            @raised={{true}}
-            @primary={{true}}
-          >
-            {{paper-icon "check_box"}}
-            Complete
-          </PaperButton>
+          <p>Completed {{relative-datetime @todo.completedAt}}</p>
         {{/if}}
       {{/if}}
-    {{else if (eq this.buttonSet 'defer')}}
-      <PaperButton @onClick={{this.cancelDefer}}>
-        Cancel
+
+      {{#if @todo.deferredUntil}}
+        {{#if (or @todo.isDeleted @todo.isCompleted)}}
+          <p><small>Deferred until {{relative-date @todo.deferredUntil}}</small></p>
+        {{else}}
+          <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
+        {{/if}}
+      {{/if}}
+
+      {{#if (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
+        <p><small>Created {{relative-datetime @todo.createdAt}}</small></p>
+      {{else}}
+        <p>Created {{relative-datetime @todo.createdAt}}</p>
+      {{/if}}
+
+      {{#if (and @todo.isDeleted @todo.isCompleted)}}
+        <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
+      {{/if}}
+      <PaperButton @onClick={{this.edit}}>
+        Edit
       </PaperButton>
-      <PaperButton @onClick={{this.deferOneDay}}>
-        Defer One Day
-      </PaperButton>
-      <PaperButton @onClick={{this.deferUntilDate}}>
-        Defer Until Date
-      </PaperButton>
-    {{else if (eq this.buttonSet 'defer_until_date')}}
-      <PaperInput
-        @type="date"
-        @label="Defer Until Date"
-        @value={{this.deferredUntil}}
-        @onChange={{action (mut this.deferredUntil)}}
-      />
-      <PaperButton @onClick={{this.cancelDefer}}>
-        Cancel
-      </PaperButton>
-      <PaperButton @onClick={{this.saveEnteredDeferredDate}}>
-        Defer
-      </PaperButton>
-    {{/if}}
-  </card.actions>
+    </card.content>
+    <card.actions class="app-button-container">
+      {{#if (eq this.buttonSet 'actions')}}
+        {{#if @todo.isDeleted}}
+          <PaperButton
+            @raised={{true}}
+            @primary={{true}}
+            @onClick={{this.undelete}}
+          >
+            {{paper-icon "restore_from_trash"}}
+            Undelete
+          </PaperButton>
+        {{else}}
+          <PaperButton @onClick={{this.delete}}>
+            Delete
+          </PaperButton>
+          {{#if @todo.isCompleted}}
+            <PaperButton
+              @raised={{true}}
+              @primary={{true}}
+              @onClick={{this.uncomplete}}
+            >
+              {{paper-icon "check_box_outline_blank"}}
+              Uncomplete
+            </PaperButton>
+          {{else}}
+            <PaperButton @onClick={{this.defer}}>
+              Defer
+            </PaperButton>
+            <PaperButton
+              @onClick={{this.complete}}
+              @raised={{true}}
+              @primary={{true}}
+            >
+              {{paper-icon "check_box"}}
+              Complete
+            </PaperButton>
+          {{/if}}
+        {{/if}}
+      {{else if (eq this.buttonSet 'defer')}}
+        <PaperButton @onClick={{this.cancelDefer}}>
+          Cancel
+        </PaperButton>
+        <PaperButton @onClick={{this.deferOneDay}}>
+          Defer One Day
+        </PaperButton>
+        <PaperButton @onClick={{this.deferUntilDate}}>
+          Defer Until Date
+        </PaperButton>
+      {{else if (eq this.buttonSet 'defer_until_date')}}
+        <PaperInput
+          @type="date"
+          @label="Defer Until Date"
+          @value={{this.deferredUntil}}
+          @onChange={{action (mut this.deferredUntil)}}
+        />
+        <PaperButton @onClick={{this.cancelDefer}}>
+          Cancel
+        </PaperButton>
+        <PaperButton @onClick={{this.saveEnteredDeferredDate}}>
+          Defer
+        </PaperButton>
+      {{/if}}
+    </card.actions>
+  {{/if}}
 </PaperCard>
