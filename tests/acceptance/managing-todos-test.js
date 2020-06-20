@@ -57,6 +57,8 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-save-button]');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     assert.dom('[data-test-deferred-until]').doesNotExist();
+    await click('[data-test-back-to-future-list]');
+    assert.dom('[data-test-todo]').doesNotExist();
 
     // defer until date
     await click('[data-test-home]');
@@ -78,6 +80,17 @@ module('Acceptance | managing todos', function (hooks) {
 
     await click('[data-test-home]');
     await click('[data-test-completed] button');
+    assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
+
+    // Uncomplete
+    await click('[data-test-todo] button');
+    await click('[data-test-uncomplete-button]');
+    assert.dom('[data-test-completed-at]').doesNotExist();
+    await click('[data-test-back-to-completed-list]');
+    assert.dom('[data-test-todo]').doesNotExist();
+
+    await click('[data-test-home]');
+    await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
 });
