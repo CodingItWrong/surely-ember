@@ -15,6 +15,7 @@
           @onChange={{action (mut this.editedName)}}
           @block={{true}}
           autocapitalize="true"
+          data-test-todo-name-field
         />
         <PaperInput
           @type="date"
@@ -31,6 +32,7 @@
         <form.submit-button
           @raised={{true}}
           @primary={{true}}
+          data-test-save-button
         >
           {{paper-icon "save"}}
           Save
@@ -70,7 +72,10 @@
       {{#if (and @todo.isDeleted @todo.isCompleted)}}
         <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
       {{/if}}
-      <PaperButton @onClick={{this.edit}}>
+      <PaperButton
+        @onClick={{this.edit}}
+        data-test-edit-button
+      >
         Edit
       </PaperButton>
     </card.content>

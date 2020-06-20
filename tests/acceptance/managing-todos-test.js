@@ -42,5 +42,14 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
+
+    // editing
+    await click('[data-test-todo] button');
+    await click('[data-test-edit-button]');
+
+    const updatedTodoName = 'Updated Todo';
+    await fillIn('[data-test-todo-name-field] input', updatedTodoName);
+    await click('[data-test-save-button]');
+    assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
 });
