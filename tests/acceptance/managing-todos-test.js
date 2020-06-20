@@ -33,7 +33,7 @@ module('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-deferred-until]').doesNotExist();
     await click('[data-test-defer-button]');
     await click('[data-test-defer-one-day-button]');
-    assert.dom('[data-test-deferred-until]').exists();
+    assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
     await click('[data-test-back-to-available-list]');
     assert.dom('[data-test-todo]').doesNotExist();
 
