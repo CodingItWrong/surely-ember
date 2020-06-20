@@ -7,7 +7,10 @@
       {{paper-icon "access_time"}}
       <p>Available</p>
     </PaperItem>
-    <PaperItem @onClick={{fn this.goToTodos 'future'}}>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'future'}}
+      data-test-future
+    >
       {{paper-icon "calendar_today"}}
       <p>Future</p>
     </PaperItem>
