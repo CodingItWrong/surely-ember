@@ -11,7 +11,11 @@
     <PaperList>
       {{#each @todos as |todo|}}
         {{#if (has-block)}}
-          <PaperItem @class="md-2-line" @onClick={{fn @onChooseTodo todo}}>
+          <PaperItem
+            @class="md-2-line"
+            @onClick={{fn @onChooseTodo todo}}
+            data-test-todo
+          >
             <div class="md-list-item-text">
               <h3>{{todo.name}}</h3>
               <p>{{yield todo}}</p>
@@ -19,7 +23,10 @@
             <PaperDivider />
           </PaperItem>
         {{else}}
-          <PaperItem @onClick={{fn @onChooseTodo todo}}>
+          <PaperItem
+            @onClick={{fn @onChooseTodo todo}}
+            data-test-todo
+          >
             <p>{{todo.name}}</p>
             <PaperDivider />
           </PaperItem>

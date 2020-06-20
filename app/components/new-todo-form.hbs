@@ -1,6 +1,7 @@
 <PaperForm
   @onSubmit={{this.createTodo}}
   class="layout-margin"
+  data-test-new-todo-form
   as |form|
 >
   <form.input
@@ -9,5 +10,6 @@
     @onChange={{action (mut this.newTodoName)}}
     @block={{true}}
     autocapitalize="sentences"
+    data-test-new-todo-field
   />
 </PaperForm>

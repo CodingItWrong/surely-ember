@@ -8,6 +8,7 @@ export default function () {
     };
   });
 
+  this.post('/todos');
   this.get('/todos');
   this.get('/todos/:id');
   this.patch('/todos/:id');
