@@ -69,5 +69,15 @@ module('Acceptance | managing todos', function (hooks) {
     await fillIn('[data-test-deferred-until-field] input', oneWeek);
     await click('[data-test-defer-button]');
     assert.dom('[data-test-deferred-until]').exists();
+
+    // complete
+    await click('[data-test-complete-button]');
+    assert.dom('[data-test-completed-at]').hasText(/Completed today at/);
+    await click('[data-test-back-to-available-list]');
+    assert.dom('[data-test-todo]').doesNotExist();
+
+    await click('[data-test-home]');
+    await click('[data-test-completed] button');
+    assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
 });

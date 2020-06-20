@@ -67,11 +67,13 @@
       {{/if}}
 
       {{#if @todo.isCompleted}}
-        {{#if @todo.isDeleted}}
-          <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
-        {{else}}
-          <p>Completed {{relative-datetime @todo.completedAt}}</p>
-        {{/if}}
+        <p data-test-completed-at>
+          {{#if @todo.isDeleted}}
+            <small>Completed {{relative-datetime @todo.completedAt}}</small>
+          {{else}}
+            Completed {{relative-datetime @todo.completedAt}}
+          {{/if}}
+        </p>
       {{/if}}
 
       {{#if @todo.deferredUntil}}
@@ -129,6 +131,7 @@
               @onClick={{this.complete}}
               @raised={{true}}
               @primary={{true}}
+              data-test-complete-button
             >
               {{paper-icon "check_box"}}
               Complete

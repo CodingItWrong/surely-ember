@@ -14,11 +14,17 @@
       {{paper-icon "calendar_today"}}
       <p>Future</p>
     </PaperItem>
-    <PaperItem @onClick={{fn this.goToTodos 'completed'}}>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'completed'}}
+      data-test-completed
+    >
       {{paper-icon "check_circle"}}
       <p>Completed</p>
     </PaperItem>
-    <PaperItem @onClick={{fn this.goToTodos 'deleted'}}>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'deleted'}}
+      data-test-deleted
+    >
       {{paper-icon "delete"}}
       <p>Deleted</p>
     </PaperItem>
