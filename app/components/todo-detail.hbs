@@ -1,7 +1,9 @@
 <PaperCard as |card|>
   <card.title as |title|>
     <title.text as |text|>
-      <text.headline>{{@todo.name}}</text.headline>
+      <text.headline data-test-todo-name>
+        {{@todo.name}}
+      </text.headline>
     </title.text>
   </card.title>
   {{#if this.isEditing}}
@@ -50,11 +52,13 @@
       {{/if}}
 
       {{#if @todo.deferredUntil}}
-        {{#if (or @todo.isDeleted @todo.isCompleted)}}
-          <p><small>Deferred until {{relative-date @todo.deferredUntil}}</small></p>
-        {{else}}
-          <p>Deferred until {{relative-date @todo.deferredUntil}}</p>
-        {{/if}}
+        <p data-test-deferred-until>
+          {{#if (or @todo.isDeleted @todo.isCompleted)}}
+            <small>Deferred until {{relative-date @todo.deferredUntil}}</small>
+          {{else}}
+            Deferred until {{relative-date @todo.deferredUntil}}
+          {{/if}}
+        </p>
       {{/if}}
 
       {{#if (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
@@ -95,7 +99,10 @@
               Uncomplete
             </PaperButton>
           {{else}}
-            <PaperButton @onClick={{this.defer}}>
+            <PaperButton
+              @onClick={{this.defer}}
+              data-test-defer-button
+            >
               Defer
             </PaperButton>
             <PaperButton
@@ -112,7 +119,10 @@
         <PaperButton @onClick={{this.cancelDefer}}>
           Cancel
         </PaperButton>
-        <PaperButton @onClick={{this.deferOneDay}}>
+        <PaperButton
+          @onClick={{this.deferOneDay}}
+          data-test-defer-one-day-button
+        >
           Defer One Day
         </PaperButton>
         <PaperButton @onClick={{this.deferUntilDate}}>

@@ -4,7 +4,8 @@ import {
   click,
   fillIn,
   triggerEvent,
-  // pauseTest,
+  // eslint-disable-next-line no-unused-vars
+  pauseTest,
 } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
@@ -20,9 +21,18 @@ module('Acceptance | managing todos', function (hooks) {
     await visit('/');
     await click('[data-test-available] button');
 
+    // add todo
     const todoName = 'New Todo';
     await fillIn('[data-test-new-todo-field] input', todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo]').hasText(todoName);
+
+    // defer one day
+    await click('[data-test-todo] button');
+    assert.dom('[data-test-todo-name]').hasText(todoName);
+    assert.dom('[data-test-deferred-until]').doesNotExist();
+    await click('[data-test-defer-button]');
+    await click('[data-test-defer-one-day-button]');
+    assert.dom('[data-test-deferred-until]').exists();
   });
 });
