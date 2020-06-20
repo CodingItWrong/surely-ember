@@ -119,18 +119,26 @@
           Defer Until Date
         </PaperButton>
       {{else if (eq this.buttonSet 'defer_until_date')}}
-        <PaperInput
-          @type="date"
-          @label="Defer Until Date"
-          @value={{this.deferredUntil}}
-          @onChange={{action (mut this.deferredUntil)}}
-        />
-        <PaperButton @onClick={{this.cancelDefer}}>
-          Cancel
-        </PaperButton>
-        <PaperButton @onClick={{this.saveEnteredDeferredDate}}>
-          Defer
-        </PaperButton>
+        <PaperForm
+          @onSubmit={{this.saveEnteredDeferredDate}}
+          as |form|
+        >
+          <PaperInput
+            @type="date"
+            @label="Defer Until Date"
+            @value={{this.deferredUntil}}
+            @onChange={{action (mut this.deferredUntil)}}
+          />
+          <PaperButton @onClick={{this.cancelDefer}}>
+            Cancel
+          </PaperButton>
+          <form.submit-button
+            @raised={{true}}
+            @primary={{true}}>
+            {{paper-icon "calendar_today"}}
+            Defer
+          </form.submit-button>
+        </PaperForm>
       {{/if}}
     </card.actions>
   {{/if}}
