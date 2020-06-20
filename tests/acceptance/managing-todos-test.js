@@ -10,6 +10,10 @@ import {
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { authenticateSession } from 'ember-simple-auth/test-support';
+import addWeeks from 'date-fns/addWeeks';
+import format from 'date-fns/format';
+
+const FORMAT_STRING = 'yyyy-MM-dd';
 
 module('Acceptance | managing todos', function (hooks) {
   setupApplicationTest(hooks);
@@ -53,5 +57,17 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-save-button]');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     assert.dom('[data-test-deferred-until]').doesNotExist();
+
+    // defer until date
+    await click('[data-test-home]');
+    await click('[data-test-available] button');
+    await click('[data-test-todo] button');
+    await click('[data-test-defer-button]');
+    await click('[data-test-defer-until-date-button]');
+
+    const oneWeek = format(addWeeks(new Date(), 1), FORMAT_STRING);
+    await fillIn('[data-test-deferred-until-field] input', oneWeek);
+    await click('[data-test-defer-button]');
+    assert.dom('[data-test-deferred-until]').exists();
   });
 });

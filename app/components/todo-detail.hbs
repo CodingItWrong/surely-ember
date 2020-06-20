@@ -145,7 +145,10 @@
         >
           Defer One Day
         </PaperButton>
-        <PaperButton @onClick={{this.deferUntilDate}}>
+        <PaperButton
+          @onClick={{this.deferUntilDate}}
+          data-test-defer-until-date-button
+        >
           Defer Until Date
         </PaperButton>
       {{else if (eq this.buttonSet 'defer_until_date')}}
@@ -153,18 +156,21 @@
           @onSubmit={{this.saveEnteredDeferredDate}}
           as |form|
         >
-          <PaperInput
+          <form.input
             @type="date"
             @label="Defer Until Date"
             @value={{this.deferredUntil}}
             @onChange={{action (mut this.deferredUntil)}}
+            data-test-deferred-until-field
           />
           <PaperButton @onClick={{this.cancelDefer}}>
             Cancel
           </PaperButton>
           <form.submit-button
             @raised={{true}}
-            @primary={{true}}>
+            @primary={{true}}
+            data-test-defer-button
+          >
             {{paper-icon "calendar_today"}}
             Defer
           </form.submit-button>
