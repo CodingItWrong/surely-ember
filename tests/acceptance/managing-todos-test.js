@@ -25,7 +25,7 @@ module('Acceptance | managing todos', function (hooks) {
     const todoName = 'New Todo';
     await fillIn('[data-test-new-todo-field] input', todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
-    assert.dom('[data-test-todo]').hasText(todoName);
+    assert.dom('[data-test-todo-name]').hasText(todoName);
 
     // defer one day
     await click('[data-test-todo] button');
@@ -40,6 +40,7 @@ module('Acceptance | managing todos', function (hooks) {
     // future list
     await click('[data-test-home]');
     await click('[data-test-future] button');
-    assert.dom('[data-test-todo]').hasText(todoName);
+    assert.dom('[data-test-todo-name]').hasText(todoName);
+    assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
   });
 });
