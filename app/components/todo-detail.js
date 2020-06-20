@@ -122,6 +122,10 @@ export default class TodoDetailComponent extends Component {
   }
 
   formatDate(date) {
+    if (!date) {
+      return date;
+    }
+
     return format(date, FORMAT_STRING);
   }
 }
