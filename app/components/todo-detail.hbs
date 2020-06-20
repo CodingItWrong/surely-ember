@@ -1,12 +1,12 @@
 <PaperCard as |card|>
-  <card.title as |title|>
-    <title.text as |text|>
-      <text.headline data-test-todo-name>
-        {{@todo.name}}
-      </text.headline>
-    </title.text>
-  </card.title>
-  {{#if this.isEditing}}
+    {{#if this.isEditing}}
+    <card.title as |title|>
+      <title.text as |text|>
+        <text.headline data-test-todo-name>
+          {{@todo.name}}
+        </text.headline>
+      </title.text>
+    </card.title>
     <PaperForm @onSubmit={{this.handleSave}} as |form|>
       <card.content>
         <form.input
@@ -41,6 +41,26 @@
       </card.actions>
     </PaperForm>
   {{else}}
+    <card.title as |title|>
+      <title.text as |text|>
+        <text.headline>
+          <div class="layout-row layout-align-space-between-center">
+            <div class="flex-90" data-test-todo-name>
+              {{@todo.name}}
+            </div>
+            <div class="flex-10 layout-align-end">
+              <PaperButton
+                @iconButton={{true}}
+                @onClick={{this.edit}}
+                data-test-edit-button
+              >
+                {{paper-icon "edit"}}
+              </PaperButton>
+            </div>
+          </div>
+        </text.headline>
+      </title.text>
+    </card.title>
     <card.content>
       {{#if @todo.isDeleted}}
         <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
@@ -73,12 +93,6 @@
       {{#if (and @todo.isDeleted @todo.isCompleted)}}
         <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
       {{/if}}
-      <PaperButton
-        @onClick={{this.edit}}
-        data-test-edit-button
-      >
-        Edit
-      </PaperButton>
     </card.content>
     <card.actions class="app-button-container">
       {{#if (eq this.buttonSet 'actions')}}
