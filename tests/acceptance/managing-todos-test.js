@@ -49,7 +49,9 @@ module('Acceptance | managing todos', function (hooks) {
 
     const updatedTodoName = 'Updated Todo';
     await fillIn('[data-test-todo-name-field] input', updatedTodoName);
+    await fillIn('[data-test-deferred-until-field] input', '');
     await click('[data-test-save-button]');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
+    assert.dom('[data-test-deferred-until]').doesNotExist();
   });
 });
