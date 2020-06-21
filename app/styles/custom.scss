@@ -20,3 +20,9 @@
     }
   }
 }
+
+.md-button {
+  @media only screen and (max-width: 599px) {
+    min-height: 44px;
+  }
+}
