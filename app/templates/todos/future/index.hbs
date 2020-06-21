@@ -5,5 +5,5 @@
   @onChooseTodo={{this.handleChooseTodo}}
   as |todo|
 >
-  Deferred until {{relative-date todo.deferredUntil}}
+  {{capitalize (relative-date todo.deferredUntil)}}
 </TodoList>
