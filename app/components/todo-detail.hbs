@@ -63,7 +63,9 @@
     </card.title>
     <card.content>
       {{#if @todo.isDeleted}}
-        <p>Deleted {{relative-datetime @todo.deletedAt}}</p>
+        <p data-test-deleted-at>
+          Deleted {{relative-datetime @todo.deletedAt}}
+        </p>
       {{/if}}
 
       {{#if @todo.isCompleted}}
@@ -108,7 +110,10 @@
             Undelete
           </PaperButton>
         {{else}}
-          <PaperButton @onClick={{this.delete}}>
+          <PaperButton
+            @onClick={{this.delete}}
+            data-test-delete-button
+          >
             Delete
           </PaperButton>
           {{#if @todo.isCompleted}}

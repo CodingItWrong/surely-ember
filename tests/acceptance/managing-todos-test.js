@@ -92,5 +92,16 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-home]');
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
+
+    // delete
+    await click('[data-test-todo] button');
+    await click('[data-test-delete-button]');
+    assert.dom('[data-test-deleted-at]').exists();
+    await click('[data-test-back-to-future-list]');
+    assert.dom('[data-test-todo]').doesNotExist();
+
+    await click('[data-test-home]');
+    await click('[data-test-deleted] button');
+    assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
 });
