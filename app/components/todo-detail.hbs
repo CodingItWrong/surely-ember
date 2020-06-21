@@ -161,6 +161,7 @@
       {{else if (eq this.buttonSet 'defer_until_date')}}
         <PaperForm
           @onSubmit={{this.saveEnteredDeferredDate}}
+          class="app-button-container"
           as |form|
         >
           <form.input
