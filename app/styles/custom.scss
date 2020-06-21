@@ -23,8 +23,13 @@
 
 .md-button {
   @media only screen and (max-width: 599px) {
-    margin-left: 0 !important;
     min-height: 44px;
+  }
+}
+
+md-card-actions .md-button {
+  @media only screen and (max-width: 599px) {
+    margin-left: 0 !important;
   }
 }
 
