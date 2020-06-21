@@ -27,3 +27,21 @@
     min-height: 44px;
   }
 }
+
+.todo-list-item {
+  &__container {
+    margin: 16px 0;
+  }
+
+  &__title {
+    margin: 0;
+    line-height: 1.2em;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.2em;
+    color: var(--foreground-2);
+  }
+}

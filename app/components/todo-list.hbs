@@ -10,33 +10,28 @@
   <PaperContent>
     <PaperList>
       {{#each @todos as |todo|}}
-        {{#if (has-block)}}
-          <PaperItem
-            @class="md-2-line"
-            @onClick={{fn @onChooseTodo todo}}
-            data-test-todo
-          >
-            <div class="md-list-item-text">
-              <h3 data-test-todo-name>
-                {{todo.name}}
-              </h3>
-              <p data-test-deferred-until>
-                {{yield todo}}
-              </p>
-            </div>
-            <PaperDivider />
-          </PaperItem>
-        {{else}}
-          <PaperItem
-            @onClick={{fn @onChooseTodo todo}}
-            data-test-todo
-          >
-            <p data-test-todo-name>
+        <PaperItem
+          @onClick={{fn @onChooseTodo todo}}
+          data-test-todo
+        >
+          <div class="todo-list-item__container">
+            <p
+              class="todo-list-item__title"
+              data-test-todo-name
+            >
               {{todo.name}}
             </p>
-            <PaperDivider />
-          </PaperItem>
-        {{/if}}
+            {{#if (has-block)}}
+              <p
+                class="todo-list-item__subtitle"
+                data-test-deferred-until
+              >
+                {{yield todo}}
+              </p>
+            {{/if}}
+          </div>
+          <PaperDivider />
+        </PaperItem>
       {{else}}
         <PaperItem>
           <p><em>(no todos)</em></p>
