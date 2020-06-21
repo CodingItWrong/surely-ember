@@ -45,7 +45,7 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-home]');
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
-    assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
+    assert.dom('[data-test-deferred-until]').hasText('Tomorrow');
 
     // editing
     await click('[data-test-todo] button');
