@@ -63,40 +63,37 @@
     </card.title>
     <card.content>
       {{#if @todo.isDeleted}}
-        <p data-test-deleted-at>
+        <EventLogEntry
+          @isPrimary={{true}}
+          data-test-deleted-at
+        >
           Deleted {{relative-datetime @todo.deletedAt}}
-        </p>
+        </EventLogEntry>
       {{/if}}
 
       {{#if @todo.isCompleted}}
-        <p data-test-completed-at>
-          {{#if @todo.isDeleted}}
-            <small>Completed {{relative-datetime @todo.completedAt}}</small>
-          {{else}}
-            Completed {{relative-datetime @todo.completedAt}}
-          {{/if}}
-        </p>
+        <EventLogEntry
+          @isPrimary={{not @todo.isDeleted}}
+          data-test-completed-at
+        >
+          Completed {{relative-datetime @todo.completedAt}}
+        </EventLogEntry>
       {{/if}}
 
       {{#if @todo.deferredUntil}}
-        <p data-test-deferred-until>
-          {{#if (or @todo.isDeleted @todo.isCompleted)}}
-            <small>Deferred until {{relative-date @todo.deferredUntil}}</small>
-          {{else}}
-            Deferred until {{relative-date @todo.deferredUntil}}
-          {{/if}}
-        </p>
+        <EventLogEntry
+          @isPrimary={{not (or @todo.isDeleted @todo.isCompleted)}}
+          data-test-deferred-until
+        >
+          Deferred until {{relative-date @todo.deferredUntil}}
+        </EventLogEntry>
       {{/if}}
 
-      {{#if (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
-        <p><small>Created {{relative-datetime @todo.createdAt}}</small></p>
-      {{else}}
-        <p>Created {{relative-datetime @todo.createdAt}}</p>
-      {{/if}}
-
-      {{#if (and @todo.isDeleted @todo.isCompleted)}}
-        <p><small>Completed {{relative-datetime @todo.completedAt}}</small></p>
-      {{/if}}
+      <EventLogEntry
+        @isPrimary={{not (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
+      >
+        Created {{relative-datetime @todo.createdAt}}
+      </EventLogEntry>
     </card.content>
     <card.actions class="app-button-container">
       {{#if (eq this.buttonSet 'actions')}}
