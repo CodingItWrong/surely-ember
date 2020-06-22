@@ -43,21 +43,21 @@
   {{else}}
     <card.title as |title|>
       <title.text as |text|>
-        <text.headline>
-          <div class="layout-row layout-align-space-between-center">
-            <div class="flex-90" data-test-todo-name>
-              {{@todo.name}}
-            </div>
-            <div class="flex-10 layout-align-end">
-              <PaperButton
-                @iconButton={{true}}
-                @onClick={{this.edit}}
-                data-test-edit-button
-              >
-                {{paper-icon "edit"}}
-              </PaperButton>
-            </div>
+        <text.headline class="todo-headline__container">
+          <div
+            class="todo-headline__title"
+            data-test-todo-name
+          >
+            {{@todo.name}}
           </div>
+          <PaperButton
+            @iconButton={{true}}
+            @onClick={{this.edit}}
+            class="todo-headline__button"
+            data-test-edit-button
+          >
+            {{paper-icon "edit"}}
+          </PaperButton>
         </text.headline>
       </title.text>
     </card.title>

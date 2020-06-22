@@ -50,3 +50,15 @@ md-card-actions .md-button {
     color: var(--foreground-2);
   }
 }
+
+.todo-headline {
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  &__title {
+    flex: 1;
+  }
+}
