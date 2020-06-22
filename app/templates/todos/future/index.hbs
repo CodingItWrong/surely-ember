@@ -3,6 +3,7 @@
   @icon="calendar_today"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
+  @onRefresh={{this.refreshModel}}
   as |todo|
 >
   {{capitalize (relative-date todo.deferredUntil)}}

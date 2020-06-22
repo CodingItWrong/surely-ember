@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
 export default class TodosCompletedIndexRoute extends Route {
   async model() {
@@ -6,5 +7,10 @@ export default class TodosCompletedIndexRoute extends Route {
       filter: { status: 'completed' },
     });
     return this.store.peekAll('todo');
+  }
+
+  @action
+  refreshRoute() {
+    this.refresh();
   }
 }

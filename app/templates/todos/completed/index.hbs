@@ -3,6 +3,7 @@
   @icon="check_circle"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
+  @onRefresh={{this.refreshModel}}
   as |todo|
 >
   Completed {{relative-datetime todo.completedAt}}

@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
 export default class TodosDeletedIndexRoute extends Route {
   async model() {
@@ -6,5 +7,10 @@ export default class TodosDeletedIndexRoute extends Route {
       filter: { status: 'deleted' },
     });
     return this.store.peekAll('todo');
+  }
+
+  @action
+  refreshRoute() {
+    this.refresh();
   }
 }

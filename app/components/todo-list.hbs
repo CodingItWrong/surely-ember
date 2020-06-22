@@ -2,9 +2,16 @@
   <PaperToolbar>
     <PaperToolbarTools>
       <PaperButton @iconButton={{true}}>
-        {{paper_icon @icon}}
+        {{paper-icon @icon}}
       </PaperButton>
       <h2>{{@title}}</h2>
+      <span class="flex"></span>
+      <PaperButton
+        @iconButton={{true}}
+        @onClick={{@onRefresh}}
+      >
+        {{paper-icon 'refresh'}}
+      </PaperButton>
     </PaperToolbarTools>
   </PaperToolbar>
   <PaperContent>
