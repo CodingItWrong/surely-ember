@@ -20,9 +20,4 @@ export default class TodosAvailableIndexController extends Controller {
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.available.detail', todo.id);
   }
-
-  @action
-  refreshModel() {
-    this.send('refreshRoute');
-  }
 }

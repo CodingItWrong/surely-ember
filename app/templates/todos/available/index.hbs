@@ -5,5 +5,5 @@
   @icon="access_time"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
-  @onRefresh={{this.refreshModel}}
+  @onRefresh={{action send 'refreshRoute'}}
 />

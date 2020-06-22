@@ -3,7 +3,7 @@
   @icon="check_circle"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
-  @onRefresh={{this.refreshModel}}
+  @onRefresh={{action send 'refreshRoute'}}
   as |todo|
 >
   Completed {{relative-datetime todo.completedAt}}
