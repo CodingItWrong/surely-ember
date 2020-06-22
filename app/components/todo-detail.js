@@ -21,10 +21,11 @@ export default class TodoDetailComponent extends Component {
   @tracked editedDeferredUntil = null;
 
   @action
-  complete() {
-    const { todo } = this.args;
+  async complete() {
+    const { todo, onHandle } = this.args;
     todo.completedAt = new Date();
-    todo.save();
+    await todo.save();
+    onHandle();
   }
 
   @action
@@ -35,10 +36,11 @@ export default class TodoDetailComponent extends Component {
   }
 
   @action
-  delete() {
-    const { todo } = this.args;
+  async delete() {
+    const { todo, onHandle } = this.args;
     todo.deletedAt = new Date();
-    todo.save();
+    await todo.save();
+    onHandle();
   }
 
   @action
@@ -62,10 +64,11 @@ export default class TodoDetailComponent extends Component {
 
   @action
   async deferOneDay() {
-    const { todo } = this.args;
+    const { todo, onHandle } = this.args;
     todo.deferOneDay();
     await todo.save();
     this.buttonSet = BUTTON_SET.ACTIONS;
+    onHandle();
   }
 
   @action
@@ -82,12 +85,13 @@ export default class TodoDetailComponent extends Component {
 
     const deferredUntilDate = this.parseDate(this.deferredUntil);
 
-    const { todo } = this.args;
+    const { todo, onHandle } = this.args;
     todo.deferUntilDate(deferredUntilDate);
     await todo.save();
     this.buttonSet = BUTTON_SET.ACTIONS;
 
     this.deferredUntil = null;
+    onHandle();
   }
 
   @action

@@ -5,4 +5,7 @@
   &lt; Available
 </PaperButton>
 
-<TodoDetail @todo={{this.model}} />
+<TodoDetail
+  @todo={{this.model}}
+  @onHandle={{this.goToAvailable}}
+/>

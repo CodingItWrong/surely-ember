@@ -5,4 +5,7 @@
   &lt; Deleted
 </PaperButton>
 
-<TodoDetail @todo={{this.model}} />
+<TodoDetail
+  @todo={{this.model}}
+  @onHandle={{this.goToDeleted}}
+/>
