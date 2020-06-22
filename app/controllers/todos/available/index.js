@@ -8,8 +8,8 @@ export default class TodosAvailableIndexController extends Controller {
 
   sortPropertiesAlphabetical = Object.freeze(['name:asc']);
 
-  @computed('model.@each.isAvailable', function () {
-    return this.model.filter(todo => todo.isAvailable);
+  @computed('model.@each.{id,isAvailable}', function () {
+    return this.model.filter(todo => todo.id && todo.isAvailable);
   })
   filteredTodos;
 
