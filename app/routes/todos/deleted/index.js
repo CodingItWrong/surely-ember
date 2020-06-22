@@ -10,7 +10,7 @@ export default class TodosDeletedIndexRoute extends Route {
   }
 
   @action
-  refreshModel() {
-    this.refresh();
+  refresh() {
+    super.refresh();
   }
 }

@@ -3,7 +3,7 @@
   @icon="delete"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
-  @onRefresh={{action send 'refreshModel'}}
+  @onRefresh={{action send 'refresh'}}
   as |todo|
 >
   Deleted {{relative-datetime todo.deletedAt}}

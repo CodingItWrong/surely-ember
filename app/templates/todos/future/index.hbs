@@ -3,7 +3,7 @@
   @icon="calendar_today"
   @todos={{this.sortedTodos}}
   @onChooseTodo={{this.handleChooseTodo}}
-  @onRefresh={{action send 'refreshModel'}}
+  @onRefresh={{action send 'refresh'}}
   as |todo|
 >
   {{capitalize (relative-date todo.deferredUntil)}}
