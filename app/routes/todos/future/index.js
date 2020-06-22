@@ -10,7 +10,7 @@ export default class TodosFutureIndexRoute extends Route {
   }
 
   @action
-  refreshRoute() {
+  refreshModel() {
     this.refresh();
   }
 }

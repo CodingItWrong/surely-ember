@@ -10,7 +10,7 @@ export default class TodosCompletedIndexRoute extends Route {
   }
 
   @action
-  refreshRoute() {
+  refreshModel() {
     this.refresh();
   }
 }
