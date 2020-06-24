@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
-import { sort } from '@ember/object/computed';
+import { sort, filter } from '@ember/object/computed';
 import { action } from '@ember/object';
-import { filter } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default class TodosAvailableIndexController extends Controller {
