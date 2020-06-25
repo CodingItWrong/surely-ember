@@ -1,7 +1,8 @@
-# surely
+# Surely
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A todo list application.
+
+Backend is handled by [surely-api](https://github.com/CodingItWrong/surely-api).
 
 ## Prerequisites
 
@@ -47,7 +48,9 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+In `config/environment.js`, in the `if (environment === 'production')` block, update `ENV.apiHost` to point to your production API.
+
+Build and deploy the frontend to a server. [Netlify](https://www.netlify.com/) is a good frontend app hosting option.
 
 ## Further Reading / Useful Links
 
