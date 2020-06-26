@@ -73,7 +73,8 @@ export default class TodoDetailComponent extends Component {
 
   @action
   deferUntilDate() {
-    this.deferredUntil = null;
+    const { todo } = this.args;
+    this.deferredUntil = this.formatDate(todo.deferredUntil);
     this.buttonSet = BUTTON_SET.DEFER_UNTIL_DATE;
   }
 
