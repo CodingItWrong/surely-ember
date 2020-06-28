@@ -1,0 +1,33 @@
+<PaperForm @onSubmit={{this.handleSave}} as |form|>
+  <card.content>
+    <form.input
+      @label="Todo"
+      @value={{this.editedName}}
+      @onChange={{action (mut this.editedName)}}
+      @block={{true}}
+      autocapitalize="true"
+      data-test-todo-name-field
+    />
+    <form.input
+      @type="date"
+      @label="Defer Until Date"
+      @value={{this.deferredUntil}}
+      @onChange={{action (mut this.deferredUntil)}}
+      @block={{true}}
+      data-test-deferred-until-field
+    />
+  </card.content>
+  <card.actions class="app-button-container">
+    <PaperButton @onClick={{@onCancel}}>
+      Cancel
+    </PaperButton>
+    <form.submit-button
+      @raised={{true}}
+      @primary={{true}}
+      data-test-save-button
+    >
+      {{paper-icon "save"}}
+      Save
+    </form.submit-button>
+  </card.actions>
+</PaperForm>

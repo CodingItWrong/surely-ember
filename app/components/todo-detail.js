@@ -17,8 +17,6 @@ export default class TodoDetailComponent extends Component {
   @tracked deferredUntil = null;
 
   @tracked isEditing = false;
-  @tracked editedName = null;
-  @tracked editedDeferredUntil = null;
 
   @action
   async complete() {
@@ -97,29 +95,12 @@ export default class TodoDetailComponent extends Component {
 
   @action
   edit() {
-    const { todo } = this.args;
-    this.editedName = todo.name;
-    this.deferredUntil = this.formatDate(todo.deferredUntil);
     this.isEditing = true;
   }
 
   @action
-  cancelEdit() {
-    this.editedName = null;
-    this.deferredUntil = null;
+  stopEditing() {
     this.isEditing = false;
-  }
-
-  @action
-  async handleSave() {
-    const { todo } = this.args;
-
-    const deferredUntilDate = this.parseDate(this.deferredUntil);
-    todo.name = this.editedName;
-    todo.deferUntilDate(deferredUntilDate);
-    await todo.save();
-
-    this.cancelEdit();
   }
 
   parseDate(dateString) {
