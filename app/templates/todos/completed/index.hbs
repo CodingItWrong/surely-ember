@@ -6,5 +6,5 @@
   @onRefresh={{action send 'refresh'}}
   as |todo|
 >
-  Completed {{relative-datetime todo.completedAt}}
+  Completed {{time-ago todo.completedAt}}
 </TodoList>

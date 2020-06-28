@@ -6,5 +6,5 @@
   @onRefresh={{action send 'refresh'}}
   as |todo|
 >
-  Deleted {{relative-datetime todo.deletedAt}}
+  Deleted {{time-ago todo.deletedAt}}
 </TodoList>
