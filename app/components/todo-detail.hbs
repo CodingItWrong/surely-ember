@@ -9,8 +9,8 @@
     </card.title>
     <TodoDetail::EditForm
       @todo={{@todo}}
-      @onSave={{this.stopEditing}}
-      @onCancel={{this.stopEditing}}
+      @onSave={{this.handleSave}}
+      @onCancel={{this.handleCancel}}
     />
   {{else}}
     <card.title as |title|>
@@ -20,7 +20,7 @@
             class="todo-headline__title"
             data-test-todo-name
           >
-            {{@todo.name}}
+            {{this.displayModel.name}}
           </div>
           <PaperButton
             @iconButton={{true}}
@@ -34,42 +34,42 @@
       </title.text>
     </card.title>
     <card.content>
-      {{#if @todo.isDeleted}}
+      {{#if this.displayModel.isDeleted}}
         <EventLogEntry
           @isPrimary={{true}}
           data-test-deleted-at
         >
-          Deleted {{relative-datetime @todo.deletedAt}}
+          Deleted {{relative-datetime this.displayModel.deletedAt}}
         </EventLogEntry>
       {{/if}}
 
-      {{#if @todo.isCompleted}}
+      {{#if this.displayModel.isCompleted}}
         <EventLogEntry
-          @isPrimary={{not @todo.isDeleted}}
+          @isPrimary={{not this.displayModel.isDeleted}}
           data-test-completed-at
         >
-          Completed {{relative-datetime @todo.completedAt}}
+          Completed {{relative-datetime this.displayModel.completedAt}}
         </EventLogEntry>
       {{/if}}
 
-      {{#if @todo.deferredUntil}}
+      {{#if this.displayModel.deferredUntil}}
         <EventLogEntry
-          @isPrimary={{not (or @todo.isDeleted @todo.isCompleted)}}
+          @isPrimary={{not (or this.displayModel.isDeleted this.displayModel.isCompleted)}}
           data-test-deferred-until
         >
-          Deferred until {{relative-date @todo.deferredUntil}}
+          Deferred until {{relative-date this.displayModel.deferredUntil}}
         </EventLogEntry>
       {{/if}}
 
       <EventLogEntry
-        @isPrimary={{not (or @todo.isDeleted @todo.isCompleted @todo.deferredUntil)}}
+        @isPrimary={{not (or this.displayModel.isDeleted this.displayModel.isCompleted this.displayModel.deferredUntil)}}
       >
-        Created {{relative-datetime @todo.createdAt}}
+        Created {{relative-datetime this.displayModel.createdAt}}
       </EventLogEntry>
     </card.content>
     <card.actions class="app-button-container">
       {{#if (eq this.buttonSet 'actions')}}
-        {{#if @todo.isDeleted}}
+        {{#if this.displayModel.isDeleted}}
           <PaperButton
             @raised={{true}}
             @primary={{true}}
@@ -86,7 +86,7 @@
           >
             Delete
           </PaperButton>
-          {{#if @todo.isCompleted}}
+          {{#if this.displayModel.isCompleted}}
             <PaperButton
               @raised={{true}}
               @primary={{true}}

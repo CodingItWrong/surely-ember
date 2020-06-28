@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import pick from 'lodash-es/pick';
 
 const BUTTON_SET = {
   ACTIONS: 'actions',
@@ -18,6 +19,26 @@ export default class TodoDetailComponent extends Component {
 
   @tracked isEditing = false;
 
+  @tracked displayModel;
+
+  constructor(owner, args) {
+    super(owner, args);
+    this.updateDisplayModel();
+  }
+
+  updateDisplayModel() {
+    const { todo } = this.args;
+    this.displayModel = pick(todo, [
+      'name',
+      'isDeleted',
+      'deletedAt',
+      'isCompleted',
+      'completedAt',
+      'deferredUntil',
+      'createdAt',
+    ]);
+  }
+
   @action
   async complete() {
     const { todo, onHandle } = this.args;
@@ -31,6 +52,7 @@ export default class TodoDetailComponent extends Component {
     const { todo } = this.args;
     todo.completedAt = null;
     todo.save();
+    this.updateDisplayModel();
   }
 
   @action
@@ -47,6 +69,7 @@ export default class TodoDetailComponent extends Component {
     todo.deletedAt = null;
     todo.completedAt = null;
     todo.save();
+    this.updateDisplayModel();
   }
 
   @action
@@ -99,7 +122,13 @@ export default class TodoDetailComponent extends Component {
   }
 
   @action
-  stopEditing() {
+  handleSave() {
+    this.updateDisplayModel();
+    this.isEditing = false;
+  }
+
+  @action
+  handleCancel() {
     this.isEditing = false;
   }
 
