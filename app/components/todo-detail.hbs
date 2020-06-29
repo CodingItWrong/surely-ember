@@ -1,18 +1,11 @@
-<PaperCard as |card|>
-  {{#if this.isEditing}}
-    <card.title as |title|>
-      <title.text as |text|>
-        <text.headline>
-          Edit Todo
-        </text.headline>
-      </title.text>
-    </card.title>
-    <TodoDetail::EditForm
-      @todo={{@todo}}
-      @onSave={{this.handleSave}}
-      @onCancel={{this.handleCancel}}
-    />
-  {{else}}
+{{#if this.isEditing}}
+  <TodoDetail::EditForm
+    @todo={{@todo}}
+    @onSave={{this.handleSave}}
+    @onCancel={{this.handleCancel}}
+  />
+{{else}}
+  <PaperCard as |card|>
     <card.title as |title|>
       <title.text as |text|>
         <text.headline class="todo-headline__container">
@@ -157,5 +150,5 @@
         </PaperForm>
       {{/if}}
     </card.actions>
-  {{/if}}
-</PaperCard>
+  </PaperCard>
+{{/if}}
