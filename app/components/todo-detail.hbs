@@ -27,38 +27,9 @@
       </title.text>
     </card.title>
     <card.content>
-      {{#if this.displayModel.isDeleted}}
-        <EventLogEntry
-          @isPrimary={{true}}
-          data-test-deleted-at
-        >
-          Deleted {{relative-datetime this.displayModel.deletedAt}}
-        </EventLogEntry>
-      {{/if}}
-
-      {{#if this.displayModel.isCompleted}}
-        <EventLogEntry
-          @isPrimary={{not this.displayModel.isDeleted}}
-          data-test-completed-at
-        >
-          Completed {{relative-datetime this.displayModel.completedAt}}
-        </EventLogEntry>
-      {{/if}}
-
-      {{#if this.displayModel.deferredUntil}}
-        <EventLogEntry
-          @isPrimary={{not (or this.displayModel.isDeleted this.displayModel.isCompleted)}}
-          data-test-deferred-until
-        >
-          Deferred until {{relative-date this.displayModel.deferredUntil}}
-        </EventLogEntry>
-      {{/if}}
-
-      <EventLogEntry
-        @isPrimary={{not (or this.displayModel.isDeleted this.displayModel.isCompleted this.displayModel.deferredUntil)}}
-      >
-        Created {{relative-datetime this.displayModel.createdAt}}
-      </EventLogEntry>
+      <TodoDetail::EventLog
+        @displayModel={{this.displayModel}}
+      />
     </card.content>
     <card.actions class="app-button-container">
       {{#if (eq this.buttonSet 'actions')}}
