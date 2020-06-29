@@ -1,32 +1,32 @@
 {{#if @displayModel.isDeleted}}
-  <EventLogEntry
+  <TodoDetail::EventLog::Entry
     @isPrimary={{true}}
     data-test-deleted-at
   >
     Deleted {{relative-datetime @displayModel.deletedAt}}
-  </EventLogEntry>
+  </TodoDetail::EventLog::Entry>
 {{/if}}
 
 {{#if @displayModel.isCompleted}}
-  <EventLogEntry
+  <TodoDetail::EventLog::Entry
     @isPrimary={{not @displayModel.isDeleted}}
     data-test-completed-at
   >
     Completed {{relative-datetime @displayModel.completedAt}}
-  </EventLogEntry>
+  </TodoDetail::EventLog::Entry>
 {{/if}}
 
 {{#if @displayModel.deferredUntil}}
-  <EventLogEntry
+  <TodoDetail::EventLog::Entry
     @isPrimary={{not (or @displayModel.isDeleted @displayModel.isCompleted)}}
     data-test-deferred-until
   >
     Deferred until {{relative-date @displayModel.deferredUntil}}
-  </EventLogEntry>
+  </TodoDetail::EventLog::Entry>
 {{/if}}
 
-<EventLogEntry
+<TodoDetail::EventLog::Entry
   @isPrimary={{not (or @displayModel.isDeleted @displayModel.isCompleted @displayModel.deferredUntil)}}
 >
   Created {{relative-datetime @displayModel.createdAt}}
-</EventLogEntry>
+</TodoDetail::EventLog::Entry>
