@@ -30,6 +30,7 @@ export default class TodoDetailComponent extends Component {
     const { todo } = this.args;
     this.displayModel = pick(todo, [
       'name',
+      'notes',
       'isDeleted',
       'deletedAt',
       'isCompleted',

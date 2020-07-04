@@ -24,6 +24,14 @@
         @block={{true}}
         data-test-deferred-until-field
       />
+      <form.input
+        @label="Notes"
+        @value={{this.editedNotes}}
+        @onChange={{action (mut this.editedNotes)}}
+        @textarea={{true}}
+        @block={{true}}
+        autocapitalize="false"
+      />
     </card.content>
     <card.actions class="app-button-container">
       <PaperButton @onClick={{@onCancel}}>

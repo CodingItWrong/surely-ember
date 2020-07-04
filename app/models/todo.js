@@ -5,6 +5,7 @@ import startOfDay from 'date-fns/startOfDay';
 
 export default class TodoModel extends Model {
   @attr name;
+  @attr notes;
   @attr('date') createdAt;
   @attr('date') updatedAt;
   @attr('date') completedAt;
