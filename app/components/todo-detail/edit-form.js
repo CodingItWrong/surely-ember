@@ -9,6 +9,7 @@ const FORMAT_STRING = 'yyyy-MM-dd';
 export default class TodoDetailEditFormComponent extends Component {
   @tracked isEditing = false;
   @tracked editedName = null;
+  @tracked editedNotes = null;
   @tracked editedDeferredUntil = null;
 
   constructor(owner, args) {
@@ -19,6 +20,7 @@ export default class TodoDetailEditFormComponent extends Component {
   initializeFormData() {
     const { todo } = this.args;
     this.editedName = todo.name;
+    this.editedNotes = todo.notes;
     this.deferredUntil = this.formatDate(todo.deferredUntil);
   }
 
@@ -28,6 +30,7 @@ export default class TodoDetailEditFormComponent extends Component {
 
     const deferredUntilDate = this.parseDate(this.deferredUntil);
     todo.name = this.editedName;
+    todo.notes = this.editedNotes;
     todo.deferUntilDate(deferredUntilDate);
     await todo.save();
 
