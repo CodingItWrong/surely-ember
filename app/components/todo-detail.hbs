@@ -28,9 +28,7 @@
     </card.title>
     <card.content>
       {{#if this.displayModel.notes}}
-        <div class="notes-display">
-          {{this.displayModel.notes}}
-        </div>
+        <div class="notes-display">{{this.displayModel.notes}}</div>
       {{/if}}
       <TodoDetail::EventLog
         @displayModel={{this.displayModel}}
