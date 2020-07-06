@@ -10,7 +10,7 @@
       <title.text as |text|>
         <text.headline class="todo-headline__container">
           <div
-            class="todo-headline__title"
+            class="todo-headline__title click-to-edit"
             data-test-todo-name
             {{on 'click' this.edit}}
           >
@@ -29,7 +29,7 @@
     </card.title>
     <card.content>
       {{#if this.displayModel.notes}}
-        <div class="notes-display" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
+        <div class="notes-display click-to-edit" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
       {{/if}}
       <TodoDetail::EventLog
         @displayModel={{this.displayModel}}
