@@ -89,7 +89,6 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.deferOneDay();
     await todo.save();
-    this.buttonSet = BUTTON_SET.ACTIONS;
     onHandle();
   }
 
@@ -111,9 +110,6 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.deferUntilDate(deferredUntilDate);
     await todo.save();
-    this.buttonSet = BUTTON_SET.ACTIONS;
-
-    this.deferredUntil = null;
     onHandle();
   }
 
