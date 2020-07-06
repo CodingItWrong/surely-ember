@@ -1,19 +1,13 @@
 <PaperCard as |card|>
-  <card.title as |title|>
-    <title.text as |text|>
-      <text.headline>
-        Edit Todo
-      </text.headline>
-    </title.text>
-  </card.title>
   <PaperForm @onSubmit={{this.handleSave}} as |form|>
     <card.content>
       <form.input
-        @label="Todo"
+        @placeholder="Todo"
         @value={{this.editedName}}
         @onChange={{action (mut this.editedName)}}
         @block={{true}}
         @textarea={{true}}
+        class="title-input"
         autocapitalize="true"
         data-test-todo-name-field
       />
