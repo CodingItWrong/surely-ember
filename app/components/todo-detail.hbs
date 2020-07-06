@@ -12,6 +12,7 @@
           <div
             class="todo-headline__title"
             data-test-todo-name
+            {{on 'click' this.edit}}
           >
             {{this.displayModel.name}}
           </div>
@@ -28,7 +29,7 @@
     </card.title>
     <card.content>
       {{#if this.displayModel.notes}}
-        <div class="notes-display">{{this.displayModel.notes}}</div>
+        <div class="notes-display" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
       {{/if}}
       <TodoDetail::EventLog
         @displayModel={{this.displayModel}}
