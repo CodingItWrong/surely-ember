@@ -5,6 +5,7 @@ import parse from 'date-fns/parse';
 import format from 'date-fns/format';
 
 const FORMAT_STRING = 'yyyy-MM-dd';
+const ENTER_KEY_CODE = 13;
 
 export default class TodoDetailEditFormComponent extends Component {
   @tracked isEditing = false;
@@ -22,6 +23,15 @@ export default class TodoDetailEditFormComponent extends Component {
     this.editedName = todo.name;
     this.editedNotes = todo.notes;
     this.deferredUntil = this.formatDate(todo.deferredUntil);
+  }
+
+  @action
+  handleTitleKeyDown(e) {
+    if (e.keyCode === ENTER_KEY_CODE) {
+      this.handleSave();
+      return false;
+    }
+    return true;
   }
 
   @action

@@ -4,6 +4,7 @@
       <form.input
         @placeholder="Todo"
         @value={{this.editedName}}
+        @onKeyDown={{this.handleTitleKeyDown}}
         @onChange={{action (mut this.editedName)}}
         @block={{true}}
         @textarea={{true}}
