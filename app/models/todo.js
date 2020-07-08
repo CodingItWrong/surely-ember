@@ -53,8 +53,12 @@ export default class TodoModel extends Model {
     return this.status === TodoModel.STATUS.FUTURE;
   }
 
-  @computed('deferredUntil')
+  @computed('isCompleted', 'isDeleted', 'deferredUntil')
   get isTomorrow() {
+    if (this.isDeleted || this.isCompleted) {
+      return false;
+    }
+
     const now = new Date();
     const twoDaysFromNow = startOfDay(addDays(now, 2));
     return this.deferredUntil > now && this.deferredUntil < twoDaysFromNow;
