@@ -1,0 +1,11 @@
+<PaperButton
+  @onClick={{this.goToTomorrow}}
+  data-test-back-to-tomorrow-list
+>
+  &lt; Tomorrow
+</PaperButton>
+
+<TodoDetail
+  @todo={{this.model}}
+  @onHandle={{this.goToTomorrow}}
+/>

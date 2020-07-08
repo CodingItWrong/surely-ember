@@ -1,0 +1,8 @@
+<TodoList
+  @title="Tomorrow"
+  @icon="bedtime"
+  @todos={{this.sortedTodos}}
+  @onChooseTodo={{this.handleChooseTodo}}
+  @onRefresh={{action send 'refresh'}}
+  as |todo|
+/>
