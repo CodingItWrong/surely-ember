@@ -11,6 +11,9 @@ Router.map(function () {
     this.route('available', function () {
       this.route('detail', { path: '/:todo_id' });
     });
+    this.route('tomorrow', function () {
+      this.route('detail', { path: '/:todo_id' });
+    });
     this.route('future', function () {
       this.route('detail', { path: '/:todo_id' });
     });
