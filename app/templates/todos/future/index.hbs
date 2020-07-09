@@ -1,10 +1,7 @@
 <TodoList
   @title="Future"
   @icon="calendar_today"
-  @todos={{this.sortedTodos}}
+  @groups={{this.todoGroups}}
   @onChooseTodo={{this.handleChooseTodo}}
   @onRefresh={{action send 'refresh'}}
-  as |todo|
->
-  {{capitalize (relative-date todo.deferredUntil)}}
-</TodoList>
+/>
