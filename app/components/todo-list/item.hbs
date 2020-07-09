@@ -1,0 +1,14 @@
+<PaperItem
+  @onClick={{fn @onChooseTodo @todo}}
+  data-test-todo
+>
+  <div class="todo-list-item__container">
+    <p
+      class="todo-list-item__title"
+      data-test-todo-name
+    >
+      {{@todo.name}}
+    </p>
+    {{yield}}
+  </div>
+</PaperItem>

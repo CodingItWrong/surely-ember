@@ -17,28 +17,20 @@
   <PaperContent>
     <PaperList>
       {{#each @todos as |todo|}}
-        <PaperItem
-          @onClick={{fn @onChooseTodo todo}}
-          data-test-todo
+        <TodoList::Item
+          @todo={{todo}}
+          @onChooseTodo={{@onChooseTodo}}
         >
-          <div class="todo-list-item__container">
+          {{#if (has-block)}}
             <p
-              class="todo-list-item__title"
-              data-test-todo-name
+              class="todo-list-item__subtitle"
+              data-test-deferred-until
             >
-              {{todo.name}}
+              {{yield todo}}
             </p>
-            {{#if (has-block)}}
-              <p
-                class="todo-list-item__subtitle"
-                data-test-deferred-until
-              >
-                {{yield todo}}
-              </p>
-            {{/if}}
-          </div>
-          <PaperDivider />
-        </PaperItem>
+          {{/if}}
+        </TodoList::Item>
+        <PaperDivider />
       {{else}}
         <PaperItem>
           <p><em>(no todos)</em></p>
