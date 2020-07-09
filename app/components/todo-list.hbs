@@ -16,26 +16,50 @@
   </PaperToolbar>
   <PaperContent>
     <PaperList>
-      {{#each @todos as |todo|}}
-        <TodoList::Item
-          @todo={{todo}}
-          @onChooseTodo={{@onChooseTodo}}
-        >
-          {{#if (has-block)}}
-            <p
-              class="todo-list-item__subtitle"
-              data-test-deferred-until
+      {{#if @groups}}
+        {{#each @groups as |group|}}
+          <PaperSubheader data-test-deferred-until>
+            {{capitalize (relative-date group.date)}}
+          </PaperSubheader>
+          {{#each group.todos as |todo|}}
+            <TodoList::Item
+              @todo={{todo}}
+              @onChooseTodo={{@onChooseTodo}}
             >
-              {{yield todo}}
-            </p>
-          {{/if}}
-        </TodoList::Item>
-        <PaperDivider />
+              {{#if (has-block)}}
+                <p
+                  class="todo-list-item__subtitle"
+                  data-test-deferred-until
+                >
+                  {{yield todo}}
+                </p>
+              {{/if}}
+            </TodoList::Item>
+          {{/each}}
+          <PaperDivider />
+        {{/each}}
+      {{else if @todos}}
+        {{#each @todos as |todo|}}
+          <TodoList::Item
+            @todo={{todo}}
+            @onChooseTodo={{@onChooseTodo}}
+          >
+            {{#if (has-block)}}
+              <p
+                class="todo-list-item__subtitle"
+                data-test-deferred-until
+              >
+                {{yield todo}}
+              </p>
+            {{/if}}
+          </TodoList::Item>
+          <PaperDivider />
+        {{/each}}
       {{else}}
         <PaperItem>
           <p><em>(no todos)</em></p>
         </PaperItem>
-      {{/each}}
+      {{/if}}
     </PaperList>
   </PaperContent>
 </PaperCard>

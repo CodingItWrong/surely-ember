@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
+import groupBy from 'lodash-es/groupBy';
 
 export default class TodosFutureIndexController extends Controller {
   @service router;
@@ -15,6 +16,17 @@ export default class TodosFutureIndexController extends Controller {
 
   @sort('filteredTodos', 'sortPropertiesDateThenName')
   sortedTodos;
+
+  @computed('sortedTodos.@each.deferredUntil', function () {
+    const groupsObject = groupBy(this.sortedTodos, 'deferredUntil');
+    return Object.entries(groupsObject).map(([, todos]) => {
+      return {
+        date: todos[0].deferredUntil,
+        todos,
+      };
+    });
+  })
+  todoGroups;
 
   @action
   handleChooseTodo(todo) {
