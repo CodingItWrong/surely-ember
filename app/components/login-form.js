@@ -21,7 +21,7 @@ export default class LoginFormComponent extends Component {
       await this.session.authenticate('authenticator:oauth', email, password);
 
       // TODO configure this with a prop
-      this.router.transitionTo('index');
+      this.router.transitionTo('todos.available');
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);

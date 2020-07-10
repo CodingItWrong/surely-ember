@@ -39,7 +39,6 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-defer-one-day-button]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-home]');
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     assert.dom('[data-test-deferred-until]').hasText('Tomorrow');
@@ -47,7 +46,6 @@ module('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
 
     // confirm it shows on the tomorrow page
-    await click('[data-test-home]');
     await click('[data-test-tomorrow] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     await click('[data-test-todo] button');
@@ -64,7 +62,6 @@ module('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-todo]').doesNotExist();
 
     // defer until date
-    await click('[data-test-home]');
     await click('[data-test-available] button');
     await click('[data-test-todo] button');
     await click('[data-test-defer-button]');
@@ -74,7 +71,6 @@ module('Acceptance | managing todos', function (hooks) {
     await fillIn('[data-test-deferred-until-field] input', oneWeek);
     await click('[data-test-defer-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-home]');
     await click('[data-test-future] button');
     await click('[data-test-todo] button');
     assert.dom('[data-test-deferred-until]').exists();
@@ -82,7 +78,6 @@ module('Acceptance | managing todos', function (hooks) {
     // complete
     await click('[data-test-complete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-home]');
     await click('[data-test-completed] button');
     await click('[data-test-todo] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
@@ -94,7 +89,6 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-back-to-completed-list]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-home]');
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
 
@@ -102,7 +96,6 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-todo] button');
     await click('[data-test-delete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-home]');
     await click('[data-test-deleted] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     await click('[data-test-todo] button');
@@ -114,7 +107,6 @@ module('Acceptance | managing todos', function (hooks) {
     await click('[data-test-back-to-deleted-list]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-home]');
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
