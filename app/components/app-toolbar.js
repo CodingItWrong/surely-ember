@@ -7,11 +7,6 @@ export default class AppToolbarComponent extends Component {
   @service session;
 
   @action
-  goHome() {
-    this.router.transitionTo('/');
-  }
-
-  @action
   logOut() {
     this.session.invalidate();
     this.router.transitionTo('/');

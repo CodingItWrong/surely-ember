@@ -1,13 +1,15 @@
 <PaperToolbar>
   <PaperToolbarTools>
-    <PaperButton
-      @iconButton={{true}}
-      @onClick={{this.goHome}}
-      data-test-home
-    >
-      {{paper-icon "home"}}
-    </PaperButton>
-    <h2>Surely</h2>
+    {{#if this.session.isAuthenticated}}
+      <PaperButton
+        @iconButton={{true}}
+        @onClick={{@toggleSideNav}}
+        @class="hide-gt-sm"
+      >
+        {{paper-icon "menu"}}
+      </PaperButton>
+    {{/if}}
+    <h2 class="hide-gt-sm">Surely</h2>
     <span class="flex"></span>
     {{#if this.session.isAuthenticated}}
       <PaperMenu as |menu|>
