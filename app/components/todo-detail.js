@@ -26,8 +26,14 @@ export default class TodoDetailComponent extends Component {
     this.updateDisplayModel();
   }
 
+  @action
   updateDisplayModel() {
     const { todo } = this.args;
+
+    if (this.displayModel?.todo?.id === todo.id) {
+      return;
+    }
+
     this.displayModel = pick(todo, [
       'id',
       'name',
