@@ -78,3 +78,24 @@ md-card-actions .md-button {
 .full-height {
   height: 100%;
 }
+
+.list-detail {
+  & > * {
+    display: none;
+
+    &:last-child {
+      display: block;
+    }
+  }
+
+  @media only screen and (min-width: 960px) {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    & > * {
+      display: block;
+      flex: 1;
+    }
+  }
+}
