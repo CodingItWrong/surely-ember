@@ -18,7 +18,7 @@
     <PaperList>
       {{#if @groups}}
         {{#each @groups as |group|}}
-          <PaperSubheader data-test-deferred-until>
+          <PaperSubheader data-test-group-deferred-until>
             {{capitalize (relative-date group.date)}}
           </PaperSubheader>
           {{#each group.todos as |todo|}}
