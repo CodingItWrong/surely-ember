@@ -1,11 +1,14 @@
-<PaperButton
-  @onClick={{this.goToAvailable}}
-  data-test-back-to-available-list
->
-  &lt; Available
-</PaperButton>
+<div>
+  <PaperButton
+    @onClick={{this.goToAvailable}}
+    @class="hide-gt-sm"
+    data-test-back-to-available-list
+  >
+    &lt; Available
+  </PaperButton>
 
-<TodoDetail
-  @todo={{this.model}}
-  @onHandle={{this.goToAvailable}}
-/>
+  <TodoDetail
+    @todo={{this.model}}
+    @onHandle={{this.goToAvailable}}
+  />
+</div>

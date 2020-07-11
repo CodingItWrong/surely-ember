@@ -1,11 +1,14 @@
-<NewTodoForm @placeholder="Add Todo" />
+<div class="list-detail">
+  <div>
+    <NewTodoForm @placeholder="Add Todo" />
 
-<TodoList
-  @title="Available"
-  @icon="access_time"
-  @todos={{this.sortedTodos}}
-  @onChooseTodo={{this.handleChooseTodo}}
-  @onRefresh={{action send 'refresh'}}
-/>
-
-{{outlet}}
+    <TodoList
+      @title="Available"
+      @icon="access_time"
+      @todos={{this.sortedTodos}}
+      @onChooseTodo={{this.handleChooseTodo}}
+      @onRefresh={{action send 'refresh'}}
+    />
+  </div>
+  {{outlet}}
+</div>
