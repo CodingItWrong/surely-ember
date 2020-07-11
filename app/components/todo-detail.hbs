@@ -1,129 +1,131 @@
-{{#if this.isEditing}}
-  <TodoDetail::EditForm
-    @todo={{@todo}}
-    @onSave={{this.handleSave}}
-    @onCancel={{this.handleCancel}}
-  />
-{{else}}
-  <PaperCard as |card|>
-    <card.title as |title|>
-      <title.text as |text|>
-        <text.headline class="todo-headline__container">
-          <div
-            class="todo-headline__title click-to-edit"
-            data-test-todo-name
-            {{on 'click' this.edit}}
-          >
-            {{this.displayModel.name}}
-          </div>
-          <PaperButton
-            @iconButton={{true}}
-            @onClick={{this.edit}}
-            class="todo-headline__button"
-            data-test-edit-button
-          >
-            {{paper-icon "edit"}}
-          </PaperButton>
-        </text.headline>
-      </title.text>
-    </card.title>
-    <card.content>
-      {{#if this.displayModel.notes}}
-        <div class="notes-display click-to-edit" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
-      {{/if}}
-      <TodoDetail::EventLog
-        @displayModel={{this.displayModel}}
-      />
-    </card.content>
-    <card.actions class="app-button-container">
-      {{#if (eq this.buttonSet 'actions')}}
-        {{#if this.displayModel.isDeleted}}
-          <PaperButton
-            @raised={{true}}
-            @primary={{true}}
-            @onClick={{this.undelete}}
-            data-test-undelete-button
-          >
-            {{paper-icon "restore_from_trash"}}
-            Undelete
-          </PaperButton>
-        {{else}}
-          <PaperButton
-            @onClick={{this.delete}}
-            data-test-delete-button
-          >
-            Delete
-          </PaperButton>
-          {{#if this.displayModel.isCompleted}}
+<div>
+  {{#if this.isEditing}}
+    <TodoDetail::EditForm
+      @todo={{@todo}}
+      @onSave={{this.handleSave}}
+      @onCancel={{this.handleCancel}}
+    />
+  {{else}}
+    <PaperCard as |card|>
+      <card.title as |title|>
+        <title.text as |text|>
+          <text.headline class="todo-headline__container">
+            <div
+              class="todo-headline__title click-to-edit"
+              data-test-todo-name
+              {{on 'click' this.edit}}
+            >
+              {{this.displayModel.name}}
+            </div>
+            <PaperButton
+              @iconButton={{true}}
+              @onClick={{this.edit}}
+              class="todo-headline__button"
+              data-test-edit-button
+            >
+              {{paper-icon "edit"}}
+            </PaperButton>
+          </text.headline>
+        </title.text>
+      </card.title>
+      <card.content>
+        {{#if this.displayModel.notes}}
+          <div class="notes-display click-to-edit" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
+        {{/if}}
+        <TodoDetail::EventLog
+          @displayModel={{this.displayModel}}
+        />
+      </card.content>
+      <card.actions class="app-button-container">
+        {{#if (eq this.buttonSet 'actions')}}
+          {{#if this.displayModel.isDeleted}}
             <PaperButton
               @raised={{true}}
               @primary={{true}}
-              @onClick={{this.uncomplete}}
-              data-test-uncomplete-button
+              @onClick={{this.undelete}}
+              data-test-undelete-button
             >
-              {{paper-icon "check_box_outline_blank"}}
-              Uncomplete
+              {{paper-icon "restore_from_trash"}}
+              Undelete
             </PaperButton>
           {{else}}
             <PaperButton
-              @onClick={{this.defer}}
-              data-test-defer-button
+              @onClick={{this.delete}}
+              data-test-delete-button
             >
-              Defer
+              Delete
             </PaperButton>
-            <PaperButton
-              @onClick={{this.complete}}
-              @raised={{true}}
-              @primary={{true}}
-              data-test-complete-button
-            >
-              {{paper-icon "check_box"}}
-              Complete
-            </PaperButton>
+            {{#if this.displayModel.isCompleted}}
+              <PaperButton
+                @raised={{true}}
+                @primary={{true}}
+                @onClick={{this.uncomplete}}
+                data-test-uncomplete-button
+              >
+                {{paper-icon "check_box_outline_blank"}}
+                Uncomplete
+              </PaperButton>
+            {{else}}
+              <PaperButton
+                @onClick={{this.defer}}
+                data-test-defer-button
+              >
+                Defer
+              </PaperButton>
+              <PaperButton
+                @onClick={{this.complete}}
+                @raised={{true}}
+                @primary={{true}}
+                data-test-complete-button
+              >
+                {{paper-icon "check_box"}}
+                Complete
+              </PaperButton>
+            {{/if}}
           {{/if}}
-        {{/if}}
-      {{else if (eq this.buttonSet 'defer')}}
-        <PaperButton @onClick={{this.cancelDefer}}>
-          Cancel
-        </PaperButton>
-        <PaperButton
-          @onClick={{this.deferOneDay}}
-          data-test-defer-one-day-button
-        >
-          Defer One Day
-        </PaperButton>
-        <PaperButton
-          @onClick={{this.deferUntilDate}}
-          data-test-defer-until-date-button
-        >
-          Defer Until Date
-        </PaperButton>
-      {{else if (eq this.buttonSet 'defer_until_date')}}
-        <PaperForm
-          @onSubmit={{this.saveEnteredDeferredDate}}
-          class="app-button-container"
-          as |form|
-        >
-          <form.input
-            @type="date"
-            @label="Defer Until Date"
-            @value={{this.deferredUntil}}
-            @onChange={{action (mut this.deferredUntil)}}
-            data-test-deferred-until-field
-          />
+        {{else if (eq this.buttonSet 'defer')}}
           <PaperButton @onClick={{this.cancelDefer}}>
             Cancel
           </PaperButton>
-          <form.submit-button
-            @raised={{true}}
-            @primary={{true}}
-            data-test-defer-button
+          <PaperButton
+            @onClick={{this.deferOneDay}}
+            data-test-defer-one-day-button
           >
-            {{paper-icon "calendar_today"}}
-            Defer
-          </form.submit-button>
-        </PaperForm>
-      {{/if}}
-    </card.actions>
-  </PaperCard>
-{{/if}}
+            Defer One Day
+          </PaperButton>
+          <PaperButton
+            @onClick={{this.deferUntilDate}}
+            data-test-defer-until-date-button
+          >
+            Defer Until Date
+          </PaperButton>
+        {{else if (eq this.buttonSet 'defer_until_date')}}
+          <PaperForm
+            @onSubmit={{this.saveEnteredDeferredDate}}
+            class="app-button-container"
+            as |form|
+          >
+            <form.input
+              @type="date"
+              @label="Defer Until Date"
+              @value={{this.deferredUntil}}
+              @onChange={{action (mut this.deferredUntil)}}
+              data-test-deferred-until-field
+            />
+            <PaperButton @onClick={{this.cancelDefer}}>
+              Cancel
+            </PaperButton>
+            <form.submit-button
+              @raised={{true}}
+              @primary={{true}}
+              data-test-defer-button
+            >
+              {{paper-icon "calendar_today"}}
+              Defer
+            </form.submit-button>
+          </PaperForm>
+        {{/if}}
+      </card.actions>
+    </PaperCard>
+  {{/if}}
+</div>
