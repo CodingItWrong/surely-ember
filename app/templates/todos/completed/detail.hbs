@@ -1,11 +1,14 @@
-<PaperButton
-  @onClick={{this.goToCompleted}}
-  data-test-back-to-completed-list
->
-  &lt; Completed
-</PaperButton>
+<div>
+  <PaperButton
+    @onClick={{this.goToCompleted}}
+    @class="hide-gt-sm"
+    data-test-back-to-completed-list
+  >
+    &lt; Completed
+  </PaperButton>
 
-<TodoDetail
-  @todo={{this.model}}
-  @onHandle={{this.goToCompleted}}
-/>
+  <TodoDetail
+    @todo={{this.model}}
+    @onHandle={{this.goToCompleted}}
+  />
+</div>

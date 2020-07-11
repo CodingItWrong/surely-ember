@@ -1,0 +1,16 @@
+<NewTodoForm
+  @placeholder="Add Tomorrow Todo"
+  @deferredUntil={{tomorrow}}
+/>
+
+<div class="list-detail">
+  <TodoList
+    @title="Tomorrow"
+    @icon="bedtime"
+    @todos={{this.sortedTodos}}
+    @onChooseTodo={{this.handleChooseTodo}}
+    @onRefresh={{action send 'refresh'}}
+    as |todo|
+  />
+  {{outlet}}
+</div>

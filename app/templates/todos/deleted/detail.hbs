@@ -1,11 +1,14 @@
-<PaperButton
-  @onClick={{this.goToDeleted}}
-  data-test-back-to-deleted-list
->
-  &lt; Deleted
-</PaperButton>
+<div>
+  <PaperButton
+    @onClick={{this.goToDeleted}}
+    @class="hide-gt-sm"
+    data-test-back-to-deleted-list
+  >
+    &lt; Deleted
+  </PaperButton>
 
-<TodoDetail
-  @todo={{this.model}}
-  @onHandle={{this.goToDeleted}}
-/>
+  <TodoDetail
+    @todo={{this.model}}
+    @onHandle={{this.goToDeleted}}
+  />
+</div>

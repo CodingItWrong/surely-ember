@@ -1,0 +1,13 @@
+<div class="list-detail">
+  <TodoList
+    @title="Deleted"
+    @icon="delete"
+    @todos={{this.sortedTodos}}
+    @onChooseTodo={{this.handleChooseTodo}}
+    @onRefresh={{action send 'refresh'}}
+    as |todo|
+  >
+    Deleted {{time-ago todo.deletedAt}}
+  </TodoList>
+  {{outlet}}
+</div>
