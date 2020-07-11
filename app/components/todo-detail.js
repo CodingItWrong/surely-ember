@@ -26,13 +26,8 @@ export default class TodoDetailComponent extends Component {
     this.updateDisplayModel();
   }
 
-  @action
   updateDisplayModel() {
     const { todo } = this.args;
-
-    if (this.displayModel?.todo?.id === todo.id) {
-      return;
-    }
 
     this.displayModel = pick(todo, [
       'id',
@@ -45,6 +40,17 @@ export default class TodoDetailComponent extends Component {
       'deferredUntil',
       'createdAt',
     ]);
+  }
+
+  @action
+  resetStateIfModelChanged() {
+    const { todo } = this.args;
+
+    if (this.displayModel?.todo?.id !== todo.id) {
+      this.updateDisplayModel();
+      this.buttonSet = BUTTON_SET.ACTIONS;
+      this.isEditing = false;
+    }
   }
 
   @action

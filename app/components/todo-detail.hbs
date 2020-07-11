@@ -1,4 +1,4 @@
-<div {{did-update this.updateDisplayModel @todo}}>
+<div {{did-update this.resetStateIfModelChanged @todo}}>
   {{#if this.isEditing}}
     <TodoDetail::EditForm
       @todo={{@todo}}
