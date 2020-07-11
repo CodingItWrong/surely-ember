@@ -1,11 +1,14 @@
-<PaperButton
-  @onClick={{this.goToFuture}}
-  data-test-back-to-future-list
->
-  &lt; Future
-</PaperButton>
+<div>
+  <PaperButton
+    @onClick={{this.goToFuture}}
+    @class="hide-gt-sm"
+    data-test-back-to-future-list
+  >
+    &lt; Future
+  </PaperButton>
 
-<TodoDetail
-  @todo={{this.model}}
-  @onHandle={{this.goToFuture}}
-/>
+  <TodoDetail
+    @todo={{this.model}}
+    @onHandle={{this.goToFuture}}
+  />
+</div>
