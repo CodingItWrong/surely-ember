@@ -6,15 +6,15 @@
     <AppToolbar @toggleSideNav={{action (mut leftSideBarOpen)}} />
 
     <div class="layout-row">
-      <div class="hide show-gt-sm flex-md-10 flex-gt-md-20"></div>
-      <div class="flex-100 flex-md-80 flex-gt-md-60">
+      <div class="hide show-gt-lg flex-xl-10"></div>
+      <div class="flex-100 flex-xl-80">
         {{#if this.session.isAuthenticated}}
           {{outlet}}
         {{else}}
           <LoginForm />
         {{/if}}
       </div>
-      <div class="hide show-gt-sm flex-md-10 flex-gt-md-20"></div>
+      <div class="hide show-gt-lg flex-xl-10"></div>
     </div>
   </div>
 
