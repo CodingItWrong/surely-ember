@@ -1,7 +1,7 @@
 <PaperCard as |card|>
   <PaperToolbar>
     <PaperToolbarTools>
-      <PaperButton @iconButton={{true}}>
+      <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
         {{paper-icon @icon}}
       </PaperButton>
       <h2>{{@title}}</h2>
