@@ -14,7 +14,7 @@ export default class NewTodoFormComponent extends Component {
       return;
     }
 
-    const { deferredUntil } = this.args;
+    const { deferredUntil, onAdd } = this.args;
     const todo = this.store.createRecord('todo', {
       name: this.newTodoName,
       deferredUntil,
@@ -22,5 +22,7 @@ export default class NewTodoFormComponent extends Component {
     await todo.save();
 
     this.newTodoName = '';
+
+    onAdd();
   }
 }

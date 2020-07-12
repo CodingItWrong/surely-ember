@@ -1,4 +1,7 @@
-<NewTodoForm @placeholder="Add Todo" />
+<NewTodoForm
+  @placeholder="Add Todo"
+  @onAdd={{this.goToList}}
+/>
 
 <div class="list-detail">
   <TodoList
