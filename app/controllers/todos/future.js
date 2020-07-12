@@ -29,6 +29,11 @@ export default class TodosFutureIndexController extends Controller {
   todoGroups;
 
   @action
+  goToList() {
+    this.router.transitionTo('todos.future');
+  }
+
+  @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.future.detail', todo.id);
   }

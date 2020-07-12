@@ -17,6 +17,11 @@ export default class TodosDeletedIndexController extends Controller {
   sortedTodos;
 
   @action
+  goToList() {
+    this.router.transitionTo('todos.deleted');
+  }
+
+  @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.deleted.detail', todo.id);
   }

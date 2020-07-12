@@ -17,6 +17,11 @@ export default class TodosAvailableIndexController extends Controller {
   sortedTodos;
 
   @action
+  goToList() {
+    this.router.transitionTo('todos.available');
+  }
+
+  @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.available.detail', todo.id);
   }

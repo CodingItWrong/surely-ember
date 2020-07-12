@@ -17,6 +17,11 @@ export default class TodosCompleteIndexController extends Controller {
   sortedTodos;
 
   @action
+  goToList() {
+    this.router.transitionTo('todos.completed');
+  }
+
+  @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.completed.detail', todo.id);
   }

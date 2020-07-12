@@ -17,6 +17,11 @@ export default class TodosTomorrowIndexController extends Controller {
   sortedTodos;
 
   @action
+  goToList() {
+    this.router.transitionTo('todos.tomorrow');
+  }
+
+  @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.tomorrow.detail', todo.id);
   }
