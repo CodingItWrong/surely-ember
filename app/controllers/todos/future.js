@@ -3,6 +3,7 @@ import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
 import groupBy from 'lodash-es/groupBy';
+import { scrollToTop } from 'surely/utils';
 
 export default class TodosFutureIndexController extends Controller {
   @service router;
@@ -36,6 +37,7 @@ export default class TodosFutureIndexController extends Controller {
   @action
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.future.detail', todo.id);
+    scrollToTop();
   }
 
   @action
