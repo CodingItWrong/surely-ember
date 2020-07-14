@@ -37,4 +37,9 @@ export default class TodosFutureIndexController extends Controller {
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.future.detail', todo.id);
   }
+
+  @action
+  handleRefresh() {
+    this.send('refresh');
+  }
 }

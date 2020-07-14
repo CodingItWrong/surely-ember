@@ -25,4 +25,9 @@ export default class TodosDeletedIndexController extends Controller {
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.deleted.detail', todo.id);
   }
+
+  @action
+  handleRefresh() {
+    this.send('refresh');
+  }
 }

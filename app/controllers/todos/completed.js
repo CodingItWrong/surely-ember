@@ -25,4 +25,9 @@ export default class TodosCompleteIndexController extends Controller {
   handleChooseTodo(todo) {
     this.router.transitionTo('todos.completed.detail', todo.id);
   }
+
+  @action
+  handleRefresh() {
+    this.send('refresh');
+  }
 }

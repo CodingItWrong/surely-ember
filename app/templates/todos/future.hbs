@@ -5,7 +5,7 @@
     @groups={{this.todoGroups}}
     @onClickHeaderIcon={{this.goToList}}
     @onChooseTodo={{this.handleChooseTodo}}
-    @onRefresh={{action send 'refresh'}}
+    @onRefresh={{this.handleRefresh}}
   />
   {{outlet}}
 </div>
