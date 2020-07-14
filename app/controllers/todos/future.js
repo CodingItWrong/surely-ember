@@ -40,6 +40,7 @@ export default class TodosFutureIndexController extends Controller {
 
   @action
   handleRefresh() {
+    this.goToList();
     this.send('refresh');
   }
 }

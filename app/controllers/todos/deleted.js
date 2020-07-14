@@ -28,6 +28,7 @@ export default class TodosDeletedIndexController extends Controller {
 
   @action
   handleRefresh() {
+    this.goToList();
     this.send('refresh');
   }
 }
