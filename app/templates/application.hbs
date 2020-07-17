@@ -12,7 +12,22 @@
   </PaperSidenav>
 
   <div class="layout-fill">
-    <AppToolbar @toggleSideNav={{action (mut leftSideBarOpen)}} />
+    <PaperToolbar>
+      <PaperToolbarTools>
+        {{#if this.session.isAuthenticated}}
+          <PaperButton
+            @iconButton={{true}}
+            @onClick={{action (mut leftSideBarOpen)}}
+            @class="hide-gt-sm"
+          >
+            {{paper-icon "menu"}}
+          </PaperButton>
+        {{/if}}
+        <h2 class="hide-gt-sm">Surely</h2>
+        <span class="flex"></span>
+        <AppToolbar />
+      </PaperToolbarTools>
+    </PaperToolbar>
 
     <div class="layout-row">
       <div class="hide show-gt-lg flex-xl-10"></div>
