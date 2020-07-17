@@ -5,11 +5,9 @@
       open=this.sideNavOpen
       onToggle=(action (mut this.sideNavOpen))
     )
-    body=(component 'layout-body')
-    toolbar=(component 'layout-toolbar'
+    body=(component 'layout-body'
       title=@title
       onToggleSideNav=(action (mut this.sideNavOpen))
     )
-    content=(component 'layout-content')
   )}}
 </PaperSidenavContainer>
