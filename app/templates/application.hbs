@@ -7,7 +7,11 @@
       <AppToolbar />
     </layout.toolbar>
     <layout.content>
-      {{outlet}}
+      {{#if this.session.isAuthenticated}}
+        {{outlet}}
+      {{else}}
+        <LoginForm />
+      {{/if}}
     </layout.content>
   </layout.body>
 </AppLayout>
