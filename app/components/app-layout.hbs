@@ -1,21 +1,8 @@
 <PaperSidenavContainer @class="full-height">
-
-  <PaperSidenav @class="md-whiteframe-z2" @open={{leftSideBarOpen}} @onToggle={{action (mut leftSideBarOpen)}}>
-    <PaperToolbar as |toolbar|>
-      <toolbar.tools @class="show-gt-sm">
-        Surely
-      </toolbar.tools>
-    </PaperToolbar>
-    <PaperContent @padding={{false}}>
-      <SideNav />
-    </PaperContent>
-  </PaperSidenav>
-
-  <div class="layout-fill">
-    {{yield (hash
-      content=(component 'layout-content')
-      toolbar=(component 'layout-toolbar' onToggleSidebar=(action (mut leftSideBarOpen)))
-    )}}
-  </div>
-
+  {{yield (hash
+    sidenav=(component 'layout-sidenav' open=this.leftSideBarOpen onToggle=(action (mut this.leftSideBarOpen)))
+    body=(component 'layout-body')
+    toolbar=(component 'layout-toolbar' onToggleSidebar=(action (mut this.leftSideBarOpen)))
+    content=(component 'layout-content')
+  )}}
 </PaperSidenavContainer>

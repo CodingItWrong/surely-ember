@@ -1,8 +1,13 @@
 <AppLayout as |layout|>
-  <layout.toolbar>
-    <AppToolbar />
-  </layout.toolbar>
-  <layout.content>
-    {{outlet}}
-  </layout.content>
+  <layout.sidenav>
+    <SideNav />
+  </layout.sidenav>
+  <layout.body>
+    <layout.toolbar>
+      <AppToolbar />
+    </layout.toolbar>
+    <layout.content>
+      {{outlet}}
+    </layout.content>
+  </layout.body>
 </AppLayout>
