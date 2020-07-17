@@ -1,3 +1,9 @@
 <div class="layout-fill">
-  {{yield}}
+  {{yield (hash
+    toolbar=(component 'layout-toolbar'
+      title=@title
+      onToggleSideNav=@onToggleSideNav
+    )
+    content=(component 'layout-content')
+  )}}
 </div>

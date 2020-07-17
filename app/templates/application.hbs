@@ -2,16 +2,16 @@
   <layout.sidenav>
     <AppSideNavContent />
   </layout.sidenav>
-  <layout.body>
-    <layout.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
+  <layout.body as |body|>
+    <body.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
       <AppToolbarMenu />
-    </layout.toolbar>
-    <layout.content>
+    </body.toolbar>
+    <body.content>
       {{#if this.session.isAuthenticated}}
         {{outlet}}
       {{else}}
         <LoginForm />
       {{/if}}
-    </layout.content>
+    </body.content>
   </layout.body>
 </Layout>
