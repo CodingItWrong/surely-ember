@@ -1,0 +1,11 @@
+<div class="layout-row">
+  <div class="hide show-gt-lg flex-xl-10"></div>
+  <div class="flex-100 flex-xl-80">
+    {{#if this.session.isAuthenticated}}
+      {{yield}}
+    {{else}}
+      <LoginForm />
+    {{/if}}
+  </div>
+  <div class="hide show-gt-lg flex-xl-10"></div>
+</div>
