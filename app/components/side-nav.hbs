@@ -1,48 +1,39 @@
-<PaperSidenav @class="md-whiteframe-z2" @open={{@open}} @onToggle={{@onToggle}}>
-  <PaperToolbar as |toolbar|>
-    <toolbar.tools @class="show-gt-sm">
-      Surely
-    </toolbar.tools>
-  </PaperToolbar>
-  <PaperContent @padding={{false}}>
-    {{#if this.session.isAuthenticated}}
-      <PaperList>
-        <PaperItem
-          @onClick={{fn this.goToTodos 'available'}}
-          data-test-available
-        >
-          {{paper-icon "access_time"}}
-          <p>Available</p>
-        </PaperItem>
-        <PaperItem
-          @onClick={{fn this.goToTodos 'tomorrow'}}
-          data-test-tomorrow
-        >
-          {{paper-icon "bedtime"}}
-          <p>Tomorrow</p>
-        </PaperItem>
-        <PaperItem
-          @onClick={{fn this.goToTodos 'future'}}
-          data-test-future
-        >
-          {{paper-icon "calendar_today"}}
-          <p>Future</p>
-        </PaperItem>
-        <PaperItem
-          @onClick={{fn this.goToTodos 'completed'}}
-          data-test-completed
-        >
-          {{paper-icon "check_circle"}}
-          <p>Completed</p>
-        </PaperItem>
-        <PaperItem
-          @onClick={{fn this.goToTodos 'deleted'}}
-          data-test-deleted
-        >
-          {{paper-icon "delete"}}
-          <p>Deleted</p>
-        </PaperItem>
-      </PaperList>
-    {{/if}}
-  </PaperContent>
-</PaperSidenav>
+{{#if this.session.isAuthenticated}}
+  <PaperList>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'available'}}
+      data-test-available
+    >
+      {{paper-icon "access_time"}}
+      <p>Available</p>
+    </PaperItem>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'tomorrow'}}
+      data-test-tomorrow
+    >
+      {{paper-icon "bedtime"}}
+      <p>Tomorrow</p>
+    </PaperItem>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'future'}}
+      data-test-future
+    >
+      {{paper-icon "calendar_today"}}
+      <p>Future</p>
+    </PaperItem>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'completed'}}
+      data-test-completed
+    >
+      {{paper-icon "check_circle"}}
+      <p>Completed</p>
+    </PaperItem>
+    <PaperItem
+      @onClick={{fn this.goToTodos 'deleted'}}
+      data-test-deleted
+    >
+      {{paper-icon "delete"}}
+      <p>Deleted</p>
+    </PaperItem>
+  </PaperList>
+{{/if}}
