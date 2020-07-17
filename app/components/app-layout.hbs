@@ -1,11 +1,13 @@
 <PaperSidenavContainer @class="full-height">
   {{yield (hash
     sidenav=(component 'layout-sidenav'
+      title=@title
       open=this.sideNavOpen
       onToggle=(action (mut this.sideNavOpen))
     )
     body=(component 'layout-body')
     toolbar=(component 'layout-toolbar'
+      title=@title
       onToggleSidebar=(action (mut this.sideNavOpen))
     )
     content=(component 'layout-content')
