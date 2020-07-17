@@ -1,0 +1,16 @@
+<PaperToolbar>
+  <PaperToolbarTools>
+    {{#if this.session.isAuthenticated}}
+      <PaperButton
+        @iconButton={{true}}
+        @onClick={{@onToggleSidebar}}
+        @class="hide-gt-sm"
+      >
+        {{paper-icon "menu"}}
+      </PaperButton>
+    {{/if}}
+    <h2 class="hide-gt-sm">Surely</h2>
+    <span class="flex"></span>
+    {{yield}}
+  </PaperToolbarTools>
+</PaperToolbar>
