@@ -1,10 +1,10 @@
 <AppLayout @title="Surely" as |layout|>
   <layout.sidenav>
-    <SideNav />
+    <AppSideNavContent />
   </layout.sidenav>
   <layout.body>
     <layout.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
-      <AppToolbar />
+      <AppToolbarMenu />
     </layout.toolbar>
     <layout.content>
       {{#if this.session.isAuthenticated}}
