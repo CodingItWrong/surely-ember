@@ -3,7 +3,7 @@
     <SideNav />
   </layout.sidenav>
   <layout.body>
-    <layout.toolbar>
+    <layout.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
       <AppToolbar />
     </layout.toolbar>
     <layout.content>

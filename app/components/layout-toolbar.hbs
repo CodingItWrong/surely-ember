@@ -1,6 +1,6 @@
 <PaperToolbar>
   <PaperToolbarTools>
-    {{#if this.session.isAuthenticated}}
+    {{#if @showSideNavToggle}}
       <PaperButton
         @iconButton={{true}}
         @onClick={{@onToggleSidebar}}
