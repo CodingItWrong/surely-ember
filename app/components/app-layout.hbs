@@ -1,0 +1,45 @@
+<PaperSidenavContainer @class="full-height">
+
+  <PaperSidenav @class="md-whiteframe-z2" @open={{leftSideBarOpen}} @onToggle={{action (mut leftSideBarOpen)}}>
+    <PaperToolbar as |toolbar|>
+      <toolbar.tools @class="show-gt-sm">
+        Surely
+      </toolbar.tools>
+    </PaperToolbar>
+    <PaperContent @padding={{false}}>
+      <SideNav />
+    </PaperContent>
+  </PaperSidenav>
+
+  <div class="layout-fill">
+    <PaperToolbar>
+      <PaperToolbarTools>
+        {{#if this.session.isAuthenticated}}
+          <PaperButton
+            @iconButton={{true}}
+            @onClick={{action (mut leftSideBarOpen)}}
+            @class="hide-gt-sm"
+          >
+            {{paper-icon "menu"}}
+          </PaperButton>
+        {{/if}}
+        <h2 class="hide-gt-sm">Surely</h2>
+        <span class="flex"></span>
+        <AppToolbar />
+      </PaperToolbarTools>
+    </PaperToolbar>
+
+    <div class="layout-row">
+      <div class="hide show-gt-lg flex-xl-10"></div>
+      <div class="flex-100 flex-xl-80">
+        {{#if this.session.isAuthenticated}}
+          {{yield}}
+        {{else}}
+          <LoginForm />
+        {{/if}}
+      </div>
+      <div class="hide show-gt-lg flex-xl-10"></div>
+    </div>
+  </div>
+
+</PaperSidenavContainer>
