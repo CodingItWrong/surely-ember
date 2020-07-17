@@ -1,6 +1,15 @@
 <PaperSidenavContainer @class="full-height">
 
-  <SideNav @open={{leftSideBarOpen}} @onToggle={{action (mut leftSideBarOpen)}} />
+  <PaperSidenav @class="md-whiteframe-z2" @open={{leftSideBarOpen}} @onToggle={{action (mut leftSideBarOpen)}}>
+    <PaperToolbar as |toolbar|>
+      <toolbar.tools @class="show-gt-sm">
+        Surely
+      </toolbar.tools>
+    </PaperToolbar>
+    <PaperContent @padding={{false}}>
+      <SideNav />
+    </PaperContent>
+  </PaperSidenav>
 
   <div class="layout-fill">
     <AppToolbar @toggleSideNav={{action (mut leftSideBarOpen)}} />
