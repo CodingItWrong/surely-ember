@@ -5,6 +5,16 @@
       @onSave={{this.handleSave}}
       @onCancel={{this.handleCancel}}
     />
+  {{else if @error}}
+    <PaperCard as |card|>
+      <card.title as |title|>
+        <title.text as |text|>
+          <text.headline class="todo-headline__container">
+            Error loading todo
+          </text.headline>
+        </title.text>
+      </card.title>
+    </PaperCard>
   {{else}}
     <PaperCard as |card|>
       <card.title as |title|>
