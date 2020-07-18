@@ -103,3 +103,10 @@ md-card-actions .md-button {
 .error-text {
   color: paper-color($warn, '800');
 }
+
+.button-full-width {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
