@@ -56,58 +56,88 @@
             <PaperButton
               @raised={{true}}
               @primary={{true}}
+              @disabled={{this.isProcessing}}
               @onClick={{this.undelete}}
               data-test-undelete-button
             >
               {{paper-icon "restore_from_trash"}}
-              Undelete
+              {{#if this.isUndeleting}}
+                Undeleting…
+              {{else}}
+                Undelete
+              {{/if}}
             </PaperButton>
           {{else}}
             <PaperButton
+              @disabled={{this.isProcessing}}
               @onClick={{this.delete}}
               data-test-delete-button
             >
-              Delete
+              {{#if this.isDeleting}}
+                Deleting…
+              {{else}}
+                Delete
+              {{/if}}
             </PaperButton>
             {{#if this.displayModel.isCompleted}}
               <PaperButton
                 @raised={{true}}
                 @primary={{true}}
+                @disabled={{this.isProcessing}}
                 @onClick={{this.uncomplete}}
                 data-test-uncomplete-button
               >
                 {{paper-icon "check_box_outline_blank"}}
-                Uncomplete
+                {{#if this.isUncompleting}}
+                  Uncompleting…
+                {{else}}
+                  Uncomplete
+                {{/if}}
               </PaperButton>
             {{else}}
               <PaperButton
+                @disabled={{this.isProcessing}}
                 @onClick={{this.defer}}
                 data-test-defer-button
               >
                 Defer
               </PaperButton>
               <PaperButton
-                @onClick={{this.complete}}
                 @raised={{true}}
                 @primary={{true}}
+                @disabled={{this.isProcessing}}
+                @onClick={{this.complete}}
                 data-test-complete-button
               >
                 {{paper-icon "check_box"}}
-                Complete
+                {{#if this.isCompleting}}
+                  Completing…
+                {{else}}
+                  Complete
+                {{/if}}
               </PaperButton>
             {{/if}}
           {{/if}}
         {{else if (eq this.buttonSet 'defer')}}
-          <PaperButton @onClick={{this.cancelDefer}}>
+          <PaperButton
+            @disabled={{this.isProcessing}}
+            @onClick={{this.cancelDefer}}
+          >
             Cancel
           </PaperButton>
           <PaperButton
+            @disabled={{this.isProcessing}}
             @onClick={{this.deferOneDay}}
             data-test-defer-one-day-button
           >
-            Defer One Day
+            {{#if this.isDeferring}}
+              Deferring…
+            {{else}}
+              Defer One Day
+            {{/if}}
           </PaperButton>
           <PaperButton
+            @disabled={{this.isProcessing}}
             @onClick={{this.deferUntilDate}}
             data-test-defer-until-date-button
           >
@@ -126,16 +156,24 @@
               @onChange={{action (mut this.deferredUntil)}}
               data-test-deferred-until-field
             />
-            <PaperButton @onClick={{this.cancelDefer}}>
+            <PaperButton
+              @disabled={{this.isProcessing}}
+              @onClick={{this.cancelDefer}}
+            >
               Cancel
             </PaperButton>
             <form.submit-button
               @raised={{true}}
               @primary={{true}}
+              @disabled={{this.isProcessing}}
               data-test-defer-button
             >
               {{paper-icon "calendar_today"}}
-              Defer
+              {{#if this.isDeferring}}
+                Deferring…
+              {{else}}
+                Defer
+              {{/if}}
             </form.submit-button>
           </PaperForm>
         {{/if}}

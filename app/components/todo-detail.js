@@ -13,6 +13,18 @@ const BUTTON_SET = {
 
 const FORMAT_STRING = 'yyyy-MM-dd';
 
+const delay = (promise, milliseconds = 0) => {
+  if (milliseconds === 0) {
+    return promise;
+  } else {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        promise.then(resolve);
+      }, milliseconds);
+    });
+  }
+};
+
 export default class TodoDetailComponent extends Component {
   @tracked buttonSet = BUTTON_SET.ACTIONS;
   @tracked deferredUntil = null;
@@ -20,7 +32,23 @@ export default class TodoDetailComponent extends Component {
   @tracked isEditing = false;
   @tracked error = null;
 
+  @tracked isCompleting = false;
+  @tracked isUncompleting = false;
+  @tracked isDeleting = false;
+  @tracked isUndeleting = false;
+  @tracked isDeferring = false;
+
   @tracked displayModel;
+
+  get isProcessing() {
+    return [
+      this.isCompleting,
+      this.isUncompleting,
+      this.isDeleting,
+      this.isUndeleting,
+      this.isDeferring,
+    ].find(flag => flag);
+  }
 
   constructor(owner, args) {
     super(owner, args);
@@ -60,13 +88,15 @@ export default class TodoDetailComponent extends Component {
     todo.completedAt = new Date();
 
     this.error = null;
+    this.isCompleting = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while completing the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+      this.isCompleting = false;
     }
   }
 
@@ -76,13 +106,16 @@ export default class TodoDetailComponent extends Component {
     todo.completedAt = null;
 
     this.error = null;
+    this.isUncompleting = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while uncompleting the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+    } finally {
+      this.isUncompleting = false;
     }
   }
 
@@ -92,13 +125,15 @@ export default class TodoDetailComponent extends Component {
     todo.deletedAt = new Date();
 
     this.error = null;
+    this.isDeleting = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deleting the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+      this.isDeleting = false;
     }
   }
 
@@ -109,13 +144,16 @@ export default class TodoDetailComponent extends Component {
     todo.completedAt = null;
 
     this.error = null;
+    this.isUndeleting = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while undeleting the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+    } finally {
+      this.isUndeleting = false;
     }
   }
 
@@ -136,13 +174,15 @@ export default class TodoDetailComponent extends Component {
     todo.deferOneDay();
 
     this.error = null;
+    this.isDeferring = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+      this.isDeferring = false;
     }
   }
 
@@ -165,13 +205,15 @@ export default class TodoDetailComponent extends Component {
     todo.deferUntilDate(deferredUntilDate);
 
     this.error = null;
+    this.isDeferring = true;
     try {
-      await todo.save();
+      await delay(todo.save());
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
+      this.isDeferring = false;
     }
   }
 
