@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
 import { scrollToTop } from 'surely/utils';
 
-export default class TodosDeletedIndexController extends Controller {
+export default class TodosDeletedDataController extends Controller {
   @service router;
 
   sortPropertiesMostRecentlyDeleted = Object.freeze(['deletedAt:desc']);
@@ -19,12 +19,12 @@ export default class TodosDeletedIndexController extends Controller {
 
   @action
   goToList() {
-    this.router.transitionTo('todos.deleted');
+    this.router.transitionTo('todos.deleted.data');
   }
 
   @action
   handleChooseTodo(todo) {
-    this.router.transitionTo('todos.deleted.detail', todo.id);
+    this.router.transitionTo('todos.deleted.data.detail', todo.id);
     scrollToTop();
   }
 
