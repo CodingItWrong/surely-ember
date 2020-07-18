@@ -65,6 +65,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while completing the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -80,6 +81,7 @@ export default class TodoDetailComponent extends Component {
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while uncompleting the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -95,6 +97,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deleting the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -111,6 +114,7 @@ export default class TodoDetailComponent extends Component {
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while undeleting the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -137,6 +141,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
@@ -165,6 +170,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }
