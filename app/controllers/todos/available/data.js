@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { scrollToTop } from 'surely/utils';
 
-export default class TodosAvailableIndexController extends Controller {
+export default class TodosAvailableDataController extends Controller {
   @service router;
 
   sortPropertiesAlphabetical = Object.freeze(['name:asc']);
@@ -19,12 +19,12 @@ export default class TodosAvailableIndexController extends Controller {
 
   @action
   goToList() {
-    this.router.transitionTo('todos.available');
+    this.router.transitionTo('todos.available.data');
   }
 
   @action
   handleChooseTodo(todo) {
-    this.router.transitionTo('todos.available.detail', todo.id);
+    this.router.transitionTo('todos.available.data.detail', todo.id);
     scrollToTop();
   }
 
