@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
 import { scrollToTop } from 'surely/utils';
 
-export default class TodosTomorrowIndexController extends Controller {
+export default class TodosTomorrowDataController extends Controller {
   @service router;
 
   sortPropertiesName = Object.freeze(['name:asc']);
@@ -19,12 +19,12 @@ export default class TodosTomorrowIndexController extends Controller {
 
   @action
   goToList() {
-    this.router.transitionTo('todos.tomorrow');
+    this.router.transitionTo('todos.tomorrow.data');
   }
 
   @action
   handleChooseTodo(todo) {
-    this.router.transitionTo('todos.tomorrow.detail', todo.id);
+    this.router.transitionTo('todos.tomorrow.data.detail', todo.id);
     scrollToTop();
   }
 
