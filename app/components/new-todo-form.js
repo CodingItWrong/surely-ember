@@ -28,6 +28,7 @@ export default class NewTodoFormComponent extends Component {
       this.newTodoName = '';
       onAdd();
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
       this.error = 'An error occurred adding the todo.';
     }

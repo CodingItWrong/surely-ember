@@ -52,6 +52,7 @@ export default class TodoDetailEditFormComponent extends Component {
       onSave();
     } catch (e) {
       this.error = 'An error occurred saving the todo.';
+      // eslint-disable-next-line no-console
       console.error(e);
     }
   }

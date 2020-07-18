@@ -12,7 +12,6 @@ export default class TodosAvailableDataRoute extends Route {
 
   @action
   refresh() {
-    console.log('refresh');
     super.refresh();
   }
 }
