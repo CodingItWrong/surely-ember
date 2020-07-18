@@ -21,6 +21,20 @@
   }
 }
 
+.app-button-container-stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  & > * {
+    margin-bottom: 8px !important;
+
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
 .md-button {
   @media only screen and (max-width: 599px) {
     min-height: 44px;
@@ -102,11 +116,4 @@ md-card-actions .md-button {
 
 .error-text {
   color: paper-color($warn, '800');
-}
-
-.button-full-width {
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0;
 }
