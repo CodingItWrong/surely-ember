@@ -19,6 +19,12 @@
       <div class="layout-margin">
         <PaperProgressCircular />
       </div>
+    {{else if @error}}
+      <PaperList>
+        <PaperItem>
+          <p class="error-text">An error occurred loading todos.</p>
+        </PaperItem>
+      </PaperList>
     {{else}}
       <PaperList>
         {{#if @groups}}
