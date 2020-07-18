@@ -28,6 +28,10 @@
         @block={{true}}
         autocapitalize="false"
       />
+
+      {{#if this.error}}
+        <p class="error-text">{{this.error}}</p>
+      {{/if}}
     </card.content>
     <card.actions class="app-button-container">
       <PaperButton @onClick={{@onCancel}}>
