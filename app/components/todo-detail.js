@@ -18,6 +18,7 @@ export default class TodoDetailComponent extends Component {
   @tracked deferredUntil = null;
 
   @tracked isEditing = false;
+  @tracked error = null;
 
   @tracked displayModel;
 
@@ -57,33 +58,61 @@ export default class TodoDetailComponent extends Component {
   async complete() {
     const { todo, onHandle } = this.args;
     todo.completedAt = new Date();
-    await todo.save();
-    onHandle();
+
+    this.error = null;
+    try {
+      await todo.save();
+      onHandle();
+    } catch (e) {
+      this.error = 'An error occurred while completing the todo.';
+      console.error(e);
+    }
   }
 
   @action
-  uncomplete() {
+  async uncomplete() {
     const { todo } = this.args;
     todo.completedAt = null;
-    todo.save();
-    this.updateDisplayModel();
+
+    this.error = null;
+    try {
+      await todo.save();
+      this.updateDisplayModel();
+    } catch (e) {
+      this.error = 'An error occurred while uncompleting the todo.';
+      console.error(e);
+    }
   }
 
   @action
   async delete() {
     const { todo, onHandle } = this.args;
     todo.deletedAt = new Date();
-    await todo.save();
-    onHandle();
+
+    this.error = null;
+    try {
+      await todo.save();
+      onHandle();
+    } catch (e) {
+      this.error = 'An error occurred while deleting the todo.';
+      console.error(e);
+    }
   }
 
   @action
-  undelete() {
+  async undelete() {
     const { todo } = this.args;
     todo.deletedAt = null;
     todo.completedAt = null;
-    todo.save();
-    this.updateDisplayModel();
+
+    this.error = null;
+    try {
+      await todo.save();
+      this.updateDisplayModel();
+    } catch (e) {
+      this.error = 'An error occurred while undeleting the todo.';
+      console.error(e);
+    }
   }
 
   @action
@@ -101,8 +130,15 @@ export default class TodoDetailComponent extends Component {
   async deferOneDay() {
     const { todo, onHandle } = this.args;
     todo.deferOneDay();
-    await todo.save();
-    onHandle();
+
+    this.error = null;
+    try {
+      await todo.save();
+      onHandle();
+    } catch (e) {
+      this.error = 'An error occurred while deferring the todo.';
+      console.error(e);
+    }
   }
 
   @action
@@ -122,8 +158,15 @@ export default class TodoDetailComponent extends Component {
 
     const { todo, onHandle } = this.args;
     todo.deferUntilDate(deferredUntilDate);
-    await todo.save();
-    onHandle();
+
+    this.error = null;
+    try {
+      await todo.save();
+      onHandle();
+    } catch (e) {
+      this.error = 'An error occurred while deferring the todo.';
+      console.error(e);
+    }
   }
 
   @action

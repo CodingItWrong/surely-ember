@@ -45,6 +45,10 @@
         <TodoDetail::EventLog
           @displayModel={{this.displayModel}}
         />
+
+        {{#if this.error}}
+          <p class="error-text">{{this.error}}</p>
+        {{/if}}
       </card.content>
       <card.actions class="app-button-container">
         {{#if (eq this.buttonSet 'actions')}}
