@@ -40,10 +40,15 @@
       <form.submit-button
         @raised={{true}}
         @primary={{true}}
+        @disabled={{this.saving}}
         data-test-save-button
       >
         {{paper-icon "save"}}
-        Save
+        {{#if this.saving}}
+          Saving…
+        {{else}}
+          Save
+        {{/if}}
       </form.submit-button>
     </card.actions>
   </PaperForm>
