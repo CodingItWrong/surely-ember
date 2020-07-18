@@ -64,7 +64,7 @@ export default class TodoModel extends Model {
     return this.deferredUntil < twoDaysFromNow;
   }
 
-  deferOneDay() {
+  deferDays(num) {
     const now = new Date();
     let startDate;
     if (!this.deferredUntil || this.deferredUntil < now) {
@@ -74,7 +74,7 @@ export default class TodoModel extends Model {
       // already future: defer one additional day
       startDate = this.deferredUntil;
     }
-    this.deferUntilDate(startOfDay(addDays(startDate, 1)));
+    this.deferUntilDate(startOfDay(addDays(startDate, num)));
   }
 
   deferUntilDate(deferredUntil) {
