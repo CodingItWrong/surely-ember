@@ -1,14 +1,3 @@
 <div class="list-detail">
-  <TodoList
-    @title="Completed"
-    @icon="check_circle"
-    @todos={{this.sortedTodos}}
-    @onClickHeaderIcon={{this.goToList}}
-    @onChooseTodo={{this.handleChooseTodo}}
-    @onRefresh={{this.handleRefresh}}
-    as |todo|
-  >
-    Completed {{time-ago todo.completedAt}}
-  </TodoList>
   {{outlet}}
 </div>

@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
 import { scrollToTop } from 'surely/utils';
 
-export default class TodosCompleteIndexController extends Controller {
+export default class TodosCompleteDataController extends Controller {
   @service router;
 
   sortPropertiesMostRecentlyCompleted = Object.freeze(['completedAt:desc']);
@@ -19,12 +19,12 @@ export default class TodosCompleteIndexController extends Controller {
 
   @action
   goToList() {
-    this.router.transitionTo('todos.completed');
+    this.router.transitionTo('todos.completed.data');
   }
 
   @action
   handleChooseTodo(todo) {
-    this.router.transitionTo('todos.completed.detail', todo.id);
+    this.router.transitionTo('todos.completed.data.detail', todo.id);
     scrollToTop();
   }
 
