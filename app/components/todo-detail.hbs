@@ -127,7 +127,7 @@
           </PaperButton>
           <PaperButton
             @disabled={{this.isProcessing}}
-            @onClick={{this.deferOneDay}}
+            @onClick={{fn this.deferDays 1}}
             data-test-defer-one-day-button
           >
             {{#if this.isDeferring}}
