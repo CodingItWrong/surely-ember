@@ -8,7 +8,7 @@ const formatRelativeLocale = {
   yesterday: "'yesterday'",
   today: "'today'",
   tomorrow: "'tomorrow'",
-  nextWeek: "'next' eeee",
+  nextWeek: 'eeee',
   other: 'MM/dd/yyyy',
 };
 
