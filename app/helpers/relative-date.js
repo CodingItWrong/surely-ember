@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 import formatRelative from 'date-fns/formatRelative';
-import enUS from 'date-fns/locale/en-GB';
+import enUS from 'date-fns/locale/en-US';
 
 // @see https://github.com/date-fns/date-fns/issues/1218
 const formatRelativeLocale = {
