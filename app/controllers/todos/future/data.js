@@ -5,7 +5,7 @@ import { action, computed } from '@ember/object';
 import groupBy from 'lodash-es/groupBy';
 import { scrollToTop } from 'surely/utils';
 
-export default class TodosFutureIndexController extends Controller {
+export default class TodosFutureDataController extends Controller {
   @service router;
 
   sortPropertiesDateThenName = Object.freeze(['deferredUntil:asc', 'name:asc']);
@@ -31,12 +31,12 @@ export default class TodosFutureIndexController extends Controller {
 
   @action
   goToList() {
-    this.router.transitionTo('todos.future');
+    this.router.transitionTo('todos.future.data');
   }
 
   @action
   handleChooseTodo(todo) {
-    this.router.transitionTo('todos.future.detail', todo.id);
+    this.router.transitionTo('todos.future.data.detail', todo.id);
     scrollToTop();
   }
 
