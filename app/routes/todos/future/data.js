@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 
-export default class TodosFutureIndexRoute extends Route {
+export default class TodosFutureDataRoute extends Route {
   async model() {
     await this.store.query('todo', {
       filter: { status: 'future' },
