@@ -138,6 +138,39 @@
           </PaperButton>
           <PaperButton
             @disabled={{this.isProcessing}}
+            @onClick={{fn this.deferDays 2}}
+            data-test-defer-two-days-button
+          >
+            {{#if this.isDeferring}}
+              Deferring…
+            {{else}}
+              {{day-of-week-days-from-now 2}}
+            {{/if}}
+          </PaperButton>
+          <PaperButton
+            @disabled={{this.isProcessing}}
+            @onClick={{fn this.deferDays 3}}
+            data-test-defer-two-days-button
+          >
+            {{#if this.isDeferring}}
+              Deferring…
+            {{else}}
+              {{day-of-week-days-from-now 3}}
+            {{/if}}
+          </PaperButton>
+          <PaperButton
+            @disabled={{this.isProcessing}}
+            @onClick={{fn this.deferDays 4}}
+            data-test-defer-two-days-button
+          >
+            {{#if this.isDeferring}}
+              Deferring…
+            {{else}}
+              {{day-of-week-days-from-now 4}}
+            {{/if}}
+          </PaperButton>
+          <PaperButton
+            @disabled={{this.isProcessing}}
             @onClick={{this.deferUntilDate}}
             data-test-defer-until-date-button
           >
