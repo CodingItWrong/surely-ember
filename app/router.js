@@ -24,7 +24,9 @@ Router.map(function () {
       });
     });
     this.route('completed', function () {
-      this.route('detail', { path: '/:todo_id' });
+      this.route('data', { path: '/' }, function () {
+        this.route('detail', { path: '/:todo_id' });
+      });
     });
     this.route('deleted', function () {
       this.route('detail', { path: '/:todo_id' });
