@@ -15,13 +15,36 @@
     </PaperToolbarTools>
   </PaperToolbar>
   <PaperContent>
-    <PaperList>
-      {{#if @groups}}
-        {{#each @groups as |group|}}
-          <PaperSubheader data-test-group-deferred-until>
-            {{capitalize (relative-date group.date)}}
-          </PaperSubheader>
-          {{#each group.todos as |todo|}}
+    {{#if @loading}}
+      <div class="layout-margin">
+        <PaperProgressCircular />
+      </div>
+    {{else}}
+      <PaperList>
+        {{#if @groups}}
+          {{#each @groups as |group|}}
+            <PaperSubheader data-test-group-deferred-until>
+              {{capitalize (relative-date group.date)}}
+            </PaperSubheader>
+            {{#each group.todos as |todo|}}
+              <TodoList::Item
+                @todo={{todo}}
+                @onChooseTodo={{@onChooseTodo}}
+              >
+                {{#if (has-block)}}
+                  <p
+                    class="todo-list-item__subtitle"
+                    data-test-deferred-until
+                  >
+                    {{yield todo}}
+                  </p>
+                {{/if}}
+              </TodoList::Item>
+            {{/each}}
+            <PaperDivider />
+          {{/each}}
+        {{else if @todos}}
+          {{#each @todos as |todo|}}
             <TodoList::Item
               @todo={{todo}}
               @onChooseTodo={{@onChooseTodo}}
@@ -35,31 +58,14 @@
                 </p>
               {{/if}}
             </TodoList::Item>
+            <PaperDivider />
           {{/each}}
-          <PaperDivider />
-        {{/each}}
-      {{else if @todos}}
-        {{#each @todos as |todo|}}
-          <TodoList::Item
-            @todo={{todo}}
-            @onChooseTodo={{@onChooseTodo}}
-          >
-            {{#if (has-block)}}
-              <p
-                class="todo-list-item__subtitle"
-                data-test-deferred-until
-              >
-                {{yield todo}}
-              </p>
-            {{/if}}
-          </TodoList::Item>
-          <PaperDivider />
-        {{/each}}
-      {{else}}
-        <PaperItem>
-          <p><em>(no todos)</em></p>
-        </PaperItem>
-      {{/if}}
-    </PaperList>
+        {{else}}
+          <PaperItem>
+            <p><em>(no todos)</em></p>
+          </PaperItem>
+        {{/if}}
+      </PaperList>
+    {{/if}}
   </PaperContent>
 </PaperCard>
