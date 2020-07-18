@@ -12,4 +12,8 @@
     autocapitalize="sentences"
     data-test-new-todo-field
   />
+
+  {{#if this.error}}
+    <p class="error-text">{{this.error}}</p>
+  {{/if}}
 </PaperForm>
