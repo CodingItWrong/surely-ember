@@ -13,6 +13,7 @@ export default class TodoDetailEditFormComponent extends Component {
   @tracked editedNotes = null;
   @tracked editedDeferredUntil = null;
 
+  @tracked saving = false;
   @tracked error = null;
 
   constructor(owner, args) {
@@ -48,9 +49,11 @@ export default class TodoDetailEditFormComponent extends Component {
     todo.deferUntilDate(deferredUntilDate);
 
     try {
+      this.saving = true;
       await todo.save();
       onSave();
     } catch (e) {
+      this.saving = false;
       this.error = 'An error occurred saving the todo.';
       // eslint-disable-next-line no-console
       console.error(e);
