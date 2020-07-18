@@ -7,10 +7,14 @@ export default class NewTodoFormComponent extends Component {
   @service store;
 
   @tracked newTodoName;
+  @tracked error = null;
 
   @action
   async createTodo() {
+    this.error = null;
+
     if (!this.newTodoName) {
+      this.error = 'Please enter a todo.';
       return;
     }
 
@@ -19,10 +23,13 @@ export default class NewTodoFormComponent extends Component {
       name: this.newTodoName,
       deferredUntil,
     });
-    await todo.save();
-
-    this.newTodoName = '';
-
-    onAdd();
+    try {
+      await todo.save();
+      this.newTodoName = '';
+      onAdd();
+    } catch (e) {
+      console.error(e);
+      this.error = 'An error occurred adding the todo.';
+    }
   }
 }
