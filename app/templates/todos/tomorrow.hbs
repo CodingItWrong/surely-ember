@@ -5,14 +5,5 @@
 />
 
 <div class="list-detail">
-  <TodoList
-    @title="Tomorrow"
-    @icon="bedtime"
-    @todos={{this.sortedTodos}}
-    @onClickHeaderIcon={{this.goToList}}
-    @onChooseTodo={{this.handleChooseTodo}}
-    @onRefresh={{this.handleRefresh}}
-    as |todo|
-  />
   {{outlet}}
 </div>
