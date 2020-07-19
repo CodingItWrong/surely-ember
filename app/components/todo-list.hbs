@@ -27,6 +27,13 @@
       </PaperList>
     {{else}}
       <PaperList>
+        <PaginationControls
+          @pageNumber={{@pageNumber}}
+          @totalPages={{@totalPages}}
+          @prevPage={{@prevPage}}
+          @nextPage={{@nextPage}}
+        />
+
         {{#if @groups}}
           {{#each @groups as |group|}}
             <PaperSubheader data-test-group-deferred-until>
