@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
+import { filter } from '@ember/object/computed';
 import groupBy from 'lodash-es/groupBy';
 import { scrollToTop } from 'surely/utils';
 
@@ -10,8 +11,8 @@ export default class TodosFutureDataController extends Controller {
 
   sortPropertiesDateThenName = Object.freeze(['deferredUntil:asc', 'name:asc']);
 
-  @computed('model.@each.isFuture', function () {
-    return this.model.filter(todo => todo.isFuture);
+  @filter('model.@each.isFuture', function (todo) {
+    return todo.isFuture;
   })
   filteredTodos;
 
