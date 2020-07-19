@@ -1,0 +1,17 @@
+{{#if this.anyPages}}
+  <div>
+    <PaperButton
+      @disabled={{this.isFirstPage}}
+      @onClick={{@prevPage}}
+    >
+      Previous
+    </PaperButton>
+    Page {{@pageNumber}} of {{@totalPages}}
+    <PaperButton
+    @disabled={{this.isLastPage}}
+      @onClick={{@nextPage}}
+    >
+      Next
+    </PaperButton>
+  </div>
+{{/if}}
