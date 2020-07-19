@@ -1,7 +1,11 @@
 <TodoList
   @title="Completed"
   @icon="check_circle"
-  @todos={{this.sortedTodos}}
+  @todos={{this.filteredTodos}}
+  @pageNumber={{this.pageNumber}}
+  @totalPages={{this.totalPages}}
+  @prevPage={{this.prevPage}}
+  @nextPage={{this.nextPage}}
   @noTodosMessage="You have no completed todos. You'll get there!"
   @onClickHeaderIcon={{this.goToList}}
   @onChooseTodo={{this.handleChooseTodo}}
@@ -10,4 +14,5 @@
 >
   Completed {{time-ago todo.completedAt}}
 </TodoList>
+
 {{outlet}}

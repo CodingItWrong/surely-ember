@@ -1,7 +1,11 @@
 <TodoList
   @title="Deleted"
   @icon="delete"
-  @todos={{this.sortedTodos}}
+  @todos={{this.filteredTodos}}
+  @pageNumber={{this.pageNumber}}
+  @totalPages={{this.totalPages}}
+  @prevPage={{this.prevPage}}
+  @nextPage={{this.nextPage}}
   @noTodosMessage="You have no deleted todos. Don't be afraid to give up!"
   @onClickHeaderIcon={{this.goToList}}
   @onChooseTodo={{this.handleChooseTodo}}
@@ -10,4 +14,5 @@
 >
   Deleted {{time-ago todo.deletedAt}}
 </TodoList>
+
 {{outlet}}
