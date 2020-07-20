@@ -4918,7 +4918,7 @@ ember-cli-htmlbars@^4.0.8, ember-cli-htmlbars@^4.2.0, ember-cli-htmlbars@^4.2.2:
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
-ember-cli-htmlbars@^5.2.0:
+ember-cli-htmlbars@^5.1.2, ember-cli-htmlbars@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.2.0.tgz#5ceccd0d18163dd810dea29f6fd777d0baa01e23"
   integrity sha512-EdjuUc7sq9ve6sgsG59qIzOj4svWjgYhO/QEhuV1UbOQ3ATeqNPiD++bFeAGjUhravw9HPhQPPoHnMlAikqLIw==
@@ -5424,6 +5424,14 @@ ember-modifier-manager-polyfill@^1.1.0:
     ember-cli-babel "^7.10.0"
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
+
+ember-paper-layout@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/ember-paper-layout/-/ember-paper-layout-0.0.1.tgz#8c903c2e23617cb89e92bde857eaf96022ba891d"
+  integrity sha512-y06LjlqOn7yJ7r1tC8M0qsGEY1ITFI9uyQMs36P/1jh9MbYW5JJkFstqVaJwp3PR/5I2SKy54QIRElOyk25zOw==
+  dependencies:
+    ember-cli-babel "^7.20.5"
+    ember-cli-htmlbars "^5.1.2"
 
 ember-paper@^1.0.0-beta.31:
   version "1.0.0-beta.31"
