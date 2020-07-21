@@ -4,7 +4,12 @@
       <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
         {{paper-icon @icon}}
       </PaperButton>
-      <h2>{{@title}}</h2>
+      <h2>
+        {{@title}}
+        {{#if (and @todos (not @pageNumber))}}
+          ({{@todos.length}})
+        {{/if}}
+      </h2>
       <span class="flex"></span>
       <PaperButton
         @iconButton={{true}}
