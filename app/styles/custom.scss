@@ -4,6 +4,7 @@
   align-items: stretch;
 
   & > * {
+    margin-right: 0 !important;
     margin-bottom: 8px !important;
 
     &:last-child {
@@ -15,8 +16,14 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+
     & > * {
+      margin-right: 4px !important;
       margin-bottom: 0 !important;
+
+      &:last-child {
+        margin-right: 0 !important;
+      }
     }
   }
 }
