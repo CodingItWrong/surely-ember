@@ -5425,10 +5425,10 @@ ember-modifier-manager-polyfill@^1.1.0:
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-ember-paper-layout@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/ember-paper-layout/-/ember-paper-layout-0.0.1.tgz#8c903c2e23617cb89e92bde857eaf96022ba891d"
-  integrity sha512-y06LjlqOn7yJ7r1tC8M0qsGEY1ITFI9uyQMs36P/1jh9MbYW5JJkFstqVaJwp3PR/5I2SKy54QIRElOyk25zOw==
+ember-paper-layout@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ember-paper-layout/-/ember-paper-layout-0.0.2.tgz#c09bd685185cd0714aa284b2edb7dc95389adce0"
+  integrity sha512-OrpYTmGNFeRBAvLEg56/Cav/uOxMvHHm/rUgq+svLQkAdt0x3xL+gRXL7lqvhY2pX5KlBZYC4ZKFEj5HZwqs7A==
   dependencies:
     ember-cli-babel "^7.20.5"
     ember-cli-htmlbars "^5.1.2"
