@@ -21,9 +21,15 @@
   </PaperToolbar>
   <PaperContent>
     {{#if @loading}}
-      <div class="layout-margin">
-        <PaperProgressCircular />
-      </div>
+      <PaperList>
+        <PaginationControls
+          @pageNumber={{1}}
+          @totalPages={{1}}
+        />
+        <div class="layout-margin">
+          <PaperProgressCircular />
+        </div>
+      </PaperList>
     {{else if @error}}
       <PaperList>
         <PaperItem>
