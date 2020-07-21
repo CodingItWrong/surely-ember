@@ -23,8 +23,8 @@
     {{#if @loading}}
       <PaperList>
         <PaginationControls
-          @pageNumber={{1}}
-          @totalPages={{1}}
+          @pageNumber={{@pageNumber}}
+          @totalPages={{@totalPages}}
         />
         <div class="layout-margin">
           <PaperProgressCircular />
