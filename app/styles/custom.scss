@@ -21,6 +21,14 @@
   }
 }
 
+.todo-detail-buttons {
+  flex-direction: column-reverse;
+
+  @media only screen and (min-width: 600px) {
+    flex-direction: row;
+  }
+}
+
 .app-button-container-stacked {
   display: flex;
   flex-direction: column;
