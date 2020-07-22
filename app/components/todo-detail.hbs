@@ -66,7 +66,11 @@
               {{#if this.isDeferring}}
                 Deferring…
               {{else}}
-                Tomorrow
+                1 Day -
+                {{day-of-week-days-from
+                  start=this.displayModel.deferredUntil
+                  days=1
+                }}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -77,7 +81,11 @@
               {{#if this.isDeferring}}
                 Deferring…
               {{else}}
-                {{day-of-week-days-from-now 2}}
+                2 Days -
+                {{day-of-week-days-from
+                  start=this.displayModel.deferredUntil
+                  days=2
+                }}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -88,7 +96,11 @@
               {{#if this.isDeferring}}
                 Deferring…
               {{else}}
-                {{day-of-week-days-from-now 3}}
+                3 Days -
+                {{day-of-week-days-from
+                  start=this.displayModel.deferredUntil
+                  days=3
+                }}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -99,7 +111,11 @@
               {{#if this.isDeferring}}
                 Deferring…
               {{else}}
-                {{day-of-week-days-from-now 4}}
+                4 Days -
+                {{day-of-week-days-from
+                  start=this.displayModel.deferredUntil
+                  days=4
+                }}
               {{/if}}
             </PaperButton>
             <PaperButton
