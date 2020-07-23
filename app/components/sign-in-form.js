@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
-export default class LoginFormComponent extends Component {
+export default class SignInFormComponent extends Component {
   @service session;
   @service router;
 
@@ -19,7 +19,7 @@ export default class LoginFormComponent extends Component {
   }
 
   @action
-  async logIn() {
+  async signIn() {
     let { email, password } = this;
 
     try {
@@ -33,7 +33,7 @@ export default class LoginFormComponent extends Component {
       this.errorMessage =
         e?.responseJSON?.error_description ??
         e?.message ??
-        'An error occurred while logging in.';
+        'An error occurred while signing in.';
     }
   }
 }
