@@ -16,6 +16,7 @@
         @value={{this.email}}
         @onChange={{action (mut this.email)}}
         @required={{true}}
+        data-test-email-field
       />
       <form.input
         @type="password"
@@ -24,6 +25,7 @@
         @value={{this.password}}
         @onChange={{action (mut this.password)}}
         @required={{true}}
+        data-test-password-field
       />
       <form.input
         @type="password"
@@ -32,6 +34,7 @@
         @value={{this.passwordConfirmation}}
         @onChange={{action (mut this.passwordConfirmation)}}
         @required={{true}}
+        data-test-password-confirmation-field
       />
     </card.content>
     <card.actions>
@@ -41,6 +44,7 @@
       <form.submit-button
         @raised="true"
         @primary={{true}}
+        data-test-sign-up-confirm-button
       >
         Sign Up
       </form.submit-button>
