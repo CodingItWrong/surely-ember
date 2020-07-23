@@ -5,6 +5,8 @@ import { inject as service } from '@ember/service';
 
 export default class RegistrationFormComponent extends Component {
   @service store;
+  @service session;
+  @service router;
 
   @tracked email;
   @tracked password;
@@ -17,15 +19,15 @@ export default class RegistrationFormComponent extends Component {
       return;
     }
 
-    const user = this.store.createRecord('user', {
-      email: this.email,
-      password: this.password,
-    });
+    const { email, password } = this;
+
+    const user = this.store.createRecord('user', { email, password });
 
     try {
       await user.save();
       this.store.unloadAll('user');
-      this.args.onRegister();
+      await this.session.authenticate('authenticator:oauth', email, password);
+      this.router.transitionTo('todos.available');
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
