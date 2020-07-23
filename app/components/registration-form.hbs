@@ -1,0 +1,49 @@
+<PaperCard as |card|>
+  <card.title as |title|>
+    <title.text as |text|>
+      <text.headline>
+        Register
+      </text.headline>
+    </title.text>
+  </card.title>
+  <PaperForm @onSubmit={{this.register}} as |form|>
+    <card.content>
+      <p>{{this.errorMessage}}</p>
+      <form.input
+        @type="email"
+        @block={{true}}
+        @label="Email"
+        @value={{this.email}}
+        @onChange={{action (mut this.email)}}
+        @required={{true}}
+      />
+      <form.input
+        @type="password"
+        @block={{true}}
+        @label="Password"
+        @value={{this.password}}
+        @onChange={{action (mut this.password)}}
+        @required={{true}}
+      />
+      <form.input
+        @type="password"
+        @block={{true}}
+        @label="Confirm Password"
+        @value={{this.passwordConfirmation}}
+        @onChange={{action (mut this.passwordConfirmation)}}
+        @required={{true}}
+      />
+    </card.content>
+    <card.actions>
+      <PaperButton @onClick={{@onCancel}}>
+        Cancel
+      </PaperButton>
+      <form.submit-button
+        @raised="true"
+        @primary={{true}}
+      >
+        Register
+      </form.submit-button>
+    </card.actions>
+  </PaperForm>
+</PaperCard>
