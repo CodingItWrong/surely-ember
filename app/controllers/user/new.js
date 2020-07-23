@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 export default class UserNewController extends Controller {
   @service router;
 
-  @action goToLogin() {
+  @action goToSignIn() {
     this.router.transitionTo('index');
   }
 }

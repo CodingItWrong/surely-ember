@@ -7,7 +7,7 @@ export default class AppToolbarMenuComponent extends Component {
   @service session;
 
   @action
-  logOut() {
+  signOut() {
     this.session.invalidate();
     this.router.transitionTo('/');
   }

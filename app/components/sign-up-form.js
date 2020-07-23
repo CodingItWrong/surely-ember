@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default class RegistrationFormComponent extends Component {
+export default class SignUpFormComponent extends Component {
   @service store;
   @service session;
   @service router;
@@ -14,7 +14,7 @@ export default class RegistrationFormComponent extends Component {
   @tracked errorMessage = null;
 
   @action
-  async register() {
+  async signUp() {
     if (!this.validate()) {
       return;
     }
@@ -34,7 +34,7 @@ export default class RegistrationFormComponent extends Component {
       this.errorMessage =
         e?.responseJSON?.error_description ??
         e?.message ??
-        'An error occurred while registering.';
+        'An error occurred while signing up.';
     }
   }
 
