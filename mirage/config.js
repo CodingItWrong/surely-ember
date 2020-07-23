@@ -1,4 +1,5 @@
 export default function () {
+  this.post('/users');
   this.post('/oauth/token', () => {
     return {
       access_token: 'fake_access_token',

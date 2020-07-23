@@ -20,7 +20,10 @@
       />
     </card.content>
     <card.actions>
-      <PaperButton @onClick={{this.goToSignUp}}>
+      <PaperButton
+        @onClick={{this.goToSignUp}}
+        data-test-sign-up-button
+      >
         Sign Up
       </PaperButton>
       <form.submit-button
