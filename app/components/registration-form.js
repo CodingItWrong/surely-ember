@@ -24,6 +24,7 @@ export default class RegistrationFormComponent extends Component {
 
     try {
       await user.save();
+      this.store.unloadAll('user');
       this.args.onRegister();
     } catch (e) {
       // eslint-disable-next-line no-console
