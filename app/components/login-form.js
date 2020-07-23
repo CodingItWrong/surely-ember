@@ -14,6 +14,11 @@ export default class LoginFormComponent extends Component {
   errorMessage = '';
 
   @action
+  goToSignUp() {
+    this.router.transitionTo('user.new');
+  }
+
+  @action
   async logIn() {
     let { email, password } = this;
 
