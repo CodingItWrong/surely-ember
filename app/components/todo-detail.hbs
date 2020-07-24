@@ -20,13 +20,14 @@
       <card.title as |title|>
         <title.text as |text|>
           <text.headline class="todo-headline__container">
-            <div
-              class="todo-headline__title click-to-edit"
+            <button
+              type="button"
+              class="todo-headline__title click-to-edit unstyled-button"
               data-test-todo-name
               {{on 'click' this.edit}}
             >
               {{this.displayModel.name}}
-            </div>
+            </button>
             <PaperButton
               @iconButton={{true}}
               @onClick={{this.edit}}
@@ -40,7 +41,11 @@
       </card.title>
       <card.content>
         {{#if this.displayModel.notes}}
-          <div class="notes-display click-to-edit" {{on 'click' this.edit}}>{{this.displayModel.notes}}</div>
+          <button
+            type="button"
+            class="notes-display click-to-edit unstyled-button"
+            {{on 'click' this.edit}}
+          >{{this.displayModel.notes}}</button>
         {{/if}}
         <TodoDetail::EventLog
           @displayModel={{this.displayModel}}
