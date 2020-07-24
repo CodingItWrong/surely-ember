@@ -24,7 +24,7 @@
               type="button"
               class="todo-headline__title click-to-edit unstyled-button"
               data-test-todo-name
-              {{on 'click' this.edit}}
+              {{on "click" this.edit}}
             >
               {{this.displayModel.name}}
             </button>
@@ -41,11 +41,7 @@
       </card.title>
       <card.content>
         {{#if this.displayModel.notes}}
-          <button
-            type="button"
-            class="notes-display click-to-edit unstyled-button"
-            {{on 'click' this.edit}}
-          >{{this.displayModel.notes}}</button>
+          <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}}>{{this.displayModel.notes}}</button>
         {{/if}}
         <TodoDetail::EventLog
           @displayModel={{this.displayModel}}
@@ -55,7 +51,7 @@
           <p class="error-text">{{this.error}}</p>
         {{/if}}
 
-        {{#if (eq this.buttonSet 'defer')}}
+        {{#if (eq this.buttonSet "defer")}}
           <div class="app-button-container-stacked">
             <PaperButton
               @disabled={{this.isProcessing}}
@@ -133,8 +129,8 @@
           </div>
         {{/if}}
       </card.content>
-      <card.actions class="app-button-container {{if (eq this.buttonSet 'actions') 'reversed-mobile-buttons'}}">
-        {{#if (eq this.buttonSet 'actions')}}
+      <card.actions class="app-button-container {{if (eq this.buttonSet "actions") "reversed-mobile-buttons"}}">
+        {{#if (eq this.buttonSet "actions")}}
           {{#if this.displayModel.isDeleted}}
             <PaperButton
               @raised={{true}}
@@ -201,7 +197,7 @@
               </PaperButton>
             {{/if}}
           {{/if}}
-        {{else if (eq this.buttonSet 'defer_until_date')}}
+        {{else if (eq this.buttonSet "defer_until_date")}}
           <PaperForm
             @onSubmit={{this.saveEnteredDeferredDate}}
             class="app-button-container"
