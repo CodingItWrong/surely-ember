@@ -59,3 +59,7 @@ Build and deploy the frontend to a server. [Netlify](https://www.netlify.com/) i
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+## Attribution
+
+[Checkmark icon](https://thenounproject.com/search/?q=checkmark&i=1758124) by Scott Dunlap from the Noun Project
