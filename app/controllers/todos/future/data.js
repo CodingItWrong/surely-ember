@@ -3,16 +3,26 @@ import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
 import { filter } from '@ember/object/computed';
+import { tracked } from '@glimmer/tracking';
 import groupBy from 'lodash-es/groupBy';
 import { scrollToTop } from 'surely/utils';
+
+const includesCaseInsensitive = (haystack, needle) => {
+  haystack = (haystack || '').toLowerCase();
+  needle = (needle || '').toLowerCase();
+  return haystack.includes(needle);
+};
 
 export default class TodosFutureDataController extends Controller {
   @service router;
 
   sortPropertiesDateThenName = Object.freeze(['deferredUntil:asc', 'name:asc']);
 
-  @filter('model.@each.isFuture', function (todo) {
-    return todo.isFuture;
+  @tracked searchText = '';
+
+  @filter('model.@each.isFuture', ['searchText'], function (todo) {
+    const matchesSearch = includesCaseInsensitive(todo.name, this.searchText);
+    return todo.isFuture && matchesSearch;
   })
   filteredTodos;
 

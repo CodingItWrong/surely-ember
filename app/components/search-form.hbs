@@ -1,0 +1,14 @@
+<PaperForm
+  @onSubmit={{this.createTodo}}
+  class="layout-margin"
+  data-test-search-form
+  as |form|
+>
+  <form.input
+    @placeholder="Search"
+    @value={{@searchText}}
+    @onChange={{@onChangeSearchText}}
+    @block={{true}}
+    data-test-search-field
+  />
+</PaperForm>
