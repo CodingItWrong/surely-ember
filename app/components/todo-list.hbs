@@ -20,6 +20,13 @@
     </PaperToolbarTools>
   </PaperToolbar>
   <PaperContent>
+    {{#if @search}}
+      <SearchForm
+        @searchText={{@searchText}}
+        @onChangeSearchText={{@onChangeSearchText}}
+      />
+    {{/if}}
+
     {{#if @loading}}
       <PaperList>
         <PaginationControls
