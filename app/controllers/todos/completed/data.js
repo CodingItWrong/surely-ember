@@ -9,6 +9,7 @@ export default class TodosCompleteDataController extends Controller {
   @service router;
 
   @tracked pageNumber = 1;
+  @tracked searchText = '';
 
   get totalPages() {
     return this.model.meta['page-count'];
@@ -18,6 +19,11 @@ export default class TodosCompleteDataController extends Controller {
     return todo.isCompleted;
   })
   filteredTodos;
+
+  @action
+  handleSearch(searchText) {
+    this.searchText = searchText;
+  }
 
   @action
   goToList() {
