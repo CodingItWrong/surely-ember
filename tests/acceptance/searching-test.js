@@ -56,4 +56,23 @@ module('Acceptance | searching', function (hooks) {
     assert.dom('[data-test-todo-name]').exists({ count: 1 });
     assert.dom('[data-test-todo-name]').hasText(todo1);
   });
+
+  test('it allows searching deleted todos', async function (assert) {
+    const todo1 = 'One Todo';
+    const todo2 = 'Another Todo';
+    const past = format(addWeeks(new Date(), -1), FORMAT_STRING);
+
+    this.server.create('todo', { name: todo1, deletedAt: past });
+    this.server.create('todo', { name: todo2, deletedAt: past });
+
+    await authenticateSession({ access_token: 'ABC123' });
+
+    await visit('/');
+    await click('[data-test-deleted] button');
+
+    await fillIn('[data-test-search-field] input', todo1);
+    await triggerEvent('[data-test-search-form]', 'submit');
+    assert.dom('[data-test-todo-name]').exists({ count: 1 });
+    assert.dom('[data-test-todo-name]').hasText(todo1);
+  });
 });
