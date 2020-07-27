@@ -3,6 +3,7 @@ import {
   visit,
   click,
   fillIn,
+  triggerEvent,
   // eslint-disable-next-line no-unused-vars
   pauseTest,
 } from '@ember/test-helpers';
@@ -31,9 +32,8 @@ module('Acceptance | searching', function (hooks) {
     await visit('/');
     await click('[data-test-future] button');
 
-    // await pauseTest();
-    // assert.dom('[data-test-todo-name]').hasText(todo1);
     await fillIn('[data-test-search-field] input', todo1);
+    await triggerEvent('[data-test-search-form]', 'submit');
     assert.dom('[data-test-todo-name]').exists({ count: 1 });
     assert.dom('[data-test-todo-name]').hasText(todo1);
   });
