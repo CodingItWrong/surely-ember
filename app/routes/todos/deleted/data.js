@@ -7,11 +7,15 @@ export default class TodosDeletedDataRoute extends Route {
       as: 'p',
       refreshModel: true,
     },
+    searchText: {
+      as: 'q',
+      refreshModel: true,
+    },
   };
 
-  model({ pageNumber }) {
+  model({ searchText, pageNumber }) {
     return this.store.query('todo', {
-      filter: { status: 'deleted' },
+      filter: { status: 'deleted', search: searchText },
       sort: '-deletedAt',
       page: { number: pageNumber },
     });
