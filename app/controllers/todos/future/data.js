@@ -41,6 +41,11 @@ export default class TodosFutureDataController extends Controller {
   todoGroups;
 
   @action
+  handleSearch(searchText) {
+    this.searchText = searchText;
+  }
+
+  @action
   goToList() {
     this.router.transitionTo('todos.future.data');
   }

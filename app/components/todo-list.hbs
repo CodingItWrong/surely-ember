@@ -21,10 +21,7 @@
   </PaperToolbar>
   <PaperContent>
     {{#if @search}}
-      <SearchForm
-        @searchText={{@searchText}}
-        @onChangeSearchText={{@onChangeSearchText}}
-      />
+      <SearchForm @onSearch={{@onSearch}} />
     {{/if}}
 
     {{#if @loading}}

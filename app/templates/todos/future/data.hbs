@@ -3,8 +3,7 @@
   @icon="calendar_today"
   @groups={{this.todoGroups}}
   @search={{true}}
-  @searchText={{this.searchText}}
-  @onChangeSearchText={{action (mut this.searchText)}}
+  @onSearch={{this.handleSearch}}
   @noTodosMessage="You have no future todos. Nice work!"
   @onClickHeaderIcon={{this.goToList}}
   @onChooseTodo={{this.handleChooseTodo}}
