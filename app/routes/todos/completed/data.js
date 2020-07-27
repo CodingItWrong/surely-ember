@@ -7,11 +7,15 @@ export default class TodosCompletedDataRoute extends Route {
       as: 'p',
       refreshModel: true,
     },
+    searchText: {
+      as: 'q',
+      refreshModel: true,
+    },
   };
 
-  model({ pageNumber }) {
+  model({ searchText, pageNumber }) {
     return this.store.query('todo', {
-      filter: { status: 'completed' },
+      filter: { status: 'completed', search: searchText },
       sort: '-completedAt',
       page: { number: pageNumber },
     });

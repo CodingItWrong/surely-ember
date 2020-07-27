@@ -1,3 +1,9 @@
+const includesCaseInsensitive = (haystack, needle) => {
+  haystack = (haystack || '').toLowerCase();
+  needle = (needle || '').toLowerCase();
+  return haystack.includes(needle);
+};
+
 export default function () {
   this.post('/users');
   this.post('/oauth/token', () => {
@@ -9,8 +15,17 @@ export default function () {
     };
   });
 
+  this.get('/todos', (schema, request) => {
+    const searchText = request.queryParams['filter[search]'];
+    if (searchText) {
+      return schema.todos.where(todo =>
+        includesCaseInsensitive(todo.name, searchText),
+      );
+    } else {
+      return schema.todos.all();
+    }
+  });
   this.post('/todos');
-  this.get('/todos');
   this.get('/todos/:id');
   this.patch('/todos/:id');
 
