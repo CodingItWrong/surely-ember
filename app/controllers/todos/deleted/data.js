@@ -11,6 +11,10 @@ export default class TodosDeletedDataController extends Controller {
   @tracked pageNumber = 1;
   @tracked searchText = '';
 
+  get isSearching() {
+    return !!this.searchText;
+  }
+
   get totalPages() {
     return this.model.meta['page-count'];
   }

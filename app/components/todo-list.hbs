@@ -90,7 +90,9 @@
           {{/each}}
         {{else}}
           <PaperItem>
-            <p><em>{{@noTodosMessage}}</em></p>
+            <p>
+              <em>{{if @isSearching "No todos found" @noTodosMessage}}</em>
+            </p>
           </PaperItem>
         {{/if}}
       </PaperList>
