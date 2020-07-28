@@ -20,6 +20,10 @@ export default class TodosFutureDataController extends Controller {
 
   @tracked searchText = '';
 
+  get isSearching() {
+    return !!this.searchText;
+  }
+
   @filter('model.@each.isFuture', ['searchText'], function (todo) {
     const matchesSearch = includesCaseInsensitive(todo.name, this.searchText);
     return todo.isFuture && matchesSearch;
