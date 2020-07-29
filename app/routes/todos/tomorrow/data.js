@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 export default class TodosTomorrowDataRoute extends Route {
   async model() {
     await this.store.query('todo', {
-      filter: { deferredUntil: 'tomorrow' },
+      filter: { status: 'tomorrow' },
     });
     return this.store.peekAll('todo');
   }
