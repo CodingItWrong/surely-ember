@@ -5,14 +5,20 @@
       data-test-available
     >
       {{paper-icon "access_time"}}
-      <p>Available</p>
+      <p>
+        Available
+        ({{@availableTodoCount}})
+      </p>
     </PaperItem>
     <PaperItem
       @onClick={{fn this.goToTodos "tomorrow"}}
       data-test-tomorrow
     >
       {{paper-icon "bedtime"}}
-      <p>Tomorrow</p>
+      <p>
+        Tomorrow
+        ({{@tomorrowTodoCount}})
+      </p>
     </PaperItem>
     <PaperItem
       @onClick={{fn this.goToTodos "future"}}

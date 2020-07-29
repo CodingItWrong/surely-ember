@@ -1,6 +1,9 @@
 <LayoutContainer @title="Surely" as |layout|>
   <layout.sidenav>
-    <AppSideNavContent />
+    <AppSideNavContent
+      @availableTodoCount={{this.availableTodoCount}}
+      @tomorrowTodoCount={{this.tomorrowTodoCount}}
+    />
   </layout.sidenav>
   <layout.body as |body|>
     <body.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
