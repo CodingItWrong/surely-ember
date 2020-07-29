@@ -10,6 +10,8 @@ export default class ApplicationRoute extends Route {
         filter: { status: 'available,tomorrow' },
       });
       return this.store.peekAll('todo');
+    } else {
+      return [];
     }
   }
 }
