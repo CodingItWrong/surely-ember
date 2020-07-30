@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 
 export default class TodosAvailableDataRoute extends Route {
   async model() {
+    this.store.unloadAll('todo');
     await this.store.query('todo', {
       filter: { status: 'available' },
     });
