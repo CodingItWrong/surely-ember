@@ -5,7 +5,7 @@ export default class TodosAvailableDataRoute extends Route {
   async model() {
     this.store.unloadAll('todo');
     await this.store.query('todo', {
-      filter: { status: 'available' },
+      filter: { status: 'available,tomorrow' },
     });
     return this.store.peekAll('todo');
   }
