@@ -8,4 +8,9 @@ export default class UserNewController extends Controller {
   @action goToSignIn() {
     this.router.transitionTo('index');
   }
+
+  @action handleSignUp() {
+    this.send('refreshApplicationModel');
+    this.router.transitionTo('todos.available');
+  }
 }

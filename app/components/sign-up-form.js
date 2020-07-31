@@ -6,7 +6,6 @@ import { inject as service } from '@ember/service';
 export default class SignUpFormComponent extends Component {
   @service store;
   @service session;
-  @service router;
 
   @tracked email;
   @tracked password;
@@ -27,7 +26,7 @@ export default class SignUpFormComponent extends Component {
       await user.save();
       this.store.unloadAll('user');
       await this.session.authenticate('authenticator:oauth', email, password);
-      this.router.transitionTo('todos.available');
+      this.args.onSignedUp();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
