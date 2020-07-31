@@ -17,7 +17,7 @@ export default class ApplicationRoute extends Route {
   }
 
   @action
-  refresh() {
-    super.refresh();
+  refreshApplicationModel() {
+    this.refresh();
   }
 }
