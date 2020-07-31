@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { action } from '@ember/object';
 
 const unauthenticatedRoutes = ['user.new'];
 
@@ -27,5 +28,10 @@ export default class ApplicationController extends Controller {
 
   get routeRequiresAuthentication() {
     return !this.currentRouteIsUnauthenticated && !this.session.isAuthenticated;
+  }
+
+  @action
+  handleSignIn() {
+    this.router.transitionTo('todos.available');
   }
 }
