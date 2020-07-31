@@ -32,7 +32,7 @@ export default class ApplicationController extends Controller {
 
   @action
   handleSignIn() {
-    this.send('refresh');
+    this.send('refreshApplicationModel');
     this.router.transitionTo('todos.available');
   }
 }
