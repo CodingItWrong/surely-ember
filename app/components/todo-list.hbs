@@ -53,6 +53,7 @@
           {{#each @groups as |group|}}
             <PaperSubheader data-test-group-deferred-until>
               {{capitalize (relative-date group.date)}}
+              ({{group.todos.length}})
             </PaperSubheader>
             {{#each group.todos as |todo|}}
               <TodoList::Item
