@@ -2,11 +2,9 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { action } from '@ember/object';
+import { count, prop } from 'surely/utils';
 
 const unauthenticatedRoutes = ['user.new'];
-
-const count = (array, test) => array.filter(test).length;
-const prop = name => object => object[name];
 
 export default class ApplicationController extends Controller {
   @service router;
