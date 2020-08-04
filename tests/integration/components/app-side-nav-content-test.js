@@ -2,40 +2,45 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
-import Service from '@ember/service';
 import sinon from 'sinon';
 
 module('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
+  const session = {};
+
+  hooks.beforeEach(function () {
+    this.owner.register('service:session', session, { instantiate: false });
+  });
+
+  module('when not authenticated', function () {
+    test('it does not render', async function (assert) {
+      session.isAuthenticated = false;
+      await render(hbs`<AppSideNavContent />`);
+
+      assert.equal(this.element.textContent.trim(), '');
+    });
+  });
+
   module('when authenticated', function () {
-    let routerTransitionTo;
+    let router;
 
     hooks.beforeEach(function () {
-      routerTransitionTo = sinon.spy();
+      router = {
+        transitionTo: sinon.spy(),
+      };
 
-      this.owner.register(
-        'service:router',
-        class RouterStub extends Service {
-          transitionTo = routerTransitionTo;
-        },
-      );
-
-      this.owner.register(
-        'service:session',
-        class SessionStub extends Service {
-          isAuthenticated = true;
-        },
-      );
+      this.owner.register('service:router', router, { instantiate: false });
     });
 
     test('it allows navigating to the available route', async function (assert) {
+      session.isAuthenticated = true;
       await render(hbs`<AppSideNavContent />`);
 
       await click('[data-test-available] button');
 
       assert.ok(
-        routerTransitionTo.calledWith('todos.available'),
+        router.transitionTo.calledWith('todos.available'),
         'navigated to available route',
       );
     });
