@@ -14,16 +14,19 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
     hooks.beforeEach(function () {
       routerTransitionTo = sinon.spy();
 
-      class RouterStub extends Service {
-        transitionTo = routerTransitionTo;
-      }
+      this.owner.register(
+        'service:router',
+        class RouterStub extends Service {
+          transitionTo = routerTransitionTo;
+        },
+      );
 
-      this.owner.register('service:router', RouterStub);
-
-      class SessionStub extends Service {
-        isAuthenticated = true;
-      }
-      this.owner.register('service:session', SessionStub);
+      this.owner.register(
+        'service:session',
+        class SessionStub extends Service {
+          isAuthenticated = true;
+        },
+      );
     });
 
     test('it allows navigating to the available route', async function (assert) {
