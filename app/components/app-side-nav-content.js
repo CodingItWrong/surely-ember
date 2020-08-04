@@ -10,4 +10,9 @@ export default class AppSideNavContentComponent extends Component {
   goToTodos(subroute) {
     this.router.transitionTo(['todos', subroute].join('.'));
   }
+
+  @action
+  refreshApp() {
+    window.location.reload();
+  }
 }
