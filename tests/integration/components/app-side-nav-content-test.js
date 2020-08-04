@@ -9,20 +9,24 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
   module('when authenticated', function () {
-    test('it allows navigating to the available route', async function (assert) {
-      const routerTransitionTo = sinon.spy();
+    let routerTransitionTo;
+
+    hooks.beforeEach(function () {
+      routerTransitionTo = sinon.spy();
 
       class RouterStub extends Service {
         transitionTo = routerTransitionTo;
       }
 
+      this.owner.register('service:router', RouterStub);
+
       class SessionStub extends Service {
         isAuthenticated = true;
       }
-
-      this.owner.register('service:router', RouterStub);
       this.owner.register('service:session', SessionStub);
+    });
 
+    test('it allows navigating to the available route', async function (assert) {
       await render(hbs`<AppSideNavContent />`);
 
       await click('[data-test-available] button');
