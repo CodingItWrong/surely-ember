@@ -31,10 +31,11 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       };
 
       this.owner.register('service:router', router, { instantiate: false });
+
+      session.isAuthenticated = true;
     });
 
     test('it allows navigating to the available route', async function (assert) {
-      session.isAuthenticated = true;
       await render(hbs`<AppSideNavContent />`);
 
       await click('[data-test-available] button');
@@ -46,7 +47,6 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
     });
 
     test('it allows navigating to the tomorrow route', async function (assert) {
-      session.isAuthenticated = true;
       await render(hbs`<AppSideNavContent />`);
 
       await click('[data-test-tomorrow] button');
