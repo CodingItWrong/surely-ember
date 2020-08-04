@@ -54,5 +54,32 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
         'navigated to tomorrow route',
       );
     });
+
+    test('it allows navigating to the future route', async function (assert) {
+      await click('[data-test-future] button');
+
+      assert.ok(
+        router.transitionTo.calledWith('todos.future'),
+        'navigated to future route',
+      );
+    });
+
+    test('it allows navigating to the completed route', async function (assert) {
+      await click('[data-test-completed] button');
+
+      assert.ok(
+        router.transitionTo.calledWith('todos.completed'),
+        'navigated to completed route',
+      );
+    });
+
+    test('it allows navigating to the deleted route', async function (assert) {
+      await click('[data-test-deleted] button');
+
+      assert.ok(
+        router.transitionTo.calledWith('todos.deleted'),
+        'navigated to deleted route',
+      );
+    });
   });
 });
