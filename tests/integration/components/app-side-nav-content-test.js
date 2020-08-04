@@ -8,27 +8,29 @@ import sinon from 'sinon';
 module('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it allows navigating to the available route', async function (assert) {
-    const routerTransitionTo = sinon.spy();
+  module('when authenticated', function () {
+    test('it allows navigating to the available route', async function (assert) {
+      const routerTransitionTo = sinon.spy();
 
-    class RouterStub extends Service {
-      transitionTo = routerTransitionTo;
-    }
+      class RouterStub extends Service {
+        transitionTo = routerTransitionTo;
+      }
 
-    class SessionStub extends Service {
-      isAuthenticated = true;
-    }
+      class SessionStub extends Service {
+        isAuthenticated = true;
+      }
 
-    this.owner.register('service:router', RouterStub);
-    this.owner.register('service:session', SessionStub);
+      this.owner.register('service:router', RouterStub);
+      this.owner.register('service:session', SessionStub);
 
-    await render(hbs`<AppSideNavContent />`);
+      await render(hbs`<AppSideNavContent />`);
 
-    await click('[data-test-available] button');
+      await click('[data-test-available] button');
 
-    assert.ok(
-      routerTransitionTo.calledWith('todos.available'),
-      'navigated to available route',
-    );
+      assert.ok(
+        routerTransitionTo.calledWith('todos.available'),
+        'navigated to available route',
+      );
+    });
   });
 });
