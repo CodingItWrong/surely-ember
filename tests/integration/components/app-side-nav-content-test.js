@@ -44,5 +44,17 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
         'navigated to available route',
       );
     });
+
+    test('it allows navigating to the tomorrow route', async function (assert) {
+      session.isAuthenticated = true;
+      await render(hbs`<AppSideNavContent />`);
+
+      await click('[data-test-tomorrow] button');
+
+      assert.ok(
+        router.transitionTo.calledWith('todos.tomorrow'),
+        'navigated to tomorrow route',
+      );
+    });
   });
 });
