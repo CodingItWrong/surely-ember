@@ -25,7 +25,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
   module('when authenticated', function () {
     let router;
 
-    hooks.beforeEach(function () {
+    hooks.beforeEach(async function () {
       router = {
         transitionTo: sinon.spy(),
       };
@@ -33,11 +33,11 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       this.owner.register('service:router', router, { instantiate: false });
 
       session.isAuthenticated = true;
+
+      await render(hbs`<AppSideNavContent />`);
     });
 
     test('it allows navigating to the available route', async function (assert) {
-      await render(hbs`<AppSideNavContent />`);
-
       await click('[data-test-available] button');
 
       assert.ok(
@@ -47,8 +47,6 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
     });
 
     test('it allows navigating to the tomorrow route', async function (assert) {
-      await render(hbs`<AppSideNavContent />`);
-
       await click('[data-test-tomorrow] button');
 
       assert.ok(
