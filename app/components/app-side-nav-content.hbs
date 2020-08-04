@@ -42,5 +42,13 @@
       {{paper-icon "delete"}}
       <p>Deleted</p>
     </PaperItem>
+    <PaperDivider />
+    <PaperItem
+      @onClick={{fn this.refreshApp}}
+      data-test-deleted
+    >
+      {{paper-icon "refresh"}}
+      <p>Refresh App</p>
+    </PaperItem>
   </PaperList>
 {{/if}}
