@@ -51,4 +51,29 @@ module('Integration | Component | pagination-controls', function (hooks) {
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
   });
+
+  module('when on middle of multiple pages', function (hooks) {
+    let prevPage;
+    let nextPage;
+
+    hooks.beforeEach(async function () {
+      prevPage = sinon.spy();
+      nextPage = sinon.spy();
+      this.set('prevPage', prevPage);
+      this.set('nextPage', nextPage);
+      await render(
+        hbs`<PaginationControls @totalPages={{3}} @pageNumber={{2}} @prevPage={{prevPage}} @nextPage={{nextPage}} />`,
+      );
+    });
+
+    test('it calls prevPage when clicking the previous page button', async function (assert) {
+      await click('[data-test-previous-button]');
+      assert.ok(prevPage.calledOnce, 'prevPage called');
+    });
+
+    test('it calls nextPage when clicking the next page button', async function (assert) {
+      await click('[data-test-next-button]');
+      assert.ok(nextPage.calledOnce, 'nextPage called');
+    });
+  });
 });
