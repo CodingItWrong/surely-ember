@@ -7,32 +7,33 @@ import sinon from 'sinon';
 module('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
-  const session = {};
+  module('when not authenticated', function (hooks) {
+    let session;
 
-  hooks.beforeEach(function () {
-    this.owner.register('service:session', session, { instantiate: false });
-  });
+    hooks.beforeEach(function () {
+      session = { isAuthenticated: false };
+      this.owner.register('service:session', session, { instantiate: false });
+    });
 
-  module('when not authenticated', function () {
     test('it does not render', async function (assert) {
-      session.isAuthenticated = false;
       await render(hbs`<AppSideNavContent />`);
 
       assert.equal(this.element.textContent.trim(), '');
     });
   });
 
-  module('when authenticated', function () {
+  module('when authenticated', function (hooks) {
+    let session;
     let router;
 
     hooks.beforeEach(async function () {
+      session = { isAuthenticated: true };
       router = {
         transitionTo: sinon.spy(),
       };
 
+      this.owner.register('service:session', session, { instantiate: false });
       this.owner.register('service:router', router, { instantiate: false });
-
-      session.isAuthenticated = true;
 
       await render(hbs`<AppSideNavContent />`);
     });
