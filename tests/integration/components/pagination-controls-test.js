@@ -76,4 +76,25 @@ module('Integration | Component | pagination-controls', function (hooks) {
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
   });
+
+  module('when on last of multiple pages', function (hooks) {
+    let prevPage;
+
+    hooks.beforeEach(async function () {
+      prevPage = sinon.spy();
+      this.set('prevPage', prevPage);
+      await render(
+        hbs`<PaginationControls @totalPages={{3}} @pageNumber={{3}} @prevPage={{prevPage}} />`,
+      );
+    });
+
+    test('it calls prevPage when clicking the next page button', async function (assert) {
+      await click('[data-test-previous-button]');
+      assert.ok(prevPage.calledOnce, 'prevPage called');
+    });
+
+    test('it disables the next button', function (assert) {
+      assert.dom('[data-test-next-button]').hasAttribute('disabled');
+    });
+  });
 });
