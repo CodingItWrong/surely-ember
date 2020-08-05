@@ -3,13 +3,15 @@
     <PaperButton
       @disabled={{this.isFirstPage}}
       @onClick={{@prevPage}}
+      data-test-previous-button
     >
       Previous
     </PaperButton>
     Page {{@pageNumber}} of {{@totalPages}}
     <PaperButton
-    @disabled={{this.isLastPage}}
+      @disabled={{this.isLastPage}}
       @onClick={{@nextPage}}
+      data-test-next-button
     >
       Next
     </PaperButton>

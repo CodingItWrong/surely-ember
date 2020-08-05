@@ -13,4 +13,20 @@ module('Integration | Component | pagination-controls', function (hooks) {
       assert.equal(this.element.textContent.trim(), '');
     });
   });
+
+  module('when one page', function (hooks) {
+    hooks.beforeEach(async function () {
+      await render(
+        hbs`<PaginationControls @totalPages={{1}} @pageNumber={{1}} />`,
+      );
+    });
+
+    test('it disables the previous button', function (assert) {
+      assert.dom('[data-test-previous-button]').hasAttribute('disabled');
+    });
+
+    test('it disables the next button', function (assert) {
+      assert.dom('[data-test-next-button]').hasAttribute('disabled');
+    });
+  });
 });
