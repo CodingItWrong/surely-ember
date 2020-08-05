@@ -80,4 +80,25 @@ module('Integration | Component | new-todo-form', function (hooks) {
       assert.dom('[data-test-new-todo-field] input').hasValue(todoName);
     });
   });
+
+  module('submitting after an error', function (hooks) {
+    const todoName = 'Todo Name';
+
+    let handleCreate;
+
+    hooks.beforeEach(async function () {
+      handleCreate = sinon.stub().resolves();
+
+      this.set('handleCreate', handleCreate);
+      await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
+
+      await triggerEvent('[data-test-new-todo-form]', 'submit');
+      await fillIn('[data-test-new-todo-field] input', todoName);
+      await triggerEvent('[data-test-new-todo-form]', 'submit');
+    });
+
+    test('it clears the error', function (assert) {
+      assert.dom('[data-test-error]').doesNotExist();
+    });
+  });
 });
