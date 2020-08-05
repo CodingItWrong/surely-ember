@@ -36,13 +36,13 @@ module('Integration | Component | new-todo-form', function (hooks) {
   });
 
   module('when submitting with no todo name', function (hooks) {
-    let onAdd;
+    let handleCreate;
 
     hooks.beforeEach(async function () {
-      onAdd = sinon.spy();
+      handleCreate = sinon.spy();
 
-      this.set('onAdd', onAdd);
-      await render(hbs`<NewTodoForm @onAdd={{onAdd}} />`);
+      this.set('handleCreate', handleCreate);
+      await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
@@ -51,8 +51,8 @@ module('Integration | Component | new-todo-form', function (hooks) {
       assert.dom('[data-test-error]').hasText('Please enter a todo.');
     });
 
-    test('it does not call onAdd', async function (assert) {
-      assert.ok(onAdd.notCalled, 'onAdd not called');
+    test('it does not call handleCreate', async function (assert) {
+      assert.ok(handleCreate.notCalled, 'handleCreate not called');
     });
   });
 });
