@@ -55,4 +55,29 @@ module('Integration | Component | new-todo-form', function (hooks) {
       assert.ok(handleCreate.notCalled, 'handleCreate not called');
     });
   });
+
+  module('when there is an error saving', function (hooks) {
+    const todoName = 'Todo Name';
+    let handleCreate;
+
+    hooks.beforeEach(async function () {
+      handleCreate = sinon.stub().rejects();
+
+      this.set('handleCreate', handleCreate);
+      await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
+
+      await fillIn('[data-test-new-todo-field] input', todoName);
+      await triggerEvent('[data-test-new-todo-form]', 'submit');
+    });
+
+    test('it displays the error message', async function (assert) {
+      assert
+        .dom('[data-test-error]')
+        .hasText('An error occurred adding the todo.');
+    });
+
+    test('it does not clear the text field', function (assert) {
+      assert.dom('[data-test-new-todo-field] input').hasValue(todoName);
+    });
+  });
 });
