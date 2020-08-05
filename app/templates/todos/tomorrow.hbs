@@ -1,7 +1,6 @@
 <NewTodoForm
   @placeholder="Add Tomorrow Todo"
-  @deferredUntil={{tomorrow}}
-  @onAdd={{this.goToList}}
+  @handleCreate={{this.handleCreate}}
 />
 
 <div class="list-detail">

@@ -1,11 +1,8 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default class NewTodoFormComponent extends Component {
-  @service store;
-
   @tracked newTodoName;
   @tracked error = null;
 
@@ -18,15 +15,10 @@ export default class NewTodoFormComponent extends Component {
       return;
     }
 
-    const { deferredUntil, onAdd } = this.args;
-    const todo = this.store.createRecord('todo', {
-      name: this.newTodoName,
-      deferredUntil,
-    });
+    const { handleCreate } = this.args;
     try {
-      await todo.save();
+      await handleCreate(this.newTodoName);
       this.newTodoName = '';
-      onAdd();
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
