@@ -7,10 +7,10 @@ import sinon from 'sinon';
 module('Integration | Component | sign-in-form', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('sign in success', function (hooks) {
-    const email = 'email@example.com';
-    const password = 'password';
+  const email = 'email@example.com';
+  const password = 'password';
 
+  module('sign in success', function (hooks) {
     let session;
     let onSignedIn;
 
@@ -39,6 +39,36 @@ module('Integration | Component | sign-in-form', function (hooks) {
 
     test('it calls onSignedIn', function (assert) {
       assert.ok(onSignedIn.calledOnce, 'onSignedIn called');
+    });
+  });
+
+  module('sign in failure', function (hooks) {
+    const errorMessage = 'Server error';
+
+    let session;
+    let onSignedIn;
+
+    hooks.beforeEach(async function () {
+      session = {
+        authenticate: sinon.stub().rejects(new Error(errorMessage)),
+      };
+      onSignedIn = sinon.spy();
+
+      this.owner.register('service:session', session, { instantiate: false });
+      this.set('onSignedIn', onSignedIn);
+      await render(hbs`<SignInForm @onSignedIn={{onSignedIn}} />`);
+
+      await fillIn('[data-test-email-field] input', email);
+      await fillIn('[data-test-password-field] input', password);
+      await triggerEvent('[data-test-sign-in-form]', 'submit');
+    });
+
+    test('it displays an error message', function (assert) {
+      assert.dom('[data-test-error-message]').hasText(errorMessage);
+    });
+
+    test('it does not call onSignedIn', function (assert) {
+      assert.ok(onSignedIn.notCalled, 'onSignedIn not called');
     });
   });
 });
