@@ -1,5 +1,9 @@
 <PaperCard as |card|>
-  <PaperForm @onSubmit={{this.signIn}} as |form|>
+  <PaperForm
+    @onSubmit={{this.signIn}}
+    data-test-sign-in-form
+    as |form|
+  >
     <card.content>
       <p>{{this.errorMessage}}</p>
       <form.input
@@ -9,6 +13,7 @@
         @value={{this.email}}
         @onChange={{action (mut this.email)}}
         @required={{true}}
+        data-test-email-field
       />
       <form.input
         @type="password"
@@ -17,6 +22,7 @@
         @value={{this.password}}
         @onChange={{action (mut this.password)}}
         @required={{true}}
+        data-test-password-field
       />
     </card.content>
     <card.actions>
