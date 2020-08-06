@@ -127,4 +127,29 @@ module('Integration | Component | todo-list', function (hooks) {
       );
     });
   });
+
+  module('block form', function () {
+    test('it renders the block for each todo', async function (assert) {
+      const todos = [{ id: 1, name: 'Todo 1' }];
+      const handleChooseTodo = () => {};
+
+      this.set('todos', todos);
+      this.set('handleChooseTodo', handleChooseTodo);
+      await render(
+        hbs`<TodoList
+          @todos={{todos}}
+          @onChooseTodo={{handleChooseTodo}}
+          as |todo|
+        >
+          <div data-test-block-content>
+            Block todo name {{todo.name}}
+          </div>
+        </TodoList>`,
+      );
+
+      assert
+        .dom('[data-test-block-content]')
+        .hasText(`Block todo name ${todos[0].name}`);
+    });
+  });
 });
