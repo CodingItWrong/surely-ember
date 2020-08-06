@@ -26,6 +26,17 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
+  module('no todos found in search', function () {
+    test('it displays the not found message', async function (assert) {
+      const todos = [];
+
+      this.set('todos', todos);
+      await render(hbs`<TodoList @todos={{todos}} @isSearching={{true}} />`);
+
+      assert.dom('[data-test-no-todos-message]').hasText('No todos found');
+    });
+  });
+
   module('individual todos', function (hooks) {
     const todos = [
       { id: 1, name: 'Todo 1' },
