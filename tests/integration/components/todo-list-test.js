@@ -13,4 +13,14 @@ module('Integration | Component | todo-list', function (hooks) {
       assert.dom('[data-test-loading-indicator]').exists();
     });
   });
+
+  module('when errored', function () {
+    test('it shows an error message', async function (assert) {
+      await render(hbs`<TodoList @error={{true}} />`);
+
+      assert
+        .dom('[data-test-error-message]')
+        .hasText('An error occurred loading todos.');
+    });
+  });
 });
