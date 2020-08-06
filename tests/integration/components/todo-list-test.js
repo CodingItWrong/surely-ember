@@ -91,5 +91,14 @@ module('Integration | Component | todo-list', function (hooks) {
       assert.dom('[data-test-todo-name]').exists({ count: 2 });
       assert.dom('[data-test-todo-name]').hasText(groups[0].todos[0].name);
     });
+
+    test('it calls onChooseTodo when clicking a todo', async function (assert) {
+      await click('[data-test-todo] button');
+      assert.equal(
+        handleChooseTodo.getCall(0).args[0],
+        groups[0].todos[0],
+        'passed todo to onChooseTodo',
+      );
+    });
   });
 });
