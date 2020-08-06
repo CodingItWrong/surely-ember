@@ -3,6 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
+import addDays from 'date-fns/addDays';
 
 module('Integration | Component | todo-list', function (hooks) {
   setupRenderingTest(hooks);
@@ -51,10 +52,44 @@ module('Integration | Component | todo-list', function (hooks) {
     test('it calls onChooseTodo when clicking a todo', async function (assert) {
       await click('[data-test-todo] button');
       assert.equal(
-        handleChooseTodo.getCall(0).args,
+        handleChooseTodo.getCall(0).args[0],
         todos[0],
         'passed todo to onChooseTodo',
       );
+    });
+  });
+
+  module('grouped todos', function (hooks) {
+    const now = new Date();
+    const groups = [
+      {
+        date: addDays(now, 1),
+        todos: [{ id: 1, name: 'Todo 1' }],
+      },
+      {
+        date: addDays(now, 3),
+        todos: [{ id: 2, name: 'Todo 2' }],
+      },
+    ];
+
+    let handleChooseTodo;
+
+    hooks.beforeEach(async function () {
+      handleChooseTodo = sinon.spy();
+
+      this.set('groups', groups);
+      this.set('handleChooseTodo', handleChooseTodo);
+      await render(
+        hbs`<TodoList @groups={{groups}} @onChooseTodo={{handleChooseTodo}} />`,
+      );
+    });
+
+    test('it renders each group heading and todo', async function (assert) {
+      assert.dom('[data-test-group-deferred-until]').exists({ count: 2 });
+      assert.dom('[data-test-group-deferred-until]').hasText('Tomorrow (1)');
+
+      assert.dom('[data-test-todo-name]').exists({ count: 2 });
+      assert.dom('[data-test-todo-name]').hasText(groups[0].todos[0].name);
     });
   });
 });
