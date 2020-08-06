@@ -38,17 +38,6 @@ export default class SignUpFormComponent extends Component {
   }
 
   validate() {
-    // TODO remove, not needed
-    if (!this.email) {
-      this.errorMessage = 'Email is required';
-      return false;
-    }
-
-    if (!this.password) {
-      this.errorMessage = 'Password is required';
-      return false;
-    }
-
     if (this.passwordConfirmation !== this.password) {
       this.errorMessage = 'Passwords do not match';
       return false;
