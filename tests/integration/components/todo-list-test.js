@@ -37,6 +37,21 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
+  module('no todos outside of search', function () {
+    test('it displays the passed-in message', async function (assert) {
+      const todos = [];
+      const noTodosMessage = 'Custom message';
+
+      this.set('todos', todos);
+      this.set('noTodosMessage', noTodosMessage);
+      await render(
+        hbs`<TodoList @todos={{todos}} @isSearching={{false}} @noTodosMessage={{noTodosMessage}} />`,
+      );
+
+      assert.dom('[data-test-no-todos-message]').hasText(noTodosMessage);
+    });
+  });
+
   module('individual todos', function (hooks) {
     const todos = [
       { id: 1, name: 'Todo 1' },
