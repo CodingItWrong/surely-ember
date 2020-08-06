@@ -44,7 +44,7 @@
       </card.title>
       <card.content>
         {{#if this.displayModel.notes}}
-          <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}}>{{this.displayModel.notes}}</button>
+          <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}} data-test-todo-notes>{{this.displayModel.notes}}</button>
         {{/if}}
         <TodoDetail::EventLog
           @displayModel={{this.displayModel}}

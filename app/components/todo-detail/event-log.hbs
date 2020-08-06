@@ -27,6 +27,7 @@
 
 <TodoDetail::EventLog::Entry
   @isPrimary={{not (or @displayModel.isDeleted @displayModel.isCompleted @displayModel.deferredUntil)}}
+  data-test-created-at
 >
   Created {{relative-datetime @displayModel.createdAt}}
 </TodoDetail::EventLog::Entry>
