@@ -47,6 +47,7 @@ module('Integration | Component | pagination-controls', function (hooks) {
     });
 
     test('it calls nextPage when clicking the next page button', async function (assert) {
+      assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
@@ -67,11 +68,15 @@ module('Integration | Component | pagination-controls', function (hooks) {
     });
 
     test('it calls prevPage when clicking the previous page button', async function (assert) {
+      assert
+        .dom('[data-test-previous-button]')
+        .doesNotHaveAttribute('disabled');
       await click('[data-test-previous-button]');
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
 
     test('it calls nextPage when clicking the next page button', async function (assert) {
+      assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
@@ -89,6 +94,9 @@ module('Integration | Component | pagination-controls', function (hooks) {
     });
 
     test('it calls prevPage when clicking the next page button', async function (assert) {
+      assert
+        .dom('[data-test-previous-button]')
+        .doesNotHaveAttribute('disabled');
       await click('[data-test-previous-button]');
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
