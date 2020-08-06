@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, fillIn, triggerEvent, pauseTest } from '@ember/test-helpers';
+import { render, fillIn, triggerEvent } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | sign-up-form', function (hooks) {
@@ -32,6 +32,28 @@ module('Integration | Component | sign-up-form', function (hooks) {
       await triggerEvent('[data-test-sign-up-form]', 'submit');
 
       assert.dom('[data-test-error-message]').hasText('Passwords do not match');
+    });
+  });
+
+  module('error signing up', function (hooks) {
+    const email = 'email@example.com';
+    const password = 'password';
+
+    hooks.beforeEach(async function () {
+      const handleSignUp = () => Promise.reject();
+      this.set('handleSignUp', handleSignUp);
+      await render(hbs`<SignUpForm @signUp={{handleSignUp}}/>`);
+
+      await fillIn('[data-test-email-field] input', email);
+      await fillIn('[data-test-password-field] input', password);
+      await fillIn('[data-test-password-confirmation-field] input', password);
+      await triggerEvent('[data-test-sign-up-form]', 'submit');
+    });
+
+    test('it displays the server error', async function (assert) {
+      assert
+        .dom('[data-test-error-message]')
+        .hasText('An error occurred while signing up.');
     });
   });
 });
