@@ -38,6 +38,7 @@ export default class SignUpFormComponent extends Component {
   }
 
   validate() {
+    // TODO remove, not needed
     if (!this.email) {
       this.errorMessage = 'Email is required';
       return false;
