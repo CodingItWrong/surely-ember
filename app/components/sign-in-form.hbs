@@ -5,7 +5,12 @@
     as |form|
   >
     <card.content>
-      <p>{{this.errorMessage}}</p>
+      <p
+        class="error-text"
+        data-test-error-message
+      >
+        {{this.errorMessage}}
+      </p>
       <form.input
         @type="email"
         @block={{true}}
