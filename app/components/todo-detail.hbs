@@ -9,7 +9,10 @@
     <PaperCard as |card|>
       <card.title as |title|>
         <title.text as |text|>
-          <text.headline class="todo-headline__container">
+          <text.headline
+            class="todo-headline__container"
+            data-test-error-message
+          >
             Error loading todo
           </text.headline>
         </title.text>
