@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, fillIn, triggerEvent } from '@ember/test-helpers';
+import { render, fillIn, triggerEvent, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
 
@@ -69,6 +69,24 @@ module('Integration | Component | sign-in-form', function (hooks) {
 
     test('it does not call onSignedIn', function (assert) {
       assert.ok(onSignedIn.notCalled, 'onSignedIn not called');
+    });
+  });
+
+  module('clicking sign up', function () {
+    test('navigates to the sign up route', async function (assert) {
+      const router = {
+        transitionTo: sinon.spy(),
+      };
+
+      this.owner.register('service:router', router, { instantiate: false });
+      await render(hbs`<SignInForm />`);
+
+      await click('[data-test-sign-up-button]');
+
+      assert.ok(
+        router.transitionTo.calledWith('user.new'),
+        'transitioned to sign up route',
+      );
     });
   });
 });
