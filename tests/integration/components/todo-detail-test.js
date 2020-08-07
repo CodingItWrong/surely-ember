@@ -3,6 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import {
   render,
   click,
+  fillIn,
   // eslint-disable-next-line no-unused-vars
   pauseTest,
 } from '@ember/test-helpers';
@@ -304,6 +305,79 @@ module('Integration | Component | todo-detail', function (hooks) {
         test('it defers the todo by one week', function (assert) {
           assert.ok(todo.deferDays.getCall(0).args, [7], 'deferred one week');
           assert.ok(todo.save.calledOnce, 'save called');
+        });
+      });
+
+      module('until a chosen date', function () {
+        const date = '2030-01-01';
+
+        module('on success', function (hooks) {
+          let todo;
+          let onHandle;
+
+          hooks.beforeEach(async function () {
+            todo = {
+              deferUntilDate: sinon.spy(),
+              save: sinon.stub().resolves(),
+            };
+            onHandle = sinon.spy();
+            this.set('todo', todo);
+            this.set('onHandle', onHandle);
+            await render(
+              hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+            );
+
+            await click('[data-test-defer-button]');
+            await click('[data-test-defer-until-date-button]');
+            await fillIn('[data-test-deferred-until-field] input', date);
+            await click('[data-test-defer-button]');
+          });
+
+          test('it defers the todo until the chosen date', function (assert) {
+            assert.ok(
+              todo.deferUntilDate.getCall(0).args,
+              [date],
+              'deferred one week',
+            );
+            assert.ok(todo.save.calledOnce, 'save called');
+          });
+
+          test('it calls onHandle', function (assert) {
+            assert.ok(onHandle.calledOnce, 'calls onHandle');
+          });
+        });
+
+        module('on error', function (hooks) {
+          let todo;
+          let onHandle;
+
+          hooks.beforeEach(async function () {
+            todo = {
+              deferUntilDate: sinon.spy(),
+              save: sinon.stub().rejects(),
+            };
+            onHandle = sinon.spy();
+            this.set('todo', todo);
+            this.set('onHandle', onHandle);
+            await render(
+              hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+            );
+
+            await click('[data-test-defer-button]');
+            await click('[data-test-defer-until-date-button]');
+            await fillIn('[data-test-deferred-until-field] input', date);
+            await click('[data-test-defer-button]');
+          });
+
+          test('it displays an error', function (assert) {
+            assert
+              .dom('[data-test-error-message]')
+              .hasText('An error occurred while deferring the todo.');
+          });
+
+          test('it does not call onHandle', function (assert) {
+            assert.ok(onHandle.notCalled, 'onHandle not called');
+          });
         });
       });
     });
