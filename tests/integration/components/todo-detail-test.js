@@ -1,6 +1,11 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, pauseTest } from '@ember/test-helpers';
+import {
+  render,
+  click,
+  // eslint-disable-next-line no-unused-vars
+  pauseTest,
+} from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import set from 'date-fns/set';
 import addDays from 'date-fns/addDays';
