@@ -610,6 +610,20 @@ module('Integration | Component | todo-detail', function (hooks) {
   });
 
   module('editing', function () {
+    module('on cancel', function (hooks) {
+      hooks.beforeEach(async function () {
+        this.set('todo', {});
+        await render(hbs`<TodoDetail @todo={{todo}} />`);
+
+        await click('[data-test-edit-button]');
+        await click('[data-test-cancel-edit-button]');
+      });
+
+      test('it hides the edit form', async function (assert) {
+        assert.dom('[data-test-todo-name-field]').doesNotExist();
+      });
+    });
+
     module('on success', function (hooks) {
       const newName = 'New Name';
       const newDeferDate = '2030-01-01';
@@ -645,6 +659,31 @@ module('Integration | Component | todo-detail', function (hooks) {
           'deferred one week',
         );
         assert.ok(todo.save.calledOnce, 'save called');
+      });
+    });
+
+    module('on error', function (hooks) {
+      let todo;
+
+      hooks.beforeEach(async function () {
+        todo = {
+          id: 1,
+          name: 'Name',
+          deferUntilDate: sinon.spy(),
+          save: sinon.stub().rejects(),
+        };
+
+        this.set('todo', todo);
+        await render(hbs`<TodoDetail @todo={{todo}} />`);
+
+        await click('[data-test-edit-button]');
+        await triggerEvent('[data-test-todo-edit-form]', 'submit');
+      });
+
+      test('it displays an error', function (assert) {
+        assert
+          .dom('[data-test-error-message]')
+          .hasText('An error occurred saving the todo.');
       });
     });
   });

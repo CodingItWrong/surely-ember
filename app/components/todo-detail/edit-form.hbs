@@ -35,11 +35,19 @@
       />
 
       {{#if this.error}}
-        <p class="error-text">{{this.error}}</p>
+        <p
+          class="error-text"
+          data-test-error-message
+        >
+          {{this.error}}
+        </p>
       {{/if}}
     </card.content>
     <card.actions class="app-button-container">
-      <PaperButton @onClick={{@onCancel}}>
+      <PaperButton
+        @onClick={{@onCancel}}
+        data-test-cancel-edit-button
+      >
         Cancel
       </PaperButton>
       <form.submit-button
