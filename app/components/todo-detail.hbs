@@ -51,7 +51,12 @@
         />
 
         {{#if this.error}}
-          <p class="error-text">{{this.error}}</p>
+          <p
+            class="error-text"
+            data-test-error-message
+          >
+            {{this.error}}
+          </p>
         {{/if}}
 
         {{#if (eq this.buttonSet "defer")}}
