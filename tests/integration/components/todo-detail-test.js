@@ -225,6 +225,14 @@ module('Integration | Component | todo-detail', function (hooks) {
           assert.ok(todo.save.calledOnce, 'save called');
         });
 
+        test('it hides the completed date from the rendered component', async function (assert) {
+          // ideally we would test that the component goes to an uncompleted
+          // state, but this relies on computed model properties we aren't
+          // integrating with. instead, we just test that the date is not
+          // included in the completed-at area
+          assert.dom('[data-test-completed-at]').hasText('Completed');
+        });
+
         test('it does not call onHandle', function (assert) {
           assert.ok(onHandle.notCalled, 'does not call onHandle');
         });
