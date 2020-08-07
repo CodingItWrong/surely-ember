@@ -4,6 +4,7 @@ import {
   render,
   click,
   fillIn,
+  triggerEvent,
   // eslint-disable-next-line no-unused-vars
   pauseTest,
 } from '@ember/test-helpers';
@@ -604,6 +605,46 @@ module('Integration | Component | todo-detail', function (hooks) {
             .dom('[data-test-error-message]')
             .hasText('An error occurred while undeleting the todo.');
         });
+      });
+    });
+  });
+
+  module('editing', function () {
+    module('on success', function (hooks) {
+      const newName = 'New Name';
+      const newDeferDate = '2030-01-01';
+      const newNotes = 'New Notes';
+
+      let todo;
+
+      hooks.beforeEach(async function () {
+        todo = {
+          id: 1,
+          name: 'Old Name',
+          notes: 'Old Notes',
+          deferUntilDate: sinon.spy(),
+          save: sinon.stub().resolves(),
+        };
+
+        this.set('todo', todo);
+        await render(hbs`<TodoDetail @todo={{todo}} />`);
+
+        await click('[data-test-edit-button]');
+        await fillIn('[data-test-todo-name-field] textarea', newName);
+        await fillIn('[data-test-deferred-until-field] input', newDeferDate);
+        await fillIn('[data-test-notes-field] textarea', newNotes);
+        await triggerEvent('[data-test-todo-edit-form]', 'submit');
+      });
+
+      test('it saves the todo', async function (assert) {
+        assert.equal(todo.name, newName, 'set name');
+        assert.equal(todo.notes, newNotes, 'set notes');
+        assert.equal(
+          formatDate(todo.deferUntilDate.getCall(0).args[0]),
+          newDeferDate,
+          'deferred one week',
+        );
+        assert.ok(todo.save.calledOnce, 'save called');
       });
     });
   });
