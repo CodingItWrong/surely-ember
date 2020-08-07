@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { parseDate, formatDate } from 'surely/utils';
+import { logRuntimeError } from 'surely/utils';
 
 const ENTER_KEY_CODE = 13;
 
@@ -53,8 +54,7 @@ export default class TodoDetailEditFormComponent extends Component {
     } catch (e) {
       this.saving = false;
       this.error = 'An error occurred saving the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
     }
   }
 }
