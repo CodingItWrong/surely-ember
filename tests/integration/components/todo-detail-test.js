@@ -16,7 +16,7 @@ module('Integration | Component | todo-detail', function (hooks) {
     });
   });
 
-  module('available todo', function (hooks) {
+  module('available todo', function () {
     test('it displays todo info', async function (assert) {
       const now = new Date();
       const createdAt = set(now, { hours: 1, minutes: 23, seconds: 0 });
@@ -40,7 +40,7 @@ module('Integration | Component | todo-detail', function (hooks) {
       assert.dom('[data-test-created-at]').hasText('Created today at 1:23 AM');
     });
 
-    module('completing', function (hooks) {
+    module('completing', function () {
       module('on success', function (hooks) {
         let todo;
         let onHandle;
@@ -99,7 +99,7 @@ module('Integration | Component | todo-detail', function (hooks) {
       });
     });
 
-    module('deleting', function (hooks) {
+    module('deleting', function () {
       module('on success', function (hooks) {
         let todo;
         let onHandle;
@@ -159,7 +159,7 @@ module('Integration | Component | todo-detail', function (hooks) {
     });
   });
 
-  module('future todo', function (hooks) {
+  module('future todo', function () {
     test('it displays todo info', async function (assert) {
       const now = new Date();
       const deferredUntil = addDays(now, 1);
@@ -177,7 +177,7 @@ module('Integration | Component | todo-detail', function (hooks) {
     });
   });
 
-  module('completed todo', function (hooks) {
+  module('completed todo', function () {
     test('it displays todo info', async function (assert) {
       const now = new Date();
       const completedAt = set(addDays(now, -1), {
@@ -199,7 +199,7 @@ module('Integration | Component | todo-detail', function (hooks) {
         .hasText('Completed yesterday at 1:23 AM');
     });
 
-    module('uncompleting', function (hooks) {
+    module('uncompleting', function () {
       module('on success', function (hooks) {
         let todo;
         let onHandle;
@@ -267,7 +267,7 @@ module('Integration | Component | todo-detail', function (hooks) {
     });
   });
 
-  module('deleted todo', function (hooks) {
+  module('deleted todo', function () {
     test('it displays todo info', async function (assert) {
       const now = new Date();
       const deletedAt = set(addDays(now, -1), {
@@ -289,7 +289,7 @@ module('Integration | Component | todo-detail', function (hooks) {
         .hasText('Deleted yesterday at 1:23 AM');
     });
 
-    module('undeleting', function (hooks) {
+    module('undeleting', function () {
       module('on success', function (hooks) {
         let todo;
         let onHandle;
