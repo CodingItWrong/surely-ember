@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { logRuntimeError } from 'surely/utils';
 
 export default class SignInFormComponent extends Component {
   @service session;
@@ -27,8 +28,7 @@ export default class SignInFormComponent extends Component {
 
       this.args.onSignedIn();
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.errorMessage =
         e?.responseJSON?.error_description ??
         e?.message ??

@@ -2,6 +2,7 @@ import addDays from 'date-fns/addDays';
 import startOfDay from 'date-fns/startOfDay';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import ENV from 'surely/config/environment';
 
 const FORMAT_STRING = 'yyyy-MM-dd';
 
@@ -23,4 +24,11 @@ export const formatDate = date => {
   }
 
   return format(date, FORMAT_STRING);
+};
+
+export const logRuntimeError = error => {
+  if (ENV.environment !== 'test') {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  }
 };

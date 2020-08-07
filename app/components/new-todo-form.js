@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { logRuntimeError } from 'surely/utils';
 
 export default class NewTodoFormComponent extends Component {
   @tracked newTodoName;
@@ -20,8 +21,7 @@ export default class NewTodoFormComponent extends Component {
       await handleCreate(this.newTodoName);
       this.newTodoName = '';
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.error = 'An error occurred adding the todo.';
     }
   }

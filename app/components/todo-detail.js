@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import pick from 'lodash-es/pick';
 import { parseDate, formatDate } from 'surely/utils';
+import { logRuntimeError } from 'surely/utils';
 
 const BUTTON_SET = {
   ACTIONS: 'actions',
@@ -91,8 +92,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while completing the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.isCompleting = false;
     }
   }
@@ -109,8 +109,7 @@ export default class TodoDetailComponent extends Component {
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while uncompleting the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
     } finally {
       this.isUncompleting = false;
     }
@@ -128,8 +127,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deleting the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.isDeleting = false;
     }
   }
@@ -147,8 +145,7 @@ export default class TodoDetailComponent extends Component {
       this.updateDisplayModel();
     } catch (e) {
       this.error = 'An error occurred while undeleting the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
     } finally {
       this.isUndeleting = false;
     }
@@ -177,8 +174,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.isDeferring = false;
     }
   }
@@ -208,8 +204,7 @@ export default class TodoDetailComponent extends Component {
       onHandle();
     } catch (e) {
       this.error = 'An error occurred while deferring the todo.';
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.isDeferring = false;
     }
   }

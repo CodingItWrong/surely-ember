@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { logRuntimeError } from 'surely/utils';
 
 export default class SignUpFormComponent extends Component {
   @service store;
@@ -24,8 +25,7 @@ export default class SignUpFormComponent extends Component {
     try {
       await signUp({ email, password });
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e);
+      logRuntimeError(e);
       this.errorMessage =
         e?.responseJSON?.error_description ??
         e?.message ??
