@@ -11,6 +11,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import set from 'date-fns/set';
 import addDays from 'date-fns/addDays';
 import sinon from 'sinon';
+import { formatDate } from 'surely/utils';
 
 module('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
@@ -323,7 +324,7 @@ module('Integration | Component | todo-detail', function (hooks) {
       });
 
       module('until a chosen date', function () {
-        const date = '2030-01-01';
+        const dateString = '2030-01-01';
 
         module('cancelling', function (hooks) {
           hooks.beforeEach(async function () {
@@ -359,14 +360,14 @@ module('Integration | Component | todo-detail', function (hooks) {
 
             await click('[data-test-defer-button]');
             await click('[data-test-defer-until-date-button]');
-            await fillIn('[data-test-deferred-until-field] input', date);
+            await fillIn('[data-test-deferred-until-field] input', dateString);
             await click('[data-test-defer-button]');
           });
 
           test('it defers the todo until the chosen date', function (assert) {
-            assert.ok(
-              todo.deferUntilDate.getCall(0).args,
-              [date],
+            assert.equal(
+              formatDate(todo.deferUntilDate.getCall(0).args[0]),
+              dateString,
               'deferred one week',
             );
             assert.ok(todo.save.calledOnce, 'save called');
