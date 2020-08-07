@@ -397,7 +397,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
             await click('[data-test-defer-button]');
             await click('[data-test-defer-until-date-button]');
-            await fillIn('[data-test-deferred-until-field] input', date);
+            await fillIn('[data-test-deferred-until-field] input', dateString);
             await click('[data-test-defer-button]');
           });
 
