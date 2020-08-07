@@ -10,10 +10,8 @@ import {
 import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { authenticateSession } from 'ember-simple-auth/test-support';
+import { formatDate } from 'surely/utils';
 import addWeeks from 'date-fns/addWeeks';
-import format from 'date-fns/format';
-
-const FORMAT_STRING = 'yyyy-MM-dd';
 
 module('Acceptance | searching', function (hooks) {
   setupApplicationTest(hooks);
@@ -22,7 +20,7 @@ module('Acceptance | searching', function (hooks) {
   test('it allows searching future todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
-    const future = format(addWeeks(new Date(), 1), FORMAT_STRING);
+    const future = formatDate(addWeeks(new Date(), 1));
 
     this.server.create('todo', { name: todo1, deferredUntil: future });
     this.server.create('todo', { name: todo2, deferredUntil: future });
@@ -41,7 +39,7 @@ module('Acceptance | searching', function (hooks) {
   test('it allows searching completed todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
-    const past = format(addWeeks(new Date(), -1), FORMAT_STRING);
+    const past = formatDate(addWeeks(new Date(), -1));
 
     this.server.create('todo', { name: todo1, completedAt: past });
     this.server.create('todo', { name: todo2, completedAt: past });
@@ -60,7 +58,7 @@ module('Acceptance | searching', function (hooks) {
   test('it allows searching deleted todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
-    const past = format(addWeeks(new Date(), -1), FORMAT_STRING);
+    const past = formatDate(addWeeks(new Date(), -1));
 
     this.server.create('todo', { name: todo1, deletedAt: past });
     this.server.create('todo', { name: todo2, deletedAt: past });

@@ -1,17 +1,14 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
 import pick from 'lodash-es/pick';
+import { parseDate, formatDate } from 'surely/utils';
 
 const BUTTON_SET = {
   ACTIONS: 'actions',
   DEFER: 'defer',
   DEFER_UNTIL_DATE: 'defer_until_date',
 };
-
-const FORMAT_STRING = 'yyyy-MM-dd';
 
 const delay = (promise, milliseconds = 0) => {
   if (milliseconds === 0) {
@@ -189,7 +186,7 @@ export default class TodoDetailComponent extends Component {
   @action
   deferUntilDate() {
     const { todo } = this.args;
-    this.deferredUntil = this.formatDate(todo.deferredUntil);
+    this.deferredUntil = formatDate(todo.deferredUntil);
     this.buttonSet = BUTTON_SET.DEFER_UNTIL_DATE;
   }
 
@@ -199,7 +196,7 @@ export default class TodoDetailComponent extends Component {
       return;
     }
 
-    const deferredUntilDate = this.parseDate(this.deferredUntil);
+    const deferredUntilDate = parseDate(this.deferredUntil);
 
     const { todo, onHandle } = this.args;
     todo.deferUntilDate(deferredUntilDate);
@@ -231,17 +228,5 @@ export default class TodoDetailComponent extends Component {
   @action
   handleCancel() {
     this.isEditing = false;
-  }
-
-  parseDate(dateString) {
-    return parse(dateString, FORMAT_STRING, new Date());
-  }
-
-  formatDate(date) {
-    if (!date) {
-      return date;
-    }
-
-    return format(date, FORMAT_STRING);
   }
 }
