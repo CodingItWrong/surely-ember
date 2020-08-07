@@ -64,6 +64,7 @@
             <PaperButton
               @disabled={{this.isProcessing}}
               @onClick={{this.cancelDefer}}
+              data-test-cancel-defer-button
             >
               Cancel
             </PaperButton>
@@ -221,6 +222,7 @@
             <PaperButton
               @disabled={{this.isProcessing}}
               @onClick={{this.cancelDefer}}
+              data-test-cancel-defer-until-date-button
             >
               Cancel
             </PaperButton>
