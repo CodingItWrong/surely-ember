@@ -9,6 +9,8 @@ import sinon from 'sinon';
 module('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
 
+  // TODO: deferring, editing
+
   module('error loading', function () {
     test('it displays an error message', async function (assert) {
       await render(hbs`<TodoDetail @error={{true}} />`);
