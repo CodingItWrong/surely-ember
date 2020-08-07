@@ -164,6 +164,149 @@ module('Integration | Component | todo-detail', function (hooks) {
         });
       });
     });
+
+    module('deferring', function () {
+      module('by one day', function () {
+        module('on success', function (hooks) {
+          let todo;
+          let onHandle;
+
+          hooks.beforeEach(async function () {
+            todo = {
+              deferDays: sinon.spy(),
+              save: sinon.stub().resolves(),
+            };
+            onHandle = sinon.spy();
+            this.set('todo', todo);
+            this.set('onHandle', onHandle);
+            await render(
+              hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+            );
+
+            await click('[data-test-defer-button]');
+            await click('[data-test-defer-one-day-button]');
+          });
+
+          test('it defers the todo by one day', function (assert) {
+            assert.ok(todo.deferDays.getCall(0).args, [1], 'deferred one day');
+            assert.ok(todo.save.calledOnce, 'save called');
+          });
+
+          test('it calls onHandle', function (assert) {
+            assert.ok(onHandle.calledOnce, 'calls onHandle');
+          });
+        });
+
+        module('on error', function (hooks) {
+          let todo;
+          let onHandle;
+
+          hooks.beforeEach(async function () {
+            todo = {
+              deferDays: sinon.spy(),
+              save: sinon.stub().rejects(),
+            };
+            onHandle = sinon.spy();
+            this.set('todo', todo);
+            this.set('onHandle', onHandle);
+            await render(
+              hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+            );
+
+            await click('[data-test-defer-button]');
+            await click('[data-test-defer-one-day-button]');
+          });
+
+          test('it displays an error', function (assert) {
+            assert
+              .dom('[data-test-error-message]')
+              .hasText('An error occurred while deferring the todo.');
+          });
+
+          test('it does not call onHandle', function (assert) {
+            assert.ok(onHandle.notCalled, 'onHandle not called');
+          });
+        });
+      });
+
+      module('by two days', function (hooks) {
+        let todo;
+        let onHandle;
+
+        hooks.beforeEach(async function () {
+          todo = {
+            deferDays: sinon.spy(),
+            save: sinon.stub().resolves(),
+          };
+          onHandle = sinon.spy();
+          this.set('todo', todo);
+          this.set('onHandle', onHandle);
+          await render(
+            hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+          );
+
+          await click('[data-test-defer-button]');
+          await click('[data-test-defer-two-days-button]');
+        });
+
+        test('it defers the todo by two days', function (assert) {
+          assert.ok(todo.deferDays.getCall(0).args, [2], 'deferred two days');
+          assert.ok(todo.save.calledOnce, 'save called');
+        });
+      });
+
+      module('by three days', function (hooks) {
+        let todo;
+        let onHandle;
+
+        hooks.beforeEach(async function () {
+          todo = {
+            deferDays: sinon.spy(),
+            save: sinon.stub().resolves(),
+          };
+          onHandle = sinon.spy();
+          this.set('todo', todo);
+          this.set('onHandle', onHandle);
+          await render(
+            hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+          );
+
+          await click('[data-test-defer-button]');
+          await click('[data-test-defer-three-days-button]');
+        });
+
+        test('it defers the todo by three days', function (assert) {
+          assert.ok(todo.deferDays.getCall(0).args, [3], 'deferred three days');
+          assert.ok(todo.save.calledOnce, 'save called');
+        });
+      });
+
+      module('by a week', function (hooks) {
+        let todo;
+        let onHandle;
+
+        hooks.beforeEach(async function () {
+          todo = {
+            deferDays: sinon.spy(),
+            save: sinon.stub().resolves(),
+          };
+          onHandle = sinon.spy();
+          this.set('todo', todo);
+          this.set('onHandle', onHandle);
+          await render(
+            hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+          );
+
+          await click('[data-test-defer-button]');
+          await click('[data-test-defer-one-week-button]');
+        });
+
+        test('it defers the todo by one week', function (assert) {
+          assert.ok(todo.deferDays.getCall(0).args, [7], 'deferred one week');
+          assert.ok(todo.save.calledOnce, 'save called');
+        });
+      });
+    });
   });
 
   module('future todo', function () {
