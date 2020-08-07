@@ -167,6 +167,20 @@ module('Integration | Component | todo-detail', function (hooks) {
     });
 
     module('deferring', function () {
+      module('cancelling', function (hooks) {
+        hooks.beforeEach(async function () {
+          this.set('todo', {});
+          await render(hbs`<TodoDetail @todo={{todo}} />`);
+
+          await click('[data-test-defer-button]');
+          await click('[data-test-cancel-defer-button]');
+        });
+
+        test('it hides the defer options', function (assert) {
+          assert.dom('[data-test-defer-one-day-button]').doesNotExist();
+        });
+      });
+
       module('by one day', function () {
         module('on success', function (hooks) {
           let todo;
@@ -310,6 +324,22 @@ module('Integration | Component | todo-detail', function (hooks) {
 
       module('until a chosen date', function () {
         const date = '2030-01-01';
+
+        module('cancelling', function (hooks) {
+          hooks.beforeEach(async function () {
+            this.set('todo', {});
+            await render(hbs`<TodoDetail @todo={{todo}} />`);
+
+            await click('[data-test-defer-button]');
+            await click('[data-test-defer-until-date-button]');
+            await click('[data-test-cancel-defer-until-date-button]');
+          });
+
+          test('it hides the defer options', function (assert) {
+            assert.dom('[data-test-deferred-until-field]').doesNotExist();
+            assert.dom('[data-test-defer-one-day-button]').doesNotExist();
+          });
+        });
 
         module('on success', function (hooks) {
           let todo;
