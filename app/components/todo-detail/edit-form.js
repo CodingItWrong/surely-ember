@@ -1,10 +1,8 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
+import { parseDate, formatDate } from 'surely/utils';
 
-const FORMAT_STRING = 'yyyy-MM-dd';
 const ENTER_KEY_CODE = 13;
 
 export default class TodoDetailEditFormComponent extends Component {
@@ -25,7 +23,7 @@ export default class TodoDetailEditFormComponent extends Component {
     const { todo } = this.args;
     this.editedName = todo.name;
     this.editedNotes = todo.notes;
-    this.deferredUntil = this.formatDate(todo.deferredUntil);
+    this.deferredUntil = formatDate(todo.deferredUntil);
   }
 
   @action
@@ -43,7 +41,7 @@ export default class TodoDetailEditFormComponent extends Component {
 
     this.error = null;
 
-    const deferredUntilDate = this.parseDate(this.deferredUntil);
+    const deferredUntilDate = parseDate(this.deferredUntil);
     todo.name = this.editedName;
     todo.notes = this.editedNotes;
     todo.deferUntilDate(deferredUntilDate);
@@ -58,17 +56,5 @@ export default class TodoDetailEditFormComponent extends Component {
       // eslint-disable-next-line no-console
       console.error(e);
     }
-  }
-
-  parseDate(dateString) {
-    return parse(dateString, FORMAT_STRING, new Date());
-  }
-
-  formatDate(date) {
-    if (!date) {
-      return date;
-    }
-
-    return format(date, FORMAT_STRING);
   }
 }
