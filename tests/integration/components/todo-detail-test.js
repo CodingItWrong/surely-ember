@@ -1,9 +1,10 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, pauseTest } from '@ember/test-helpers';
+import { render, click, pauseTest } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import set from 'date-fns/set';
 import addDays from 'date-fns/addDays';
+import sinon from 'sinon';
 
 module('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
@@ -37,6 +38,65 @@ module('Integration | Component | todo-detail', function (hooks) {
         .dom('[data-test-deferred-until]')
         .hasText('Deferred until yesterday');
       assert.dom('[data-test-created-at]').hasText('Created today at 1:23 AM');
+    });
+
+    module('completing', function (hooks) {
+      module('on success', function (hooks) {
+        let todo;
+        let onHandle;
+
+        hooks.beforeEach(async function () {
+          todo = {
+            save: sinon.stub().resolves(),
+          };
+          onHandle = sinon.spy();
+          this.set('todo', todo);
+          this.set('onHandle', onHandle);
+          await render(
+            hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+          );
+
+          await click('[data-test-complete-button]');
+        });
+
+        test('it marks the todo saved', function (assert) {
+          assert.ok(todo.completedAt instanceof Date, 'completed date set');
+          assert.ok(todo.save.calledOnce, 'save called');
+        });
+
+        test('it calls onHandle', function (assert) {
+          assert.ok(onHandle.calledOnce, 'calls onHandle');
+        });
+      });
+
+      module('on error', function (hooks) {
+        let todo;
+        let onHandle;
+
+        hooks.beforeEach(async function () {
+          todo = {
+            save: sinon.stub().rejects(),
+          };
+          onHandle = sinon.spy();
+          this.set('todo', todo);
+          this.set('onHandle', onHandle);
+          await render(
+            hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`,
+          );
+
+          await click('[data-test-complete-button]');
+        });
+
+        test('it displays an error', function (assert) {
+          assert
+            .dom('[data-test-error-message]')
+            .hasText('An error occurred while completing the todo.');
+        });
+
+        test('it does not call onHandle', function (assert) {
+          assert.ok(onHandle.notCalled, 'onHandle not called');
+        });
+      });
     });
   });
 
