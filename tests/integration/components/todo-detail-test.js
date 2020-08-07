@@ -14,7 +14,7 @@ import sinon from 'sinon';
 module('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: deferring, editing
+  // TODO: deferring, editing, loading states
 
   module('error loading', function () {
     test('it displays an error message', async function (assert) {
