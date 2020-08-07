@@ -315,6 +315,10 @@ module('Integration | Component | todo-detail', function (hooks) {
           assert.ok(todo.save.calledOnce, 'save called');
         });
 
+        test('it hides the deleted date from the rendered component', async function (assert) {
+          assert.dom('[data-test-deleted-at]').hasText('Deleted');
+        });
+
         test('it does not call onHandle', function (assert) {
           assert.ok(onHandle.notCalled, 'onHandle not called');
         });
