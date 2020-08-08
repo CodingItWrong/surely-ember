@@ -42,5 +42,9 @@ module('Acceptance | managing categories', function (hooks) {
     assert.dom('[data-test-category-name]').hasText(updatedCategoryName);
     await click('[data-test-category] button');
     assert.dom('[data-test-sort-order-field] input').hasValue('2');
+
+    // deleting
+    await click('[data-test-delete-button]');
+    assert.dom('[data-test-todo]').doesNotExist();
   });
 });
