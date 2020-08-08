@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 import { filter } from '@ember/object/computed';
 import { scrollToTop } from 'surely/utils';
+import groupBy from 'lodash-es/groupBy';
 
 export default class TodosTomorrowDataController extends Controller {
   @service router;
@@ -17,6 +18,21 @@ export default class TodosTomorrowDataController extends Controller {
 
   @sort('filteredTodos', 'sortPropertiesName')
   sortedTodos;
+
+  @computed('sortedTodos.@each.deferredUntil', function () {
+    const todosWithCategoryName = this.sortedTodos.map(todo => ({
+      todo,
+      categoryName: todo.category.get('name'),
+    }));
+    const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
+    return Object.entries(groupsObject).map(([, todoWrappers]) => {
+      return {
+        name: todoWrappers[0].categoryName ?? 'No Category',
+        todos: todoWrappers.map(wrapper => wrapper.todo),
+      };
+    });
+  })
+  todoGroups;
 
   @action
   goToList() {
