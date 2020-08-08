@@ -8,7 +8,8 @@
   </PaperButton>
 
   <TodoDetail
-    @todo={{this.model}}
+    @todo={{this.model.todo}}
+    @categories={{this.model.categories}}
     @onHandle={{this.goToAvailable}}
   />
 </div>
