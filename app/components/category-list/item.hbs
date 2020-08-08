@@ -1,0 +1,13 @@
+<PaperItem
+  @onClick={{fn @onChooseCategory @category}}
+  data-test-category
+>
+  <div class="todo-list-item__container">
+    <p
+      class="todo-list-item__title"
+      data-test-todo-name
+    >
+      {{@category.name}}
+    </p>
+  </div>
+</PaperItem>

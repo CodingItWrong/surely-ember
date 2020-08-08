@@ -44,6 +44,14 @@
     </PaperItem>
     <PaperDivider />
     <PaperItem
+      @onClick={{fn this.goToCategories}}
+      data-test-deleted
+    >
+      {{paper-icon "label"}}
+      <p>Categories</p>
+    </PaperItem>
+    <PaperDivider />
+    <PaperItem
       @onClick={{fn this.refreshApp}}
       data-test-deleted
     >
