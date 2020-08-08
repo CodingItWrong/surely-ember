@@ -3,7 +3,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
-import addDays from 'date-fns/addDays';
 
 module('Integration | Component | todo-list', function (hooks) {
   setupRenderingTest(hooks);
@@ -86,7 +85,6 @@ module('Integration | Component | todo-list', function (hooks) {
   });
 
   module('grouped todos', function (hooks) {
-    const now = new Date();
     const groups = [
       {
         name: 'Tomorrow',
