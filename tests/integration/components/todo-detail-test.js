@@ -17,7 +17,7 @@ import { formatDate } from 'surely/utils';
 module('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: editing, loading states
+  // TODO: loading states
 
   module('error loading', function () {
     test('it displays an error message', async function (assert) {
