@@ -9,6 +9,7 @@ const ENTER_KEY_CODE = 13;
 export default class TodoDetailEditFormComponent extends Component {
   @tracked isEditing = false;
   @tracked editedName = null;
+  @tracked editedCategory = null;
   @tracked editedNotes = null;
   @tracked editedDeferredUntil = null;
 
@@ -23,6 +24,7 @@ export default class TodoDetailEditFormComponent extends Component {
   initializeFormData() {
     const { todo } = this.args;
     this.editedName = todo.name;
+    this.editedCategory = todo.category;
     this.editedNotes = todo.notes;
     this.deferredUntil = formatDate(todo.deferredUntil);
   }
@@ -37,6 +39,11 @@ export default class TodoDetailEditFormComponent extends Component {
   }
 
   @action
+  clearCategory() {
+    this.editedCategory = null;
+  }
+
+  @action
   async handleSave() {
     const { todo, onSave } = this.args;
 
@@ -44,6 +51,7 @@ export default class TodoDetailEditFormComponent extends Component {
 
     const deferredUntilDate = parseDate(this.deferredUntil);
     todo.name = this.editedName;
+    todo.category = this.editedCategory;
     todo.notes = this.editedNotes;
     todo.deferUntilDate(deferredUntilDate);
 
