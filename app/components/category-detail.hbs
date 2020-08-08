@@ -56,6 +56,12 @@
           >
             Cancel
           </PaperButton>
+          <PaperButton
+            @onClick={{this.handleDelete}}
+            data-test-delete-button
+          >
+            Delete
+          </PaperButton>
           <form.submit-button
             @raised={{true}}
             @primary={{true}}

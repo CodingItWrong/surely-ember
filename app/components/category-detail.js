@@ -62,4 +62,17 @@ export default class CategoryDetailComponent extends Component {
 
     this.saving = false;
   }
+
+  @action
+  async handleDelete() {
+    const { category, onDelete } = this.args;
+
+    try {
+      await category.destroyRecord();
+      onDelete();
+    } catch (e) {
+      this.error = 'An error occurred deleting the category.';
+      logRuntimeError(e);
+    }
+  }
 }
