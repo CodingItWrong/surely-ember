@@ -2,6 +2,7 @@
   {{#if this.isEditing}}
     <TodoDetail::EditForm
       @todo={{@todo}}
+      @categories={{@categories}}
       @onSave={{this.handleSave}}
       @onCancel={{this.handleCancel}}
     />
