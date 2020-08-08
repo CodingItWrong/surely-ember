@@ -6,6 +6,8 @@ import { filter } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 import groupBy from 'lodash-es/groupBy';
 import { scrollToTop } from 'surely/utils';
+import { relativeDateFn } from 'surely/helpers/relative-date';
+import { capitalizeFn } from 'surely/helpers/capitalize';
 
 const includesCaseInsensitive = (haystack, needle) => {
   haystack = (haystack || '').toLowerCase();
@@ -37,7 +39,7 @@ export default class TodosFutureDataController extends Controller {
     const groupsObject = groupBy(this.sortedTodos, 'deferredUntil');
     return Object.entries(groupsObject).map(([, todos]) => {
       return {
-        date: todos[0].deferredUntil,
+        name: capitalizeFn(relativeDateFn(todos[0].deferredUntil)),
         todos,
       };
     });
