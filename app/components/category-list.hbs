@@ -51,7 +51,10 @@
     {{/if}}
   </PaperContent>
   <card.actions>
-    <PaperButton @onClick={{@onAdd}}>
+    <PaperButton
+      @onClick={{@onAdd}}
+      data-test-add-button
+    >
       {{paper-icon "add"}}
       Add
     </PaperButton>
