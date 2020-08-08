@@ -1,4 +1,4 @@
-import Model, { attr } from '@ember-data/model';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { computed } from '@ember/object';
 import addDays from 'date-fns/addDays';
 import startOfDay from 'date-fns/startOfDay';
@@ -6,6 +6,7 @@ import startOfDay from 'date-fns/startOfDay';
 export default class TodoModel extends Model {
   @attr name;
   @attr notes;
+  @belongsTo('category') category;
   @attr('date') createdAt;
   @attr('date') updatedAt;
   @attr('date') completedAt;
