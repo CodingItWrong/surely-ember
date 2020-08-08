@@ -47,6 +47,9 @@
         {{#if this.displayModel.notes}}
           <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}} data-test-todo-notes>{{this.displayModel.notes}}</button>
         {{/if}}
+        {{#if this.displayModel.category}}
+          <p>Category: {{this.displayModel.category.name}}</p>
+        {{/if}}
         <TodoDetail::EventLog
           @displayModel={{this.displayModel}}
         />

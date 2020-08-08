@@ -59,6 +59,7 @@ export default class TodoDetailComponent extends Component {
     this.displayModel = pick(todo, [
       'id',
       'name',
+      'category',
       'notes',
       'isDeleted',
       'deletedAt',
