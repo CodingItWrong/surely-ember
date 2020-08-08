@@ -1,7 +1,7 @@
 <TodoList
   @title="Tomorrow"
   @icon="bedtime"
-  @todos={{this.sortedTodos}}
+  @groups={{this.todoGroups}}
   @noTodosMessage="You have no todos for tomorrow. Nice work!"
   @onClickHeaderIcon={{this.goToList}}
   @onChooseTodo={{this.handleChooseTodo}}
