@@ -25,7 +25,22 @@ module('Acceptance | managing categories', function (hooks) {
     const categoryName = 'New Category';
     await click('[data-test-add-button]');
     await fillIn('[data-test-category-name-field] textarea', categoryName);
+    await fillIn('[data-test-sort-order-field] input', '1');
     await triggerEvent('[data-test-category-edit-form]', 'submit');
     assert.dom('[data-test-category-name]').hasText(categoryName);
+
+    // editing
+    await click('[data-test-category] button');
+    assert.dom('[data-test-sort-order-field] input').hasValue('1');
+    const updatedCategoryName = 'Updated Category';
+    await fillIn(
+      '[data-test-category-name-field] textarea',
+      updatedCategoryName,
+    );
+    await fillIn('[data-test-sort-order-field] input', '2');
+    await triggerEvent('[data-test-category-edit-form]', 'submit');
+    assert.dom('[data-test-category-name]').hasText(updatedCategoryName);
+    await click('[data-test-category] button');
+    assert.dom('[data-test-sort-order-field] input').hasValue('2');
   });
 });

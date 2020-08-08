@@ -30,6 +30,8 @@ export default function () {
   this.patch('/todos/:id');
 
   this.get('/categories');
+  this.post('/categories');
+  this.patch('/categories/:id');
 
   // These comments are here to help you get started. Feel free to delete them.
   /*
