@@ -6,9 +6,9 @@ import { inject as service } from '@ember/service';
 export default class TodosAvailableDataDetailController extends Controller {
   @service router;
 
-  sortPropertiesAlphabetical = Object.freeze(['name:asc']);
+  sortPropertiesSortOrderField = Object.freeze(['sortOrder:asc,name:asc']);
 
-  @sort('model.categories', 'sortPropertiesAlphabetical')
+  @sort('model.categories', 'sortPropertiesSortOrderField')
   sortedCategories;
 
   @action
