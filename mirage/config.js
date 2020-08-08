@@ -29,6 +29,8 @@ export default function () {
   this.get('/todos/:id');
   this.patch('/todos/:id');
 
+  this.get('/categories');
+
   // These comments are here to help you get started. Feel free to delete them.
   /*
     Config (with defaults).
