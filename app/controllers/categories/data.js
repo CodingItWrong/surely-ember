@@ -28,4 +28,9 @@ export default class CategoriesDataController extends Controller {
     this.goToList();
     this.send('refresh');
   }
+
+  @action
+  goToNew() {
+    this.router.transitionTo('categories.data.new');
+  }
 }

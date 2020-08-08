@@ -27,6 +27,7 @@
             @onKeyDown={{this.handleTitleKeyDown}}
             @block={{true}}
             @textarea={{true}}
+            @required={{true}}
             class="title-input"
             autocapitalize="true"
             data-test-category-name-field
@@ -56,12 +57,14 @@
           >
             Cancel
           </PaperButton>
-          <PaperButton
-            @onClick={{this.handleDelete}}
-            data-test-delete-button
-          >
-            Delete
-          </PaperButton>
+          {{#if @onDelete}}
+            <PaperButton
+              @onClick={{this.handleDelete}}
+              data-test-delete-button
+            >
+              Delete
+            </PaperButton>
+          {{/if}}
           <form.submit-button
             @raised={{true}}
             @primary={{true}}
