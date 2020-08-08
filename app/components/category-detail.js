@@ -56,7 +56,7 @@ export default class CategoryDetailComponent extends Component {
       this.saving = true;
       await category.save();
     } catch (e) {
-      this.error = 'An error occurred saving the todo.';
+      this.error = 'An error occurred saving the category.';
       logRuntimeError(e);
     }
 
