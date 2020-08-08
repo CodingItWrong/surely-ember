@@ -58,7 +58,9 @@
           {{#each @groups as |group|}}
             <PaperSubheader data-test-group-deferred-until>
               {{group.name}}
-              ({{group.todos.length}})
+              {{#if @groupCounts}}
+                ({{group.todos.length}})
+              {{/if}}
             </PaperSubheader>
             {{#each group.todos as |todo|}}
               <TodoList::Item

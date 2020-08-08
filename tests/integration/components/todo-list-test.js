@@ -89,11 +89,11 @@ module('Integration | Component | todo-list', function (hooks) {
     const now = new Date();
     const groups = [
       {
-        date: addDays(now, 1),
+        name: 'Tomorrow',
         todos: [{ id: 1, name: 'Todo 1' }],
       },
       {
-        date: addDays(now, 3),
+        name: 'Later',
         todos: [{ id: 2, name: 'Todo 2' }],
       },
     ];
@@ -106,7 +106,7 @@ module('Integration | Component | todo-list', function (hooks) {
       this.set('groups', groups);
       this.set('handleChooseTodo', handleChooseTodo);
       await render(
-        hbs`<TodoList @groups={{groups}} @onChooseTodo={{handleChooseTodo}} />`,
+        hbs`<TodoList @groups={{groups}} @groupCounts={{true}} @onChooseTodo={{handleChooseTodo}} />`,
       );
     });
 
