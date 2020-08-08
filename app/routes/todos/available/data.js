@@ -11,6 +11,7 @@ export default class TodosAvailableDataRoute extends Route {
       this.store.unloadAll('todo');
       await this.store.query('todo', {
         filter: { status: 'available,tomorrow' },
+        include: 'category',
       });
       return this.store.peekAll('todo');
     });

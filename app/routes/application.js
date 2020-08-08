@@ -9,6 +9,7 @@ export default class ApplicationRoute extends Route {
     if (this.session.isAuthenticated) {
       await this.store.query('todo', {
         filter: { status: 'available,tomorrow' },
+        include: 'category',
       });
       return this.store.peekAll('todo');
     } else {
