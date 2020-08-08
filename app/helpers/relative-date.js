@@ -17,11 +17,15 @@ const locale = {
   formatRelative: token => formatRelativeLocale[token],
 };
 
-export default helper(function relativeDate([date]) {
+export const relativeDateFn = date => {
   if (!date) {
     return date;
   }
 
   const now = new Date();
   return formatRelative(date, now, { locale });
+};
+
+export default helper(function relativeDate([date]) {
+  return relativeDateFn(date);
 });
