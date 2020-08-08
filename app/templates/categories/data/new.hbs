@@ -1,0 +1,14 @@
+<div>
+  <PaperButton
+    @onClick={{this.goToCategories}}
+    @class="hide-gt-sm"
+    data-test-back-to-categories-list
+  >
+    &lt; Categories
+  </PaperButton>
+
+  <CategoryDetail
+    @onCreate={{this.goToCategoryDetail}}
+    @onCancel={{this.goToCategories}}
+  />
+</div>

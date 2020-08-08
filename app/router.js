@@ -40,6 +40,7 @@ Router.map(function () {
   });
   this.route('categories', function () {
     this.route('data', { path: '/' }, function () {
+      this.route('new');
       this.route('detail', { path: '/:category_id' });
     });
   });

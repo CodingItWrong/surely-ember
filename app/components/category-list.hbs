@@ -1,4 +1,4 @@
-<PaperCard>
+<PaperCard as |card|>
   <PaperToolbar>
     <PaperToolbarTools>
       <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
@@ -50,4 +50,10 @@
       </PaperList>
     {{/if}}
   </PaperContent>
+  <card.actions>
+    <PaperButton @onClick={{@onAdd}}>
+      {{paper-icon "add"}}
+      Add
+    </PaperButton>
+  </card.actions>
 </PaperCard>
