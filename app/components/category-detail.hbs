@@ -1,0 +1,76 @@
+<div {{did-update this.resetStateIfModelChanged @category}}>
+  {{#if @error}}
+    <PaperCard as |card|>
+      <card.title as |title|>
+        <title.text as |text|>
+          <text.headline
+            class="todo-headline__container"
+            data-test-error-message
+          >
+            Error loading category
+          </text.headline>
+        </title.text>
+      </card.title>
+    </PaperCard>
+  {{else}}
+    <PaperCard as |card|>
+      <PaperForm
+        onSubmit={{this.handleSave}}
+        data-test-category-edit-form
+        as |form|
+      >
+        <card.content>
+          <form.input
+            @placeholder="Category Name"
+            @value={{this.editedName}}
+            @onChange={{action (mut this.editedName)}}
+            @onKeyDown={{this.handleTitleKeyDown}}
+            @block={{true}}
+            @textarea={{true}}
+            class="title-input"
+            autocapitalize="true"
+            data-test-category-name-field
+          />
+          <form.input
+            @label="Sort Order"
+            @value={{this.editedSortOrder}}
+            @onChange={{action (mut this.editedSortOrder)}}
+            @block={{true}}
+            type="number"
+            data-test-sort-order-field
+          />
+
+          {{#if this.error}}
+            <p
+              class="error-text"
+              data-test-error-message
+            >
+              {{this.error}}
+            </p>
+          {{/if}}
+        </card.content>
+        <card.actions class="app-button-container">
+          <PaperButton
+            @onClick={{@onCancel}}
+            data-test-cancel-edit-button
+          >
+            Cancel
+          </PaperButton>
+          <form.submit-button
+            @raised={{true}}
+            @primary={{true}}
+            @disabled={{this.saving}}
+            data-test-save-button
+          >
+            {{paper-icon "save"}}
+            {{#if this.saving}}
+              Saving…
+            {{else}}
+              Save
+            {{/if}}
+          </form.submit-button>
+        </card.actions>
+      </PaperForm>
+    </PaperCard>
+  {{/if}}
+</div>

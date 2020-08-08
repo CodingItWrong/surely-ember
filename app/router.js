@@ -38,4 +38,9 @@ Router.map(function () {
   this.route('user', function () {
     this.route('new');
   });
+  this.route('categories', function () {
+    this.route('data', { path: '/' }, function () {
+      this.route('detail', { path: '/:category_id' });
+    });
+  });
 });

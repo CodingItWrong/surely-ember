@@ -1,0 +1,53 @@
+<PaperCard>
+  <PaperToolbar>
+    <PaperToolbarTools>
+      <PaperButton @iconButton={{true}}>
+        {{paper-icon "label"}}
+      </PaperButton>
+      <h2>Categories</h2>
+      <span class="flex"></span>
+      <PaperButton
+        @iconButton={{true}}
+        @onClick={{@onRefresh}}
+      >
+        {{paper-icon "refresh"}}
+      </PaperButton>
+    </PaperToolbarTools>
+  </PaperToolbar>
+  <PaperContent>
+    {{#if @loading}}
+      <PaperList>
+        <div class="layout-margin">
+          <PaperProgressCircular data-test-loading-indicator />
+        </div>
+      </PaperList>
+    {{else if @error}}
+      <PaperList>
+        <PaperItem>
+          <p
+            class="error-text"
+            data-test-error-message
+          >
+            An error occurred loading categories.
+          </p>
+        </PaperItem>
+      </PaperList>
+    {{else}}
+      <PaperList>
+        {{#each @categories as |category|}}
+          <CategoryList::Item
+            @category={{category}}
+            @onChooseCategory={{@onChooseCategory}}
+          />
+          <PaperDivider />
+        {{else}}
+          <PaperItem>
+            <p data-test-no-categories-message>
+              <em>No categories yet</em>
+            </p>
+          </PaperItem>
+        {{/each}}
+      </PaperList>
+    {{/if}}
+  </PaperContent>
+</PaperCard>

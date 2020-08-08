@@ -12,6 +12,11 @@ export default class AppSideNavContentComponent extends Component {
   }
 
   @action
+  goToCategories() {
+    this.router.transitionTo('categories');
+  }
+
+  @action
   refreshApp() {
     window.location.reload();
   }
