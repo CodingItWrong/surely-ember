@@ -16,6 +16,25 @@
         autocapitalize="true"
         data-test-todo-name-field
       />
+      <div>
+        <form.select
+          @label="Category"
+          @selected={{this.editedCategory}}
+          @onChange={{action (mut this.editedCategory)}}
+          @options={{@categories}}
+          as |category|
+        >
+          {{category.name}}
+        </form.select>
+        {{#if this.editedCategory}}
+          <PaperButton
+            @iconButton={{true}}
+            @onClick={{this.clearCategory}}
+          >
+            {{paper-icon "clear"}}
+          </PaperButton>
+        {{/if}}
+      </div>
       <form.input
         @type="date"
         @label="Defer Until Date"
