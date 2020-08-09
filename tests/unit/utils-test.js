@@ -21,16 +21,16 @@ module('Unit | utils', function () {
       const result = groupTodosByCategorySorted(todos);
       assert.deepEqual(result, [
         {
+          name: 'No Category',
+          todos: [todoNoCategory],
+        },
+        {
           name: category1.name,
           todos: [todoCategory1],
         },
         {
           name: category2.name,
           todos: [todoCategory2],
-        },
-        {
-          name: 'No Category',
-          todos: [todoNoCategory],
         },
       ]);
     });

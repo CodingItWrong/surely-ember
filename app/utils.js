@@ -45,7 +45,7 @@ export const groupTodosByCategorySorted = todos => {
   });
   const sortedGroups = sortBy(
     groups,
-    group => group.todos[0].category?.sortOrder,
+    group => group.todos[0].category?.sortOrder ?? -9999,
   );
   return sortedGroups;
 };
