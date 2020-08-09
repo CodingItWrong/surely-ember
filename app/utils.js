@@ -36,15 +36,11 @@ export const logRuntimeError = error => {
 };
 
 export const groupTodosByCategorySorted = todos => {
-  const todosWithCategoryName = todos.map(todo => ({
-    todo,
-    categoryName: todo.category?.name,
-  }));
-  const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
-  const groups = Object.entries(groupsObject).map(([, todoWrappers]) => {
+  const groupsObject = groupBy(todos, todo => todo.category?.name);
+  const groups = Object.entries(groupsObject).map(([, todos]) => {
     return {
-      name: todoWrappers[0].categoryName ?? 'No Category',
-      todos: todoWrappers.map(wrapper => wrapper.todo),
+      name: todos[0].category?.name ?? 'No Category',
+      todos,
     };
   });
   const sortedGroups = sortBy(
