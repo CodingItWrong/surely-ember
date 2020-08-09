@@ -2,9 +2,7 @@ import Controller from '@ember/controller';
 import { sort, filter } from '@ember/object/computed';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { scrollToTop } from 'surely/utils';
-import groupBy from 'lodash-es/groupBy';
-import sortBy from 'lodash-es/sortBy';
+import { scrollToTop, groupTodosByCategorySorted } from 'surely/utils';
 
 export default class TodosAvailableDataController extends Controller {
   @service router;
@@ -19,22 +17,8 @@ export default class TodosAvailableDataController extends Controller {
   @sort('filteredTodos', 'sortPropertiesAlphabetical')
   sortedTodos;
 
-  @computed('sortedTodos.@each.deferredUntil', function () {
-    const todosWithCategoryName = this.sortedTodos.map(todo => ({
-      todo,
-      categoryName: todo.category.get('name'),
-    }));
-    const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
-    const groups = Object.entries(groupsObject).map(([, todoWrappers]) => {
-      return {
-        name: todoWrappers[0].categoryName ?? 'No Category',
-        todos: todoWrappers.map(wrapper => wrapper.todo),
-      };
-    });
-    const sortedGroups = sortBy(groups, group =>
-      group.todos[0].category?.get('sortOrder'),
-    );
-    return sortedGroups;
+  @computed('sortedTodos.@each.{name,category}', function () {
+    return groupTodosByCategorySorted(this.sortedTodos);
   })
   todoGroups;
 

@@ -2,6 +2,8 @@ import addDays from 'date-fns/addDays';
 import startOfDay from 'date-fns/startOfDay';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
+import groupBy from 'lodash-es/groupBy';
+import sortBy from 'lodash-es/sortBy';
 import ENV from 'surely/config/environment';
 
 const FORMAT_STRING = 'yyyy-MM-dd';
@@ -31,4 +33,22 @@ export const logRuntimeError = error => {
     // eslint-disable-next-line no-console
     console.error(error);
   }
+};
+
+export const groupTodosByCategorySorted = todos => {
+  const todosWithCategoryName = todos.map(todo => ({
+    todo,
+    categoryName: todo.category.get('name'),
+  }));
+  const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
+  const groups = Object.entries(groupsObject).map(([, todoWrappers]) => {
+    return {
+      name: todoWrappers[0].categoryName ?? 'No Category',
+      todos: todoWrappers.map(wrapper => wrapper.todo),
+    };
+  });
+  const sortedGroups = sortBy(groups, group =>
+    group.todos[0].category?.get('sortOrder'),
+  );
+  return sortedGroups;
 };
