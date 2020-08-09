@@ -4,6 +4,7 @@ import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { scrollToTop } from 'surely/utils';
 import groupBy from 'lodash-es/groupBy';
+import sortBy from 'lodash-es/sortBy';
 
 export default class TodosAvailableDataController extends Controller {
   @service router;
@@ -24,12 +25,16 @@ export default class TodosAvailableDataController extends Controller {
       categoryName: todo.category.get('name'),
     }));
     const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
-    return Object.entries(groupsObject).map(([, todoWrappers]) => {
+    const groups = Object.entries(groupsObject).map(([, todoWrappers]) => {
       return {
         name: todoWrappers[0].categoryName ?? 'No Category',
         todos: todoWrappers.map(wrapper => wrapper.todo),
       };
     });
+    const sortedGroups = sortBy(groups, group =>
+      group.todos[0].category?.get('sortOrder'),
+    );
+    return sortedGroups;
   })
   todoGroups;
 
