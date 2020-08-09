@@ -38,7 +38,7 @@ export const logRuntimeError = error => {
 export const groupTodosByCategorySorted = todos => {
   const todosWithCategoryName = todos.map(todo => ({
     todo,
-    categoryName: todo.category.get('name'),
+    categoryName: todo.category?.get('name'),
   }));
   const groupsObject = groupBy(todosWithCategoryName, 'categoryName');
   const groups = Object.entries(groupsObject).map(([, todoWrappers]) => {
