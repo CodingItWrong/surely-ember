@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import { sort, filter } from '@ember/object/computed';
 import { action, computed } from '@ember/object';
+import { sort, filter } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { scrollToTop, groupTodosByCategorySorted } from 'surely/utils';
 
