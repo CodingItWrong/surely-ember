@@ -2,6 +2,7 @@ import { module, test } from 'qunit';
 import {
   arrayWithItemMovedDownward,
   arrayWithItemMovedUpward,
+  elementsWithIndex,
   groupTodosByCategorySorted,
 } from 'surely/utils';
 
@@ -87,6 +88,18 @@ module('Unit | utils', function () {
       const array = [item1, item2, item3, item4];
       const result = arrayWithItemMovedUpward(array, item1);
       assert.deepEqual(result, array);
+    });
+  });
+
+  module('elementsWithIndex', function () {
+    test('it returns pairs of elements and their index', async function (assert) {
+      const array = ['a', 'b', 'c'];
+      const result = elementsWithIndex(array);
+      assert.deepEqual(result, [
+        ['a', 0],
+        ['b', 1],
+        ['c', 2],
+      ]);
     });
   });
 });
