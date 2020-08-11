@@ -1,8 +1,7 @@
 import Controller from '@ember/controller';
-import { sort } from '@ember/object/computed';
+import { sort, filter } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
-import { filter } from '@ember/object/computed';
 import { scrollToTop, groupTodosByCategorySorted } from 'surely/utils';
 
 export default class TodosTomorrowDataController extends Controller {
