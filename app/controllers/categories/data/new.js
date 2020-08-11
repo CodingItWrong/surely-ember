@@ -9,9 +9,4 @@ export default class CategoriesDataNewController extends Controller {
   goToCategories() {
     this.router.transitionTo('categories.data');
   }
-
-  @action
-  goToCategoryDetail(category) {
-    this.router.transitionTo('categories.data.detail', category);
-  }
 }
