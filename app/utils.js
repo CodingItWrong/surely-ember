@@ -49,3 +49,25 @@ export const groupTodosByCategorySorted = todos => {
   );
   return sortedGroups;
 };
+
+export const arrayWithItemMovedDownward = (array, itemToMove) => {
+  const indexToMove = array.indexOf(itemToMove);
+  if (isLastIndex(array, indexToMove)) {
+    return array;
+  }
+
+  const indexToSwap = indexToMove + 1;
+  const itemToSwap = array[indexToSwap];
+  return [
+    ...elementsBeforeIndex(array, indexToMove),
+    itemToSwap,
+    itemToMove,
+    ...elementsAfterIndex(array, indexToSwap),
+  ];
+};
+
+const isLastIndex = (array, index) => index === array.length - 1;
+
+const elementsBeforeIndex = (array, index) => array.slice(0, index);
+
+const elementsAfterIndex = (array, index) => array.slice(index + 1);
