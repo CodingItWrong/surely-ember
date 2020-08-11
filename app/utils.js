@@ -89,3 +89,6 @@ const isLastIndex = (array, index) => index === array.length - 1;
 const elementsBeforeIndex = (array, index) => array.slice(0, index);
 
 const elementsAfterIndex = (array, index) => array.slice(index + 1);
+
+export const elementsWithIndex = array =>
+  array.map((element, index) => [element, index]);
