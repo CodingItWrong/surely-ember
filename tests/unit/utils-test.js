@@ -1,5 +1,8 @@
 import { module, test } from 'qunit';
-import { groupTodosByCategorySorted } from 'surely/utils';
+import {
+  arrayWithItemMovedDownward,
+  groupTodosByCategorySorted,
+} from 'surely/utils';
 
 module('Unit | utils', function () {
   module('groupTodosByCategorySorted', function () {
@@ -33,6 +36,31 @@ module('Unit | utils', function () {
           todos: [todoCategory2],
         },
       ]);
+    });
+  });
+
+  module('arrayWithItemMovedDownward', function () {
+    const item1 = { name: 'Item 1' };
+    const item2 = { name: 'Item 2' };
+    const item3 = { name: 'Item 3' };
+    const item4 = { name: 'Item 4' };
+
+    test('it moves an item at the start downward', async function (assert) {
+      const array = [item1, item2, item3, item4];
+      const result = arrayWithItemMovedDownward(array, item1);
+      assert.deepEqual(result, [item2, item1, item3, item4]);
+    });
+
+    test('it moves an item in the middle downward', async function (assert) {
+      const array = [item1, item2, item3, item4];
+      const result = arrayWithItemMovedDownward(array, item2);
+      assert.deepEqual(result, [item1, item3, item2, item4]);
+    });
+
+    test('it does not move an item at the end', async function (assert) {
+      const array = [item1, item2, item3, item4];
+      const result = arrayWithItemMovedDownward(array, item4);
+      assert.deepEqual(result, array);
     });
   });
 });
