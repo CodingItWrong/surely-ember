@@ -1,5 +1,3 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import {
   render,
   click,
@@ -8,9 +6,11 @@ import {
   // eslint-disable-next-line no-unused-vars
   pauseTest,
 } from '@ember/test-helpers';
-import { hbs } from 'ember-cli-htmlbars';
-import set from 'date-fns/set';
 import addDays from 'date-fns/addDays';
+import set from 'date-fns/set';
+import { hbs } from 'ember-cli-htmlbars';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
 import sinon from 'sinon';
 import { formatDate } from 'surely/utils';
 

@@ -1,5 +1,5 @@
-import Route from '@ember/routing/route';
 import { action } from '@ember/object';
+import Route from '@ember/routing/route';
 
 export default class TodosCompletedDataRoute extends Route {
   queryParams = {

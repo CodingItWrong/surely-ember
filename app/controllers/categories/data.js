@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { inject as service } from '@ember/service';
-import { sort } from '@ember/object/computed';
 import { action } from '@ember/object';
+import { sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import {
   scrollToTop,
   arrayWithItemMovedDownward,

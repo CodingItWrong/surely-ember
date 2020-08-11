@@ -1,4 +1,3 @@
-import { module, test } from 'qunit';
 import {
   visit,
   click,
@@ -7,9 +6,10 @@ import {
   // eslint-disable-next-line no-unused-vars
   pauseTest,
 } from '@ember/test-helpers';
-import { setupApplicationTest } from 'ember-qunit';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
+import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
+import { module, test } from 'qunit';
 
 module('Acceptance | adding tomorrow todos', function (hooks) {
   setupApplicationTest(hooks);

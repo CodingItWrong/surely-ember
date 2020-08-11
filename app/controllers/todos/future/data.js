@@ -1,12 +1,12 @@
 import Controller from '@ember/controller';
+import { action, computed } from '@ember/object';
 import { sort, filter } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { action, computed } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import groupBy from 'lodash-es/groupBy';
-import { scrollToTop } from 'surely/utils';
-import { relativeDateFn } from 'surely/helpers/relative-date';
 import { capitalizeFn } from 'surely/helpers/capitalize';
+import { relativeDateFn } from 'surely/helpers/relative-date';
+import { scrollToTop } from 'surely/utils';
 
 const includesCaseInsensitive = (haystack, needle) => {
   haystack = (haystack || '').toLowerCase();
