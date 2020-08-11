@@ -2,7 +2,12 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { sort } from '@ember/object/computed';
 import { action } from '@ember/object';
-import { scrollToTop } from 'surely/utils';
+import {
+  scrollToTop,
+  arrayWithItemMovedDownward,
+  arrayWithItemMovedUpward,
+  elementsWithIndex,
+} from 'surely/utils';
 
 export default class CategoriesDataController extends Controller {
   @service router;
@@ -35,12 +40,28 @@ export default class CategoriesDataController extends Controller {
   }
 
   @action
-  moveUpward(category) {
-    console.log('moveUpward', category);
+  async moveUpward(categoryToMove) {
+    const categoriesAfterMove = arrayWithItemMovedUpward(
+      this.sortedCategories,
+      categoryToMove,
+    );
+    this.updateCategorySortOrder(categoriesAfterMove);
   }
 
   @action
-  moveDownward(category) {
-    console.log('moveDownward', category);
+  async moveDownward(categoryToMove) {
+    const categoriesAfterMove = arrayWithItemMovedDownward(
+      this.sortedCategories,
+      categoryToMove,
+    );
+    this.updateCategorySortOrder(categoriesAfterMove);
+  }
+
+  async updateCategorySortOrder(sortedCategories) {
+    const categoriesWithIndex = elementsWithIndex(sortedCategories);
+    for (const [category, sortOrder] of categoriesWithIndex) {
+      category.sortOrder = sortOrder;
+      await category.save();
+    }
   }
 }
