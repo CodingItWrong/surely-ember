@@ -20,6 +20,9 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'import/newline-after-import': 'error',
+    'import/no-anonymous-default-export': 'error',
+    'import/no-mutable-exports': 'error',
     'import/order': ['error', { alphabetize: { order: 'asc' } }],
     'no-duplicate-imports': 'error',
   },
