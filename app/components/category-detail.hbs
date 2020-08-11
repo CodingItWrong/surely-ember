@@ -32,14 +32,6 @@
             autocapitalize="true"
             data-test-category-name-field
           />
-          <form.input
-            @label="Sort Order"
-            @value={{this.editedSortOrder}}
-            @onChange={{action (mut this.editedSortOrder)}}
-            @block={{true}}
-            type="number"
-            data-test-sort-order-field
-          />
 
           {{#if this.error}}
             <p

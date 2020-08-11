@@ -11,7 +11,6 @@ export default class CategoryDetailComponent extends Component {
 
   @tracked editingId = null;
   @tracked editedName = null;
-  @tracked editedSortOrder = null;
 
   @tracked saving = false;
   @tracked error = null;
@@ -25,7 +24,6 @@ export default class CategoryDetailComponent extends Component {
     const { category } = this.args;
     this.editingId = category?.id;
     this.editedName = category?.name;
-    this.editedSortOrder = category?.sortOrder;
   }
 
   @action
@@ -61,11 +59,9 @@ export default class CategoryDetailComponent extends Component {
       // TODO: testing store could be hard
       category = this.store.createRecord('category', {
         name: this.editedName,
-        sortOrder: this.editedSortOrder,
       });
     } else {
       category.name = this.editedName;
-      category.sortOrder = this.editedSortOrder;
     }
 
     try {
