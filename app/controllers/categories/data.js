@@ -60,8 +60,10 @@ export default class CategoriesDataController extends Controller {
   async updateCategorySortOrder(sortedCategories) {
     const categoriesWithIndex = elementsWithIndex(sortedCategories);
     for (const [category, sortOrder] of categoriesWithIndex) {
-      category.sortOrder = sortOrder;
-      await category.save();
+      if (category.sortOrder !== sortOrder) {
+        category.sortOrder = sortOrder;
+        await category.save();
+      }
     }
   }
 }
