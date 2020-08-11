@@ -1,13 +1,25 @@
 <PaperItem
   @onClick={{fn @onChooseCategory @category}}
   data-test-category
+  as |controls|
 >
-  <div class="todo-list-item__container">
-    <p
-      class="todo-list-item__title"
-      data-test-category-name
+  <p
+    data-test-category-name
+  >
+    {{@category.name}}
+  </p>
+  <div class="md-secondary-container">
+    <controls.button
+      @iconButton={{true}}
+      @onClick={{fn @moveUpward @category}}
     >
-      {{@category.name}}
-    </p>
+      {{paper-icon "arrow_upward"}}
+    </controls.button>
+    <controls.button
+      @iconButton={{true}}
+      @onClick={{fn @moveDownward @category}}
+    >
+      {{paper-icon "arrow_downward"}}
+    </controls.button>
   </div>
 </PaperItem>
