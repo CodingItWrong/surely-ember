@@ -1,7 +1,7 @@
 import add from 'date-fns/add';
 import sub from 'date-fns/sub';
 
-export default function (server) {
+export default function defaultScenario(server) {
   const now = new Date();
 
   // available

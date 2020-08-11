@@ -4,7 +4,7 @@ const includesCaseInsensitive = (haystack, needle) => {
   return haystack.includes(needle);
 };
 
-export default function () {
+export default function mirageConfig() {
   this.post('/users');
   this.post('/oauth/token', () => {
     return {
