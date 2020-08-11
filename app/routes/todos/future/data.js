@@ -8,7 +8,7 @@ export default class TodosFutureDataRoute extends Route {
   async model() {
     const oldTodos = this.store.peekAll('todo');
     return this.sidebarCounts.freezeDuring(oldTodos, async () => {
-      this.store.unloadAll('todo');
+      this.store.unloadAll();
       await this.store.query('todo', {
         filter: { status: 'available,future' },
       });
