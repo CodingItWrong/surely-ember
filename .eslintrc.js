@@ -10,7 +10,7 @@ module.exports = {
       legacyDecorators: true,
     },
   },
-  plugins: ['ember'],
+  plugins: ['ember', 'import'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
@@ -20,6 +20,7 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'import/order': ['error', { alphabetize: { order: 'asc' } }],
     'no-duplicate-imports': 'error',
   },
   overrides: [
