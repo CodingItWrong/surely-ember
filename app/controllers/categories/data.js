@@ -3,10 +3,10 @@ import { action } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import {
-  scrollToTop,
   arrayWithItemMovedDownward,
   arrayWithItemMovedUpward,
   elementsWithIndex,
+  scrollToTop,
 } from 'surely/utils';
 
 export default class CategoriesDataController extends Controller {

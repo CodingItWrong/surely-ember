@@ -1,10 +1,10 @@
 import {
-  render,
   click,
   fillIn,
-  triggerEvent,
   // eslint-disable-next-line no-unused-vars
   pauseTest,
+  render,
+  triggerEvent,
 } from '@ember/test-helpers';
 import addDays from 'date-fns/addDays';
 import set from 'date-fns/set';

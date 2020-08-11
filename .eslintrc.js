@@ -25,6 +25,7 @@ module.exports = {
     'import/no-mutable-exports': 'error',
     'import/order': ['error', { alphabetize: { order: 'asc' } }],
     'no-duplicate-imports': 'error',
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
   },
   overrides: [
     // node files

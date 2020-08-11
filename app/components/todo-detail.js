@@ -2,7 +2,7 @@ import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import pick from 'lodash-es/pick';
-import { parseDate, formatDate, logRuntimeError } from 'surely/utils';
+import { formatDate, logRuntimeError, parseDate } from 'surely/utils';
 
 const BUTTON_SET = {
   ACTIONS: 'actions',
