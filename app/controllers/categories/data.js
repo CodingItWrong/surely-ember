@@ -33,4 +33,14 @@ export default class CategoriesDataController extends Controller {
   goToNew() {
     this.router.transitionTo('categories.data.new');
   }
+
+  @action
+  moveUpward(category) {
+    console.log('moveUpward', category);
+  }
+
+  @action
+  moveDownward(category) {
+    console.log('moveDownward', category);
+  }
 }
