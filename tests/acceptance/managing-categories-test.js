@@ -1,10 +1,10 @@
 import {
-  visit,
   click,
   fillIn,
-  triggerEvent,
   // eslint-disable-next-line no-unused-vars
   pauseTest,
+  triggerEvent,
+  visit,
 } from '@ember/test-helpers';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';

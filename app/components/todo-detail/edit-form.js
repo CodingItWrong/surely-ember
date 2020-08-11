@@ -1,7 +1,7 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import { parseDate, formatDate, logRuntimeError } from 'surely/utils';
+import { formatDate, logRuntimeError, parseDate } from 'surely/utils';
 
 const ENTER_KEY_CODE = 13;
 
