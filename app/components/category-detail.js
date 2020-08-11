@@ -50,7 +50,7 @@ export default class CategoryDetailComponent extends Component {
       return;
     }
 
-    let { category, onCreate } = this.args;
+    let { category, onSave } = this.args;
 
     this.error = null;
 
@@ -67,10 +67,7 @@ export default class CategoryDetailComponent extends Component {
     try {
       this.saving = true;
       await category.save();
-
-      if (isNew) {
-        onCreate(category);
-      }
+      onSave(category);
     } catch (e) {
       this.error = 'An error occurred saving the category.';
       logRuntimeError(e);
