@@ -630,6 +630,7 @@ module('Integration | Component | todo-detail', function (hooks) {
       const newNotes = 'New Notes';
 
       let todo;
+      let onHandle;
 
       hooks.beforeEach(async function () {
         todo = {
@@ -639,9 +640,11 @@ module('Integration | Component | todo-detail', function (hooks) {
           deferUntilDate: sinon.spy(),
           save: sinon.stub().resolves(),
         };
+        onHandle = sinon.spy();
 
         this.set('todo', todo);
-        await render(hbs`<TodoDetail @todo={{todo}} />`);
+        this.set('onHandle', onHandle);
+        await render(hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`);
 
         await click('[data-test-edit-button]');
         await fillIn('[data-test-todo-name-field] textarea', newName);
@@ -659,6 +662,10 @@ module('Integration | Component | todo-detail', function (hooks) {
           'deferred one week',
         );
         assert.ok(todo.save.calledOnce, 'save called');
+      });
+
+      test('it calls onHandle', function (assert) {
+        assert.ok(onHandle.calledOnce, 'calls onHandle');
       });
     });
 
