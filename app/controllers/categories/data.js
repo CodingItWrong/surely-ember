@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { sort } from '@ember/object/computed';
+import { filter, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import {
   arrayWithItemMovedDownward,
@@ -14,7 +14,12 @@ export default class CategoriesDataController extends Controller {
 
   sortPropertiesSortOrderField = Object.freeze(['sortOrder:asc,name:asc']);
 
-  @sort('model', 'sortPropertiesSortOrderField')
+  @filter('model.@each.id', function (category) {
+    return category.id;
+  })
+  persistedCategories;
+
+  @sort('persistedCategories', 'sortPropertiesSortOrderField')
   sortedCategories;
 
   @action
