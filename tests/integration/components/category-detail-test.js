@@ -1,4 +1,4 @@
-import { click, render } from '@ember/test-helpers';
+import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
 import { module, test } from 'qunit';
@@ -31,6 +31,40 @@ module('Integration | Component | category-detail', function (hooks) {
 
       test('it calls onCancel', async function (assert) {
         assert.ok(onCancel.calledOnce, 'calls onCancel');
+      });
+    });
+
+    module('on success', function (hooks) {
+      const newName = 'New Name';
+
+      let category;
+      let onSave;
+
+      hooks.beforeEach(async function () {
+        category = {
+          id: 1,
+          name: 'Old Name',
+          save: sinon.stub().resolves(),
+        };
+        onSave = sinon.spy();
+
+        this.set('category', category);
+        this.set('onSave', onSave);
+        await render(
+          hbs`<CategoryDetail @category={{category}} @onSave={{onSave}} />`,
+        );
+
+        await fillIn('[data-test-category-name-field] textarea', newName);
+        await triggerEvent('[data-test-category-edit-form]', 'submit');
+      });
+
+      test('it saves the category', async function (assert) {
+        assert.equal(category.name, newName, 'set name');
+        assert.ok(category.save.calledOnce, 'save called');
+      });
+
+      test('it calls onSave', function (assert) {
+        assert.ok(onSave.calledOnce, 'calls onSave');
       });
     });
   });
