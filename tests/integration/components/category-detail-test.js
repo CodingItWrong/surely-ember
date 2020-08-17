@@ -14,6 +14,8 @@ module('Integration | Component | category-detail', function (hooks) {
     });
   });
 
+  // TODO creating new record
+
   module('editing', function () {
     module('on cancel', function (hooks) {
       let onCancel;
@@ -65,6 +67,39 @@ module('Integration | Component | category-detail', function (hooks) {
 
       test('it calls onSave', function (assert) {
         assert.ok(onSave.calledOnce, 'calls onSave');
+      });
+    });
+
+    // TODO test not calling onSave for todo detail
+    module('on error', function (hooks) {
+      let category;
+      let onSave;
+
+      hooks.beforeEach(async function () {
+        category = {
+          id: 1,
+          name: 'Name',
+          save: sinon.stub().rejects(),
+        };
+        onSave = sinon.spy();
+
+        this.set('category', category);
+        this.set('onSave', onSave);
+        await render(
+          hbs`<CategoryDetail @category={{category}} @onSave={{onSave}} />`,
+        );
+
+        await triggerEvent('[data-test-category-edit-form]', 'submit');
+      });
+
+      test('it displays an error', function (assert) {
+        assert
+          .dom('[data-test-error-message]')
+          .hasText('An error occurred saving the category.');
+      });
+
+      test('it does not call onSave', function (assert) {
+        assert.equal(onSave.getCalls().length, 0, 'onSave not called');
       });
     });
   });
