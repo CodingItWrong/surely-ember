@@ -1,3 +1,4 @@
+import addDays from 'date-fns/addDays';
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import { deferDateFn } from 'surely/helpers/defer-date';
@@ -34,6 +35,20 @@ module('Unit | Helper | defer-date', function (hooks) {
     assert.deepEqual(result, wednesdayNineAM);
   });
 
-  // TODO test it defaults to current date
-  // TODO test it uses current date in place of past dates
+  test('it defaults to start on the current day', function (assert) {
+    const now = new Date();
+    const tomorrow = addDays(now, 1);
+
+    let result = deferDateFn({ now, days: 1 });
+    assert.deepEqual(result, tomorrow);
+  });
+
+  test('it starts from the current date when the passed-in date is in the past', function (assert) {
+    const now = new Date();
+    const yesterday = addDays(now, -1);
+    const tomorrow = addDays(now, 1);
+
+    let result = deferDateFn({ now, start: yesterday, days: 1 });
+    assert.deepEqual(result, tomorrow);
+  });
 });
