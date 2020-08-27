@@ -190,7 +190,6 @@ module('Integration | Component | todo-detail', function (hooks) {
 
           hooks.beforeEach(async function () {
             todo = {
-              deferDays: sinon.spy(),
               save: sinon.stub().resolves(),
             };
             onHandle = sinon.spy();
@@ -220,7 +219,6 @@ module('Integration | Component | todo-detail', function (hooks) {
 
           hooks.beforeEach(async function () {
             todo = {
-              deferDays: sinon.spy(),
               save: sinon.stub().rejects(),
             };
             onHandle = sinon.spy();
@@ -252,7 +250,6 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
-            deferDays: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
@@ -278,7 +275,6 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
-            deferDays: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
@@ -304,7 +300,6 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
-            deferDays: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
