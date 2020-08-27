@@ -72,78 +72,71 @@
             >
               Cancel
             </PaperButton>
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{fn this.saveDeferUntilDate (defer-date
-                start=this.displayModel.deferredUntil
-                days=1
-              )}}
-              data-test-defer-one-day-button
-            >
-              {{#if this.isDeferring}}
-                Deferring…
-              {{else}}
-                1 Day -
-                {{day-of-week (defer-date
-                  start=this.displayModel.deferredUntil
-                  days=1
-                )}}
-              {{/if}}
-            </PaperButton>
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{fn this.saveDeferUntilDate (defer-date
-                start=this.displayModel.deferredUntil
-                days=2
-              )}}
-              data-test-defer-two-days-button
-            >
-              {{#if this.isDeferring}}
-                Deferring…
-              {{else}}
-                2 Days -
-                {{day-of-week (defer-date
-                  start=this.displayModel.deferredUntil
-                  days=2
-                )}}
-              {{/if}}
-            </PaperButton>
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{fn this.saveDeferUntilDate (defer-date
-                start=this.displayModel.deferredUntil
-                days=3
-              )}}
-              data-test-defer-three-days-button
-            >
-              {{#if this.isDeferring}}
-                Deferring…
-              {{else}}
-                3 Days -
-                {{day-of-week (defer-date
-                  start=this.displayModel.deferredUntil
-                  days=3
-                )}}
-              {{/if}}
-            </PaperButton>
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{fn this.saveDeferUntilDate (defer-date
-                start=this.displayModel.deferredUntil
-                days=7
-              )}}
-              data-test-defer-one-week-button
-            >
-              {{#if this.isDeferring}}
-                Deferring…
-              {{else}}
-                1 Week -
-                {{day-of-week (defer-date
-                  start=this.displayModel.deferredUntil
-                  days=7
-                )}}
-              {{/if}}
-            </PaperButton>
+            {{#let (defer-date
+              start=this.displayModel.deferredUntil
+              days=1
+            ) as |deferDate|}}
+              <PaperButton
+                @disabled={{this.isProcessing}}
+                @onClick={{fn this.saveDeferUntilDate deferDate}}
+                data-test-defer-one-day-button
+              >
+                {{#if this.isDeferring}}
+                  Deferring…
+                {{else}}
+                  1 Day - {{day-of-week deferDate}}
+                {{/if}}
+              </PaperButton>
+            {{/let}}
+            {{#let (defer-date
+              start=this.displayModel.deferredUntil
+              days=1
+            ) as |deferDate|}}
+              <PaperButton
+                @disabled={{this.isProcessing}}
+                @onClick={{fn this.saveDeferUntilDate deferDate}}
+                data-test-defer-two-days-button
+              >
+                {{#if this.isDeferring}}
+                  Deferring…
+                {{else}}
+                  2 Days - {{day-of-week deferDate}}
+                {{/if}}
+              </PaperButton>
+            {{/let}}
+            {{#let (defer-date
+              start=this.displayModel.deferredUntil
+              days=3
+            ) as |deferDate|}}
+              <PaperButton
+                @disabled={{this.isProcessing}}
+                @onClick={{fn this.saveDeferUntilDate deferDate}}
+                data-test-defer-three-days-button
+              >
+                {{#if this.isDeferring}}
+                  Deferring…
+                {{else}}
+                  3 Days -
+                  {{day-of-week deferDate}}
+                {{/if}}
+              </PaperButton>
+            {{/let}}
+            {{#let (defer-date
+              start=this.displayModel.deferredUntil
+              days=7
+            ) as |deferDate|}}
+              <PaperButton
+                @disabled={{this.isProcessing}}
+                @onClick={{fn this.saveDeferUntilDate deferDate}}
+                data-test-defer-one-week-button
+              >
+                {{#if this.isDeferring}}
+                  Deferring…
+                {{else}}
+                  1 Week - {{day-of-week deferDate}}
+                {{/if}}
+              </PaperButton>
+            {{/let}}
             <PaperButton
               @disabled={{this.isProcessing}}
               @onClick={{this.deferUntilDate}}
