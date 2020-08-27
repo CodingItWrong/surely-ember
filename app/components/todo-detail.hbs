@@ -74,7 +74,10 @@
             </PaperButton>
             <PaperButton
               @disabled={{this.isProcessing}}
-              @onClick={{fn this.deferDays 1}}
+              @onClick={{fn this.saveDeferUntilDate (defer-date
+                start=this.displayModel.deferredUntil
+                days=1
+              )}}
               data-test-defer-one-day-button
             >
               {{#if this.isDeferring}}
@@ -89,7 +92,10 @@
             </PaperButton>
             <PaperButton
               @disabled={{this.isProcessing}}
-              @onClick={{fn this.deferDays 2}}
+              @onClick={{fn this.saveDeferUntilDate (defer-date
+                start=this.displayModel.deferredUntil
+                days=2
+              )}}
               data-test-defer-two-days-button
             >
               {{#if this.isDeferring}}
@@ -104,7 +110,10 @@
             </PaperButton>
             <PaperButton
               @disabled={{this.isProcessing}}
-              @onClick={{fn this.deferDays 3}}
+              @onClick={{fn this.saveDeferUntilDate (defer-date
+                start=this.displayModel.deferredUntil
+                days=3
+              )}}
               data-test-defer-three-days-button
             >
               {{#if this.isDeferring}}
@@ -119,7 +128,10 @@
             </PaperButton>
             <PaperButton
               @disabled={{this.isProcessing}}
-              @onClick={{fn this.deferDays 7}}
+              @onClick={{fn this.saveDeferUntilDate (defer-date
+                start=this.displayModel.deferredUntil
+                days=7
+              )}}
               data-test-defer-one-week-button
             >
               {{#if this.isDeferring}}

@@ -163,9 +163,9 @@ export default class TodoDetailComponent extends Component {
   }
 
   @action
-  async deferDays(num) {
+  async saveDeferUntilDate(date) {
     const { todo, onHandle } = this.args;
-    todo.deferDays(num);
+    todo.deferUntilDate(date);
 
     this.error = null;
     this.isDeferring = true;
