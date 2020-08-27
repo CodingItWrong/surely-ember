@@ -1,8 +1,7 @@
 import { helper } from '@ember/component/helper';
 import addDays from 'date-fns/addDays';
 
-export function deferDateFn({ start, days }) {
-  const now = new Date();
+export function deferDateFn({ start, days, now = new Date() }) {
   let startToUse;
   if (!start || start < now) {
     // no future defer date: defer 1 day from now
