@@ -61,7 +61,6 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "3.1.4",
-    "faker": "^4.1.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "loader.js": "^4.7.0",
