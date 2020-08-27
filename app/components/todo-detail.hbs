@@ -84,10 +84,10 @@
                 Deferring…
               {{else}}
                 1 Day -
-                {{day-of-week-days-from
+                {{day-of-week (defer-date
                   start=this.displayModel.deferredUntil
                   days=1
-                }}
+                )}}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -102,10 +102,10 @@
                 Deferring…
               {{else}}
                 2 Days -
-                {{day-of-week-days-from
+                {{day-of-week (defer-date
                   start=this.displayModel.deferredUntil
                   days=2
-                }}
+                )}}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -120,10 +120,10 @@
                 Deferring…
               {{else}}
                 3 Days -
-                {{day-of-week-days-from
+                {{day-of-week (defer-date
                   start=this.displayModel.deferredUntil
                   days=3
-                }}
+                )}}
               {{/if}}
             </PaperButton>
             <PaperButton
@@ -138,10 +138,10 @@
                 Deferring…
               {{else}}
                 1 Week -
-                {{day-of-week-days-from
+                {{day-of-week (defer-date
                   start=this.displayModel.deferredUntil
                   days=7
-                }}
+                )}}
               {{/if}}
             </PaperButton>
             <PaperButton
