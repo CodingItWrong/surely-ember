@@ -24,17 +24,14 @@ module('Acceptance | managing categories', function (hooks) {
     // add category
     const categoryName = 'New Category';
     await click('[data-test-add-button]');
-    await fillIn('[data-test-category-name-field] textarea', categoryName);
+    await fillIn('[data-test-category-name-field] input', categoryName);
     await triggerEvent('[data-test-category-edit-form]', 'submit');
     assert.dom('[data-test-category-name]').hasText(categoryName);
 
     // editing
     await click('[data-test-category] button');
     const updatedCategoryName = 'Updated Category';
-    await fillIn(
-      '[data-test-category-name-field] textarea',
-      updatedCategoryName,
-    );
+    await fillIn('[data-test-category-name-field] input', updatedCategoryName);
     await triggerEvent('[data-test-category-edit-form]', 'submit');
     assert.dom('[data-test-category-name]').hasText(updatedCategoryName);
     await click('[data-test-category] button');
