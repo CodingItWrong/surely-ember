@@ -190,6 +190,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
           hooks.beforeEach(async function () {
             todo = {
+              deferUntilDate: sinon.spy(),
               save: sinon.stub().resolves(),
             };
             onHandle = sinon.spy();
@@ -204,7 +205,7 @@ module('Integration | Component | todo-detail', function (hooks) {
           });
 
           test('it defers the todo by one day', function (assert) {
-            assert.ok(todo.deferDays.getCall(0).args, [1], 'deferred one day');
+            assert.ok(todo.deferUntilDate.calledOnce, 'deferUntilDate called'); // TODO test argument
             assert.ok(todo.save.calledOnce, 'save called');
           });
 
@@ -219,6 +220,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
           hooks.beforeEach(async function () {
             todo = {
+              deferUntilDate: sinon.spy(),
               save: sinon.stub().rejects(),
             };
             onHandle = sinon.spy();
@@ -250,6 +252,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
+            deferUntilDate: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
@@ -264,7 +267,7 @@ module('Integration | Component | todo-detail', function (hooks) {
         });
 
         test('it defers the todo by two days', function (assert) {
-          assert.ok(todo.deferDays.getCall(0).args, [2], 'deferred two days');
+          assert.ok(todo.deferUntilDate.calledOnce, 'deferUntilDate called'); // TODO test argument
           assert.ok(todo.save.calledOnce, 'save called');
         });
       });
@@ -275,6 +278,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
+            deferUntilDate: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
@@ -289,7 +293,7 @@ module('Integration | Component | todo-detail', function (hooks) {
         });
 
         test('it defers the todo by three days', function (assert) {
-          assert.ok(todo.deferDays.getCall(0).args, [3], 'deferred three days');
+          assert.ok(todo.deferUntilDate.calledOnce, 'deferUntilDate called'); // TODO test argument
           assert.ok(todo.save.calledOnce, 'save called');
         });
       });
@@ -300,6 +304,7 @@ module('Integration | Component | todo-detail', function (hooks) {
 
         hooks.beforeEach(async function () {
           todo = {
+            deferUntilDate: sinon.spy(),
             save: sinon.stub().resolves(),
           };
           onHandle = sinon.spy();
@@ -314,7 +319,7 @@ module('Integration | Component | todo-detail', function (hooks) {
         });
 
         test('it defers the todo by one week', function (assert) {
-          assert.ok(todo.deferDays.getCall(0).args, [7], 'deferred one week');
+          assert.ok(todo.deferUntilDate.calledOnce, 'deferUntilDate called'); // TODO test argument
           assert.ok(todo.save.calledOnce, 'save called');
         });
       });
