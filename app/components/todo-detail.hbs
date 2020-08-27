@@ -90,7 +90,7 @@
             {{/let}}
             {{#let (defer-date
               start=this.displayModel.deferredUntil
-              days=1
+              days=2
             ) as |deferDate|}}
               <PaperButton
                 @disabled={{this.isProcessing}}
