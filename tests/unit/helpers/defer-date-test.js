@@ -1,4 +1,5 @@
 import addDays from 'date-fns/addDays';
+import startOfDay from 'date-fns/startOfDay';
 import { setupTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 import { deferDateFn } from 'surely/helpers/defer-date';
@@ -7,10 +8,10 @@ module('Unit | Helper | defer-date', function (hooks) {
   setupTest(hooks);
 
   const now = new Date();
-  const yesterday = addDays(now, -1);
-  const tomorrow = addDays(now, 1);
-  const twoDaysFromNow = addDays(now, 2);
-  const threeDaysFromNow = addDays(now, 3);
+  const yesterday = startOfDay(addDays(now, -1));
+  const tomorrow = startOfDay(addDays(now, 1));
+  const twoDaysFromNow = startOfDay(addDays(now, 2));
+  const threeDaysFromNow = startOfDay(addDays(now, 3));
 
   test('it can get the next day', function (assert) {
     let result = deferDateFn({
