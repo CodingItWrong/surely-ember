@@ -1,5 +1,6 @@
 import { helper } from '@ember/component/helper';
 import addDays from 'date-fns/addDays';
+import startOfDay from 'date-fns/startOfDay';
 
 export function deferDateFn({ start, days, now = new Date() }) {
   let startToUse;
@@ -11,7 +12,7 @@ export function deferDateFn({ start, days, now = new Date() }) {
     startToUse = start;
   }
 
-  return addDays(startToUse, days);
+  return startOfDay(addDays(startToUse, days));
 }
 
 export default helper(function deferDate(_, { start, days }) {
