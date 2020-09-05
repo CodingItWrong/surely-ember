@@ -25,7 +25,7 @@ module('Acceptance | managing todos', function (hooks) {
 
     // add todo
     const todoName = 'New Todo';
-    await fillIn('[data-test-new-todo-field] input', todoName);
+    await fillIn('[data-test-new-todo-field] textarea', todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo-name]').hasText(todoName);
 
