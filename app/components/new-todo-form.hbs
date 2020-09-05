@@ -8,7 +8,9 @@
     @placeholder={{@placeholder}}
     @value={{this.newTodoName}}
     @onChange={{action (mut this.newTodoName)}}
+    @onKeyDown={{this.handleNameKeyDown}}
     @block={{true}}
+    @textarea={{true}}
     data-test-new-todo-field
   />
 

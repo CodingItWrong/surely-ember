@@ -3,6 +3,8 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { logRuntimeError } from 'surely/utils';
 
+const ENTER_KEY_CODE = 13;
+
 export default class NewTodoFormComponent extends Component {
   @tracked newTodoName;
   @tracked error = null;
@@ -24,5 +26,14 @@ export default class NewTodoFormComponent extends Component {
       logRuntimeError(e);
       this.error = 'An error occurred adding the todo.';
     }
+  }
+
+  @action
+  handleNameKeyDown(e) {
+    if (e.keyCode === ENTER_KEY_CODE) {
+      this.createTodo();
+      return false;
+    }
+    return true;
   }
 }
