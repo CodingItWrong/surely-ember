@@ -1,13 +1,13 @@
 import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 
-module('Acceptance | sign up', function (hooks) {
+describe('Acceptance | sign up', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('creating a new account', async function (assert) {
+  it('creating a new account', async function (assert) {
     await visit('/');
 
     await click('[data-test-sign-up-button]');

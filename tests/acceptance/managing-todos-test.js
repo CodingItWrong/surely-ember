@@ -10,14 +10,14 @@ import addWeeks from 'date-fns/addWeeks';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
 
-module('Acceptance | managing todos', function (hooks) {
+describe('Acceptance | managing todos', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('it allows adding, editing, and deleting todos', async function (assert) {
+  it('allows adding, editing, and deleting todos', async function (assert) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');

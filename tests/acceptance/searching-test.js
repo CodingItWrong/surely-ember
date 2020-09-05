@@ -10,14 +10,14 @@ import addWeeks from 'date-fns/addWeeks';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
 
-module('Acceptance | searching', function (hooks) {
+describe('Acceptance | searching', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('it allows searching future todos', async function (assert) {
+  it('allows searching future todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
     const future = formatDate(addWeeks(new Date(), 1));
@@ -36,7 +36,7 @@ module('Acceptance | searching', function (hooks) {
     assert.dom('[data-test-todo-name]').hasText(todo1);
   });
 
-  test('it allows searching completed todos', async function (assert) {
+  it('allows searching completed todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
     const past = formatDate(addWeeks(new Date(), -1));
@@ -55,7 +55,7 @@ module('Acceptance | searching', function (hooks) {
     assert.dom('[data-test-todo-name]').hasText(todo1);
   });
 
-  test('it allows searching deleted todos', async function (assert) {
+  it('allows searching deleted todos', async function (assert) {
     const todo1 = 'One Todo';
     const todo2 = 'Another Todo';
     const past = formatDate(addWeeks(new Date(), -1));

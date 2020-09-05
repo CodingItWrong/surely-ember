@@ -1,16 +1,16 @@
 import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import sinon from 'sinon';
 
-module('Integration | Component | sign-in-form', function (hooks) {
+describe('Integration | Component | sign-in-form', function (hooks) {
   setupRenderingTest(hooks);
 
   const email = 'email@example.com';
   const password = 'password';
 
-  module('sign in success', function (hooks) {
+  describe('sign in success', function (hooks) {
     let session;
     let onSignedIn;
 
@@ -29,7 +29,7 @@ module('Integration | Component | sign-in-form', function (hooks) {
       await triggerEvent('[data-test-sign-in-form]', 'submit');
     });
 
-    test('it calls authenticate with credentials', function (assert) {
+    it('calls authenticate with credentials', function (assert) {
       assert.deepEqual(
         session.authenticate.getCall(0).args,
         ['authenticator:oauth', email, password],
@@ -37,12 +37,12 @@ module('Integration | Component | sign-in-form', function (hooks) {
       );
     });
 
-    test('it calls onSignedIn', function (assert) {
+    it('calls onSignedIn', function (assert) {
       assert.ok(onSignedIn.calledOnce, 'onSignedIn called');
     });
   });
 
-  module('sign in failure', function (hooks) {
+  describe('sign in failure', function (hooks) {
     const errorMessage = 'Server error';
 
     let session;
@@ -63,17 +63,17 @@ module('Integration | Component | sign-in-form', function (hooks) {
       await triggerEvent('[data-test-sign-in-form]', 'submit');
     });
 
-    test('it displays an error message', function (assert) {
+    it('displays an error message', function (assert) {
       assert.dom('[data-test-error-message]').hasText(errorMessage);
     });
 
-    test('it does not call onSignedIn', function (assert) {
+    it('does not call onSignedIn', function (assert) {
       assert.ok(onSignedIn.notCalled, 'onSignedIn not called');
     });
   });
 
-  module('clicking sign up', function () {
-    test('navigates to the sign up route', async function (assert) {
+  describe('clicking sign up', function () {
+    it('navigates to the sign up route', async function (assert) {
       const router = {
         transitionTo: sinon.spy(),
       };
