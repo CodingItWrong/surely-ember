@@ -21,7 +21,7 @@ module('Acceptance | adding tomorrow todos', function (hooks) {
     await visit('/');
     await click('[data-test-tomorrow] button');
     const todoName = 'New Todo';
-    await fillIn('[data-test-new-todo-field] input', todoName);
+    await fillIn('[data-test-new-todo-field] textarea', todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     await click('[data-test-todo] button');

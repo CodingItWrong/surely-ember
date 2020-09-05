@@ -18,7 +18,7 @@ module('Integration | Component | new-todo-form', function (hooks) {
       this.set('handleCreate', handleCreate);
       await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
-      await fillIn('[data-test-new-todo-field] input', todoName);
+      await fillIn('[data-test-new-todo-field] textarea', todoName);
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
 
@@ -27,7 +27,7 @@ module('Integration | Component | new-todo-form', function (hooks) {
     });
 
     test('it clears the text field', function (assert) {
-      assert.dom('[data-test-new-todo-field] input').hasValue('');
+      assert.dom('[data-test-new-todo-field] textarea').hasValue('');
     });
 
     test('it does not display an error', function (assert) {
@@ -66,7 +66,7 @@ module('Integration | Component | new-todo-form', function (hooks) {
       this.set('handleCreate', handleCreate);
       await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
-      await fillIn('[data-test-new-todo-field] input', todoName);
+      await fillIn('[data-test-new-todo-field] textarea', todoName);
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
 
@@ -77,7 +77,7 @@ module('Integration | Component | new-todo-form', function (hooks) {
     });
 
     test('it does not clear the text field', function (assert) {
-      assert.dom('[data-test-new-todo-field] input').hasValue(todoName);
+      assert.dom('[data-test-new-todo-field] textarea').hasValue(todoName);
     });
   });
 
@@ -93,7 +93,7 @@ module('Integration | Component | new-todo-form', function (hooks) {
       await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
       await triggerEvent('[data-test-new-todo-form]', 'submit');
-      await fillIn('[data-test-new-todo-field] input', todoName);
+      await fillIn('[data-test-new-todo-field] textarea', todoName);
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
 
