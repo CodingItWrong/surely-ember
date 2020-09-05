@@ -1,22 +1,22 @@
 import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import sinon from 'sinon';
 
-module('Integration | Component | todo-list', function (hooks) {
+describe('Integration | Component | todo-list', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('when loading', function () {
-    test('it shows a loading indicator', async function (assert) {
+  describe('when loading', function () {
+    it('shows a loading indicator', async function (assert) {
       await render(hbs`<TodoList @loading={{true}} />`);
 
       assert.dom('[data-test-loading-indicator]').exists();
     });
   });
 
-  module('when errored', function () {
-    test('it shows an error message', async function (assert) {
+  describe('when errored', function () {
+    it('shows an error message', async function (assert) {
       await render(hbs`<TodoList @error={{true}} />`);
 
       assert
@@ -25,8 +25,8 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
-  module('no todos found in search', function () {
-    test('it displays the not found message', async function (assert) {
+  describe('no todos found in search', function () {
+    it('displays the not found message', async function (assert) {
       const todos = [];
 
       this.set('todos', todos);
@@ -36,8 +36,8 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
-  module('no todos outside of search', function () {
-    test('it displays the passed-in message', async function (assert) {
+  describe('no todos outside of search', function () {
+    it('displays the passed-in message', async function (assert) {
       const todos = [];
       const noTodosMessage = 'Custom message';
 
@@ -51,7 +51,7 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
-  module('individual todos', function (hooks) {
+  describe('individual todos', function (hooks) {
     const todos = [
       { id: 1, name: 'Todo 1' },
       { id: 2, name: 'Todo 2' },
@@ -69,12 +69,12 @@ module('Integration | Component | todo-list', function (hooks) {
       );
     });
 
-    test('it renders each todo', async function (assert) {
+    it('renders each todo', async function (assert) {
       assert.dom('[data-test-todo-name]').exists({ count: 2 });
       assert.dom('[data-test-todo-name]').hasText(todos[0].name);
     });
 
-    test('it calls onChooseTodo when clicking a todo', async function (assert) {
+    it('calls onChooseTodo when clicking a todo', async function (assert) {
       await click('[data-test-todo] button');
       assert.equal(
         handleChooseTodo.getCall(0).args[0],
@@ -84,7 +84,7 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
-  module('grouped todos', function (hooks) {
+  describe('grouped todos', function (hooks) {
     const groups = [
       {
         name: 'Tomorrow',
@@ -108,7 +108,7 @@ module('Integration | Component | todo-list', function (hooks) {
       );
     });
 
-    test('it renders each group heading and todo', async function (assert) {
+    it('renders each group heading and todo', async function (assert) {
       assert.dom('[data-test-group-deferred-until]').exists({ count: 2 });
       assert.dom('[data-test-group-deferred-until]').hasText('Tomorrow (1)');
 
@@ -116,7 +116,7 @@ module('Integration | Component | todo-list', function (hooks) {
       assert.dom('[data-test-todo-name]').hasText(groups[0].todos[0].name);
     });
 
-    test('it calls onChooseTodo when clicking a todo', async function (assert) {
+    it('calls onChooseTodo when clicking a todo', async function (assert) {
       await click('[data-test-todo] button');
       assert.equal(
         handleChooseTodo.getCall(0).args[0],
@@ -126,8 +126,8 @@ module('Integration | Component | todo-list', function (hooks) {
     });
   });
 
-  module('block form', function () {
-    test('it renders the block for each todo', async function (assert) {
+  describe('block form', function () {
+    it('renders the block for each todo', async function (assert) {
       const todos = [{ id: 1, name: 'Todo 1' }];
       const handleChooseTodo = () => {};
 

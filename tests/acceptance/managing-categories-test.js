@@ -9,13 +9,13 @@ import {
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 
-module('Acceptance | managing categories', function (hooks) {
+describe('Acceptance | managing categories', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('it allows adding, editing, and deleting categories', async function (assert) {
+  it('allows adding, editing, and deleting categories', async function (assert) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');

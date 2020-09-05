@@ -1,13 +1,13 @@
 import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import sinon from 'sinon';
 
-module('Integration | Component | app-side-nav-content', function (hooks) {
+describe('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('when not authenticated', function (hooks) {
+  describe('when not authenticated', function (hooks) {
     let session;
 
     hooks.beforeEach(function () {
@@ -15,14 +15,14 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       this.owner.register('service:session', session, { instantiate: false });
     });
 
-    test('it does not render', async function (assert) {
+    it('does not render', async function (assert) {
       await render(hbs`<AppSideNavContent />`);
 
       assert.equal(this.element.textContent.trim(), '');
     });
   });
 
-  module('when authenticated', function (hooks) {
+  describe('when authenticated', function (hooks) {
     let session;
     let router;
 
@@ -38,7 +38,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       await render(hbs`<AppSideNavContent />`);
     });
 
-    test('it allows navigating to the available route', async function (assert) {
+    it('allows navigating to the available route', async function (assert) {
       await click('[data-test-available] button');
 
       assert.ok(
@@ -47,7 +47,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       );
     });
 
-    test('it allows navigating to the tomorrow route', async function (assert) {
+    it('allows navigating to the tomorrow route', async function (assert) {
       await click('[data-test-tomorrow] button');
 
       assert.ok(
@@ -56,7 +56,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       );
     });
 
-    test('it allows navigating to the future route', async function (assert) {
+    it('allows navigating to the future route', async function (assert) {
       await click('[data-test-future] button');
 
       assert.ok(
@@ -65,7 +65,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       );
     });
 
-    test('it allows navigating to the completed route', async function (assert) {
+    it('allows navigating to the completed route', async function (assert) {
       await click('[data-test-completed] button');
 
       assert.ok(
@@ -74,7 +74,7 @@ module('Integration | Component | app-side-nav-content', function (hooks) {
       );
     });
 
-    test('it allows navigating to the deleted route', async function (assert) {
+    it('allows navigating to the deleted route', async function (assert) {
       await click('[data-test-deleted] button');
 
       assert.ok(

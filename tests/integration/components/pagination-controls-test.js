@@ -1,37 +1,37 @@
 import { click, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 import sinon from 'sinon';
 
-module('Integration | Component | pagination-controls', function (hooks) {
+describe('Integration | Component | pagination-controls', function (hooks) {
   setupRenderingTest(hooks);
 
-  module('when no pages', function () {
-    test('it renders nothing', async function (assert) {
+  describe('when no pages', function () {
+    it('renders nothing', async function (assert) {
       await render(hbs`<PaginationControls @totalPages={{0}} />`);
 
       assert.equal(this.element.textContent.trim(), '');
     });
   });
 
-  module('when one page', function (hooks) {
+  describe('when one page', function (hooks) {
     hooks.beforeEach(async function () {
       await render(
         hbs`<PaginationControls @totalPages={{1}} @pageNumber={{1}} />`,
       );
     });
 
-    test('it disables the previous button', function (assert) {
+    it('disables the previous button', function (assert) {
       assert.dom('[data-test-previous-button]').hasAttribute('disabled');
     });
 
-    test('it disables the next button', function (assert) {
+    it('disables the next button', function (assert) {
       assert.dom('[data-test-next-button]').hasAttribute('disabled');
     });
   });
 
-  module('when on first of multiple pages', function (hooks) {
+  describe('when on first of multiple pages', function (hooks) {
     let nextPage;
 
     hooks.beforeEach(async function () {
@@ -42,18 +42,18 @@ module('Integration | Component | pagination-controls', function (hooks) {
       );
     });
 
-    test('it disables the previous button', function (assert) {
+    it('disables the previous button', function (assert) {
       assert.dom('[data-test-previous-button]').hasAttribute('disabled');
     });
 
-    test('it calls nextPage when clicking the next page button', async function (assert) {
+    it('calls nextPage when clicking the next page button', async function (assert) {
       assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
   });
 
-  module('when on middle of multiple pages', function (hooks) {
+  describe('when on middle of multiple pages', function (hooks) {
     let prevPage;
     let nextPage;
 
@@ -67,7 +67,7 @@ module('Integration | Component | pagination-controls', function (hooks) {
       );
     });
 
-    test('it calls prevPage when clicking the previous page button', async function (assert) {
+    it('calls prevPage when clicking the previous page button', async function (assert) {
       assert
         .dom('[data-test-previous-button]')
         .doesNotHaveAttribute('disabled');
@@ -75,14 +75,14 @@ module('Integration | Component | pagination-controls', function (hooks) {
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
 
-    test('it calls nextPage when clicking the next page button', async function (assert) {
+    it('calls nextPage when clicking the next page button', async function (assert) {
       assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
   });
 
-  module('when on last of multiple pages', function (hooks) {
+  describe('when on last of multiple pages', function (hooks) {
     let prevPage;
 
     hooks.beforeEach(async function () {
@@ -93,7 +93,7 @@ module('Integration | Component | pagination-controls', function (hooks) {
       );
     });
 
-    test('it calls prevPage when clicking the next page button', async function (assert) {
+    it('calls prevPage when clicking the next page button', async function (assert) {
       assert
         .dom('[data-test-previous-button]')
         .doesNotHaveAttribute('disabled');
@@ -101,7 +101,7 @@ module('Integration | Component | pagination-controls', function (hooks) {
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
 
-    test('it disables the next button', function (assert) {
+    it('disables the next button', function (assert) {
       assert.dom('[data-test-next-button]').hasAttribute('disabled');
     });
   });

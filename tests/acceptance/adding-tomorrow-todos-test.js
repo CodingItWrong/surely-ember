@@ -9,13 +9,13 @@ import {
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
-import { module, test } from 'qunit';
+import { module as describe, test as it } from 'qunit';
 
-module('Acceptance | adding tomorrow todos', function (hooks) {
+describe('Acceptance | adding tomorrow todos', function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test('it allows adding a todo for tomorrow directly', async function (assert) {
+  it('allows adding a todo for tomorrow directly', async function (assert) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
