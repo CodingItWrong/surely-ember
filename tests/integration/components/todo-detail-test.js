@@ -668,6 +668,11 @@ describe('Integration | Component | todo-detail', function (hooks) {
         assert.dom('[data-test-todo-name-field]').doesNotExist();
       });
 
+      it('displays the updated fields', function (assert) {
+        assert.dom('[data-test-todo-name]').hasText(newName);
+        assert.dom('[data-test-todo-notes]').hasText(newNotes);
+      });
+
       it('does not call onHandle', function (assert) {
         assert.equal(onHandle.callCount, 0, 'does not call onHandle');
       });
