@@ -664,8 +664,12 @@ describe('Integration | Component | todo-detail', function (hooks) {
         assert.ok(todo.save.calledOnce, 'save called');
       });
 
-      it('calls onHandle', function (assert) {
-        assert.ok(onHandle.calledOnce, 'calls onHandle');
+      it('hides the edit form', async function (assert) {
+        assert.dom('[data-test-todo-name-field]').doesNotExist();
+      });
+
+      it('does not call onHandle', function (assert) {
+        assert.equal(onHandle.callCount, 0, 'does not call onHandle');
       });
     });
 
