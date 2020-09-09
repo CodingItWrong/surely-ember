@@ -216,8 +216,7 @@ export default class TodoDetailComponent extends Component {
 
   @action
   handleSave() {
-    const { onHandle } = this.args;
-    onHandle();
+    this.isEditing = false;
   }
 
   @action

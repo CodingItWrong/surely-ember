@@ -54,6 +54,7 @@ describe('Acceptance | managing todos', function (hooks) {
     await fillIn('[data-test-todo-name-field] textarea', updatedTodoName);
     await fillIn('[data-test-deferred-until-field] input', '');
     await click('[data-test-save-button]');
+    await click('[data-test-back-to-tomorrow-list]');
     assert.dom('[data-test-todo]').doesNotExist();
     await click('[data-test-available] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
