@@ -66,7 +66,7 @@ export default class TodoModel extends Model {
   }
 
   deferUntilDate(deferredUntil) {
-    this.deferredUntil = deferredUntil;
-    this.deferredAt = new Date();
+    this.set('deferredUntil', deferredUntil);
+    this.set('deferredAt', new Date());
   }
 }
