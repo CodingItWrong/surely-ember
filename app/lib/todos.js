@@ -25,6 +25,16 @@ export default class Todos {
   }
 
   get availableGroups() {
-    return [];
+    const todos = this.all;
+    if (todos.length > 0) {
+      return [
+        {
+          name: 'No Category',
+          todos,
+        },
+      ];
+    } else {
+      return [];
+    }
   }
 }
