@@ -71,7 +71,13 @@ describe('Todos', () => {
 
     describe('when there is one todo not in a category', () => {
       it('puts the todo into a "No Category" group', () => {
-        const records = [{ id: 1, category: null }];
+        const records = [
+          {
+            id: 1,
+            isAvailable: true,
+            category: null,
+          },
+        ];
 
         const todos = new Todos({ cache: cacheForRecords(records) });
         const groups = todos.availableGroups;
@@ -85,12 +91,26 @@ describe('Todos', () => {
       });
     });
 
+    describe('when there is an available todo and a non-available todo', () => {
+      it('only returns the available todo', () => {
+        const availableTodo = { id: 1, isAvailable: true };
+        const nonAvailableTodo = { id: 2, isAvailable: false };
+        const records = [availableTodo, nonAvailableTodo];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups[0].todos).toEqual([availableTodo]);
+      });
+    });
+
     describe('when there is one todo in a category', () => {
       it('puts the todo into a group for that category', () => {
         const categoryName = 'My Category';
         const records = [
           {
             id: 1,
+            isAvailable: true,
             category: { name: categoryName },
           },
         ];
@@ -113,10 +133,12 @@ describe('Todos', () => {
         const records = [
           {
             id: 1,
+            isAvailable: true,
             category: { name: categoryName },
           },
           {
             id: 2,
+            isAvailable: true,
             category: { name: categoryName },
           },
         ];
@@ -140,14 +162,17 @@ describe('Todos', () => {
 
         const category1Record = {
           id: 1,
+          isAvailable: true,
           category: { name: category1Name },
         };
         const category2Record = {
           id: 2,
+          isAvailable: true,
           category: { name: category2Name },
         };
         const noCategoryRecord = {
           id: 2,
+          isAvailable: true,
           category: null,
         };
 
