@@ -84,5 +84,27 @@ describe('Todos', () => {
         ]);
       });
     });
+
+    describe('when there is one todo in a category', () => {
+      it('puts the todo into a group for that category', () => {
+        const categoryName = 'My Category';
+        const records = [
+          {
+            id: 1,
+            category: { name: categoryName },
+          },
+        ];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([
+          {
+            name: categoryName,
+            todos: records,
+          },
+        ]);
+      });
+    });
   });
 });

@@ -29,7 +29,7 @@ export default class Todos {
     if (todos.length > 0) {
       return [
         {
-          name: 'No Category',
+          name: todos[0].category?.name ?? 'No Category',
           todos,
         },
       ];
