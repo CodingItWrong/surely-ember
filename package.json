@@ -17,7 +17,8 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
-    "test:ember": "ember test"
+    "test:ember": "ember test",
+    "test:unit": "jest app/lib --watch"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
@@ -25,6 +26,7 @@
     "@glimmer/component": "^1.0.2",
     "@glimmer/tracking": "^1.0.2",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.1",
     "broccoli-asset-rev": "^3.0.0",
     "clean-css": "^4.2.3",
     "date-fns": "^2.16.1",
@@ -59,9 +61,11 @@
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-ember": "^9.3.0",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "husky": "^4.3.0",
+    "jest": "^26.6.1",
     "lint-staged": "^10.4.2",
     "loader.js": "^4.7.0",
     "lodash-es": "^4.17.15",
