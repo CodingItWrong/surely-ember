@@ -19,9 +19,15 @@ describe('Todos', () => {
       };
       cache = {
         storeAll: jest.fn(),
+        clear: jest.fn(),
       };
       todos = new Todos({ api, cache });
       resolvedValue = await todos.loadAvailable();
+    });
+
+    it('clears the records from the cache', () => {
+      expect(cache.clear).toHaveBeenCalledWith();
+      expect(cache.clear).toHaveBeenCalledBefore(cache.storeAll);
     });
 
     it('stores todos from the API in the cache', () => {
