@@ -18,7 +18,7 @@
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
-    "test:unit": "jest app/lib --watch"
+    "test:unit": "jest app/lib --watchAll"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
