@@ -29,12 +29,10 @@ export default class Todos {
     const todos = this.all;
     const availableTodos = todos.filter(todo => todo.isAvailable);
     const groupsObject = groupBy(availableTodos, todo => todo.category?.name);
-    const groups = Object.entries(groupsObject).map(([, todos]) => {
-      return {
-        name: todos[0].category?.name ?? 'No Category',
-        todos,
-      };
-    });
+    const groups = Object.entries(groupsObject).map(([, todos]) => ({
+      name: todos[0].category?.name ?? 'No Category',
+      todos,
+    }));
     return groups;
   }
 }
