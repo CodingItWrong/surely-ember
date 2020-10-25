@@ -2,7 +2,8 @@ import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { filter, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { groupTodosByCategorySorted, scrollToTop } from 'surely/utils';
+import Todos from 'surely/lib/todos';
+import { scrollToTop } from 'surely/utils';
 
 export default class TodosAvailableDataController extends Controller {
   @service router;
@@ -17,8 +18,9 @@ export default class TodosAvailableDataController extends Controller {
   @sort('filteredTodos', 'sortPropertiesAlphabetical')
   sortedTodos;
 
-  @computed('sortedTodos.@each.{name,category}', function () {
-    return groupTodosByCategorySorted(this.sortedTodos);
+  @computed('model.@each.{id,isAvailable,name,category}', 'store', function () {
+    const todos = Todos.forStore(this.store);
+    return todos.availableGroups;
   })
   todoGroups;
 
