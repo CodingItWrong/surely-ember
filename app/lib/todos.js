@@ -32,7 +32,7 @@ export default class Todos {
     const groupsObject = groupBy(availableTodos, todo => todo.category?.name);
     const groups = Object.entries(groupsObject).map(([, todos]) => ({
       name: todos[0].category?.name ?? 'No Category',
-      todos,
+      todos: sortBy(todos, 'name'),
     }));
     const sortedGroups = sortBy(
       groups,
