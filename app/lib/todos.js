@@ -8,4 +8,8 @@ export default class Todos {
     const records = await this.api.getAvailable();
     this.cache.storeAll(records);
   }
+
+  get all() {
+    return this.cache.all;
+  }
 }
