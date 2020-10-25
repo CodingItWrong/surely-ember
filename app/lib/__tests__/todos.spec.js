@@ -68,5 +68,21 @@ describe('Todos', () => {
         expect(groups).toEqual([]);
       });
     });
+
+    describe('when there is one todo not in a category', () => {
+      it('puts the todo into a "No Category" group', () => {
+        const records = [{ id: 1, category: null }];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([
+          {
+            name: 'No Category',
+            todos: records,
+          },
+        ]);
+      });
+    });
   });
 });
