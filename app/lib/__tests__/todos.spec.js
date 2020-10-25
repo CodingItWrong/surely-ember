@@ -1,3 +1,4 @@
+import addDays from 'date-fns/addDays';
 import Todos from '../todos';
 
 describe('Todos', () => {
@@ -51,7 +52,69 @@ describe('Todos', () => {
     });
   });
 
+  describe('get available', () => {
+    it('includes an available todo', () => {
+      const records = [{ id: 1 }];
+      cache = {
+        get all() {
+          return records;
+        },
+      };
+      todos = new Todos({ cache });
+      expect(todos.available).toEqual(records);
+    });
+
+    it('includes a todo deferred until the past', () => {
+      const now = new Date();
+      const past = addDays(now, -1);
+      const records = [{ id: 1, deferredUntil: past }];
+      cache = {
+        get all() {
+          return records;
+        },
+      };
+      todos = new Todos({ cache });
+      expect(todos.available).toEqual(records);
+    });
+
+    it('does not include a deleted todo', () => {
+      const records = [{ id: 1, deletedAt: new Date() }];
+      cache = {
+        get all() {
+          return records;
+        },
+      };
+      todos = new Todos({ cache });
+      expect(todos.available).toEqual([]);
+    });
+
+    it('does not include a completed todo', () => {
+      const records = [{ id: 1, completedAt: new Date() }];
+      cache = {
+        get all() {
+          return records;
+        },
+      };
+      todos = new Todos({ cache });
+      expect(todos.available).toEqual([]);
+    });
+
+    it('does not include a deferred todo', () => {
+      const now = new Date();
+      const future = addDays(now, 1);
+      const records = [{ id: 1, deferredUntil: future }];
+      cache = {
+        get all() {
+          return records;
+        },
+      };
+      todos = new Todos({ cache });
+      expect(todos.available).toEqual([]);
+    });
+  });
+
   describe('get availableGroups', () => {
+    const past = addDays(new Date(), -1);
     const cacheForRecords = records => ({
       get all() {
         return records;
@@ -60,8 +123,8 @@ describe('Todos', () => {
 
     describe('when there is an available todo and a non-available todo', () => {
       it('only returns the available todo', () => {
-        const availableTodo = { id: 1, isAvailable: true };
-        const nonAvailableTodo = { id: 2, isAvailable: false };
+        const availableTodo = { id: 1 };
+        const nonAvailableTodo = { id: 2, completedAt: past };
         const records = [availableTodo, nonAvailableTodo];
 
         const todos = new Todos({ cache: cacheForRecords(records) });
@@ -87,17 +150,14 @@ describe('Todos', () => {
 
         const category1Record = {
           id: 1,
-          isAvailable: true,
           category: category1,
         };
         const category2Record = {
           id: 2,
-          isAvailable: true,
           category: category2,
         };
         const noCategoryRecord = {
           id: 3,
-          isAvailable: true,
           category: null,
         };
 
