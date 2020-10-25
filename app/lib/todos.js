@@ -1,4 +1,14 @@
+import EmberDataTodoAPI from './api/emberData/todo';
+import EmberDataTodoCache from './cache/emberData/todo';
+
 export default class Todos {
+  static forStore(store) {
+    return new Todos({
+      api: new EmberDataTodoAPI(store),
+      cache: new EmberDataTodoCache(store),
+    });
+  }
+
   constructor({ api, cache }) {
     this.api = api;
     this.cache = cache;
