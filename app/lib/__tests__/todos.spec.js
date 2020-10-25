@@ -50,4 +50,23 @@ describe('Todos', () => {
       expect(todos.all).toEqual(records);
     });
   });
+
+  describe('get availableGroups', () => {
+    const cacheForRecords = records => ({
+      get all() {
+        return records;
+      },
+    });
+
+    describe('when there are no available todos', () => {
+      it('returns an empty array', () => {
+        const records = [];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([]);
+      });
+    });
+  });
 });

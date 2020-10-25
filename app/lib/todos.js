@@ -23,4 +23,8 @@ export default class Todos {
   get all() {
     return this.cache.all;
   }
+
+  get availableGroups() {
+    return [];
+  }
 }
