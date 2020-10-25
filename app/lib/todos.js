@@ -5,6 +5,7 @@ export default class Todos {
   }
 
   async loadAvailable() {
+    this.cache.clear();
     const records = await this.api.getAvailable();
     this.cache.storeAll(records);
   }
