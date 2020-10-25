@@ -153,6 +153,25 @@ describe('Todos', () => {
           },
         ]);
       });
+
+      it('sorts the todos within the category', () => {
+        const record1 = {
+          id: 1,
+          name: 'ZZZ',
+          isAvailable: true,
+        };
+        const record2 = {
+          id: 2,
+          name: 'AAA',
+          isAvailable: true,
+        };
+        const records = [record1, record2];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups[0].todos).toEqual([record2, record1]);
+      });
     });
 
     describe('when there are todos in different categories', () => {
