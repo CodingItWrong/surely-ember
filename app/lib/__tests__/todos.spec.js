@@ -106,5 +106,31 @@ describe('Todos', () => {
         ]);
       });
     });
+
+    describe('when there are two todos in a category', () => {
+      it('puts both todos in the group for that category', () => {
+        const categoryName = 'My Category';
+        const records = [
+          {
+            id: 1,
+            category: { name: categoryName },
+          },
+          {
+            id: 2,
+            category: { name: categoryName },
+          },
+        ];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([
+          {
+            name: categoryName,
+            todos: records,
+          },
+        ]);
+      });
+    });
   });
 });
