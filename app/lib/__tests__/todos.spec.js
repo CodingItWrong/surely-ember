@@ -132,5 +132,45 @@ describe('Todos', () => {
         ]);
       });
     });
+
+    describe('when there are todos in different categories', () => {
+      it('puts both the todos in separate groups for each category', () => {
+        const category1Name = 'Category 1';
+        const category2Name = 'Category 2';
+
+        const category1Record = {
+          id: 1,
+          category: { name: category1Name },
+        };
+        const category2Record = {
+          id: 2,
+          category: { name: category2Name },
+        };
+        const noCategoryRecord = {
+          id: 2,
+          category: null,
+        };
+
+        const records = [category1Record, category2Record, noCategoryRecord];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([
+          {
+            name: category1Name,
+            todos: [category1Record],
+          },
+          {
+            name: category2Name,
+            todos: [category2Record],
+          },
+          {
+            name: 'No Category',
+            todos: [noCategoryRecord],
+          },
+        ]);
+      });
+    });
   });
 });

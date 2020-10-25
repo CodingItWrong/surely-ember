@@ -1,3 +1,4 @@
+import groupBy from 'lodash/groupBy';
 import EmberDataTodoAPI from './api/emberData/todo';
 import EmberDataTodoCache from './cache/emberData/todo';
 
@@ -26,15 +27,13 @@ export default class Todos {
 
   get availableGroups() {
     const todos = this.all;
-    if (todos.length > 0) {
-      return [
-        {
-          name: todos[0].category?.name ?? 'No Category',
-          todos,
-        },
-      ];
-    } else {
-      return [];
-    }
+    const groupsObject = groupBy(todos, todo => todo.category?.name);
+    const groups = Object.entries(groupsObject).map(([, todos]) => {
+      return {
+        name: todos[0].category?.name ?? 'No Category',
+        todos,
+      };
+    });
+    return groups;
   }
 }
