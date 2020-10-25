@@ -1,7 +1,6 @@
-import groupBy from 'lodash/groupBy';
-import sortBy from 'lodash/sortBy';
 import EmberDataTodoAPI from './api/emberData/todo';
 import EmberDataTodoCache from './cache/emberData/todo';
+import { groupTodosByCategorySorted } from './utils';
 
 export default class Todos {
   static forStore(store) {
@@ -29,15 +28,6 @@ export default class Todos {
   get availableGroups() {
     const todos = this.all;
     const availableTodos = todos.filter(todo => todo.isAvailable);
-    const groupsObject = groupBy(availableTodos, todo => todo.category?.name);
-    const groups = Object.entries(groupsObject).map(([, todos]) => ({
-      name: todos[0].category?.name ?? 'No Category',
-      todos: sortBy(todos, 'name'),
-    }));
-    const sortedGroups = sortBy(
-      groups,
-      group => group.todos[0].category?.sortOrder ?? -9999,
-    );
-    return sortedGroups;
+    return groupTodosByCategorySorted(availableTodos);
   }
 }
