@@ -1,4 +1,5 @@
 import groupBy from 'lodash/groupBy';
+import sortBy from 'lodash/sortBy';
 import EmberDataTodoAPI from './api/emberData/todo';
 import EmberDataTodoCache from './cache/emberData/todo';
 
@@ -33,6 +34,10 @@ export default class Todos {
       name: todos[0].category?.name ?? 'No Category',
       todos,
     }));
-    return groups;
+    const sortedGroups = sortBy(
+      groups,
+      group => group.todos[0].category?.sortOrder ?? -9999,
+    );
+    return sortedGroups;
   }
 }

@@ -197,5 +197,57 @@ describe('Todos', () => {
         ]);
       });
     });
+
+    describe('when the categories are sorted out of order', () => {
+      it('puts both the todos in separate groups for each category', () => {
+        const category1Name = 'Category 1';
+        const category2Name = 'Category 2';
+
+        const category1 = {
+          name: category1Name,
+          sortOrder: 2,
+        };
+        const category2 = {
+          name: category2Name,
+          sortOrder: 1,
+        };
+
+        const category1Record = {
+          id: 1,
+          isAvailable: true,
+          category: category1,
+        };
+        const category2Record = {
+          id: 2,
+          isAvailable: true,
+          category: category2,
+        };
+        const noCategoryRecord = {
+          id: 3,
+          isAvailable: true,
+          category: null,
+        };
+
+        const records = [category2Record, category1Record, noCategoryRecord];
+
+        const todos = new Todos({ cache: cacheForRecords(records) });
+        const groups = todos.availableGroups;
+
+        expect(groups).toEqual([
+          {
+            name: 'No Category',
+            todos: [noCategoryRecord],
+          },
+          {
+            name: category2Name,
+            todos: [category2Record],
+          },
+          {
+            name: category1Name,
+            todos: [category1Record],
+          },
+        ]);
+      });
+    });
   });
 });
