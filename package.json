@@ -91,6 +91,11 @@
     "*.hbs": "ember-template-lint"
   },
   "jest": {
-    "setupFilesAfterEnv": ["jest-extended"]
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
   }
 }
