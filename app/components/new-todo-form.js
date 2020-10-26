@@ -7,7 +7,7 @@ import { logRuntimeError } from 'surely/utils';
 const ENTER_KEY_CODE = 13;
 
 export default class NewTodoFormComponent extends Component {
-  @service store;
+  @service todos;
 
   @tracked newTodoName;
   @tracked error = null;
@@ -23,13 +23,17 @@ export default class NewTodoFormComponent extends Component {
 
     const { handleCreate, deferredUntil } = this.args;
     try {
-      const todo = this.store.createRecord('todo', {
+      const response = await this.todos.create({
         name: this.newTodoName,
         deferredUntil,
       });
-      await todo.save();
-      handleCreate();
-      this.newTodoName = '';
+
+      if (response.success) {
+        handleCreate();
+        this.newTodoName = '';
+      } else {
+        this.error = response.errors.name;
+      }
     } catch (e) {
       logRuntimeError(e);
       this.error = 'An error occurred adding the todo.';
