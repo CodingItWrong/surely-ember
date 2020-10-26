@@ -11,8 +11,8 @@ export default class TodosService extends Service {
     return this._todos;
   }
 
-  async loadAvailable() {
-    this.todos.loadAvailable();
+  loadAvailable() {
+    return this.todos.loadAvailable();
   }
 
   get all() {
