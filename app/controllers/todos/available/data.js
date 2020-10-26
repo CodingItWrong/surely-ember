@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import Todos from 'surely/lib/todos';
+import { Todos, availableTodoGroups } from 'surely/lib/todos';
 import { scrollToTop } from 'surely/utils';
 
 export default class TodosAvailableDataController extends Controller {
@@ -9,7 +9,7 @@ export default class TodosAvailableDataController extends Controller {
 
   @computed('model.@each.{id,isAvailable,name,category}', 'store', function () {
     const todos = Todos.forStore(this.store);
-    return todos.availableGroups;
+    return availableTodoGroups(todos.all);
   })
   todoGroups;
 
