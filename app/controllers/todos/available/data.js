@@ -1,15 +1,14 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { Todos, availableTodoGroups } from 'surely/lib/todos';
+import { availableTodoGroups } from 'surely/lib/todos';
 import { scrollToTop } from 'surely/utils';
 
 export default class TodosAvailableDataController extends Controller {
   @service router;
 
   @computed('model.@each.{id,isAvailable,name,category}', 'store', function () {
-    const todos = Todos.forStore(this.store);
-    return availableTodoGroups(todos.all);
+    return availableTodoGroups(this.model);
   })
   todoGroups;
 
