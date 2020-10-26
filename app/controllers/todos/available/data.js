@@ -7,9 +7,13 @@ import { scrollToTop } from 'surely/utils';
 export default class TodosAvailableDataController extends Controller {
   @service router;
 
-  @computed('model.@each.{id,isAvailable,name,category}', 'store', function () {
-    return availableTodoGroups(this.model);
-  })
+  @computed(
+    'model.@each.{id,name,category,deletedAt,completedAt,deferredUntil}',
+    'store',
+    function () {
+      return availableTodoGroups(this.model);
+    },
+  )
   todoGroups;
 
   @action
