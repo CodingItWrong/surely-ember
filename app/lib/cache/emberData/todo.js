@@ -3,6 +3,10 @@ export default class EmberDataTodoCache {
     this.store = store;
   }
 
+  store(/* record */) {
+    // NO-OP
+  }
+
   storeAll(/* records */) {
     // NO-OP
   }
