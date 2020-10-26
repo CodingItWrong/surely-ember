@@ -1,8 +1,9 @@
 import addDays from 'date-fns/addDays';
-import Todos from '../todos';
+import { Todos, availableTodoGroups } from '../todos';
 
 describe('Todos', () => {
   const records = [{ id: 1 }, { id: 2 }];
+  const past = addDays(new Date(), -1);
 
   let todos;
   let api;
@@ -52,73 +53,98 @@ describe('Todos', () => {
     });
   });
 
-  describe('get available', () => {
-    it('includes an available todo', () => {
-      const records = [{ id: 1 }];
-      cache = {
-        get all() {
-          return records;
-        },
-      };
-      todos = new Todos({ cache });
-      expect(todos.available).toEqual(records);
+  describe('availableTodoGroups', () => {
+    describe('when there are no available todos', () => {
+      it('returns an empty array', () => {
+        const records = [];
+
+        const groups = availableTodoGroups(records);
+
+        expect(groups).toEqual([]);
+      });
     });
 
-    it('includes a todo deferred until the past', () => {
-      const now = new Date();
-      const past = addDays(now, -1);
-      const records = [{ id: 1, deferredUntil: past }];
-      cache = {
-        get all() {
-          return records;
-        },
-      };
-      todos = new Todos({ cache });
-      expect(todos.available).toEqual(records);
+    describe('when there is one todo not in a category', () => {
+      it('puts the todo into a "No Category" group', () => {
+        const records = [
+          {
+            id: 1,
+            isAvailable: true,
+            category: null,
+          },
+        ];
+
+        const groups = availableTodoGroups(records);
+
+        expect(groups).toEqual([
+          {
+            name: 'No Category',
+            todos: records,
+          },
+        ]);
+      });
     });
 
-    it('does not include a deleted todo', () => {
-      const records = [{ id: 1, deletedAt: new Date() }];
-      cache = {
-        get all() {
-          return records;
-        },
-      };
-      todos = new Todos({ cache });
-      expect(todos.available).toEqual([]);
+    describe('when there is one todo in a category', () => {
+      it('puts the todo into a group for that category', () => {
+        const categoryName = 'My Category';
+        const records = [
+          {
+            id: 1,
+            category: { name: categoryName },
+          },
+        ];
+
+        const groups = availableTodoGroups(records);
+
+        expect(groups).toEqual([
+          {
+            name: categoryName,
+            todos: records,
+          },
+        ]);
+      });
     });
 
-    it('does not include a completed todo', () => {
-      const records = [{ id: 1, completedAt: new Date() }];
-      cache = {
-        get all() {
-          return records;
-        },
-      };
-      todos = new Todos({ cache });
-      expect(todos.available).toEqual([]);
-    });
+    describe('when there are two todos in a category', () => {
+      it('puts both todos in the group for that category', () => {
+        const categoryName = 'My Category';
+        const records = [
+          {
+            id: 1,
+            category: { name: categoryName },
+          },
+          {
+            id: 2,
+            category: { name: categoryName },
+          },
+        ];
 
-    it('does not include a deferred todo', () => {
-      const now = new Date();
-      const future = addDays(now, 1);
-      const records = [{ id: 1, deferredUntil: future }];
-      cache = {
-        get all() {
-          return records;
-        },
-      };
-      todos = new Todos({ cache });
-      expect(todos.available).toEqual([]);
-    });
-  });
+        const groups = availableTodoGroups(records);
 
-  describe('get availableGroups', () => {
-    const past = addDays(new Date(), -1);
-    const cacheForRecords = records => ({
-      get all() {
-        return records;
-      },
+        expect(groups).toEqual([
+          {
+            name: categoryName,
+            todos: records,
+          },
+        ]);
+      });
+
+      it('sorts the todos within the category', () => {
+        const record1 = {
+          id: 1,
+          name: 'ZZZ',
+        };
+        const record2 = {
+          id: 2,
+          name: 'AAA',
+        };
+        const records = [record1, record2];
+
+        const groups = availableTodoGroups(records);
+
+        expect(groups[0].todos).toEqual([record2, record1]);
+      });
     });
 
     describe('when there is an available todo and a non-available todo', () => {
@@ -127,14 +153,52 @@ describe('Todos', () => {
         const nonAvailableTodo = { id: 2, completedAt: past };
         const records = [availableTodo, nonAvailableTodo];
 
-        const todos = new Todos({ cache: cacheForRecords(records) });
-        const groups = todos.availableGroups;
+        const groups = availableTodoGroups(records);
 
         expect(groups[0].todos).toEqual([availableTodo]);
       });
     });
 
     describe('when there are todos in different categories', () => {
+      it('puts both the todos in separate groups for each category', () => {
+        const category1Name = 'Category 1';
+        const category2Name = 'Category 2';
+
+        const category1Record = {
+          id: 1,
+          category: { name: category1Name },
+        };
+        const category2Record = {
+          id: 2,
+          category: { name: category2Name },
+        };
+        const noCategoryRecord = {
+          id: 2,
+          category: null,
+        };
+
+        const records = [category1Record, category2Record, noCategoryRecord];
+
+        const groups = availableTodoGroups(records);
+
+        expect(groups).toEqual([
+          {
+            name: category1Name,
+            todos: [category1Record],
+          },
+          {
+            name: category2Name,
+            todos: [category2Record],
+          },
+          {
+            name: 'No Category',
+            todos: [noCategoryRecord],
+          },
+        ]);
+      });
+    });
+
+    describe('when the categories are sorted out of order', () => {
       it('puts both the todos in separate groups for each category', () => {
         const category1Name = 'Category 1';
         const category2Name = 'Category 2';
@@ -163,8 +227,7 @@ describe('Todos', () => {
 
         const records = [category2Record, category1Record, noCategoryRecord];
 
-        const todos = new Todos({ cache: cacheForRecords(records) });
-        const groups = todos.availableGroups;
+        const groups = availableTodoGroups(records);
 
         expect(groups).toEqual([
           {

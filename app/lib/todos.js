@@ -1,6 +1,7 @@
+import groupBy from 'lodash/groupBy';
+import sortBy from 'lodash/sortBy';
 import EmberDataTodoAPI from './api/emberData/todo';
 import EmberDataTodoCache from './cache/emberData/todo';
-import { groupTodosByCategorySorted } from './utils';
 
 function status(todo) {
   if (todo.deletedAt) {
@@ -14,7 +15,7 @@ function status(todo) {
   }
 }
 
-export default class Todos {
+export class Todos {
   static STATUS = {
     AVAILABLE: 'available',
     COMPLETED: 'completed',
@@ -43,12 +44,22 @@ export default class Todos {
   get all() {
     return this.cache.all;
   }
-
-  get available() {
-    return this.all.filter(todo => status(todo) === Todos.STATUS.AVAILABLE);
-  }
-
-  get availableGroups() {
-    return groupTodosByCategorySorted(this.available);
-  }
 }
+
+export function availableTodoGroups(todos) {
+  const availableTodos = todos.filter(
+    todo => status(todo) === Todos.STATUS.AVAILABLE,
+  );
+  const groupsObject = groupBy(availableTodos, todo => todo.category?.name);
+  const groups = Object.entries(groupsObject).map(([, todos]) => ({
+    name: todos[0].category?.name ?? 'No Category',
+    todos: sortBy(todos, 'name'),
+  }));
+  const sortedGroups = sortBy(
+    groups,
+    group => group.todos[0].category?.sortOrder ?? -9999,
+  );
+  return sortedGroups;
+}
+
+export default Todos;
