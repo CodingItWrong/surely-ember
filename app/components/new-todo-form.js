@@ -1,4 +1,5 @@
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { logRuntimeError } from 'surely/utils';
@@ -6,6 +7,8 @@ import { logRuntimeError } from 'surely/utils';
 const ENTER_KEY_CODE = 13;
 
 export default class NewTodoFormComponent extends Component {
+  @service store;
+
   @tracked newTodoName;
   @tracked error = null;
 
@@ -18,9 +21,14 @@ export default class NewTodoFormComponent extends Component {
       return;
     }
 
-    const { handleCreate } = this.args;
+    const { handleCreate, deferredUntil } = this.args;
     try {
-      await handleCreate(this.newTodoName);
+      const todo = this.store.createRecord('todo', {
+        name: this.newTodoName,
+        deferredUntil,
+      });
+      await todo.save();
+      handleCreate();
       this.newTodoName = '';
     } catch (e) {
       logRuntimeError(e);

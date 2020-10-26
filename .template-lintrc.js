@@ -8,5 +8,8 @@ module.exports = {
     'no-curly-component-invocation': {
       allow: ['day-of-week-days-from'], // helper
     },
+    'no-implicit-this': {
+      allow: ['tomorrow'], // helper
+    },
   },
 };

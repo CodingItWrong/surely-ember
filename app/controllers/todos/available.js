@@ -6,11 +6,7 @@ export default class TodosAvailableController extends Controller {
   @service router;
 
   @action
-  async handleCreate(todoName) {
-    const todo = this.store.createRecord('todo', {
-      name: todoName,
-    });
-    await todo.save();
+  handleCreate() {
     this.router.transitionTo('todos.available.data');
   }
 }
