@@ -11,4 +11,10 @@ export default class EmberDataTodoApi {
       include: 'category',
     });
   }
+
+  async create(attrs) {
+    const record = this.store.createRecord(MODEL_NAME, attrs);
+    await record.save();
+    return record;
+  }
 }
