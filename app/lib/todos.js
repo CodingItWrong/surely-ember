@@ -29,12 +29,23 @@ export class Todos {
     this.cache.storeAll(records);
   }
 
-  async create() {
+  async create(attrs) {
+    if (!attrs.name) {
+      return {
+        success: false,
+        errors: {
+          name: 'Please enter a todo.',
+        },
+      };
+    }
+
+    const record = await this.api.create(attrs);
+    this.cache.store(record);
+
     return {
-      success: false,
-      errors: {
-        name: 'Please enter a todo.',
-      },
+      success: true,
+      errors: {},
+      record,
     };
   }
 

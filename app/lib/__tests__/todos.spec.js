@@ -53,7 +53,7 @@ describe('Todos', () => {
     });
   });
 
-  describe.only('create', () => {
+  describe('create', () => {
     let resolvedValue;
 
     describe('when invalid', () => {
@@ -71,6 +71,44 @@ describe('Todos', () => {
         expect(resolvedValue.errors).toEqual({
           name: 'Please enter a todo.',
         });
+      });
+    });
+
+    describe('when valid', () => {
+      const todoName = 'Todo Name';
+      const attrs = { name: todoName };
+      const record = { id: 1 };
+
+      beforeEach(async () => {
+        api = {
+          create: jest.fn().mockName('api.create').mockResolvedValue(record),
+        };
+        cache = {
+          store: jest.fn().mockName('cache.store'),
+        };
+        todos = new Todos({ api, cache });
+
+        resolvedValue = await todos.create(attrs);
+      });
+
+      it('calls the API to create the record', () => {
+        expect(api.create).toHaveBeenCalledWith(attrs);
+      });
+
+      it('stores the returned record in the cache', () => {
+        expect(cache.store).toHaveBeenCalledWith(record);
+      });
+
+      it('indicates success', () => {
+        expect(resolvedValue.success).toBe(true);
+      });
+
+      it('does not return any validation errors', () => {
+        expect(resolvedValue.errors).toEqual({});
+      });
+
+      it('returns the record', () => {
+        expect(resolvedValue.record).toEqual(record);
       });
     });
   });
