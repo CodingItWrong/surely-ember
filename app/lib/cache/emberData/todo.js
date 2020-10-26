@@ -1,6 +1,6 @@
 export default class EmberDataTodoCache {
   constructor(store) {
-    this.store = store;
+    this._store = store;
   }
 
   store(/* record */) {
@@ -12,10 +12,10 @@ export default class EmberDataTodoCache {
   }
 
   clear() {
-    this.store.unloadAll();
+    this._store.unloadAll();
   }
 
   get all() {
-    return this.store.peekAll('todo');
+    return this._store.peekAll('todo');
   }
 }
