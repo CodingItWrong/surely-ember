@@ -15,6 +15,10 @@ export default class TodosService extends Service {
     return this.todos.loadAvailable();
   }
 
+  create(attrs) {
+    return this.todos.create(attrs);
+  }
+
   get all() {
     return this.todos.all;
   }
