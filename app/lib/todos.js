@@ -29,6 +29,15 @@ export class Todos {
     this.cache.storeAll(records);
   }
 
+  async create() {
+    return {
+      success: false,
+      errors: {
+        name: 'Please enter a todo.',
+      },
+    };
+  }
+
   get all() {
     return this.cache.all;
   }

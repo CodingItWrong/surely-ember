@@ -53,6 +53,28 @@ describe('Todos', () => {
     });
   });
 
+  describe.only('create', () => {
+    let resolvedValue;
+
+    describe('when invalid', () => {
+      beforeEach(async () => {
+        const attrs = { name: '' };
+        todos = new Todos({});
+        resolvedValue = await todos.create(attrs);
+      });
+
+      it('indicates failure', () => {
+        expect(resolvedValue.success).toBe(false);
+      });
+
+      it('provides the validation error', () => {
+        expect(resolvedValue.errors).toEqual({
+          name: 'Please enter a todo.',
+        });
+      });
+    });
+  });
+
   describe('availableTodoGroups', () => {
     describe('when there are no available todos', () => {
       it('returns an empty array', () => {
