@@ -3,18 +3,6 @@ import sortBy from 'lodash/sortBy';
 import EmberDataTodoAPI from './api/emberData/todo';
 import EmberDataTodoCache from './cache/emberData/todo';
 
-function status(todo) {
-  if (todo.deletedAt) {
-    return Todos.STATUS.DELETED;
-  } else if (todo.completedAt) {
-    return Todos.STATUS.COMPLETED;
-  } else if (todo.deferredUntil > new Date()) {
-    return Todos.STATUS.FUTURE;
-  } else {
-    return Todos.STATUS.AVAILABLE;
-  }
-}
-
 export class Todos {
   static STATUS = {
     AVAILABLE: 'available',
@@ -43,6 +31,18 @@ export class Todos {
 
   get all() {
     return this.cache.all;
+  }
+}
+
+function status(todo) {
+  if (todo.deletedAt) {
+    return Todos.STATUS.DELETED;
+  } else if (todo.completedAt) {
+    return Todos.STATUS.COMPLETED;
+  } else if (todo.deferredUntil > new Date()) {
+    return Todos.STATUS.FUTURE;
+  } else {
+    return Todos.STATUS.AVAILABLE;
   }
 }
 
