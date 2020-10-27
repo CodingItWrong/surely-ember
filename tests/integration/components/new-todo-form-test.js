@@ -7,23 +7,46 @@ import sinon from 'sinon';
 describe('Integration | Component | new-todo-form', function (hooks) {
   setupRenderingTest(hooks);
 
+  const todoName = 'Todo Name';
+  const deferredUntil = new Date();
+
+  let todos;
+  let handleCreate;
+
   describe('success', function (hooks) {
-    const todoName = 'Todo Name';
-
-    let handleCreate;
-
     hooks.beforeEach(async function () {
-      handleCreate = sinon.stub().resolves();
+      handleCreate = sinon.spy();
+      todos = {
+        create: sinon.stub().resolves({
+          success: true,
+        }),
+      };
 
+      this.owner.register('service:todos', todos, { instantiate: false });
       this.set('handleCreate', handleCreate);
-      await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
+      this.set('deferredUntil', deferredUntil);
+      await render(hbs`
+        <NewTodoForm
+          @deferredUntil={{deferredUntil}}
+          @handleCreate={{handleCreate}}
+        />
+      `);
 
       await fillIn('[data-test-new-todo-field] textarea', todoName);
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
 
-    it('passes the todo name to handleCreate', function (assert) {
-      assert.ok(handleCreate.calledWith(todoName));
+    it('calls todos.create with the inputted todo and deferredUntil argument', function (assert) {
+      assert.ok(
+        todos.create.calledWith({
+          name: todoName,
+          deferredUntil,
+        }),
+      );
+    });
+
+    it('calls handleCreate with no argument', function (assert) {
+      assert.ok(handleCreate.calledWith());
     });
 
     it('clears the text field', function (assert) {
@@ -35,34 +58,21 @@ describe('Integration | Component | new-todo-form', function (hooks) {
     });
   });
 
-  describe('when submitting with no todo name', function (hooks) {
-    let handleCreate;
+  describe('when there is an error saving', function (hooks) {
+    const errorMessage = 'This is the error';
 
     hooks.beforeEach(async function () {
       handleCreate = sinon.spy();
+      todos = {
+        create: sinon.stub().resolves({
+          success: false,
+          errors: {
+            name: errorMessage,
+          },
+        }),
+      };
 
-      this.set('handleCreate', handleCreate);
-      await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
-
-      await triggerEvent('[data-test-new-todo-form]', 'submit');
-    });
-
-    it('displays a validation error', async function (assert) {
-      assert.dom('[data-test-error]').hasText('Please enter a todo.');
-    });
-
-    it('does not call handleCreate', async function (assert) {
-      assert.ok(handleCreate.notCalled, 'handleCreate not called');
-    });
-  });
-
-  describe('when there is an error saving', function (hooks) {
-    const todoName = 'Todo Name';
-    let handleCreate;
-
-    hooks.beforeEach(async function () {
-      handleCreate = sinon.stub().rejects();
-
+      this.owner.register('service:todos', todos, { instantiate: false });
       this.set('handleCreate', handleCreate);
       await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
@@ -71,29 +81,37 @@ describe('Integration | Component | new-todo-form', function (hooks) {
     });
 
     it('displays the error message', async function (assert) {
-      assert
-        .dom('[data-test-error]')
-        .hasText('An error occurred adding the todo.');
+      assert.dom('[data-test-error]').hasText(errorMessage);
     });
 
     it('does not clear the text field', function (assert) {
       assert.dom('[data-test-new-todo-field] textarea').hasValue(todoName);
     });
+
+    it('does not call handleCreate', async function (assert) {
+      assert.ok(handleCreate.notCalled, 'handleCreate not called');
+    });
   });
 
   describe('submitting after an error', function (hooks) {
-    const todoName = 'Todo Name';
-
-    let handleCreate;
-
     hooks.beforeEach(async function () {
-      handleCreate = sinon.stub().resolves();
+      handleCreate = sinon.spy();
+      todos = {
+        create: sinon
+          .stub()
+          .onFirstCall()
+          .resolves({
+            success: false,
+          })
+          .onSecondCall()
+          .resolves({ success: true }),
+      };
 
+      this.owner.register('service:todos', todos, { instantiate: false });
       this.set('handleCreate', handleCreate);
       await render(hbs`<NewTodoForm @handleCreate={{handleCreate}} />`);
 
       await triggerEvent('[data-test-new-todo-form]', 'submit');
-      await fillIn('[data-test-new-todo-field] textarea', todoName);
       await triggerEvent('[data-test-new-todo-form]', 'submit');
     });
 
