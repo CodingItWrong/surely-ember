@@ -29,5 +29,8 @@ jobs:
       - name: Lint Templates
         run: yarn lint:hbs
 
-      - name: Run Tests
+      - name: Run Tests on Non-Ember JS Code
+        run: yarn test:unit --watchAll=false
+
+      - name: Run Ember Tests
         run: yarn test:ember
