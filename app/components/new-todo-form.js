@@ -16,11 +16,6 @@ export default class NewTodoFormComponent extends Component {
   async createTodo() {
     this.error = null;
 
-    if (!this.newTodoName) {
-      this.error = 'Please enter a todo.';
-      return;
-    }
-
     const { handleCreate, deferredUntil } = this.args;
     try {
       const response = await this.todos.create({
