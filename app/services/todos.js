@@ -3,7 +3,7 @@ import Service, { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import Todos from 'surely/lib/todos';
 
-const EMBER_DATA_LIVE_RECORDS = false;
+const EMBER_DATA_LIVE_RECORDS = true;
 
 export default class TodosService extends Service {
   @service store;
