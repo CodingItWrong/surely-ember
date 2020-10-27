@@ -1,3 +1,5 @@
+const EMBER_DATA_LIVE_RECORDS = false;
+
 export default class EmberDataTodoCache {
   constructor(store) {
     this._store = store;
@@ -16,6 +18,12 @@ export default class EmberDataTodoCache {
   }
 
   get all() {
-    return this._store.peekAll('todo');
+    const liveRecords = this._store.peekAll('todo');
+
+    if (EMBER_DATA_LIVE_RECORDS) {
+      return liveRecords;
+    } else {
+      return liveRecords.toArray();
+    }
   }
 }
