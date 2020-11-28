@@ -12,6 +12,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
+import { NEW_TODO_FIELD } from '../constants';
 
 describe('Acceptance | managing todos', function (hooks) {
   setupApplicationTest(hooks);
@@ -25,7 +26,7 @@ describe('Acceptance | managing todos', function (hooks) {
 
     // add todo
     const todoName = 'New Todo';
-    await fillIn('[data-test-new-todo-field] textarea', todoName);
+    await fillIn(NEW_TODO_FIELD, todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo-name]').hasText(todoName);
 

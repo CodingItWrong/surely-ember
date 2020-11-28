@@ -10,6 +10,7 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
+import { NEW_TODO_FIELD } from '../constants';
 
 describe('Acceptance | adding tomorrow todos', function (hooks) {
   setupApplicationTest(hooks);
@@ -21,7 +22,7 @@ describe('Acceptance | adding tomorrow todos', function (hooks) {
     await visit('/');
     await click('[data-test-tomorrow] button');
     const todoName = 'New Todo';
-    await fillIn('[data-test-new-todo-field] textarea', todoName);
+    await fillIn(NEW_TODO_FIELD, todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     await click('[data-test-todo] button');
