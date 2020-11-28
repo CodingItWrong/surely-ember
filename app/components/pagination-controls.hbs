@@ -1,19 +1,44 @@
 {{#if this.anyPages}}
-  <div>
-    <PaperButton
-      @disabled={{this.isFirstPage}}
-      @onClick={{@prevPage}}
-      data-test-previous-button
-    >
-      Previous
-    </PaperButton>
-    Page {{@pageNumber}} of {{@totalPages}}
-    <PaperButton
-      @disabled={{this.isLastPage}}
-      @onClick={{@nextPage}}
-      data-test-next-button
-    >
-      Next
-    </PaperButton>
-  </div>
+  <nav>
+    <ul class="pagination">
+      <li
+        class="page-item {{if this.isFirstPage "disabled"}}"
+      >
+        <a
+          {{on "click" this.goToPrevPage}}
+          class="page-link"
+          href="#"
+          tabindex={{if this.isFirstPage "-1" false}}
+          aria-disabled={{this.isFirstPage}}
+          data-test-previous-button
+        >
+          Previous
+        </a>
+      </li>
+      <li class="page-item disabled">
+        <a
+          class="page-link"
+          href="#"
+          tabindex="-1"
+          aria-disabled="true"
+        >
+          Page {{@pageNumber}} of {{@totalPages}}
+        </a>
+      </li>
+      <li
+        class="page-item {{if this.isLastPage "disabled"}}"
+      >
+        <a
+          {{on "click" this.goToNextPage}}
+          class="page-link"
+          href="#"
+          tabindex={{if this.isLastPage "-1" false}}
+          aria-disabled={{this.isLastPage}}
+          data-test-next-button
+        >
+          Next
+        </a>
+      </li>
+    </ul>
+  </nav>
 {{/if}}
