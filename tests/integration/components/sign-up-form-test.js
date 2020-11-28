@@ -32,7 +32,9 @@ describe('Integration | Component | sign-up-form', function (hooks) {
       await fillIn('[data-test-password-confirmation-field] input', 'bar');
       await triggerEvent('[data-test-sign-up-form]', 'submit');
 
-      assert.dom('[data-test-error-message]').hasText('Passwords do not match');
+      assert
+        .dom('[data-test-password-confirmation-field] .paper-input-error')
+        .hasText('Passwords do not match');
     });
   });
 
