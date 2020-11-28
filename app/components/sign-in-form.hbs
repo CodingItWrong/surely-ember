@@ -20,15 +20,15 @@
           required
         />
       </div>
-      <form.input
-        @type="password"
-        @block={{true}}
-        @label="Password"
-        @value={{this.password}}
-        @onChange={{action (mut this.password)}}
-        @required={{true}}
-        data-test-password-field
-      />
+      <div class="form-group" data-test-password-field>
+        <label for="password-field">Password</label>
+        <Input
+          @value={{this.password}}
+          id="password-field"
+          type="password"
+          required={{true}}
+        />
+      </div>
     </card.content>
     <card.actions>
       <PaperButton
