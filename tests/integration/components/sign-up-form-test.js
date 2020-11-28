@@ -15,14 +15,10 @@ describe('Integration | Component | sign-up-form', function (hooks) {
     it('requires all fields', async function (assert) {
       await triggerEvent('[data-test-sign-up-form]', 'submit');
 
+      assert.dom('#email-feedback').hasText('This is required.');
+      assert.dom('#password-feedback').hasText('This is required.');
       assert
-        .dom('[data-test-email-field] .paper-input-error')
-        .hasText('This is required.');
-      assert
-        .dom('[data-test-password-field] .paper-input-error')
-        .hasText('This is required.');
-      assert
-        .dom('[data-test-password-confirmation-field] .paper-input-error')
+        .dom('#password-confirmation-feedback')
         .hasText('This is required.');
     });
 
@@ -33,7 +29,7 @@ describe('Integration | Component | sign-up-form', function (hooks) {
       await triggerEvent('[data-test-sign-up-form]', 'submit');
 
       assert
-        .dom('[data-test-password-confirmation-field] .paper-input-error')
+        .dom('#password-confirmation-feedback')
         .hasText('Passwords do not match');
     });
   });
