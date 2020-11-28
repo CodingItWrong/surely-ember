@@ -48,14 +48,12 @@ export default class SignUpFormComponent extends Component {
     if (!this.passwordConfirmation) {
       isValid = false;
       errors.passwordConfirmation = 'This is required.';
+    } else if (this.passwordConfirmation !== this.password) {
+      isValid = false;
+      errors.passwordConfirmation = 'Passwords do not match';
     }
+
     this.errors = errors;
-
-    if (this.passwordConfirmation !== this.password) {
-      this.errorMessage = 'Passwords do not match';
-      return false;
-    }
-
     return isValid;
   }
 }
