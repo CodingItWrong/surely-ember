@@ -1,6 +1,5 @@
-<PaperForm
-  @onSubmit={{this.createTodo}}
-  class="layout-margin"
+<form
+  {{on "submit" this.createTodo}}
   data-test-new-todo-form
 >
   <div data-test-new-todo-field>
@@ -20,4 +19,4 @@
       {{this.error}}
     </p>
   {{/if}}
-</PaperForm>
+</form>
