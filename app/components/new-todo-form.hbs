@@ -4,12 +4,11 @@
   data-test-new-todo-form
 >
   <div data-test-new-todo-field>
-    <Textarea
+    <Input
       @value={{this.newTodoName}}
       {{on "keydown" this.handleNameKeyDown}}
       placeholder={{@placeholder}}
       class="form-control"
-      rows="1"
     />
   </div>
 
