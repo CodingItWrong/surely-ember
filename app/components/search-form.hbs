@@ -1,5 +1,5 @@
-<PaperForm
-  @onSubmit={{this.handleSearch}}
+<form
+  {{on "submit" this.handleSearch}}
   class="layout-margin"
   data-test-search-form
 >
@@ -10,4 +10,4 @@
       class="form-control"
     />
   </div>
-</PaperForm>
+</form>
