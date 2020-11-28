@@ -2,7 +2,6 @@
   <PaperForm
     @onSubmit={{this.signIn}}
     data-test-sign-in-form
-    as |form|
   >
     <card.content>
       <p
@@ -34,16 +33,17 @@
       <button
         {{on "click" this.goToSignUp}}
         type="button"
+        class="btn btn-secondary"
         data-test-sign-up-button
       >
         Sign Up
       </button>
-      <form.submit-button
-        @raised="true"
-        @primary={{true}}
+      <button
+        type="submit"
+        class="btn btn-primary"
       >
         Sign In
-      </form.submit-button>
+      </button>
     </card.actions>
   </PaperForm>
 </PaperCard>
