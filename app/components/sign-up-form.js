@@ -40,25 +40,22 @@ export default class SignUpFormComponent extends Component {
   }
 
   validate() {
-    let isValid = true;
     const errors = {};
     if (!this.email) {
-      isValid = false;
       errors.email = 'This is required.';
     }
     if (!this.password) {
-      isValid = false;
       errors.password = 'This is required.';
     }
     if (!this.passwordConfirmation) {
-      isValid = false;
       errors.passwordConfirmation = 'This is required.';
     } else if (this.passwordConfirmation !== this.password) {
-      isValid = false;
       errors.passwordConfirmation = 'Passwords do not match';
     }
 
     this.errors = errors;
+
+    const isValid = Object.keys(errors).length === 0;
     return isValid;
   }
 }
