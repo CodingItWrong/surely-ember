@@ -11,15 +11,15 @@
       >
         {{this.errorMessage}}
       </p>
-      <form.input
-        @type="email"
-        @block={{true}}
-        @label="Email"
-        @value={{this.email}}
-        @onChange={{action (mut this.email)}}
-        @required={{true}}
-        data-test-email-field
-      />
+      <div class="form-group" data-test-email-field>
+        <label for="email-field">Email</label>
+        <Input
+          @value={{this.email}}
+          id="email-field"
+          type="email"
+          required
+        />
+      </div>
       <form.input
         @type="password"
         @block={{true}}
