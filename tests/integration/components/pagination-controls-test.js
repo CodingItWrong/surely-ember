@@ -23,11 +23,11 @@ describe('Integration | Component | pagination-controls', function (hooks) {
     });
 
     it('disables the previous button', function (assert) {
-      assert.dom('[data-test-previous-button]').hasAttribute('disabled');
+      assert.dom('[data-test-previous-button]').hasAttribute('aria-disabled');
     });
 
     it('disables the next button', function (assert) {
-      assert.dom('[data-test-next-button]').hasAttribute('disabled');
+      assert.dom('[data-test-next-button]').hasAttribute('aria-disabled');
     });
   });
 
@@ -43,11 +43,13 @@ describe('Integration | Component | pagination-controls', function (hooks) {
     });
 
     it('disables the previous button', function (assert) {
-      assert.dom('[data-test-previous-button]').hasAttribute('disabled');
+      assert.dom('[data-test-previous-button]').hasAttribute('aria-disabled');
     });
 
     it('calls nextPage when clicking the next page button', async function (assert) {
-      assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
+      assert
+        .dom('[data-test-next-button]')
+        .doesNotHaveAttribute('aria-disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
@@ -70,13 +72,15 @@ describe('Integration | Component | pagination-controls', function (hooks) {
     it('calls prevPage when clicking the previous page button', async function (assert) {
       assert
         .dom('[data-test-previous-button]')
-        .doesNotHaveAttribute('disabled');
+        .doesNotHaveAttribute('aria-disabled');
       await click('[data-test-previous-button]');
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
 
     it('calls nextPage when clicking the next page button', async function (assert) {
-      assert.dom('[data-test-next-button]').doesNotHaveAttribute('disabled');
+      assert
+        .dom('[data-test-next-button]')
+        .doesNotHaveAttribute('aria-disabled');
       await click('[data-test-next-button]');
       assert.ok(nextPage.calledOnce, 'nextPage called');
     });
@@ -96,13 +100,13 @@ describe('Integration | Component | pagination-controls', function (hooks) {
     it('calls prevPage when clicking the next page button', async function (assert) {
       assert
         .dom('[data-test-previous-button]')
-        .doesNotHaveAttribute('disabled');
+        .doesNotHaveAttribute('aria-disabled');
       await click('[data-test-previous-button]');
       assert.ok(prevPage.calledOnce, 'prevPage called');
     });
 
     it('disables the next button', function (assert) {
-      assert.dom('[data-test-next-button]').hasAttribute('disabled');
+      assert.dom('[data-test-next-button]').hasAttribute('aria-disabled');
     });
   });
 });
