@@ -13,7 +13,8 @@ export default class NewTodoFormComponent extends Component {
   @tracked error = null;
 
   @action
-  async createTodo() {
+  async createTodo(e) {
+    e.preventDefault();
     this.error = null;
 
     const { handleCreate, deferredUntil } = this.args;
