@@ -15,7 +15,14 @@ export default class SignUpFormComponent extends Component {
   @tracked errors = {};
 
   @action
-  async signUp() {
+  cancel() {
+    this.args.onCancel();
+  }
+
+  @action
+  async signUp(e) {
+    e.preventDefault();
+
     if (!this.validate()) {
       return;
     }

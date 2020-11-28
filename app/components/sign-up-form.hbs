@@ -2,10 +2,9 @@
   <h2 class="card-title">
     Sign Up
   </h2>
-  <PaperForm
-    @onSubmit={{this.signUp}}
+  <form
+    {{on "submit" this.signUp}}
     data-test-sign-up-form
-    as |form|
   >
     <div class="card-body">
       {{#if this.errorMessage}}
@@ -66,17 +65,21 @@
         </div>
       </div>
       <div>
-        <PaperButton @onClick={{@onCancel}}>
+        <button
+          {{on "click" this.cancel}}
+          type="button"
+          class="btn btn-secondary"
+        >
           Cancel
-        </PaperButton>
-        <form.submit-button
-          @raised="true"
-          @primary={{true}}
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
           data-test-sign-up-confirm-button
         >
           Sign Up
-        </form.submit-button>
+        </button>
       </div>
     </div>
-  </PaperForm>
+  </form>
 </div>
