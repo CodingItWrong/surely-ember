@@ -17,28 +17,24 @@
     </div>
   {{else}}
     <PaperCard as |card|>
-      <card.title as |title|>
-        <title.text as |text|>
-          <text.headline class="todo-headline__container">
-            <button
-              type="button"
-              class="todo-headline__title click-to-edit unstyled-button"
-              data-test-todo-name
-              {{on "click" this.edit}}
-            >
-              {{this.displayModel.name}}
-            </button>
-            <PaperButton
-              @iconButton={{true}}
-              @onClick={{this.edit}}
-              class="todo-headline__button"
-              data-test-edit-button
-            >
-              {{paper-icon "edit"}}
-            </PaperButton>
-          </text.headline>
-        </title.text>
-      </card.title>
+      <h2 class="card-title todo-headline__container">
+        <button
+          type="button"
+          class="todo-headline__title click-to-edit unstyled-button"
+          data-test-todo-name
+          {{on "click" this.edit}}
+        >
+          {{this.displayModel.name}}
+        </button>
+        <button
+          {{on "click" this.edit}}
+          type="button"
+          class="todo-headline__button"
+          data-test-edit-button
+        >
+          edit
+        </button>
+      </h2>
       <card.content class="overflow-hidden">
         {{#if this.displayModel.notes}}
           <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}} data-test-todo-notes>{{this.displayModel.notes}}</button>
