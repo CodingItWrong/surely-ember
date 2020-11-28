@@ -1,6 +1,6 @@
 <PaperCard as |card|>
-  <PaperForm
-    @onSubmit={{this.signIn}}
+  <form
+    {{on "submit" this.signIn}}
     data-test-sign-in-form
   >
     <card.content>
@@ -45,7 +45,7 @@
         Sign In
       </button>
     </card.actions>
-  </PaperForm>
+  </form>
 </PaperCard>
 
 <div class="layout-margin deemphasized-text">
