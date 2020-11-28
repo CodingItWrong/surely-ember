@@ -2,17 +2,16 @@
   @onSubmit={{this.createTodo}}
   class="layout-margin"
   data-test-new-todo-form
-  as |form|
 >
-  <form.input
-    @placeholder={{@placeholder}}
-    @value={{this.newTodoName}}
-    @onChange={{action (mut this.newTodoName)}}
-    @onKeyDown={{this.handleNameKeyDown}}
-    @block={{true}}
-    @textarea={{true}}
-    data-test-new-todo-field
-  />
+  <div data-test-new-todo-field>
+    <Textarea
+      @value={{this.newTodoName}}
+      {{on "keydown" this.handleNameKeyDown}}
+      placeholder={{@placeholder}}
+      class="form-control"
+      rows="1"
+    />
+  </div>
 
   {{#if this.error}}
     <p
