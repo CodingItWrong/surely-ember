@@ -31,12 +31,13 @@
       </div>
     </card.content>
     <card.actions>
-      <PaperButton
-        @onClick={{this.goToSignUp}}
+      <button
+        {{on "click" this.goToSignUp}}
+        type="button"
         data-test-sign-up-button
       >
         Sign Up
-      </PaperButton>
+      </button>
       <form.submit-button
         @raised="true"
         @primary={{true}}
