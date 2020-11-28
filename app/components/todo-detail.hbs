@@ -62,20 +62,24 @@
 
         {{#if (eq this.buttonSet "defer")}}
           <div class="app-button-container-stacked">
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{this.cancelDefer}}
+            <button
+              {{on "click" this.cancelDefer}}
+              type="button"
+              class="btn btn-secondary"
+              disabled={{this.isProcessing}}
               data-test-cancel-defer-button
             >
               Cancel
-            </PaperButton>
+            </button>
             {{#let (defer-date
               start=this.displayModel.deferredUntil
               days=1
             ) as |deferDate|}}
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{fn this.saveDeferUntilDate deferDate}}
+              <button
+                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                type="button"
+                class="btn btn-secondary"
+                disabled={{this.isProcessing}}
                 data-test-defer-one-day-button
               >
                 {{#if this.isDeferring}}
@@ -83,15 +87,17 @@
                 {{else}}
                   1 Day - {{day-of-week deferDate}}
                 {{/if}}
-              </PaperButton>
+              </button>
             {{/let}}
             {{#let (defer-date
               start=this.displayModel.deferredUntil
               days=2
             ) as |deferDate|}}
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{fn this.saveDeferUntilDate deferDate}}
+              <button
+                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                type="button"
+                class="btn btn-secondary"
+                disabled={{this.isProcessing}}
                 data-test-defer-two-days-button
               >
                 {{#if this.isDeferring}}
@@ -99,15 +105,17 @@
                 {{else}}
                   2 Days - {{day-of-week deferDate}}
                 {{/if}}
-              </PaperButton>
+              </button>
             {{/let}}
             {{#let (defer-date
               start=this.displayModel.deferredUntil
               days=3
             ) as |deferDate|}}
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{fn this.saveDeferUntilDate deferDate}}
+              <button
+                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                type="button"
+                class="btn btn-secondary"
+                disabled={{this.isProcessing}}
                 data-test-defer-three-days-button
               >
                 {{#if this.isDeferring}}
@@ -116,15 +124,17 @@
                   3 Days -
                   {{day-of-week deferDate}}
                 {{/if}}
-              </PaperButton>
+              </button>
             {{/let}}
             {{#let (defer-date
               start=this.displayModel.deferredUntil
               days=7
             ) as |deferDate|}}
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{fn this.saveDeferUntilDate deferDate}}
+              <button
+                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                type="button"
+                class="btn btn-secondary"
+                disabled={{this.isProcessing}}
                 data-test-defer-one-week-button
               >
                 {{#if this.isDeferring}}
@@ -132,38 +142,41 @@
                 {{else}}
                   1 Week - {{day-of-week deferDate}}
                 {{/if}}
-              </PaperButton>
+              </button>
             {{/let}}
-            <PaperButton
-              @disabled={{this.isProcessing}}
-              @onClick={{this.deferUntilDate}}
+            <button
+              {{on "click" this.deferUntilDate}}
+              type="button"
+              disabled={{this.isProcessing}}
+              class="btn btn-secondary"
               data-test-defer-until-date-button
             >
               Pick Date
-            </PaperButton>
+            </button>
           </div>
         {{/if}}
         <div class="app-button-container">
           {{#if (eq this.buttonSet "actions")}}
             {{#if this.displayModel.isDeleted}}
-              <PaperButton
-                @raised={{true}}
-                @primary={{true}}
-                @disabled={{this.isProcessing}}
-                @onClick={{this.undelete}}
+              <button
+                {{on "click" this.undelete}}
+                type="button"
+                disabled={{this.isProcessing}}
+                class="btn btn-primary"
                 data-test-undelete-button
               >
-                {{paper-icon "restore_from_trash"}}
                 {{#if this.isUndeleting}}
                   Undeleting…
                 {{else}}
                   Undelete
                 {{/if}}
-              </PaperButton>
+              </button>
             {{else}}
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{this.delete}}
+              <button
+                {{on "click" this.delete}}
+                type="button"
+                disabled={{this.isProcessing}}
+                class="btn btn-secondary"
                 data-test-delete-button
               >
                 {{#if this.isDeleting}}
@@ -171,13 +184,13 @@
                 {{else}}
                   Delete
                 {{/if}}
-              </PaperButton>
+              </button>
               {{#if this.displayModel.isCompleted}}
-                <PaperButton
-                  @raised={{true}}
-                  @primary={{true}}
-                  @disabled={{this.isProcessing}}
-                  @onClick={{this.uncomplete}}
+                <button
+                  {{on "click" this.uncomplete}}
+                  type="button"
+                  class="btn btn-primary"
+                  disabled={{this.isProcessing}}
                   data-test-uncomplete-button
                 >
                   {{paper-icon "check_box_outline_blank"}}
@@ -186,20 +199,22 @@
                   {{else}}
                     Uncomplete
                   {{/if}}
-                </PaperButton>
+                </button>
               {{else}}
-                <PaperButton
-                  @disabled={{this.isProcessing}}
-                  @onClick={{this.defer}}
+                <button
+                  {{on "click" this.defer}}
+                  type="button"
+                  class="btn btn-secondary"
+                  disabled={{this.isProcessing}}
                   data-test-defer-button
                 >
                   Defer
-                </PaperButton>
-                <PaperButton
-                  @raised={{true}}
-                  @primary={{true}}
-                  @disabled={{this.isProcessing}}
-                  @onClick={{this.complete}}
+                </button>
+                <button
+                  {{on "click" this.complete}}
+                  type="button"
+                  class="btn btn-primary"
+                  disabled={{this.isProcessing}}
                   data-test-complete-button
                 >
                   {{paper-icon "check_box"}}
@@ -208,7 +223,7 @@
                   {{else}}
                     Complete
                   {{/if}}
-                </PaperButton>
+                </button>
               {{/if}}
             {{/if}}
           {{else if (eq this.buttonSet "defer_until_date")}}
@@ -224,17 +239,19 @@
                 @onChange={{action (mut this.deferredUntil)}}
                 data-test-deferred-until-field
               />
-              <PaperButton
-                @disabled={{this.isProcessing}}
-                @onClick={{this.cancelDefer}}
+              <button
+                {{on "click" this.cancelDefer}}
+                type="button"
+                class="btn btn-secondary"
+                disabled={{this.isProcessing}}
                 data-test-cancel-defer-until-date-button
               >
                 Cancel
-              </PaperButton>
-              <form.submit-button
-                @raised={{true}}
-                @primary={{true}}
-                @disabled={{this.isProcessing}}
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                disabled={{this.isProcessing}}
                 data-test-defer-button
               >
                 {{paper-icon "calendar_today"}}
@@ -243,7 +260,7 @@
                 {{else}}
                   Defer
                 {{/if}}
-              </form.submit-button>
+              </button>
             </PaperForm>
           {{/if}}
         </div>
