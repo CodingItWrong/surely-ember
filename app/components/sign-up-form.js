@@ -33,6 +33,11 @@ export default class SignUpFormComponent extends Component {
     }
   }
 
+  @action
+  handleCancel() {
+    this.args.onCancel();
+  }
+
   validate() {
     if (this.passwordConfirmation !== this.password) {
       this.errorMessage = 'Passwords do not match';
