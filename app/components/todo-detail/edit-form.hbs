@@ -34,22 +34,28 @@
           </PaperButton>
         {{/if}}
       </div>
-      <form.input
-        @type="date"
-        @label="Defer Until Date"
-        @value={{this.deferredUntil}}
-        @onChange={{action (mut this.deferredUntil)}}
-        @block={{true}}
+      <div
+        class="form-group"
         data-test-deferred-until-field
-      />
-      <form.input
-        @label="Notes"
-        @value={{this.editedNotes}}
-        @onChange={{action (mut this.editedNotes)}}
-        @textarea={{true}}
-        @block={{true}}
-        data-test-notes-field
-      />
+      >
+        <label for="deferred-until-field">
+          Defer Until Date
+        </label>
+        <Input
+          @value={{this.deferredUntil}}
+          type="date"
+          id="deferred-until-field"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group" data-test-notes-field>
+        <label for="notes-field">Notes</label>
+        <Textarea
+          @value={{this.editedNotes}}
+          id="notes-field"
+          class="form-control"
+        />
+      </div>
 
       {{#if this.error}}
         <p
