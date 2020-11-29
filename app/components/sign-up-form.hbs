@@ -9,7 +9,6 @@
   <PaperForm
     @onSubmit={{this.signUp}}
     data-test-sign-up-form
-    as |form|
   >
     <card.content>
       <p
@@ -18,33 +17,54 @@
       >
         {{this.errorMessage}}
       </p>
-      <form.input
-        @type="email"
-        @block={{true}}
-        @label="Email"
-        @value={{this.email}}
-        @onChange={{action (mut this.email)}}
-        @required={{true}}
-        data-test-email-field
-      />
-      <form.input
-        @type="password"
-        @block={{true}}
-        @label="Password"
-        @value={{this.password}}
-        @onChange={{action (mut this.password)}}
-        @required={{true}}
-        data-test-password-field
-      />
-      <form.input
-        @type="password"
-        @block={{true}}
-        @label="Confirm Password"
-        @value={{this.passwordConfirmation}}
-        @onChange={{action (mut this.passwordConfirmation)}}
-        @required={{true}}
-        data-test-password-confirmation-field
-      />
+      <div class="form-group" data-test-email-field>
+        <label for="email-field">Email</label>
+        <Input
+          @value={{this.email}}
+          id="email-field"
+          type="email"
+          class="form-control {{if this.errors.email "is-invalid"}}"
+          aria-describedby="email-feedback"
+        />
+        <div
+          id="email-feedback"
+          class="invalid-feedback paper-input-error"
+        >
+          {{this.errors.email}}
+        </div>
+      </div>
+      <div class="form-group" data-test-password-field>
+        <label for="password-field">Password</label>
+        <Input
+          @value={{this.password}}
+          id="password-field"
+          type="password"
+          class="form-control {{if this.errors.password "is-invalid"}}"
+          aria-describedby="password-feedback"
+        />
+        <div
+          id="password-feedback"
+          class="invalid-feedback paper-input-error"
+        >
+          {{this.errors.password}}
+        </div>
+      </div>
+      <div class="form-group" data-test-password-confirmation-field>
+        <label for="password-confirmation-field">Confirm Password</label>
+        <Input
+          @value={{this.passwordConfirmation}}
+          id="password-confirmation-field"
+          type="password"
+          class="form-control {{if this.errors.passwordConfirmation "is-invalid"}}"
+          aria-describedby="password-confirmation-feedback"
+        />
+        <div
+          id="password-confirmation-feedback"
+          class="invalid-feedback paper-input-error"
+        >
+          {{this.errors.passwordConfirmation}}
+        </div>
+      </div>
     </card.content>
     <card.actions>
       <button
