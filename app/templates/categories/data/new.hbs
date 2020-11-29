@@ -1,11 +1,10 @@
 <div>
-  <PaperButton
+  <BackButton
     @onClick={{this.goToCategories}}
-    @class="hide-gt-sm"
     data-test-back-to-categories-list
   >
-    &lt; Categories
-  </PaperButton>
+    Categories
+  </BackButton>
 
   <CategoryDetail
     @onSave={{this.goToCategories}}
