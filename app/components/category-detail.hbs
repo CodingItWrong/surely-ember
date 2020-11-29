@@ -17,19 +17,23 @@
       <PaperForm
         onSubmit={{this.handleSave}}
         data-test-category-edit-form
-        as |form|
       >
         <card.content>
-          <form.input
-            @placeholder="Category Name"
-            @value={{this.editedName}}
-            @onChange={{action (mut this.editedName)}}
-            @onKeyDown={{this.handleTitleKeyDown}}
-            @block={{true}}
-            @required={{true}}
-            class="title-input"
+          <div
+            class="form-group"
             data-test-category-name-field
-          />
+          >
+            <label for="category-name-field">
+              Category Name
+            </label>
+            <Input
+              @value={{this.editedName}}
+              {{on "keyDown" this.handleTitleKeyDown}}
+              id="category-name-field"
+              class="form-control title-input"
+              required
+            />
+          </div>
 
           {{#if this.error}}
             <p
