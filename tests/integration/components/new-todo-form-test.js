@@ -81,7 +81,7 @@ describe('Integration | Component | new-todo-form', function (hooks) {
     });
 
     it('displays the error message', async function (assert) {
-      assert.dom('[data-test-error]').hasText(errorMessage);
+      assert.dom('[data-test-error-message]').hasText(errorMessage);
     });
 
     it('does not clear the text field', function (assert) {
