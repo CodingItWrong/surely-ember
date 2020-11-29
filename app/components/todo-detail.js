@@ -187,7 +187,9 @@ export default class TodoDetailComponent extends Component {
   }
 
   @action
-  async saveEnteredDeferredDate() {
+  async saveEnteredDeferredDate(e) {
+    e.preventDefault();
+
     if (!this.deferredUntil) {
       return;
     }
