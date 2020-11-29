@@ -27,12 +27,13 @@
           {{category.name}}
         </PowerSelect>
         {{#if this.editedCategory}}
-          <PaperButton
-            @iconButton={{true}}
-            @onClick={{this.clearCategory}}
+          <button
+            {{on "click" this.clearCategory}}
+            type="button"
+            class="btn btn-secondary"
           >
-            {{paper-icon "clear"}}
-          </PaperButton>
+            clear
+          </button>
         {{/if}}
       </div>
       <div
