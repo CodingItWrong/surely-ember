@@ -45,7 +45,9 @@ export default class CategoryDetailComponent extends Component {
   }
 
   @action
-  async handleSave() {
+  async handleSave(e) {
+    e.preventDefault();
+
     if (!this.validate()) {
       return;
     }
