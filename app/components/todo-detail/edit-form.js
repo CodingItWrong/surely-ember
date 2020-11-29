@@ -43,7 +43,8 @@ export default class TodoDetailEditFormComponent extends Component {
   }
 
   @action
-  async handleSave() {
+  async handleSave(e) {
+    e.preventDefault();
     const { todo, onSave } = this.args;
 
     this.error = null;
