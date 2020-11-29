@@ -13,7 +13,6 @@
       <PaperForm
         onSubmit={{this.handleSave}}
         data-test-category-edit-form
-        as |form|
       >
         <card.content>
           <div
@@ -44,33 +43,38 @@
           {{/if}}
         </card.content>
         <card.actions class="app-button-container">
-          <PaperButton
-            @onClick={{@onCancel}}
+          <button
+            {{on "click" @onCancel}}
+            type="button"
+            class="btn btn-secondary"
+            disabled={{this.saving}}
             data-test-cancel-edit-button
           >
             Cancel
-          </PaperButton>
+          </button>
           {{#if @onDelete}}
-            <PaperButton
-              @onClick={{this.handleDelete}}
+            <button
+              {{on "click" this.handleDelete}}
+              type="button"
+              class="btn btn-secondary"
+              disabled={{this.saving}}
               data-test-delete-button
             >
               Delete
-            </PaperButton>
+            </button>
           {{/if}}
-          <form.submit-button
-            @raised={{true}}
-            @primary={{true}}
-            @disabled={{this.saving}}
+          <button
+            type="submit"
+            class="btn btn-primary"
+            disabled={{this.saving}}
             data-test-save-button
           >
-            {{paper-icon "save"}}
             {{#if this.saving}}
               Saving…
             {{else}}
               Save
             {{/if}}
-          </form.submit-button>
+          </button>
         </card.actions>
       </PaperForm>
     </PaperCard>
