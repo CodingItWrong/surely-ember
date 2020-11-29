@@ -1,6 +1,6 @@
 <PaperCard as |card|>
-  <PaperForm
-    onSubmit={{this.handleSave}}
+  <form
+    {{on "submit" this.handleSave}}
     data-test-todo-edit-form
   >
     <card.content>
@@ -90,5 +90,5 @@
         {{/if}}
       </button>
     </card.actions>
-  </PaperForm>
+  </form>
 </PaperCard>
