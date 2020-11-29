@@ -31,18 +31,21 @@
       />
     </card.content>
     <card.actions>
-      <PaperButton
-        @onClick={{this.goToSignUp}}
+      <button
+        {{on "click" this.goToSignUp}}
+        type="button"
+        class="btn btn-light"
         data-test-sign-up-button
       >
         Sign Up
-      </PaperButton>
-      <form.submit-button
-        @raised="true"
-        @primary={{true}}
+      </button>
+      &nbsp;
+      <button
+        type="submit"
+        class="btn btn-primary"
       >
         Sign In
-      </form.submit-button>
+      </button>
     </card.actions>
   </PaperForm>
 </PaperCard>
