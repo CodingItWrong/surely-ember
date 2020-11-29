@@ -12,6 +12,7 @@ export default class SignUpFormComponent extends Component {
   @tracked password;
   @tracked passwordConfirmation;
   @tracked errorMessage = null;
+  @tracked errors = {};
 
   @action
   async signUp() {
@@ -39,11 +40,27 @@ export default class SignUpFormComponent extends Component {
   }
 
   validate() {
+    let isValid = true;
+    const errors = {};
+    if (!this.email) {
+      isValid = false;
+      errors.email = 'This is required.';
+    }
+    if (!this.password) {
+      isValid = false;
+      errors.password = 'This is required.';
+    }
+    if (!this.passwordConfirmation) {
+      isValid = false;
+      errors.passwordConfirmation = 'This is required.';
+    }
+    this.errors = errors;
+
     if (this.passwordConfirmation !== this.password) {
       this.errorMessage = 'Passwords do not match';
       return false;
     }
 
-    return true;
+    return isValid;
   }
 }
