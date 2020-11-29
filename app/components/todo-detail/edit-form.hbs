@@ -5,16 +5,17 @@
     as |form|
   >
     <card.content>
-      <form.input
-        @placeholder="Todo"
-        @value={{this.editedName}}
-        @onKeyDown={{this.handleTitleKeyDown}}
-        @onChange={{action (mut this.editedName)}}
-        @block={{true}}
-        @textarea={{true}}
-        class="title-input"
+      <div
+        class="form-group"
         data-test-todo-name-field
-      />
+      >
+        <Textarea
+          @value={{this.editedName}}
+          {{on "keydown" this.handleTitleKeyDown}}
+          placeholder="Todo"
+          class="form-control title-input"
+        />
+      </div>
       <div>
         <form.select
           @label="Category"
@@ -34,23 +35,29 @@
           </PaperButton>
         {{/if}}
       </div>
-      <form.input
-        @type="date"
-        @label="Defer Until Date"
-        @value={{this.deferredUntil}}
-        @onChange={{action (mut this.deferredUntil)}}
-        @block={{true}}
+      <div
+        class="form-group"
         data-test-deferred-until-field
-      />
-      <form.input
-        @label="Notes"
-        @value={{this.editedNotes}}
-        @onChange={{action (mut this.editedNotes)}}
-        @textarea={{true}}
-        @block={{true}}
+      >
+        <label for="deferred-until-field">
+          Defer Until Date
+        </label>
+        <Input
+          @value={{this.deferredUntil}}
+          type="date"
+          class="form-control"
+        />
+      </div>
+      <div
+        class="form-group"
         data-test-notes-field
-      />
-
+      >
+        <label for="notes-field">Notes</label>
+        <Textarea
+          @value={{this.editedNotes}}
+          class="form-control"
+        />
+      </div>
       {{#if this.error}}
         <p
           class="error-text"
