@@ -16,15 +16,18 @@
         data-test-todo-name-field
       />
       <div>
-        <form.select
-          @label="Category"
-          @selected={{this.editedCategory}}
-          @onChange={{action (mut this.editedCategory)}}
-          @options={{@categories}}
-          as |category|
-        >
-          {{category.name}}
-        </form.select>
+        <div class="form-group">
+          <label for="category-field">Category</label>
+          <PowerSelect
+            @selected={{this.editedCategory}}
+            @onChange={{action (mut this.editedCategory)}}
+            @options={{@categories}}
+            id="category-field"
+            as |category|
+          >
+            {{category.name}}
+          </PowerSelect>
+        </div>
         {{#if this.editedCategory}}
           <PaperButton
             @iconButton={{true}}
