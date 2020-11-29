@@ -19,11 +19,7 @@
     </h2>
     <PaperContent>
       {{#if @loading}}
-        <PaperList>
-          <div class="layout-margin">
-            <PaperProgressCircular data-test-loading-indicator />
-          </div>
-        </PaperList>
+        <LoadingIndicator />
       {{else if @error}}
         <PaperList>
           <PaperItem>

@@ -30,9 +30,7 @@
           @pageNumber={{@pageNumber}}
           @totalPages={{@totalPages}}
         />
-        <div class="layout-margin">
-          <PaperProgressCircular data-test-loading-indicator />
-        </div>
+        <LoadingIndicator />
       </PaperList>
     {{else if @error}}
       <PaperList>
