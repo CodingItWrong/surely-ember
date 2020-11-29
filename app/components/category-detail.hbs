@@ -34,12 +34,13 @@
             />
           </div>
           {{#if this.error}}
-            <p
-              class="error-text"
+            <div
+              class="alert alert-danger"
+              role="alert"
               data-test-error-message
             >
               {{this.error}}
-            </p>
+            </div>
           {{/if}}
         </card.content>
         <card.actions class="app-button-container">
