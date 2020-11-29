@@ -15,11 +15,12 @@
   />
 
   {{#if this.error}}
-    <p
-      class="error-text"
+    <div
+      class="alert alert-danger"
+      role="alert"
       data-test-error
     >
       {{this.error}}
-    </p>
+    </div>
   {{/if}}
 </PaperForm>

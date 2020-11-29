@@ -86,7 +86,7 @@ describe('Integration | Component | sign-up-form', function (hooks) {
     });
 
     it('does not display an error message', async function (assert) {
-      assert.dom('[data-test-error-message]').hasText('');
+      assert.dom('[data-test-error-message]').doesNotExist();
     });
   });
 });
