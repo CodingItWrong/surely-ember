@@ -2,7 +2,6 @@
   <PaperForm
     onSubmit={{this.handleSave}}
     data-test-todo-edit-form
-    as |form|
   >
     <card.content>
       <div
@@ -16,16 +15,17 @@
           class="form-control title-input"
         />
       </div>
-      <div>
-        <form.select
-          @label="Category"
+      <div class="form-group">
+        <label for="category-field">Category</label>
+        <PowerSelect
           @selected={{this.editedCategory}}
           @onChange={{action (mut this.editedCategory)}}
           @options={{@categories}}
+          class="form-control"
           as |category|
         >
           {{category.name}}
-        </form.select>
+        </PowerSelect>
         {{#if this.editedCategory}}
           <PaperButton
             @iconButton={{true}}
