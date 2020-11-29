@@ -1,9 +1,9 @@
-<PaperCard as |card|>
+<div class="card">
   <form
     {{on "submit" this.handleSave}}
     data-test-todo-edit-form
   >
-    <card.content>
+    <div class="card-content">
       <div
         class="form-group"
         data-test-todo-name-field
@@ -68,28 +68,28 @@
           {{this.error}}
         </div>
       {{/if}}
-    </card.content>
-    <card.actions class="app-button-container">
-      <button
-        {{on "click" @onCancel}}
-        type="button"
-        class="btn btn-secondary"
-        data-test-cancel-edit-button
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        disabled={{this.saving}}
-        data-test-save-button
-      >
-        {{#if this.saving}}
-          Saving…
-        {{else}}
-          Save
-        {{/if}}
-      </button>
-    </card.actions>
+      <div>
+        <button
+          {{on "click" @onCancel}}
+          type="button"
+          class="btn btn-secondary"
+          data-test-cancel-edit-button
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          disabled={{this.saving}}
+          data-test-save-button
+        >
+          {{#if this.saving}}
+            Saving…
+          {{else}}
+            Save
+          {{/if}}
+        </button>
+      </div>
+    </div>
   </form>
-</PaperCard>
+</div>
