@@ -1,17 +1,13 @@
 <div {{did-update this.resetStateIfModelChanged @category}}>
   {{#if @error}}
-    <PaperCard as |card|>
-      <card.title as |title|>
-        <title.text as |text|>
-          <text.headline
-            class="todo-headline__container"
-            data-test-error-message
-          >
-            Error loading category
-          </text.headline>
-        </title.text>
-      </card.title>
-    </PaperCard>
+    <div class="card">
+      <h2
+        class="card-title"
+        data-test-error-message
+      >
+        Error loading category
+      </h2>
+    </div>
   {{else}}
     <PaperCard as |card|>
       <PaperForm
