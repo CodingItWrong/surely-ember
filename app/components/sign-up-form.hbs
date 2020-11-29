@@ -11,12 +11,15 @@
     data-test-sign-up-form
   >
     <card.content>
-      <p
-        class="error-text"
-        data-test-error-message
-      >
-        {{this.errorMessage}}
-      </p>
+      {{#if this.errorMessage}}
+        <div
+          class="alert alert-danger"
+          role="alert"
+          data-test-error-message
+        >
+          {{this.errorMessage}}
+        </div>
+      {{/if}}
       <div class="form-group" data-test-email-field>
         <label for="email-field">Email</label>
         <Input

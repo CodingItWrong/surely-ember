@@ -24,12 +24,13 @@
     {{else if @error}}
       <PaperList>
         <PaperItem>
-          <p
-            class="error-text"
+          <div
+            class="alert alert-danger"
+            role="alert"
             data-test-error-message
           >
             An error occurred loading categories.
-          </p>
+          </div>
         </PaperItem>
       </PaperList>
     {{else}}
