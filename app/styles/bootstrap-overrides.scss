@@ -1,0 +1,12 @@
+$override-green: rgb(76, 175, 80);
+$override-dark-green: rgb(67, 160, 71);
+
+.btn-primary {
+  background-color: $override-green;
+  border-color: $override-green;
+
+  &:hover {
+    background-color: $override-dark-green;
+    border-color: $override-dark-green;
+  }
+}
