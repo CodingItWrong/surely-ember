@@ -13,7 +13,7 @@ export default class TodoDetailEditFormComponent extends Component {
   @tracked editedDeferredUntil = null;
 
   @tracked saving = false;
-  @tracked error = null;
+  @tracked errorMessage = null;
 
   constructor(owner, args) {
     super(owner, args);
@@ -46,7 +46,7 @@ export default class TodoDetailEditFormComponent extends Component {
   async handleSave() {
     const { todo, onSave } = this.args;
 
-    this.error = null;
+    this.errorMessage = null;
 
     const deferredUntilDate = parseDate(this.deferredUntil);
     todo.name = this.editedName;
@@ -60,7 +60,7 @@ export default class TodoDetailEditFormComponent extends Component {
       onSave();
     } catch (e) {
       this.saving = false;
-      this.error = 'An error occurred saving the todo.';
+      this.errorMessage = 'An error occurred saving the todo.';
       logRuntimeError(e);
     }
   }

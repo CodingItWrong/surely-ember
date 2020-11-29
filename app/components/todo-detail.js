@@ -27,7 +27,7 @@ export default class TodoDetailComponent extends Component {
   @tracked deferredUntil = null;
 
   @tracked isEditing = false;
-  @tracked error = null;
+  @tracked errorMessage = null;
 
   @tracked isCompleting = false;
   @tracked isUncompleting = false;
@@ -85,13 +85,13 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.completedAt = new Date();
 
-    this.error = null;
+    this.errorMessage = null;
     this.isCompleting = true;
     try {
       await delay(todo.save());
       onHandle();
     } catch (e) {
-      this.error = 'An error occurred while completing the todo.';
+      this.errorMessage = 'An error occurred while completing the todo.';
       logRuntimeError(e);
       this.isCompleting = false;
     }
@@ -102,13 +102,13 @@ export default class TodoDetailComponent extends Component {
     const { todo } = this.args;
     todo.completedAt = null;
 
-    this.error = null;
+    this.errorMessage = null;
     this.isUncompleting = true;
     try {
       await delay(todo.save());
       this.updateDisplayModel();
     } catch (e) {
-      this.error = 'An error occurred while uncompleting the todo.';
+      this.errorMessage = 'An error occurred while uncompleting the todo.';
       logRuntimeError(e);
     } finally {
       this.isUncompleting = false;
@@ -120,13 +120,13 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.deletedAt = new Date();
 
-    this.error = null;
+    this.errorMessage = null;
     this.isDeleting = true;
     try {
       await delay(todo.save());
       onHandle();
     } catch (e) {
-      this.error = 'An error occurred while deleting the todo.';
+      this.errorMessage = 'An error occurred while deleting the todo.';
       logRuntimeError(e);
       this.isDeleting = false;
     }
@@ -138,13 +138,13 @@ export default class TodoDetailComponent extends Component {
     todo.deletedAt = null;
     todo.completedAt = null;
 
-    this.error = null;
+    this.errorMessage = null;
     this.isUndeleting = true;
     try {
       await delay(todo.save());
       this.updateDisplayModel();
     } catch (e) {
-      this.error = 'An error occurred while undeleting the todo.';
+      this.errorMessage = 'An error occurred while undeleting the todo.';
       logRuntimeError(e);
     } finally {
       this.isUndeleting = false;
@@ -167,13 +167,13 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.deferUntilDate(date);
 
-    this.error = null;
+    this.errorMessage = null;
     this.isDeferring = true;
     try {
       await delay(todo.save());
       onHandle();
     } catch (e) {
-      this.error = 'An error occurred while deferring the todo.';
+      this.errorMessage = 'An error occurred while deferring the todo.';
       logRuntimeError(e);
       this.isDeferring = false;
     }
@@ -197,13 +197,13 @@ export default class TodoDetailComponent extends Component {
     const { todo, onHandle } = this.args;
     todo.deferUntilDate(deferredUntilDate);
 
-    this.error = null;
+    this.errorMessage = null;
     this.isDeferring = true;
     try {
       await delay(todo.save());
       onHandle();
     } catch (e) {
-      this.error = 'An error occurred while deferring the todo.';
+      this.errorMessage = 'An error occurred while deferring the todo.';
       logRuntimeError(e);
       this.isDeferring = false;
     }

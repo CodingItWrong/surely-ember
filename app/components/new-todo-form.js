@@ -10,11 +10,11 @@ export default class NewTodoFormComponent extends Component {
   @service todos;
 
   @tracked newTodoName;
-  @tracked error = null;
+  @tracked errorMessage = null;
 
   @action
   async createTodo() {
-    this.error = null;
+    this.errorMessage = null;
 
     const { handleCreate, deferredUntil } = this.args;
     try {
@@ -27,11 +27,11 @@ export default class NewTodoFormComponent extends Component {
         handleCreate();
         this.newTodoName = '';
       } else {
-        this.error = response.errors.name;
+        this.errorMessage = response.errors.name;
       }
     } catch (e) {
       logRuntimeError(e);
-      this.error = 'An error occurred adding the todo.';
+      this.errorMessage = 'An error occurred adding the todo.';
     }
   }
 
