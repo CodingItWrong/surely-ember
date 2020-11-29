@@ -2,7 +2,6 @@
   <PaperForm
     @onSubmit={{this.signIn}}
     data-test-sign-in-form
-    as |form|
   >
     <card.content>
       <p
@@ -11,24 +10,24 @@
       >
         {{this.errorMessage}}
       </p>
-      <form.input
-        @type="email"
-        @block={{true}}
-        @label="Email"
-        @value={{this.email}}
-        @onChange={{action (mut this.email)}}
-        @required={{true}}
-        data-test-email-field
-      />
-      <form.input
-        @type="password"
-        @block={{true}}
-        @label="Password"
-        @value={{this.password}}
-        @onChange={{action (mut this.password)}}
-        @required={{true}}
-        data-test-password-field
-      />
+      <div class="form-group" data-test-email-field>
+        <label for="email-field">Email</label>
+        <Input
+          @value={{this.email}}
+          type="email"
+          id="email-field"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group" data-test-password-field>
+        <label for="password-field">Password</label>
+        <Input
+          @value={{this.password}}
+          type="password"
+          id="password-field"
+          class="form-control"
+        />
+      </div>
     </card.content>
     <card.actions>
       <button
