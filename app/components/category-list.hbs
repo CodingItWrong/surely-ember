@@ -53,12 +53,14 @@
     {{/if}}
   </PaperContent>
   <card.actions>
-    <PaperButton
-      @onClick={{@onAdd}}
+    <button
+      {{on "click" @onAdd}}
+      type="button"
+      class="btn btn-light"
       data-test-add-button
     >
       {{paper-icon "add"}}
       Add
-    </PaperButton>
+    </button>
   </card.actions>
 </PaperCard>
