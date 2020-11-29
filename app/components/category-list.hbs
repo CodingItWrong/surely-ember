@@ -17,40 +17,35 @@
         refresh
       </button>
     </h2>
-    <PaperContent>
-      {{#if @loading}}
-        <LoadingIndicator />
-      {{else if @error}}
-        <PaperList>
-          <PaperItem>
-            <p
-              class="error-text"
-              data-test-error-message
-            >
-              An error occurred loading categories.
-            </p>
-          </PaperItem>
-        </PaperList>
-      {{else}}
-        <PaperList>
-          {{#each @categories as |category|}}
-            <CategoryList::Item
-              @category={{category}}
-              @onChooseCategory={{@onChooseCategory}}
-              @moveUpward={{@moveUpward}}
-              @moveDownward={{@moveDownward}}
-            />
-            <PaperDivider />
-          {{else}}
-            <PaperItem>
-              <p data-test-no-categories-message>
-                <em>No categories yet</em>
-              </p>
-            </PaperItem>
-          {{/each}}
-        </PaperList>
-      {{/if}}
-    </PaperContent>
+    {{#if @loading}}
+      <LoadingIndicator />
+    {{else if @error}}
+      <div
+        class="alert alert-danger"
+        role="alert"
+        data-test-error-message
+      >
+        An error occurred loading categories.
+      </div>
+    {{else}}
+      <ul class="list-group">
+        {{#each @categories as |category|}}
+          <CategoryList::Item
+            @category={{category}}
+            @onChooseCategory={{@onChooseCategory}}
+            @moveUpward={{@moveUpward}}
+            @moveDownward={{@moveDownward}}
+          />
+        {{else}}
+          <li
+            class="list-group-item"
+            data-test-no-categories-message
+          >
+            <em>No categories yet</em>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
     <div>
       <button
         {{on "click" @onAdd}}
