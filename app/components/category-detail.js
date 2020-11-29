@@ -13,7 +13,7 @@ export default class CategoryDetailComponent extends Component {
   @tracked editedName = null;
 
   @tracked saving = false;
-  @tracked error = null;
+  @tracked errorMessage = null;
 
   constructor(owner, args) {
     super(owner, args);
@@ -52,7 +52,7 @@ export default class CategoryDetailComponent extends Component {
 
     let { category, onSave } = this.args;
 
-    this.error = null;
+    this.errorMessage = null;
 
     const isNew = !category;
     if (isNew) {
@@ -69,7 +69,7 @@ export default class CategoryDetailComponent extends Component {
       await category.save();
       onSave(category);
     } catch (e) {
-      this.error = 'An error occurred saving the category.';
+      this.errorMessage = 'An error occurred saving the category.';
       logRuntimeError(e);
     }
 
@@ -92,7 +92,7 @@ export default class CategoryDetailComponent extends Component {
       await category.destroyRecord();
       onDelete();
     } catch (e) {
-      this.error = 'An error occurred deleting the category.';
+      this.errorMessage = 'An error occurred deleting the category.';
       logRuntimeError(e);
     }
   }
