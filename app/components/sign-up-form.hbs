@@ -47,16 +47,21 @@
       />
     </card.content>
     <card.actions>
-      <PaperButton @onClick={{@onCancel}}>
+      <button
+        {{on "click" this.handleCancel}}
+        type="button"
+        class="btn btn-light"
+      >
         Cancel
-      </PaperButton>
-      <form.submit-button
-        @raised="true"
-        @primary={{true}}
+      </button>
+      &nbsp;
+      <button
+        type="submit"
+        class="btn btn-primary"
         data-test-sign-up-confirm-button
       >
         Sign Up
-      </form.submit-button>
+      </button>
     </card.actions>
   </PaperForm>
 </PaperCard>
