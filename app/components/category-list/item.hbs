@@ -1,25 +1,28 @@
-<PaperItem
-  @onClick={{fn @onChooseCategory @category}}
+<li
+  class="list-group-item d-flex justify-content-between"
   data-test-category
-  as |controls|
 >
-  <p
-    data-test-category-name
+  <button
+    {{on "click" (fn @onChooseCategory @category)}}
+    type="button"
+    class="flex-fill category-button"
   >
-    {{@category.name}}
-  </p>
-  <div class="md-secondary-container">
-    <controls.button
+    <span data-test-category-name>
+      {{@category.name}}
+    </span>
+  </button>
+  <div>
+    <PaperButton
       @iconButton={{true}}
       @onClick={{fn @moveUpward @category}}
     >
       {{paper-icon "arrow_upward"}}
-    </controls.button>
-    <controls.button
+    </PaperButton>
+    <PaperButton
       @iconButton={{true}}
       @onClick={{fn @moveDownward @category}}
     >
       {{paper-icon "arrow_downward"}}
-    </controls.button>
+    </PaperButton>
   </div>
-</PaperItem>
+</li>
