@@ -25,11 +25,12 @@
     {{/if}}
 
     {{#if @loading}}
+      <PaginationControls
+        @pageNumber={{@pageNumber}}
+        @totalPages={{@totalPages}}
+      />
+
       <PaperList>
-        <PaginationControls
-          @pageNumber={{@pageNumber}}
-          @totalPages={{@totalPages}}
-        />
         <div class="layout-margin">
           <PaperProgressCircular data-test-loading-indicator />
         </div>
@@ -47,14 +48,14 @@
         </PaperItem>
       </PaperList>
     {{else}}
-      <PaperList>
-        <PaginationControls
-          @pageNumber={{@pageNumber}}
-          @totalPages={{@totalPages}}
-          @prevPage={{@prevPage}}
-          @nextPage={{@nextPage}}
-        />
+      <PaginationControls
+        @pageNumber={{@pageNumber}}
+        @totalPages={{@totalPages}}
+        @prevPage={{@prevPage}}
+        @nextPage={{@nextPage}}
+      />
 
+      <PaperList>
         {{#if @groups}}
           {{#each @groups as |group|}}
             <PaperSubheader data-test-group-deferred-until>
