@@ -30,23 +30,15 @@
         @totalPages={{@totalPages}}
       />
 
-      <PaperList>
-        <div class="layout-margin">
-          <PaperProgressCircular data-test-loading-indicator />
-        </div>
-      </PaperList>
+      <PaperProgressCircular data-test-loading-indicator />
     {{else if @error}}
-      <PaperList>
-        <PaperItem>
-          <div
-            class="alert alert-danger"
-            role="alert"
-            data-test-error-message
-          >
-            An error occurred loading todos.
-          </div>
-        </PaperItem>
-      </PaperList>
+      <div
+        class="alert alert-danger"
+        role="alert"
+        data-test-error-message
+      >
+        An error occurred loading todos.
+      </div>
     {{else}}
       <PaginationControls
         @pageNumber={{@pageNumber}}
