@@ -100,11 +100,12 @@
             </TodoList::Item>
           {{/each}}
         {{else}}
-          <PaperItem>
-            <p data-test-no-todos-message>
-              <em>{{if @isSearching "No todos found" @noTodosMessage}}</em>
-            </p>
-          </PaperItem>
+          <div
+            class="list-group-item"
+            data-test-no-todos-message
+          >
+            <em>{{if @isSearching "No todos found" @noTodosMessage}}</em>
+          </div>
         {{/if}}
       </div>
     {{/if}}
