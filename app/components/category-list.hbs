@@ -16,7 +16,7 @@
   </PaperToolbar>
   <PaperContent>
     {{#if @loading}}
-      <PaperProgressCircular data-test-loading-indicator />
+      <LoadingIndicator />
     {{else if @error}}
       <div
         class="alert alert-danger"
