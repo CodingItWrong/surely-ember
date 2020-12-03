@@ -24,7 +24,7 @@ describe('Acceptance | adding tomorrow todos', function (hooks) {
     await fillIn('[data-test-new-todo-field] textarea', todoName);
     await triggerEvent('[data-test-new-todo-form]', 'submit');
     assert.dom('[data-test-todo-name]').hasText(todoName);
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
   });
 });
