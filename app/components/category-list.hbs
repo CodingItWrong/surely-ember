@@ -34,7 +34,7 @@
         </PaperItem>
       </PaperList>
     {{else}}
-      <PaperList>
+      <ul class="list-group">
         {{#each @categories as |category|}}
           <CategoryList::Item
             @category={{category}}
@@ -42,15 +42,15 @@
             @moveUpward={{@moveUpward}}
             @moveDownward={{@moveDownward}}
           />
-          <PaperDivider />
         {{else}}
-          <PaperItem>
-            <p data-test-no-categories-message>
-              <em>No categories yet</em>
-            </p>
-          </PaperItem>
+          <li
+            class="list-group-item"
+            data-test-no-categories-message
+          >
+            <em>No categories yet</em>
+          </li>
         {{/each}}
-      </PaperList>
+      </ul>
     {{/if}}
   </PaperContent>
   <card.actions>
