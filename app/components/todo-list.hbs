@@ -55,7 +55,7 @@
         @nextPage={{@nextPage}}
       />
 
-      <PaperList>
+      <div class="list-group">
         {{#if @groups}}
           {{#each @groups as |group|}}
             <PaperSubheader data-test-group-deferred-until>
@@ -96,7 +96,6 @@
                 </p>
               {{/if}}
             </TodoList::Item>
-            <PaperDivider />
           {{/each}}
         {{else}}
           <PaperItem>
@@ -105,7 +104,7 @@
             </p>
           </PaperItem>
         {{/if}}
-      </PaperList>
+      </div>
     {{/if}}
   </PaperContent>
 </PaperCard>

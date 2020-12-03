@@ -30,7 +30,7 @@ describe('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-todo-name]').hasText(todoName);
 
     // defer one day
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     assert.dom('[data-test-deferred-until]').doesNotExist();
     await click('[data-test-defer-button]');
@@ -40,13 +40,13 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-future] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
     assert.dom('[data-test-group-deferred-until]').hasText('Tomorrow (1)');
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
 
     // confirm it shows on the tomorrow page
     await click('[data-test-tomorrow] button');
     assert.dom('[data-test-todo-name]').hasText(todoName);
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
 
     // editing
     await click('[data-test-edit-button]');
@@ -58,7 +58,7 @@ describe('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-todo]').doesNotExist();
     await click('[data-test-available] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').doesNotExist();
 
     // defer until date
@@ -70,14 +70,14 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-defer-button]');
     assert.dom('[data-test-todo]').doesNotExist();
     await click('[data-test-future] button');
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').exists();
 
     // complete
     await click('[data-test-complete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
     await click('[data-test-completed] button');
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     assert.dom('[data-test-completed-at]').hasText(/Completed today at/);
 
@@ -91,12 +91,12 @@ describe('Acceptance | managing todos', function (hooks) {
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
 
     // delete
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     await click('[data-test-delete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
     await click('[data-test-deleted] button');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
-    await click('[data-test-todo] button');
+    await click('[data-test-todo]');
     assert.dom('[data-test-deleted-at]').exists();
 
     // undelete

@@ -75,7 +75,7 @@ describe('Integration | Component | todo-list', function (hooks) {
     });
 
     it('calls onChooseTodo when clicking a todo', async function (assert) {
-      await click('[data-test-todo] button');
+      await click('[data-test-todo]');
       assert.equal(
         handleChooseTodo.getCall(0).args[0],
         todos[0],
@@ -117,7 +117,7 @@ describe('Integration | Component | todo-list', function (hooks) {
     });
 
     it('calls onChooseTodo when clicking a todo', async function (assert) {
-      await click('[data-test-todo] button');
+      await click('[data-test-todo]');
       assert.equal(
         handleChooseTodo.getCall(0).args[0],
         groups[0].todos[0],

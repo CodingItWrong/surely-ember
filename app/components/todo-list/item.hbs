@@ -1,14 +1,14 @@
-<PaperItem
-  @onClick={{fn @onChooseTodo @todo}}
+<button
+  {{on "click" (fn @onChooseTodo @todo)}}
+  type="button"
+  class="list-group-item list-group-item-action todo-list-item"
   data-test-todo
 >
-  <div class="todo-list-item__container">
-    <p
-      class="todo-list-item__title"
-      data-test-todo-name
-    >
-      {{@todo.name}}
-    </p>
-    {{yield}}
-  </div>
-</PaperItem>
+  <p
+    class="todo-list-item__title"
+    data-test-todo-name
+  >
+    {{@todo.name}}
+  </p>
+  {{yield}}
+</button>
