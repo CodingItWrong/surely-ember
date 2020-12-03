@@ -58,12 +58,15 @@
       <div class="list-group">
         {{#if @groups}}
           {{#each @groups as |group|}}
-            <PaperSubheader data-test-group-deferred-until>
+            <div
+              class="list-group-item disabled"
+              data-test-group-deferred-until
+            >
               {{group.name}}
               {{#if @groupCounts}}
                 ({{group.todos.length}})
               {{/if}}
-            </PaperSubheader>
+            </div>
             {{#each group.todos as |todo|}}
               <TodoList::Item
                 @todo={{todo}}
@@ -79,7 +82,6 @@
                 {{/if}}
               </TodoList::Item>
             {{/each}}
-            <PaperDivider />
           {{/each}}
         {{else if @todos}}
           {{#each @todos as |todo|}}
