@@ -20,7 +20,8 @@ export default class SignInFormComponent extends Component {
   }
 
   @action
-  async signIn() {
+  async signIn(e) {
+    e.preventDefault();
     let { email, password } = this;
 
     try {

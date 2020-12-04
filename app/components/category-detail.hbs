@@ -9,8 +9,8 @@
     </div>
   {{else}}
     <div class="card m-3">
-      <PaperForm
-        onSubmit={{this.handleSave}}
+      <form
+        {{on "submit" this.handleSave}}
         data-test-category-edit-form
       >
         <div class="card-body">
@@ -74,7 +74,7 @@
             </button>
           </div>
         </div>
-      </PaperForm>
+      </form>
     </div>
   {{/if}}
 </div>

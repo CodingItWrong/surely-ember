@@ -1,6 +1,6 @@
 <div class="card m-3">
-  <PaperForm
-    @onSubmit={{this.signIn}}
+  <form
+    {{on "submit" this.signIn}}
     data-test-sign-in-form
   >
     <div class="card-body">
@@ -50,7 +50,7 @@
         </button>
       </div>
     </div>
-  </PaperForm>
+  </form>
 </div>
 
 <div class="layout-margin deemphasized-text">
