@@ -1,20 +1,19 @@
-<PaperCard as |card|>
-  <PaperToolbar>
-    <PaperToolbarTools>
+<div class="card m-3">
+  <div class="card-body">
+    <h2 class="d-flex">
       <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
         {{paper-icon "label"}}
       </PaperButton>
       <h2>Categories</h2>
-      <span class="flex"></span>
+      <span class="flex-fill"></span>
       <PaperButton
         @iconButton={{true}}
         @onClick={{@onRefresh}}
       >
         {{paper-icon "refresh"}}
       </PaperButton>
-    </PaperToolbarTools>
-  </PaperToolbar>
-  <PaperContent>
+    </h2>
+
     {{#if @loading}}
       <LoadingIndicator />
     {{else if @error}}
@@ -44,16 +43,16 @@
         {{/each}}
       </ul>
     {{/if}}
-  </PaperContent>
-  <card.actions>
-    <button
-      {{on "click" @onAdd}}
-      type="button"
-      class="btn btn-light"
-      data-test-add-button
-    >
-      {{paper-icon "add"}}
-      Add
-    </button>
-  </card.actions>
-</PaperCard>
+    <div class="d-flex justify-content-end mt-3">
+      <button
+        {{on "click" @onAdd}}
+        type="button"
+        class="btn btn-light"
+        data-test-add-button
+      >
+        {{paper-icon "add"}}
+        Add
+      </button>
+    </div>
+  </div>
+</div>
