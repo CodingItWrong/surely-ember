@@ -1,24 +1,19 @@
 <div {{did-update this.resetStateIfModelChanged @category}}>
   {{#if @error}}
-    <PaperCard as |card|>
-      <card.title as |title|>
-        <title.text as |text|>
-          <text.headline
-            class="todo-headline__container"
-            data-test-error-message
-          >
-            Error loading category
-          </text.headline>
-        </title.text>
-      </card.title>
-    </PaperCard>
+    <div
+      role="alert"
+      class="alert alert-danger m-3"
+      data-test-error-message
+    >
+      Error loading category
+    </div>
   {{else}}
-    <PaperCard as |card|>
+    <div class="card m-3">
       <PaperForm
         onSubmit={{this.handleSave}}
         data-test-category-edit-form
       >
-        <card.content>
+        <div class="card-body">
           <div
             class="form-group"
             data-test-category-name-field
@@ -44,41 +39,42 @@
               {{this.errorMessage}}
             </div>
           {{/if}}
-        </card.content>
-        <card.actions class="app-button-container">
-          <button
-            {{on "click" @onCancel}}
-            type="button"
-            class="btn btn-light"
-            data-test-cancel-edit-button
-          >
-            Cancel
-          </button>
-          {{#if @onDelete}}
+
+          <div class="app-button-container">
             <button
-              {{on "click" this.handleDelete}}
+              {{on "click" @onCancel}}
               type="button"
               class="btn btn-light"
-              data-test-delete-button
+              data-test-cancel-edit-button
             >
-              Delete
+              Cancel
             </button>
-          {{/if}}
-          <button
-            type="submit"
-            class="btn btn-primary"
-            disabled={{this.saving}}
-            data-test-save-button
-          >
-            {{paper-icon "save"}}
-            {{#if this.saving}}
-              Saving…
-            {{else}}
-              Save
+            {{#if @onDelete}}
+              <button
+                {{on "click" this.handleDelete}}
+                type="button"
+                class="btn btn-light"
+                data-test-delete-button
+              >
+                Delete
+              </button>
             {{/if}}
-          </button>
-        </card.actions>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              disabled={{this.saving}}
+              data-test-save-button
+            >
+              {{paper-icon "save"}}
+              {{#if this.saving}}
+                Saving…
+              {{else}}
+                Save
+              {{/if}}
+            </button>
+          </div>
+        </div>
       </PaperForm>
-    </PaperCard>
+    </div>
   {{/if}}
 </div>
