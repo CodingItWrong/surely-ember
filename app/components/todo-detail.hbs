@@ -7,269 +7,264 @@
       @onCancel={{this.handleCancel}}
     />
   {{else if @error}}
-    <PaperCard as |card|>
-      <card.title as |title|>
-        <title.text as |text|>
-          <text.headline
-            class="todo-headline__container"
-            data-test-error-message
-          >
-            Error loading todo
-          </text.headline>
-        </title.text>
-      </card.title>
-    </PaperCard>
+    <div
+      role="alert"
+      class="alert alert-danger m-3"
+      data-test-error-message
+    >
+      Error loading todo
+    </div>
   {{else}}
-    <PaperCard as |card|>
-      <card.title as |title|>
-        <title.text as |text|>
-          <text.headline class="todo-headline__container">
-            <button
-              type="button"
-              class="todo-headline__title click-to-edit unstyled-button"
-              data-test-todo-name
-              {{on "click" this.edit}}
-            >
-              {{this.displayModel.name}}
-            </button>
-            <PaperButton
-              @iconButton={{true}}
-              @onClick={{this.edit}}
-              class="todo-headline__button"
-              data-test-edit-button
-            >
-              {{paper-icon "edit"}}
-            </PaperButton>
-          </text.headline>
-        </title.text>
-      </card.title>
-      <card.content class="overflow-hidden">
-        {{#if this.displayModel.notes}}
-          <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}} data-test-todo-notes>{{this.displayModel.notes}}</button>
-        {{/if}}
-        {{#if this.displayModel.category}}
-          <p>Category: {{this.displayModel.category.name}}</p>
-        {{/if}}
-        <TodoDetail::EventLog
-          @displayModel={{this.displayModel}}
-        />
-
-        {{#if this.errorMessage}}
-          <div
-            class="alert alert-danger"
-            role="alert"
-            data-test-error-message
+    <div class="card m-3">
+      <div class="card-body">
+        <h2 class="todo-headline__container">
+          <button
+            type="button"
+            class="todo-headline__title click-to-edit unstyled-button"
+            data-test-todo-name
+            {{on "click" this.edit}}
           >
-            {{this.errorMessage}}
-          </div>
-        {{/if}}
+            {{this.displayModel.name}}
+          </button>
+          <PaperButton
+            @iconButton={{true}}
+            @onClick={{this.edit}}
+            class="todo-headline__button"
+            data-test-edit-button
+          >
+            {{paper-icon "edit"}}
+          </PaperButton>
+        </h2>
 
-        {{#if (eq this.buttonSet "defer")}}
-          <div class="app-button-container-stacked">
-            <button
-              {{on "click" this.cancelDefer}}
-              type="button"
-              class="btn btn-light"
-              disabled={{this.isProcessing}}
-              data-test-cancel-defer-button
+        <div class="overflow-hidden">
+          {{#if this.displayModel.notes}}
+            <button type="button" class="notes-display click-to-edit unstyled-button" {{on "click" this.edit}} data-test-todo-notes>{{this.displayModel.notes}}</button>
+          {{/if}}
+          {{#if this.displayModel.category}}
+            <p>Category: {{this.displayModel.category.name}}</p>
+          {{/if}}
+          <TodoDetail::EventLog
+            @displayModel={{this.displayModel}}
+          />
+
+          {{#if this.errorMessage}}
+            <div
+              class="alert alert-danger"
+              role="alert"
+              data-test-error-message
             >
-              Cancel
-            </button>
-            {{#let (defer-date
-              start=this.displayModel.deferredUntil
-              days=1
-            ) as |deferDate|}}
+              {{this.errorMessage}}
+            </div>
+          {{/if}}
+
+          {{#if (eq this.buttonSet "defer")}}
+            <div class="app-button-container-stacked">
               <button
-                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                {{on "click" this.cancelDefer}}
                 type="button"
                 class="btn btn-light"
                 disabled={{this.isProcessing}}
-                data-test-defer-one-day-button
+                data-test-cancel-defer-button
               >
-                {{#if this.isDeferring}}
-                  Deferring…
-                {{else}}
-                  1 Day - {{day-of-week deferDate}}
-                {{/if}}
+                Cancel
               </button>
-            {{/let}}
-            {{#let (defer-date
-              start=this.displayModel.deferredUntil
-              days=2
-            ) as |deferDate|}}
+              {{#let (defer-date
+                start=this.displayModel.deferredUntil
+                days=1
+              ) as |deferDate|}}
+                <button
+                  {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                  type="button"
+                  class="btn btn-light"
+                  disabled={{this.isProcessing}}
+                  data-test-defer-one-day-button
+                >
+                  {{#if this.isDeferring}}
+                    Deferring…
+                  {{else}}
+                    1 Day - {{day-of-week deferDate}}
+                  {{/if}}
+                </button>
+              {{/let}}
+              {{#let (defer-date
+                start=this.displayModel.deferredUntil
+                days=2
+              ) as |deferDate|}}
+                <button
+                  {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                  type="button"
+                  class="btn btn-light"
+                  disabled={{this.isProcessing}}
+                  data-test-defer-two-days-button
+                >
+                  {{#if this.isDeferring}}
+                    Deferring…
+                  {{else}}
+                    2 Days - {{day-of-week deferDate}}
+                  {{/if}}
+                </button>
+              {{/let}}
+              {{#let (defer-date
+                start=this.displayModel.deferredUntil
+                days=3
+              ) as |deferDate|}}
+                <button
+                  {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                  type="button"
+                  class="btn btn-light"
+                  disabled={{this.isProcessing}}
+                  data-test-defer-three-days-button
+                >
+                  {{#if this.isDeferring}}
+                    Deferring…
+                  {{else}}
+                    3 Days -
+                    {{day-of-week deferDate}}
+                  {{/if}}
+                </button>
+              {{/let}}
+              {{#let (defer-date
+                start=this.displayModel.deferredUntil
+                days=7
+              ) as |deferDate|}}
+                <button
+                  {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                  type="button"
+                  class="btn btn-light"
+                  disabled={{this.isProcessing}}
+                  data-test-defer-one-week-button
+                >
+                  {{#if this.isDeferring}}
+                    Deferring…
+                  {{else}}
+                    1 Week - {{day-of-week deferDate}}
+                  {{/if}}
+                </button>
+              {{/let}}
               <button
-                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
+                {{on "click" this.deferUntilDate}}
                 type="button"
                 class="btn btn-light"
                 disabled={{this.isProcessing}}
-                data-test-defer-two-days-button
+                data-test-defer-until-date-button
               >
-                {{#if this.isDeferring}}
-                  Deferring…
-                {{else}}
-                  2 Days - {{day-of-week deferDate}}
-                {{/if}}
+                Pick Date
               </button>
-            {{/let}}
-            {{#let (defer-date
-              start=this.displayModel.deferredUntil
-              days=3
-            ) as |deferDate|}}
+            </div>
+          {{/if}}
+        </div>
+
+        <div class="app-button-container">
+          {{#if (eq this.buttonSet "actions")}}
+            {{#if this.displayModel.isDeleted}}
               <button
-                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
-                type="button"
-                class="btn btn-light"
-                disabled={{this.isProcessing}}
-                data-test-defer-three-days-button
-              >
-                {{#if this.isDeferring}}
-                  Deferring…
-                {{else}}
-                  3 Days -
-                  {{day-of-week deferDate}}
-                {{/if}}
-              </button>
-            {{/let}}
-            {{#let (defer-date
-              start=this.displayModel.deferredUntil
-              days=7
-            ) as |deferDate|}}
-              <button
-                {{on "click" (fn this.saveDeferUntilDate deferDate)}}
-                type="button"
-                class="btn btn-light"
-                disabled={{this.isProcessing}}
-                data-test-defer-one-week-button
-              >
-                {{#if this.isDeferring}}
-                  Deferring…
-                {{else}}
-                  1 Week - {{day-of-week deferDate}}
-                {{/if}}
-              </button>
-            {{/let}}
-            <button
-              {{on "click" this.deferUntilDate}}
-              type="button"
-              class="btn btn-light"
-              disabled={{this.isProcessing}}
-              data-test-defer-until-date-button
-            >
-              Pick Date
-            </button>
-          </div>
-        {{/if}}
-      </card.content>
-      <card.actions class="app-button-container">
-        {{#if (eq this.buttonSet "actions")}}
-          {{#if this.displayModel.isDeleted}}
-            <button
-              {{on "click" this.undelete}}
-              type="button"
-              class="btn btn-primary"
-              disabled={{this.isProcessing}}
-              data-test-undelete-button
-            >
-              {{paper-icon "restore_from_trash"}}
-              {{#if this.isUndeleting}}
-                Undeleting…
-              {{else}}
-                Undelete
-              {{/if}}
-            </button>
-          {{else}}
-            <button
-              {{on "click" this.delete}}
-              type="button"
-              class="btn btn-light"
-              disabled={{this.isProcessing}}
-              data-test-delete-button
-            >
-              {{#if this.isDeleting}}
-                Deleting…
-              {{else}}
-                Delete
-              {{/if}}
-            </button>
-            {{#if this.displayModel.isCompleted}}
-              <button
-                {{on "click" this.uncomplete}}
+                {{on "click" this.undelete}}
                 type="button"
                 class="btn btn-primary"
                 disabled={{this.isProcessing}}
-                data-test-uncomplete-button
+                data-test-undelete-button
               >
-                {{paper-icon "check_box_outline_blank"}}
-                {{#if this.isUncompleting}}
-                  Uncompleting…
+                {{paper-icon "restore_from_trash"}}
+                {{#if this.isUndeleting}}
+                  Undeleting…
                 {{else}}
-                  Uncomplete
+                  Undelete
                 {{/if}}
               </button>
             {{else}}
               <button
-                {{on "click" this.defer}}
+                {{on "click" this.delete}}
                 type="button"
                 class="btn btn-light"
                 disabled={{this.isProcessing}}
-                data-test-defer-button
+                data-test-delete-button
               >
-                Defer
-              </button>
-              <button
-                {{on "click" this.complete}}
-                type="button"
-                class="btn btn-primary"
-                disabled={{this.isProcessing}}
-                data-test-complete-button
-              >
-                {{paper-icon "check_box"}}
-                {{#if this.isCompleting}}
-                  Completing…
+                {{#if this.isDeleting}}
+                  Deleting…
                 {{else}}
-                  Complete
+                  Delete
                 {{/if}}
               </button>
-            {{/if}}
-          {{/if}}
-        {{else if (eq this.buttonSet "defer_until_date")}}
-          <PaperForm
-            @onSubmit={{this.saveEnteredDeferredDate}}
-            class="app-button-container"
-            as |form|
-          >
-            <form.input
-              @type="date"
-              @label="Defer Until Date"
-              @value={{this.deferredUntil}}
-              @onChange={{action (mut this.deferredUntil)}}
-              data-test-deferred-until-field
-            />
-            <button
-              {{on "click" this.cancelDefer}}
-              type="button"
-              class="btn btn-light"
-              disabled={{this.isProcessing}}
-              data-test-cancel-defer-until-date-button
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              class="btn btn-primary"
-              disabled={{this.isProcessing}}
-              data-test-defer-button
-            >
-              {{paper-icon "calendar_today"}}
-              {{#if this.isDeferring}}
-                Deferring…
+              {{#if this.displayModel.isCompleted}}
+                <button
+                  {{on "click" this.uncomplete}}
+                  type="button"
+                  class="btn btn-primary"
+                  disabled={{this.isProcessing}}
+                  data-test-uncomplete-button
+                >
+                  {{paper-icon "check_box_outline_blank"}}
+                  {{#if this.isUncompleting}}
+                    Uncompleting…
+                  {{else}}
+                    Uncomplete
+                  {{/if}}
+                </button>
               {{else}}
-                Defer
+                <button
+                  {{on "click" this.defer}}
+                  type="button"
+                  class="btn btn-light"
+                  disabled={{this.isProcessing}}
+                  data-test-defer-button
+                >
+                  Defer
+                </button>
+                <button
+                  {{on "click" this.complete}}
+                  type="button"
+                  class="btn btn-primary"
+                  disabled={{this.isProcessing}}
+                  data-test-complete-button
+                >
+                  {{paper-icon "check_box"}}
+                  {{#if this.isCompleting}}
+                    Completing…
+                  {{else}}
+                    Complete
+                  {{/if}}
+                </button>
               {{/if}}
-            </button>
-          </PaperForm>
-        {{/if}}
-      </card.actions>
-    </PaperCard>
+            {{/if}}
+          {{else if (eq this.buttonSet "defer_until_date")}}
+            <PaperForm
+              @onSubmit={{this.saveEnteredDeferredDate}}
+              class="app-button-container"
+              as |form|
+            >
+              <form.input
+                @type="date"
+                @label="Defer Until Date"
+                @value={{this.deferredUntil}}
+                @onChange={{action (mut this.deferredUntil)}}
+                data-test-deferred-until-field
+              />
+              <button
+                {{on "click" this.cancelDefer}}
+                type="button"
+                class="btn btn-light"
+                disabled={{this.isProcessing}}
+                data-test-cancel-defer-until-date-button
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                disabled={{this.isProcessing}}
+                data-test-defer-button
+              >
+                {{paper-icon "calendar_today"}}
+                {{#if this.isDeferring}}
+                  Deferring…
+                {{else}}
+                  Defer
+                {{/if}}
+              </button>
+            </PaperForm>
+          {{/if}}
+        </div>
+      </div>
+    </div>
   {{/if}}
 </div>
