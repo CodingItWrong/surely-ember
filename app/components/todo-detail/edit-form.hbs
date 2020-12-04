@@ -1,10 +1,10 @@
-<PaperCard as |card|>
+<div class="card m-3">
   <PaperForm
     onSubmit={{this.handleSave}}
     data-test-todo-edit-form
     as |form|
   >
-    <card.content>
+    <div class="card-body">
       <form.input
         @placeholder="Todo"
         @value={{this.editedName}}
@@ -69,29 +69,29 @@
           {{this.errorMessage}}
         </div>
       {{/if}}
-    </card.content>
-    <card.actions class="app-button-container">
-      <button
-        {{on "click" @onCancel}}
-        type="button"
-        class="btn btn-light"
-        data-test-cancel-edit-button
-      >
-        Cancel
-      </button>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        disabled={{this.saving}}
-        data-test-save-button
-      >
-        {{paper-icon "save"}}
-        {{#if this.saving}}
-          Saving…
-        {{else}}
-          Save
-        {{/if}}
-      </button>
-    </card.actions>
+      <div class="app-button-container">
+        <button
+          {{on "click" @onCancel}}
+          type="button"
+          class="btn btn-light"
+          data-test-cancel-edit-button
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          disabled={{this.saving}}
+          data-test-save-button
+        >
+          {{paper-icon "save"}}
+          {{#if this.saving}}
+            Saving…
+          {{else}}
+            Save
+          {{/if}}
+        </button>
+      </div>
+    </div>
   </PaperForm>
-</PaperCard>
+</div>
