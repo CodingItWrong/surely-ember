@@ -1,10 +1,10 @@
-<PaperCard>
-  <PaperToolbar>
-    <PaperToolbarTools>
+<div class="card m-3">
+  <div class="card-body">
+    <h5 class="d-flex">
       <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
         {{paper-icon @icon}}
       </PaperButton>
-      <h2>
+      <h2 class="flex-fill">
         {{@title}}
         {{#if (and @todos (not @pageNumber))}}
           ({{@todos.length}})
@@ -17,9 +17,8 @@
       >
         {{paper-icon "refresh"}}
       </PaperButton>
-    </PaperToolbarTools>
-  </PaperToolbar>
-  <PaperContent>
+    </h5>
+
     {{#if @searchAvailable}}
       <SearchForm @onSearch={{@onSearch}} />
     {{/if}}
@@ -101,5 +100,5 @@
         {{/if}}
       </div>
     {{/if}}
-  </PaperContent>
-</PaperCard>
+  </div>
+</div>
