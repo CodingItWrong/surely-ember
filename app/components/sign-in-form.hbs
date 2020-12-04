@@ -1,9 +1,9 @@
-<PaperCard as |card|>
+<div class="card m-3">
   <PaperForm
     @onSubmit={{this.signIn}}
     data-test-sign-in-form
   >
-    <card.content>
+    <div class="card-body">
       {{#if this.errorMessage}}
         <div
           class="alert alert-danger"
@@ -31,26 +31,27 @@
           class="form-control"
         />
       </div>
-    </card.content>
-    <card.actions>
-      <button
-        {{on "click" this.goToSignUp}}
-        type="button"
-        class="btn btn-light"
-        data-test-sign-up-button
-      >
-        Sign Up
-      </button>
-      &nbsp;
-      <button
-        type="submit"
-        class="btn btn-primary"
-      >
-        Sign In
-      </button>
-    </card.actions>
+
+      <div class="d-flex justify-content-end">
+        <button
+          {{on "click" this.goToSignUp}}
+          type="button"
+          class="btn btn-light"
+          data-test-sign-up-button
+        >
+          Sign Up
+        </button>
+        &nbsp;
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
   </PaperForm>
-</PaperCard>
+</div>
 
 <div class="layout-margin deemphasized-text">
   <small><a href="https://thenounproject.com/search/?q=checkmark&i=1758124">Checkmark icon</a> by Scott Dunlap from the Noun Project</small>
