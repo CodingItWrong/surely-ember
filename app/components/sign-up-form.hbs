@@ -1,16 +1,13 @@
-<PaperCard as |card|>
-  <card.title as |title|>
-    <title.text as |text|>
-      <text.headline>
-        Sign Up
-      </text.headline>
-    </title.text>
-  </card.title>
+<div class="card m-3">
   <PaperForm
     @onSubmit={{this.signUp}}
     data-test-sign-up-form
   >
-    <card.content>
+    <div class="card-body">
+      <h2>
+        Sign Up
+      </h2>
+
       {{#if this.errorMessage}}
         <div
           class="alert alert-danger"
@@ -68,23 +65,24 @@
           {{this.errors.passwordConfirmation}}
         </div>
       </div>
-    </card.content>
-    <card.actions>
-      <button
-        {{on "click" this.handleCancel}}
-        type="button"
-        class="btn btn-light"
-      >
-        Cancel
-      </button>
-      &nbsp;
-      <button
-        type="submit"
-        class="btn btn-primary"
-        data-test-sign-up-confirm-button
-      >
-        Sign Up
-      </button>
-    </card.actions>
+
+      <div class="d-flex justify-content-end">
+        <button
+          {{on "click" this.handleCancel}}
+          type="button"
+          class="btn btn-light"
+        >
+          Cancel
+        </button>
+        &nbsp;
+        <button
+          type="submit"
+          class="btn btn-primary"
+          data-test-sign-up-confirm-button
+        >
+          Sign Up
+        </button>
+      </div>
+    </div>
   </PaperForm>
-</PaperCard>
+</div>
