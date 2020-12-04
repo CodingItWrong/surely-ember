@@ -154,8 +154,8 @@
           {{/if}}
         </div>
 
-        <div class="app-button-container">
-          {{#if (eq this.buttonSet "actions")}}
+        {{#if (eq this.buttonSet "actions")}}
+          <div class="app-button-container">
             {{#if this.displayModel.isDeleted}}
               <button
                 {{on "click" this.undelete}}
@@ -226,7 +226,9 @@
                 </button>
               {{/if}}
             {{/if}}
-          {{else if (eq this.buttonSet "defer_until_date")}}
+          </div>
+        {{else if (eq this.buttonSet "defer_until_date")}}
+          <div class="app-button-container">
             <PaperForm
               @onSubmit={{this.saveEnteredDeferredDate}}
               class="app-button-container"
@@ -262,8 +264,8 @@
                 {{/if}}
               </button>
             </PaperForm>
-          {{/if}}
-        </div>
+          </div>
+        {{/if}}
       </div>
     </div>
   {{/if}}
