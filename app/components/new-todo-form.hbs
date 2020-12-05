@@ -1,16 +1,13 @@
-<PaperForm
-  @onSubmit={{this.createTodo}}
+<form
+  {{on "submit" this.createTodo}}
   class="layout-margin"
   data-test-new-todo-form
-  as |form|
 >
-  <form.input
-    @placeholder={{@placeholder}}
+  <Input
     @value={{this.newTodoName}}
-    @onChange={{action (mut this.newTodoName)}}
-    @onKeyDown={{this.handleNameKeyDown}}
-    @block={{true}}
-    @textarea={{true}}
+    placeholder={{@placeholder}}
+    class="form-control"
+    {{on "keydown" this.handleNameKeyDown}}
     data-test-new-todo-field
   />
 
@@ -23,4 +20,4 @@
       {{this.errorMessage}}
     </div>
   {{/if}}
-</PaperForm>
+</form>

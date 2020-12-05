@@ -2,6 +2,7 @@ import { click, currentURL, fillIn, visit } from '@ember/test-helpers';
 import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { module as describe, test as it } from 'qunit';
+import { NEW_TODO_FIELD } from '../constants';
 
 describe('Acceptance | sign up', function (hooks) {
   setupApplicationTest(hooks);
@@ -18,6 +19,6 @@ describe('Acceptance | sign up', function (hooks) {
     await click('[data-test-sign-up-confirm-button]');
 
     assert.equal(currentURL(), '/todos/available');
-    assert.dom('[data-test-new-todo-field]').exists();
+    assert.dom(NEW_TODO_FIELD).exists();
   });
 });
