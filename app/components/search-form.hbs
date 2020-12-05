@@ -1,12 +1,13 @@
 <form
   {{on "submit" this.handleSearch}}
-  class="layout-margin"
   data-test-search-form
 >
-  <Input
-    @value={{this.searchText}}
-    placeholder="Search"
-    class="form-control"
-    data-test-search-field
-  />
+  <div class="form-group">
+    <Input
+      @value={{this.searchText}}
+      placeholder="Search"
+      class="form-control"
+      data-test-search-field
+    />
+  </div>
 </form>
