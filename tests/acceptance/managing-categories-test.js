@@ -10,6 +10,7 @@ import setupMirage from 'ember-cli-mirage/test-support/setup-mirage';
 import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
+import { CATEGORIES_NAV } from '../constants';
 
 describe('Acceptance | managing categories', function (hooks) {
   setupApplicationTest(hooks);
@@ -19,7 +20,7 @@ describe('Acceptance | managing categories', function (hooks) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
-    await click('[data-test-categories] button');
+    await click(CATEGORIES_NAV);
 
     // add category
     const categoryName = 'New Category';

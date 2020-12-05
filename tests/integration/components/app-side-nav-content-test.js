@@ -1,4 +1,4 @@
-import { click, render } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
 import { module as describe, test as it } from 'qunit';
@@ -38,49 +38,10 @@ describe('Integration | Component | app-side-nav-content', function (hooks) {
       await render(hbs`<AppSideNavContent />`);
     });
 
-    it('allows navigating to the available route', async function (assert) {
-      await click('[data-test-available] button');
+    it('renders', async function (assert) {
+      await render(hbs`<AppSideNavContent />`);
 
-      assert.ok(
-        router.transitionTo.calledWith('todos.available'),
-        'navigated to available route',
-      );
-    });
-
-    it('allows navigating to the tomorrow route', async function (assert) {
-      await click('[data-test-tomorrow] button');
-
-      assert.ok(
-        router.transitionTo.calledWith('todos.tomorrow'),
-        'navigated to tomorrow route',
-      );
-    });
-
-    it('allows navigating to the future route', async function (assert) {
-      await click('[data-test-future] button');
-
-      assert.ok(
-        router.transitionTo.calledWith('todos.future'),
-        'navigated to future route',
-      );
-    });
-
-    it('allows navigating to the completed route', async function (assert) {
-      await click('[data-test-completed] button');
-
-      assert.ok(
-        router.transitionTo.calledWith('todos.completed'),
-        'navigated to completed route',
-      );
-    });
-
-    it('allows navigating to the deleted route', async function (assert) {
-      await click('[data-test-deleted] button');
-
-      assert.ok(
-        router.transitionTo.calledWith('todos.deleted'),
-        'navigated to deleted route',
-      );
+      assert.notEqual(this.element.textContent.trim(), '');
     });
   });
 });

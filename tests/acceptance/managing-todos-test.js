@@ -12,7 +12,15 @@ import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
-import { NEW_TODO_FIELD, TODO_NAME_FIELD } from '../constants';
+import {
+  AVAILABLE_NAV,
+  COMPLETED_NAV,
+  DELETED_NAV,
+  FUTURE_NAV,
+  NEW_TODO_FIELD,
+  TODO_NAME_FIELD,
+  TOMORROW_NAV,
+} from '../constants';
 
 describe('Acceptance | managing todos', function (hooks) {
   setupApplicationTest(hooks);
@@ -22,7 +30,7 @@ describe('Acceptance | managing todos', function (hooks) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
-    await click('[data-test-available] button');
+    await click(AVAILABLE_NAV);
 
     // add todo
     const todoName = 'New Todo';
@@ -38,14 +46,14 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-defer-one-day-button]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-future] button');
+    await click(FUTURE_NAV);
     assert.dom('[data-test-todo-name]').hasText(todoName);
     assert.dom('[data-test-group-deferred-until]').hasText('Tomorrow (1)');
     await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').hasText('Deferred until tomorrow');
 
     // confirm it shows on the tomorrow page
-    await click('[data-test-tomorrow] button');
+    await click(TOMORROW_NAV);
     assert.dom('[data-test-todo-name]').hasText(todoName);
     await click('[data-test-todo]');
 
@@ -57,7 +65,7 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-save-button]');
     await click('[data-test-back-to-tomorrow-list]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-available] button');
+    await click(AVAILABLE_NAV);
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').doesNotExist();
@@ -70,14 +78,14 @@ describe('Acceptance | managing todos', function (hooks) {
     await fillIn('[data-test-deferred-until-field] input', oneWeek);
     await click('[data-test-defer-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-future] button');
+    await click(FUTURE_NAV);
     await click('[data-test-todo]');
     assert.dom('[data-test-deferred-until]').exists();
 
     // complete
     await click('[data-test-complete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-completed] button');
+    await click(COMPLETED_NAV);
     await click('[data-test-todo]');
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     assert.dom('[data-test-completed-at]').hasText(/Completed today at/);
@@ -88,14 +96,14 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-back-to-completed-list]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-future] button');
+    await click(FUTURE_NAV);
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
 
     // delete
     await click('[data-test-todo]');
     await click('[data-test-delete-button]');
     assert.dom('[data-test-todo]').doesNotExist();
-    await click('[data-test-deleted] button');
+    await click(DELETED_NAV);
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
     await click('[data-test-todo]');
     assert.dom('[data-test-deleted-at]').exists();
@@ -106,7 +114,7 @@ describe('Acceptance | managing todos', function (hooks) {
     await click('[data-test-back-to-deleted-list]');
     assert.dom('[data-test-todo]').doesNotExist();
 
-    await click('[data-test-future] button');
+    await click(FUTURE_NAV);
     assert.dom('[data-test-todo-name]').hasText(updatedTodoName);
   });
 });
