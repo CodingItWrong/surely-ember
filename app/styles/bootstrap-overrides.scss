@@ -1,5 +1,6 @@
-$override-green: rgb(76, 175, 80);
-$override-dark-green: rgb(67, 160, 71);
+$override-light-green: rgb(165, 214, 167); // 200
+$override-green: rgb(76, 175, 80); // 500
+$override-dark-green: rgb(67, 160, 71); // 600
 
 .btn-primary {
   background-color: $override-green;
@@ -25,5 +26,11 @@ $override-dark-green: rgb(67, 160, 71);
   &.active {
     background-color: $override-green;
     border-color: $override-green;
+  }
+}
+
+.form-control {
+  &:focus {
+    box-shadow: 0 0 0 .2rem $override-light-green;
   }
 }
