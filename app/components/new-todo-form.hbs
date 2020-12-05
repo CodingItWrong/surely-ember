@@ -3,13 +3,15 @@
   class="layout-margin"
   data-test-new-todo-form
 >
-  <Input
-    @value={{this.newTodoName}}
-    placeholder={{@placeholder}}
-    class="form-control"
-    {{on "keydown" this.handleNameKeyDown}}
-    data-test-new-todo-field
-  />
+  <div class="form-group">
+    <Input
+      @value={{this.newTodoName}}
+      placeholder={{@placeholder}}
+      class="form-control"
+      {{on "keydown" this.handleNameKeyDown}}
+      data-test-new-todo-field
+    />
+  </div>
 
   {{#if this.errorMessage}}
     <div
