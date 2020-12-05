@@ -1,5 +1,5 @@
 <div class="m-3">
-  <h5 class="d-flex">
+  <div class="d-flex">
     <IconButton @onClick={{@onClickHeaderIcon}}>
       {{paper-icon @icon}}
     </IconButton>
@@ -13,7 +13,7 @@
     <IconButton @onClick={{@onRefresh}}>
       {{paper-icon "refresh"}}
     </IconButton>
-  </h5>
+  </div>
 
   {{#if @searchAvailable}}
     <SearchForm @onSearch={{@onSearch}} />
