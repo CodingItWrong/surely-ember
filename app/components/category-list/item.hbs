@@ -12,17 +12,11 @@
     </span>
   </button>
   <div>
-    <PaperButton
-      @iconButton={{true}}
-      @onClick={{fn @moveUpward @category}}
-    >
+    <IconButton @onClick={{fn @moveUpward @category}}>
       {{paper-icon "arrow_upward"}}
-    </PaperButton>
-    <PaperButton
-      @iconButton={{true}}
-      @onClick={{fn @moveDownward @category}}
-    >
+    </IconButton>
+    <IconButton @onClick={{fn @moveDownward @category}}>
       {{paper-icon "arrow_downward"}}
-    </PaperButton>
+    </IconButton>
   </div>
 </li>

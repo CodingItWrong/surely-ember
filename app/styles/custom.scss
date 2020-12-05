@@ -144,6 +144,13 @@ md-card-actions .md-button {
   -webkit-appearance: button;
 }
 
+.icon-button {
+  @extend .unstyled-button;
+  height: 40px;
+  padding: 8px;
+  margin: 0 6px;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }

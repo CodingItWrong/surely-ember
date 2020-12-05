@@ -1,9 +1,9 @@
 <div class="card m-3">
   <div class="card-body">
     <h5 class="d-flex">
-      <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
+      <IconButton @onClick={{@onClickHeaderIcon}}>
         {{paper-icon @icon}}
-      </PaperButton>
+      </IconButton>
       <h2 class="flex-fill">
         {{@title}}
         {{#if (and @todos (not @pageNumber))}}
@@ -11,12 +11,9 @@
         {{/if}}
       </h2>
       <span class="flex"></span>
-      <PaperButton
-        @iconButton={{true}}
-        @onClick={{@onRefresh}}
-      >
+      <IconButton @onClick={{@onRefresh}}>
         {{paper-icon "refresh"}}
-      </PaperButton>
+      </IconButton>
     </h5>
 
     {{#if @searchAvailable}}

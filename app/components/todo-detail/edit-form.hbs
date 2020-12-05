@@ -25,12 +25,9 @@
           </PowerSelect>
         </div>
         {{#if this.editedCategory}}
-          <PaperButton
-            @iconButton={{true}}
-            @onClick={{this.clearCategory}}
-          >
+          <IconButton @onClick={{this.clearCategory}}>
             {{paper-icon "clear"}}
-          </PaperButton>
+          </IconButton>
         {{/if}}
       </div>
       <div
