@@ -229,18 +229,18 @@
           </div>
         {{else if (eq this.buttonSet "defer_until_date")}}
           <div class="app-button-container">
-            <PaperForm
-              @onSubmit={{this.saveEnteredDeferredDate}}
+            <form
+              {{on "submit" this.saveEnteredDeferredDate}}
               class="app-button-container"
-              as |form|
             >
-              <form.input
-                @type="date"
-                @label="Defer Until Date"
-                @value={{this.deferredUntil}}
-                @onChange={{action (mut this.deferredUntil)}}
-                data-test-deferred-until-field
-              />
+              <div data-test-deferred-until-field>
+                <Input
+                  @value={{this.deferredUntil}}
+                  type="date"
+                  class="form-control"
+                  id="deferred-until-field"
+                />
+              </div>
               <button
                 {{on "click" this.cancelDefer}}
                 type="button"
@@ -263,7 +263,7 @@
                   Defer
                 {{/if}}
               </button>
-            </PaperForm>
+            </form>
           </div>
         {{/if}}
       </div>
