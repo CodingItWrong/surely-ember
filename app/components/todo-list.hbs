@@ -1,78 +1,60 @@
-<div class="card m-3">
-  <div class="card-body">
-    <h5 class="d-flex">
-      <IconButton @onClick={{@onClickHeaderIcon}}>
-        {{paper-icon @icon}}
-      </IconButton>
-      <h2 class="flex-fill">
-        {{@title}}
-        {{#if (and @todos (not @pageNumber))}}
-          ({{@todos.length}})
-        {{/if}}
-      </h2>
-      <span class="flex"></span>
-      <IconButton @onClick={{@onRefresh}}>
-        {{paper-icon "refresh"}}
-      </IconButton>
-    </h5>
+<div class="m-3">
+  <h5 class="d-flex">
+    <IconButton @onClick={{@onClickHeaderIcon}}>
+      {{paper-icon @icon}}
+    </IconButton>
+    <h2 class="flex-fill">
+      {{@title}}
+      {{#if (and @todos (not @pageNumber))}}
+        ({{@todos.length}})
+      {{/if}}
+    </h2>
+    <span class="flex"></span>
+    <IconButton @onClick={{@onRefresh}}>
+      {{paper-icon "refresh"}}
+    </IconButton>
+  </h5>
 
-    {{#if @searchAvailable}}
-      <SearchForm @onSearch={{@onSearch}} />
-    {{/if}}
+  {{#if @searchAvailable}}
+    <SearchForm @onSearch={{@onSearch}} />
+  {{/if}}
 
-    {{#if @loading}}
-      <PaginationControls
-        @pageNumber={{@pageNumber}}
-        @totalPages={{@totalPages}}
-      />
+  {{#if @loading}}
+    <PaginationControls
+      @pageNumber={{@pageNumber}}
+      @totalPages={{@totalPages}}
+    />
 
-      <LoadingIndicator />
-    {{else if @error}}
-      <div
-        class="alert alert-danger"
-        role="alert"
-        data-test-error-message
-      >
-        An error occurred loading todos.
-      </div>
-    {{else}}
-      <PaginationControls
-        @pageNumber={{@pageNumber}}
-        @totalPages={{@totalPages}}
-        @prevPage={{@prevPage}}
-        @nextPage={{@nextPage}}
-      />
+    <LoadingIndicator />
+  {{else if @error}}
+    <div
+      class="alert alert-danger"
+      role="alert"
+      data-test-error-message
+    >
+      An error occurred loading todos.
+    </div>
+  {{else}}
+    <PaginationControls
+      @pageNumber={{@pageNumber}}
+      @totalPages={{@totalPages}}
+      @prevPage={{@prevPage}}
+      @nextPage={{@nextPage}}
+    />
 
-      <div class="list-group">
-        {{#if @groups}}
-          {{#each @groups as |group|}}
-            <div
-              class="list-group-item disabled"
-              data-test-group-deferred-until
-            >
-              {{group.name}}
-              {{#if @groupCounts}}
-                ({{group.todos.length}})
-              {{/if}}
-            </div>
-            {{#each group.todos as |todo|}}
-              <TodoList::Item
-                @todo={{todo}}
-                @onChooseTodo={{@onChooseTodo}}
-              >
-                {{#if (has-block)}}
-                  <p
-                    class="todo-list-item__subtitle"
-                    data-test-deferred-until
-                  >
-                    {{yield todo}}
-                  </p>
-                {{/if}}
-              </TodoList::Item>
-            {{/each}}
-          {{/each}}
-        {{else if @todos}}
-          {{#each @todos as |todo|}}
+    <div class="list-group">
+      {{#if @groups}}
+        {{#each @groups as |group|}}
+          <div
+            class="list-group-item disabled"
+            data-test-group-deferred-until
+          >
+            {{group.name}}
+            {{#if @groupCounts}}
+              ({{group.todos.length}})
+            {{/if}}
+          </div>
+          {{#each group.todos as |todo|}}
             <TodoList::Item
               @todo={{todo}}
               @onChooseTodo={{@onChooseTodo}}
@@ -87,15 +69,31 @@
               {{/if}}
             </TodoList::Item>
           {{/each}}
-        {{else}}
-          <div
-            class="list-group-item"
-            data-test-no-todos-message
+        {{/each}}
+      {{else if @todos}}
+        {{#each @todos as |todo|}}
+          <TodoList::Item
+            @todo={{todo}}
+            @onChooseTodo={{@onChooseTodo}}
           >
-            <em>{{if @isSearching "No todos found" @noTodosMessage}}</em>
-          </div>
-        {{/if}}
-      </div>
-    {{/if}}
-  </div>
+            {{#if (has-block)}}
+              <p
+                class="todo-list-item__subtitle"
+                data-test-deferred-until
+              >
+                {{yield todo}}
+              </p>
+            {{/if}}
+          </TodoList::Item>
+        {{/each}}
+      {{else}}
+        <div
+          class="list-group-item"
+          data-test-no-todos-message
+        >
+          <em>{{if @isSearching "No todos found" @noTodosMessage}}</em>
+        </div>
+      {{/if}}
+    </div>
+  {{/if}}
 </div>
