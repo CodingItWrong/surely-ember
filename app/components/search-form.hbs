@@ -1,14 +1,12 @@
-<PaperForm
-  @onSubmit={{this.handleSearch}}
+<form
+  {{on "submit" this.handleSearch}}
   class="layout-margin"
   data-test-search-form
-  as |form|
 >
-  <form.input
-    @placeholder="Search"
+  <Input
     @value={{this.searchText}}
-    @onChange={{action (mut this.searchText)}}
-    @block={{true}}
+    placeholder="Search"
+    class="form-control"
     data-test-search-field
   />
-</PaperForm>
+</form>

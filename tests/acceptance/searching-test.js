@@ -12,6 +12,7 @@ import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
+import { SEARCH_FIELD } from '../constants';
 
 describe('Acceptance | searching', function (hooks) {
   setupApplicationTest(hooks);
@@ -30,7 +31,7 @@ describe('Acceptance | searching', function (hooks) {
     await visit('/');
     await click('[data-test-future] button');
 
-    await fillIn('[data-test-search-field] input', todo1);
+    await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
     assert.dom('[data-test-todo-name]').exists({ count: 1 });
     assert.dom('[data-test-todo-name]').hasText(todo1);
@@ -49,7 +50,7 @@ describe('Acceptance | searching', function (hooks) {
     await visit('/');
     await click('[data-test-completed] button');
 
-    await fillIn('[data-test-search-field] input', todo1);
+    await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
     assert.dom('[data-test-todo-name]').exists({ count: 1 });
     assert.dom('[data-test-todo-name]').hasText(todo1);
@@ -68,7 +69,7 @@ describe('Acceptance | searching', function (hooks) {
     await visit('/');
     await click('[data-test-deleted] button');
 
-    await fillIn('[data-test-search-field] input', todo1);
+    await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
     assert.dom('[data-test-todo-name]').exists({ count: 1 });
     assert.dom('[data-test-todo-name]').hasText(todo1);
