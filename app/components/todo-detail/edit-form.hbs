@@ -1,17 +1,13 @@
 <div class="card m-3">
-  <PaperForm
-    onSubmit={{this.handleSave}}
+  <form
+    {{on "submit" this.handleSave}}
     data-test-todo-edit-form
-    as |form|
   >
     <div class="card-body">
-      <form.input
-        @placeholder="Todo"
+      <Textarea
+        placeholder="Todo"
         @value={{this.editedName}}
-        @onKeyDown={{this.handleTitleKeyDown}}
-        @onChange={{action (mut this.editedName)}}
-        @block={{true}}
-        @textarea={{true}}
+        {{on "keydown" this.handleTitleKeyDown}}
         class="title-input"
         data-test-todo-name-field
       />
@@ -93,5 +89,5 @@
         </button>
       </div>
     </div>
-  </PaperForm>
+  </form>
 </div>
