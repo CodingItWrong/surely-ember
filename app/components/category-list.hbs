@@ -1,5 +1,5 @@
 <div class="m-3">
-  <h2 class="d-flex">
+  <div class="d-flex">
     <IconButton @click={{@onClickHeaderIcon}}>
       {{paper-icon "label"}}
     </IconButton>
@@ -7,7 +7,7 @@
     <IconButton @onClick={{@onRefresh}}>
       {{paper-icon "refresh"}}
     </IconButton>
-  </h2>
+  </div>
 
   {{#if @loading}}
     <LoadingIndicator />
