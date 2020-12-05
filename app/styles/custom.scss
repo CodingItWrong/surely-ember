@@ -87,7 +87,11 @@ md-card-actions .md-button {
 }
 
 .title-input {
-  font-size: 24px;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: none;
+  font-size: 2rem;
 }
 
 .click-to-edit {

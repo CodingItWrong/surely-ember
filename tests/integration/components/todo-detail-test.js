@@ -13,6 +13,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { module as describe, test as it } from 'qunit';
 import sinon from 'sinon';
 import { formatDate } from 'surely/utils';
+import { TODO_NAME_FIELD } from '../../constants';
 
 describe('Integration | Component | todo-detail', function (hooks) {
   setupRenderingTest(hooks);
@@ -620,7 +621,7 @@ describe('Integration | Component | todo-detail', function (hooks) {
       });
 
       it('hides the edit form', async function (assert) {
-        assert.dom('[data-test-todo-name-field]').doesNotExist();
+        assert.dom(TODO_NAME_FIELD).doesNotExist();
       });
     });
 
@@ -647,7 +648,7 @@ describe('Integration | Component | todo-detail', function (hooks) {
         await render(hbs`<TodoDetail @todo={{todo}} @onHandle={{onHandle}} />`);
 
         await click('[data-test-edit-button]');
-        await fillIn('[data-test-todo-name-field] textarea', newName);
+        await fillIn(TODO_NAME_FIELD, newName);
         await fillIn('[data-test-deferred-until-field] input', newDeferDate);
         await fillIn('[data-test-notes-field] textarea', newNotes);
         await triggerEvent('[data-test-todo-edit-form]', 'submit');
@@ -665,7 +666,7 @@ describe('Integration | Component | todo-detail', function (hooks) {
       });
 
       it('hides the edit form', async function (assert) {
-        assert.dom('[data-test-todo-name-field]').doesNotExist();
+        assert.dom(TODO_NAME_FIELD).doesNotExist();
       });
 
       it('displays the updated fields', function (assert) {
