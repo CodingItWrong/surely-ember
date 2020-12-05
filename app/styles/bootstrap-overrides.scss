@@ -14,6 +14,11 @@ $override-dark-green: rgb(67, 160, 71);
     background-color: $override-dark-green;
     border-color: $override-dark-green;
   }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $override-dark-green;
+    border-color: $override-dark-green;
+  }
 }
 
 .list-group-item{
