@@ -123,11 +123,6 @@ md-card-actions .md-button {
   color: paper-color($warn, '800');
 }
 
-.deemphasized-text,
-.deemphasized-text a {
-  color: var(--foreground-2);
-}
-
 /* https://css-tricks.com/overriding-default-button-styles/ */
 .unstyled-button {
   background: none;
