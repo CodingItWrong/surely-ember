@@ -5,6 +5,11 @@ $override-dark-green: rgb(67, 160, 71);
   background-color: $override-green;
   border-color: $override-green;
 
+  &:disabled {
+    background-color: $override-green;
+    border-color: $override-green;
+  }
+
   &:hover {
     background-color: $override-dark-green;
     border-color: $override-dark-green;
