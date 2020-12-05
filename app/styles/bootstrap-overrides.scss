@@ -10,3 +10,10 @@ $override-dark-green: rgb(67, 160, 71);
     border-color: $override-dark-green;
   }
 }
+
+.list-group-item{
+  &.active {
+    background-color: $override-green;
+    border-color: $override-green;
+  }
+}

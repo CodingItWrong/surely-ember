@@ -1,61 +1,76 @@
 {{#if this.session.isAuthenticated}}
-  <PaperList>
-    <PaperItem
-      @onClick={{fn this.goToTodos "available"}}
+  <div class="list-group list-group-flush">
+    <LinkTo
+      @route="todos.available"
+      class="list-group-item list-group-item-action d-flex"
       data-test-available
     >
       {{paper-icon "access_time"}}
-      <p>
+      <span class="flex-fill ml-3">
         Available
         ({{@availableTodoCount}})
-      </p>
-    </PaperItem>
-    <PaperItem
-      @onClick={{fn this.goToTodos "tomorrow"}}
+      </span>
+    </LinkTo>
+    <LinkTo
+      @route="todos.tomorrow"
+      class="list-group-item list-group-item-action d-flex"
       data-test-tomorrow
     >
       {{paper-icon "bedtime"}}
-      <p>
+      <span class="flex-fill ml-3">
         Tomorrow
         ({{@tomorrowTodoCount}})
-      </p>
-    </PaperItem>
-    <PaperItem
-      @onClick={{fn this.goToTodos "future"}}
+      </span>
+    </LinkTo>
+    <LinkTo
+      @route="todos.future"
+      class="list-group-item list-group-item-action d-flex"
       data-test-future
     >
       {{paper-icon "calendar_today"}}
-      <p>Future</p>
-    </PaperItem>
-    <PaperDivider />
-    <PaperItem
-      @onClick={{fn this.goToTodos "completed"}}
+      <span class="flex-fill ml-3">
+        Future
+      </span>
+    </LinkTo>
+    <LinkTo
+      @route="todos.completed"
+      class="list-group-item list-group-item-action d-flex"
       data-test-completed
     >
       {{paper-icon "check_circle"}}
-      <p>Completed</p>
-    </PaperItem>
-    <PaperItem
-      @onClick={{fn this.goToTodos "deleted"}}
+      <span class="flex-fill ml-3">
+        Completed
+      </span>
+    </LinkTo>
+    <LinkTo
+      @route="todos.deleted"
+      class="list-group-item list-group-item-action d-flex"
       data-test-deleted
     >
       {{paper-icon "delete"}}
-      <p>Deleted</p>
-    </PaperItem>
-    <PaperDivider />
-    <PaperItem
-      @onClick={{fn this.goToCategories}}
+      <span class="flex-fill ml-3">
+        Deleted
+      </span>
+    </LinkTo>
+    <LinkTo
+      @route="categories"
+      class="list-group-item list-group-item-action d-flex"
       data-test-categories
     >
       {{paper-icon "label"}}
-      <p>Categories</p>
-    </PaperItem>
-    <PaperDivider />
-    <PaperItem
-      @onClick={{fn this.refreshApp}}
+      <span class="flex-fill ml-3">
+        Categories
+      </span>
+    </LinkTo>
+    <button
+      {{on "click" this.refreshApp}}
+      type="button"
+      class="list-group-item list-group-item-action d-flex"
     >
       {{paper-icon "refresh"}}
-      <p>Refresh App</p>
-    </PaperItem>
-  </PaperList>
+      <span class="flex-fill ml-3">
+        Refresh App
+      </span>
+    </button>
+  </div>
 {{/if}}

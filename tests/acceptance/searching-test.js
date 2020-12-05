@@ -12,7 +12,12 @@ import { setupApplicationTest } from 'ember-qunit';
 import { authenticateSession } from 'ember-simple-auth/test-support';
 import { module as describe, test as it } from 'qunit';
 import { formatDate } from 'surely/utils';
-import { SEARCH_FIELD } from '../constants';
+import {
+  COMPLETED_NAV,
+  DELETED_NAV,
+  FUTURE_NAV,
+  SEARCH_FIELD,
+} from '../constants';
 
 describe('Acceptance | searching', function (hooks) {
   setupApplicationTest(hooks);
@@ -29,7 +34,7 @@ describe('Acceptance | searching', function (hooks) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
-    await click('[data-test-future] button');
+    await click(FUTURE_NAV);
 
     await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
@@ -48,7 +53,7 @@ describe('Acceptance | searching', function (hooks) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
-    await click('[data-test-completed] button');
+    await click(COMPLETED_NAV);
 
     await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
@@ -67,7 +72,7 @@ describe('Acceptance | searching', function (hooks) {
     await authenticateSession({ access_token: 'ABC123' });
 
     await visit('/');
-    await click('[data-test-deleted] button');
+    await click(DELETED_NAV);
 
     await fillIn(SEARCH_FIELD, todo1);
     await triggerEvent('[data-test-search-form]', 'submit');
