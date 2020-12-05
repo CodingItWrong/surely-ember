@@ -1,17 +1,14 @@
 <div class="card m-3">
   <div class="card-body">
     <h2 class="d-flex">
-      <PaperButton @iconButton={{true}} @click={{@onClickHeaderIcon}}>
+      <IconButton @click={{@onClickHeaderIcon}}>
         {{paper-icon "label"}}
-      </PaperButton>
+      </IconButton>
       <h2>Categories</h2>
       <span class="flex-fill"></span>
-      <PaperButton
-        @iconButton={{true}}
-        @onClick={{@onRefresh}}
-      >
+      <IconButton @onClick={{@onRefresh}}>
         {{paper-icon "refresh"}}
-      </PaperButton>
+      </IconButton>
     </h2>
 
     {{#if @loading}}

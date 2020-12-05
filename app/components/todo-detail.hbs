@@ -26,14 +26,13 @@
           >
             {{this.displayModel.name}}
           </button>
-          <PaperButton
-            @iconButton={{true}}
+          <IconButton
             @onClick={{this.edit}}
             class="todo-headline__button"
             data-test-edit-button
           >
             {{paper-icon "edit"}}
-          </PaperButton>
+          </IconButton>
         </h2>
 
         <div class="overflow-hidden">
