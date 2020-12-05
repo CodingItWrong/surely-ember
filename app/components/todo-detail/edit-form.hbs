@@ -14,21 +14,25 @@
       <div>
         <div class="form-group">
           <label for="category-field">Category</label>
-          <PowerSelect
-            @selected={{this.editedCategory}}
-            @onChange={{action (mut this.editedCategory)}}
-            @options={{@categories}}
-            id="category-field"
-            as |category|
-          >
-            {{category.name}}
-          </PowerSelect>
+          <div class="d-flex align-items-center">
+            <div class="flex-fill">
+              <PowerSelect
+                @selected={{this.editedCategory}}
+                @onChange={{action (mut this.editedCategory)}}
+                @options={{@categories}}
+                id="category-field"
+                as |category|
+              >
+                {{category.name}}
+              </PowerSelect>
+            </div>
+            {{#if this.editedCategory}}
+              <IconButton @onClick={{this.clearCategory}}>
+                {{paper-icon "clear"}}
+              </IconButton>
+            {{/if}}
+          </div>
         </div>
-        {{#if this.editedCategory}}
-          <IconButton @onClick={{this.clearCategory}}>
-            {{paper-icon "clear"}}
-          </IconButton>
-        {{/if}}
       </div>
       <div
         class="form-group"
