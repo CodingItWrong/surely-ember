@@ -28,7 +28,7 @@
             </div>
             {{#if this.editedCategory}}
               <IconButton @onClick={{this.clearCategory}}>
-                {{paper-icon "clear"}}
+                <AppIcon @icon="clear" @alt="clear" />
               </IconButton>
             {{/if}}
           </div>
@@ -81,7 +81,7 @@
           disabled={{this.saving}}
           data-test-save-button
         >
-          {{paper-icon "save"}}
+          <AppIcon @icon="save" @alt="save" />
           {{#if this.saving}}
             Saving…
           {{else}}
