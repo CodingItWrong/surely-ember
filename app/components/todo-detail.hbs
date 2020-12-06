@@ -17,7 +17,7 @@
   {{else}}
     <div class="card m-3">
       <div class="card-body">
-        <h2 class="todo-headline__container">
+        <h4 class="todo-headline__container">
           <button
             type="button"
             class="todo-headline__title click-to-edit unstyled-button"
@@ -33,7 +33,7 @@
           >
             <AppIcon @icon="edit" @alt="edit" />
           </IconButton>
-        </h2>
+        </h4>
 
         <div class="overflow-hidden">
           {{#if this.displayModel.notes}}
