@@ -82,6 +82,10 @@
   font-size: 2rem;
   line-height: 1.15;
   color: black;
+
+  &:focus {
+    color: black;
+  }
 }
 
 .click-to-edit {
