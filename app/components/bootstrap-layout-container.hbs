@@ -4,11 +4,9 @@
       title=@title
       onToggleSideNav=(action (mut this.sideNavOpen))
     )
-    sidenav=(component "bootstrap-layout-sidenav"
-      title=@title
-      open=this.sideNavOpen
-      onToggle=(action (mut this.sideNavOpen))
+    body=(component "bootstrap-layout-body"
+      sideNavOpen=this.sideNavOpen
+      onToggleSideNav=(action (mut this.sideNavOpen))
     )
-    body=(component "bootstrap-layout-body")
   )}}
 </div>

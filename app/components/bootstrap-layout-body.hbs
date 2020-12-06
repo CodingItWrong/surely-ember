@@ -1,5 +1,10 @@
 <div>
   {{yield (hash
+    sidenav=(component "bootstrap-layout-sidenav"
+      title=@title
+      open=@sideNavOpen
+      onToggle=@onToggleSideNav
+    )
     content=(component "bootstrap-layout-content")
   )}}
 </div>
