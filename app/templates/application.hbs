@@ -10,11 +10,19 @@
       <AppToolbarMenu />
     </body.toolbar>
     <body.content>
-      {{#if this.routeRequiresAuthentication}}
-        <SignInForm @onSignedIn={{this.handleSignIn}} />
-      {{else}}
-        {{outlet}}
-      {{/if}}
+      <div class="container">
+        <div class="row">
+          <div class="d-none d-xl-block col-xl-1"></div>
+          <div class="col-12 col-xl-10">
+            {{#if this.routeRequiresAuthentication}}
+              <SignInForm @onSignedIn={{this.handleSignIn}} />
+            {{else}}
+              {{outlet}}
+            {{/if}}
+          </div>
+          <div class="d-none d-xl-block col-xl-1"></div>
+        </div>
+      </div>
     </body.content>
   </layout.body>
 </LayoutContainer>
