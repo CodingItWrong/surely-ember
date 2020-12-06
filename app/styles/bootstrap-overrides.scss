@@ -47,3 +47,7 @@ $override-darker-green: rgb(46, 125, 50); // 800
     box-shadow: 0 0 0 .2rem $override-light-green;
   }
 }
+
+.ember-power-select-option[aria-current="true"] {
+  background-color: rgb(76, 175, 80);
+}
