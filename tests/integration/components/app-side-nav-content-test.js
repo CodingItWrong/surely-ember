@@ -7,6 +7,8 @@ import sinon from 'sinon';
 describe('Integration | Component | app-side-nav-content', function (hooks) {
   setupRenderingTest(hooks);
 
+  const noop = () => {};
+
   describe('when not authenticated', function (hooks) {
     let session;
 
@@ -35,11 +37,12 @@ describe('Integration | Component | app-side-nav-content', function (hooks) {
       this.owner.register('service:session', session, { instantiate: false });
       this.owner.register('service:router', router, { instantiate: false });
 
-      await render(hbs`<AppSideNavContent />`);
+      this.set('noop', noop);
+      await render(hbs`<AppSideNavContent @onClickLink={{noop}} />`);
     });
 
     it('renders', async function (assert) {
-      await render(hbs`<AppSideNavContent />`);
+      await render(hbs`<AppSideNavContent @onClickLink={{noop}} />`);
 
       assert.notEqual(this.element.textContent.trim(), '');
     });
