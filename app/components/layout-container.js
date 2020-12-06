@@ -8,4 +8,8 @@ export default class LayoutContainerComponent extends Component {
   @action toggleSideNavOpen() {
     this.sideNavOpen = !this.sideNavOpen;
   }
+
+  @action hideSideNav() {
+    this.sideNavOpen = false;
+  }
 }

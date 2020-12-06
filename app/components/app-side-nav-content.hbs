@@ -1,6 +1,7 @@
 {{#if this.session.isAuthenticated}}
   <div class="list-group">
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="todos.available"
       class="list-group-item list-group-item-action d-flex"
       data-test-available
@@ -12,6 +13,7 @@
       </span>
     </LinkTo>
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="todos.tomorrow"
       class="list-group-item list-group-item-action d-flex"
       data-test-tomorrow
@@ -23,6 +25,7 @@
       </span>
     </LinkTo>
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="todos.future"
       class="list-group-item list-group-item-action d-flex"
       data-test-future
@@ -33,6 +36,7 @@
       </span>
     </LinkTo>
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="todos.completed"
       class="list-group-item list-group-item-action d-flex"
       data-test-completed
@@ -43,6 +47,7 @@
       </span>
     </LinkTo>
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="todos.deleted"
       class="list-group-item list-group-item-action d-flex"
       data-test-deleted
@@ -53,6 +58,7 @@
       </span>
     </LinkTo>
     <LinkTo
+      {{on "click" @onClickLink}}
       @route="categories"
       class="list-group-item list-group-item-action d-flex"
       data-test-categories
