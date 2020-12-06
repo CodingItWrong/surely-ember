@@ -38,8 +38,9 @@ export default class TodoDetailEditFormComponent extends Component {
   }
 
   @action
-  clearCategory() {
-    this.editedCategory = null;
+  handleChangeEditedCategory(category) {
+    console.log({ category });
+    this.editedCategory = category;
   }
 
   @action

@@ -1,0 +1,16 @@
+<select
+  {{on "change" this.handleChange}}
+  ...attributes
+>
+  {{#if @emptyLabel}}
+    <option>{{@emptyLabel}}</option>
+  {{/if}}
+  {{#each @options as |myOption|}}
+    <option
+      value={{myOption.id}}
+      selected={{eq myOption.id @value.id}}
+    >
+      {{yield myOption}}
+    </option>
+  {{/each}}
+</select>
