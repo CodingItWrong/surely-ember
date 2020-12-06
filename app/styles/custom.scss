@@ -149,10 +149,14 @@
   width: 24px;
   height: 24px;
   vertical-align: middle;
-  mask-size: 24px 24px;
-  mask-position: center;
-  mask-repeat: no-repeat;
   background-color: #555;
+
+  mask-size: 24px 24px;
+  -webkit-mask-size: 24px 24px;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
 }
 
 .list-group-item-action.active .icon,
