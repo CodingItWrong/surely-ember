@@ -1,6 +1,12 @@
 <div class="d-flex">
   {{yield (hash
-    sidenav=(component "bootstrap-layout-sidenav")
-    content=(component "bootstrap-layout-content")
+    sidenav=(
+      component "bootstrap-layout-sidenav"
+      open=@sideNavOpen
+    )
+    content=(
+      component "bootstrap-layout-content"
+      sideNavOpen=@sideNavOpen
+    )
   )}}
 </div>
