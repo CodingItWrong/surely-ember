@@ -143,3 +143,19 @@
   margin: 0;
   padding: 0;
 }
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  mask-size: 24px 24px;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  background-color: #555;
+}
+
+.list-group-item-action.active .icon,
+.btn.btn-primary .icon {
+  background-color: white;
+}
