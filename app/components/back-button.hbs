@@ -1,8 +1,7 @@
-<button
-  {{on "click" @onClick}}
-  type="button"
+<LinkTo
+  @route={{@route}}
   class="btn btn-light d-lg-none"
   ...attributes
 >
   &lt; {{yield}}
-</button>
+</LinkTo>
