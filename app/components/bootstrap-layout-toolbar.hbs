@@ -10,6 +10,7 @@
 
   {{#if @showSideNavToggle}}
     <button
+      {{on "click" @onToggleSideNav}}
       class="navbar-toggler d-lg-none"
       type="button"
       data-toggle="collapse"

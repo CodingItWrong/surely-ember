@@ -2,11 +2,11 @@
   {{yield (hash
     toolbar=(component "bootstrap-layout-toolbar"
       title=@title
-      onToggleSideNav=(action (mut this.sideNavOpen))
+      onToggleSideNav=this.toggleSideNavOpen
     )
     body=(component "bootstrap-layout-body"
       sideNavOpen=this.sideNavOpen
-      onToggleSideNav=(action (mut this.sideNavOpen))
+      onToggleSideNav=this.toggleSideNavOpen
     )
   )}}
 </div>
