@@ -3,6 +3,10 @@ $override-green: rgb(76, 175, 80); // 500
 $override-dark-green: rgb(67, 160, 71); // 600
 $override-darker-green: rgb(46, 125, 50); // 800
 
+.bg-primary {
+  background-color: $override-green !important;
+}
+
 .btn-primary {
   background-color: $override-green;
   border-color: $override-green;
