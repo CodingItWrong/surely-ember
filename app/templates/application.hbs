@@ -1,4 +1,7 @@
 <BootstrapLayoutContainer @title="Surely" as |layout|>
+  <layout.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
+    <AppToolbarMenu />
+  </layout.toolbar>
   <layout.sidenav>
     <AppSideNavContent
       @availableTodoCount={{this.availableTodoCount}}
@@ -6,9 +9,6 @@
     />
   </layout.sidenav>
   <layout.body as |body|>
-    <body.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
-      <AppToolbarMenu />
-    </body.toolbar>
     <body.content>
       <div class="container">
         <div class="row">
