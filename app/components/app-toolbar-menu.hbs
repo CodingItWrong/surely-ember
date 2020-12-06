@@ -1,14 +1,13 @@
 {{#if this.session.isAuthenticated}}
-  <PaperMenu as |menu|>
-    <menu.trigger>
-      <IconButton>
-        <AppIcon @icon="account_circle" @alt="account_circle" />
-      </IconButton>
-    </menu.trigger>
-    <menu.content @width={{4}} as |content|>
-      <content.menu-item @onClick={{this.signOut}}>
-        <span>Sign Out</span>
-      </content.menu-item>
-    </menu.content>
-  </PaperMenu>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        href="#"
+        {{on "click" this.signOut}}
+      >
+        Sign Out
+      </a>
+    </li>
+  </ul>
 {{/if}}
