@@ -1,0 +1,13 @@
+<div>
+  {{yield (hash
+    sidenav=(component "bootstrap-layout-sidenav"
+      title=@title
+      open=this.sideNavOpen
+      onToggle=(action (mut this.sideNavOpen))
+    )
+    body=(component "bootstrap-layout-body"
+      title=@title
+      onToggleSideNav=(action (mut this.sideNavOpen))
+    )
+  )}}
+</div>
