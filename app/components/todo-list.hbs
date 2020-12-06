@@ -1,7 +1,7 @@
 <div class="m-3">
   <div class="d-flex">
     <IconButton @onClick={{@onClickHeaderIcon}}>
-      {{paper-icon @icon}}
+      <AppIcon @icon={{@icon}} @alt={{@icon}} />
     </IconButton>
     <h2 class="flex-fill">
       {{@title}}
@@ -11,7 +11,7 @@
     </h2>
     <span class="flex"></span>
     <IconButton @onClick={{@onRefresh}}>
-      {{paper-icon "refresh"}}
+      <AppIcon @icon="refresh" @alt="refresh" />
     </IconButton>
   </div>
 

@@ -1,11 +1,11 @@
 <div class="m-3">
   <div class="d-flex">
     <IconButton @click={{@onClickHeaderIcon}}>
-      {{paper-icon "label"}}
+      <AppIcon @icon="label" @alt="label" />
     </IconButton>
     <h2 class="flex-fill">Categories</h2>
     <IconButton @onClick={{@onRefresh}}>
-      {{paper-icon "refresh"}}
+      <AppIcon @icon="refresh" @alt="refresh" />
     </IconButton>
   </div>
 
@@ -45,7 +45,7 @@
       class="btn btn-light"
       data-test-add-button
     >
-      {{paper-icon "add"}}
+      <AppIcon @icon="add" @alt="add" />
       Add
     </button>
   </div>

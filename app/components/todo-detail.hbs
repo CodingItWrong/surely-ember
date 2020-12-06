@@ -31,7 +31,7 @@
             class="todo-headline__button"
             data-test-edit-button
           >
-            {{paper-icon "edit"}}
+            <AppIcon @icon="edit" @alt="edit" />
           </IconButton>
         </h2>
 
@@ -163,7 +163,7 @@
                 disabled={{this.isProcessing}}
                 data-test-undelete-button
               >
-                {{paper-icon "restore_from_trash"}}
+                <AppIcon @icon="restore_from_trash" @alt="restore_from_trash" />
                 {{#if this.isUndeleting}}
                   Undeleting…
                 {{else}}
@@ -192,7 +192,7 @@
                   disabled={{this.isProcessing}}
                   data-test-uncomplete-button
                 >
-                  {{paper-icon "check_box_outline_blank"}}
+                  <AppIcon @icon="check_box_outline_blank" @alt="check_box_outline_blank" />
                   {{#if this.isUncompleting}}
                     Uncompleting…
                   {{else}}
@@ -216,7 +216,7 @@
                   disabled={{this.isProcessing}}
                   data-test-complete-button
                 >
-                  {{paper-icon "check_box"}}
+                  <AppIcon @icon="check_box" @alt="check_box" />
                   {{#if this.isCompleting}}
                     Completing…
                   {{else}}
@@ -255,7 +255,7 @@
                 disabled={{this.isProcessing}}
                 data-test-defer-button
               >
-                {{paper-icon "calendar_today"}}
+                <AppIcon @icon="calendar_today" @alt="calendar_today" />
                 {{#if this.isDeferring}}
                   Deferring…
                 {{else}}

@@ -5,7 +5,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-available
     >
-      {{paper-icon "access_time"}}
+      <AppIcon @icon="access_time" @alt="access_time" />
       <span class="flex-fill ml-3">
         Available
         ({{@availableTodoCount}})
@@ -16,7 +16,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-tomorrow
     >
-      {{paper-icon "bedtime"}}
+      <AppIcon @icon="bedtime" @alt="bedtime" />
       <span class="flex-fill ml-3">
         Tomorrow
         ({{@tomorrowTodoCount}})
@@ -27,7 +27,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-future
     >
-      {{paper-icon "calendar_today"}}
+      <AppIcon @icon="calendar_today" @alt="calendar_today" />
       <span class="flex-fill ml-3">
         Future
       </span>
@@ -37,7 +37,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-completed
     >
-      {{paper-icon "check_circle"}}
+      <AppIcon @icon="check_circle" @alt="check_circle" />
       <span class="flex-fill ml-3">
         Completed
       </span>
@@ -47,7 +47,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-deleted
     >
-      {{paper-icon "delete"}}
+      <AppIcon @icon="delete" @alt="delete" />
       <span class="flex-fill ml-3">
         Deleted
       </span>
@@ -57,7 +57,7 @@
       class="list-group-item list-group-item-action d-flex"
       data-test-categories
     >
-      {{paper-icon "label"}}
+      <AppIcon @icon="label" @alt="label" />
       <span class="flex-fill ml-3">
         Categories
       </span>
@@ -67,7 +67,7 @@
       type="button"
       class="list-group-item list-group-item-action d-flex"
     >
-      {{paper-icon "refresh"}}
+      <AppIcon @icon="refresh" @alt="refresh" />
       <span class="flex-fill ml-3">
         Refresh App
       </span>
