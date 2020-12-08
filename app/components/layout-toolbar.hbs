@@ -1,17 +1,9 @@
 <nav class="navbar navbar-dark bg-primary">
 
-  <div class="navbar-brand">
-    {{@title}}
-  </div>
-
-  <span class="flex-fill"></span>
-
-  {{yield}}
-
   {{#if @showSideNavToggle}}
     <button
       {{on "click" @onToggleSideNav}}
-      class="navbar-toggler d-lg-none"
+      class="navbar-toggler d-lg-none mr-3"
       type="button"
       data-toggle="collapse"
       data-target="#navbarSupportedContent"
@@ -22,4 +14,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
   {{/if}}
+
+  <div class="navbar-brand">
+    {{@title}}
+  </div>
+
+  <span class="flex-fill"></span>
+
+  {{yield}}
+
 </nav>
