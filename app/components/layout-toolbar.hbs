@@ -15,9 +15,12 @@
     </button>
   {{/if}}
 
-  <div class="navbar-brand">
+  <LinkTo
+    @route={{@titleLinkRoute}}
+    class="navbar-brand"
+  >
     {{@title}}
-  </div>
+  </LinkTo>
 
   <span class="flex-fill"></span>
 

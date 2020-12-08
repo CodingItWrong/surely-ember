@@ -1,5 +1,8 @@
 <LayoutContainer @title="Surely" as |layout|>
-  <layout.toolbar @showSideNavToggle={{this.session.isAuthenticated}}>
+  <layout.toolbar
+    @showSideNavToggle={{this.session.isAuthenticated}}
+    @titleLinkRoute="index"
+  >
     <AppToolbarMenu />
   </layout.toolbar>
   <layout.body as |body|>
