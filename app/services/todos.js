@@ -12,6 +12,8 @@ export default class TodosService extends Service {
 
   get todos() {
     if (!this._todos) {
+      // caching is OK as a side effect
+      // eslint-disable-next-line ember/no-side-effects
       this._todos = Todos.forStore(this.store);
     }
     return this._todos;

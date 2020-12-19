@@ -1,4 +1,6 @@
 import Controller from '@ember/controller';
+// reactivity doesn't work on these Ember Data models without @computed
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import sortBy from 'lodash-es/sortBy';
