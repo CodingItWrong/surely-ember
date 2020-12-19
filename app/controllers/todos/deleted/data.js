@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { filter } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { scrollToTop } from 'surely/utils';
@@ -19,10 +18,9 @@ export default class TodosDeletedDataController extends Controller {
     return this.model.meta['page-count'];
   }
 
-  @filter('model.@each.isDeleted', function (todo) {
-    return todo.isDeleted;
-  })
-  filteredTodos;
+  get filteredTodos() {
+    return this.model.filter(todo => todo.isDeleted);
+  }
 
   @action
   handleSearch(searchText) {
