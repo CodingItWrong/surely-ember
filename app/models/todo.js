@@ -2,7 +2,9 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 import { computed } from '@ember/object';
 import addDays from 'date-fns/addDays';
 import startOfDay from 'date-fns/startOfDay';
+import classic from 'ember-classic-decorator';
 
+@classic
 export default class TodoModel extends Model {
   @attr name;
   @attr notes;
