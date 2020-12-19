@@ -20,6 +20,8 @@ module.exports = {
     browser: true,
   },
   rules: {
+    'ember/classic-decorator-hooks': 'error',
+    'ember/classic-decorator-no-classic-methods': 'error',
     'import/newline-after-import': 'error',
     'import/no-anonymous-default-export': 'error',
     'import/no-mutable-exports': 'error',
