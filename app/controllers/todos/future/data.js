@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
-import { action, computed } from '@ember/object';
-import { filter, sort } from '@ember/object/computed';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import groupBy from 'lodash-es/groupBy';
+import sortBy from 'lodash-es/sortBy';
 import { capitalizeFn } from 'surely/helpers/capitalize';
 import { relativeDateFn } from 'surely/helpers/relative-date';
 import { scrollToTop } from 'surely/utils';
@@ -17,24 +17,24 @@ const includesCaseInsensitive = (haystack, needle) => {
 export default class TodosFutureDataController extends Controller {
   @service router;
 
-  sortPropertiesDateThenName = Object.freeze(['deferredUntil:asc', 'name:asc']);
-
   @tracked searchText = '';
 
   get isSearching() {
     return !!this.searchText;
   }
 
-  @filter('model.@each.isFuture', ['searchText'], function (todo) {
-    const matchesSearch = includesCaseInsensitive(todo.name, this.searchText);
-    return todo.isFuture && matchesSearch;
-  })
-  filteredTodos;
+  get filteredTodos() {
+    return this.model.filter(todo => {
+      const matchesSearch = includesCaseInsensitive(todo.name, this.searchText);
+      return todo.isFuture && matchesSearch;
+    });
+  }
 
-  @sort('filteredTodos', 'sortPropertiesDateThenName')
-  sortedTodos;
+  get sortedTodos() {
+    return sortBy(this.filteredTodos, ['deferredUntil', 'name']);
+  }
 
-  @computed('sortedTodos.@each.deferredUntil', function () {
+  get todoGroups() {
     const groupsObject = groupBy(this.sortedTodos, 'deferredUntil');
     return Object.entries(groupsObject).map(([, todos]) => {
       return {
@@ -42,8 +42,7 @@ export default class TodosFutureDataController extends Controller {
         todos,
       };
     });
-  })
-  todoGroups;
+  }
 
   @action
   handleSearch(searchText) {
