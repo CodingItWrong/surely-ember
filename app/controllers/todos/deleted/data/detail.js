@@ -1,15 +1,14 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import sortBy from 'lodash-es/sortBy';
 
 export default class TodosDeletedDataDetailController extends Controller {
   @service router;
 
-  sortPropertiesSortOrderField = Object.freeze(['sortOrder:asc,name:asc']);
-
-  @sort('model.categories', 'sortPropertiesSortOrderField')
-  sortedCategories;
+  get sortedCategories() {
+    return sortBy(this.model.categories, ['sortOrder', 'name']);
+  }
 
   @action
   goToDeleted() {
