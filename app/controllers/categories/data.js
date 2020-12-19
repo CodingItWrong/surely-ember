@@ -12,8 +12,6 @@ import {
 export default class CategoriesDataController extends Controller {
   @service router;
 
-  sortPropertiesSortOrderField = Object.freeze(['sortOrder:asc,name:asc']);
-
   get persistedCategories() {
     return this.model.filter(category => !!category.id);
   }
