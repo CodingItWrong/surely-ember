@@ -1,26 +1,24 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
-import { filter, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import sortBy from 'lodash-es/sortBy';
 import { groupTodosByCategorySorted, scrollToTop } from 'surely/utils';
 
 export default class TodosTomorrowDataController extends Controller {
   @service router;
 
-  sortPropertiesName = Object.freeze(['name:asc']);
+  @computed('model.@each.isTomorrow')
+  get filteredTodos() {
+    return this.model.filter(todo => todo.isTomorrow);
+  }
 
-  @filter('model.@each.isTomorrow', function (todo) {
-    return todo.isTomorrow;
-  })
-  filteredTodos;
+  get sortedTodos() {
+    return sortBy(this.filteredTodos, ['name']);
+  }
 
-  @sort('filteredTodos', 'sortPropertiesName')
-  sortedTodos;
-
-  @computed('sortedTodos.@each.{name,category}', function () {
+  get todoGroups() {
     return groupTodosByCategorySorted(this.sortedTodos);
-  })
-  todoGroups;
+  }
 
   @action
   goToList() {
