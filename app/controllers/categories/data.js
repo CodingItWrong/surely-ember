@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { filter, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import sortBy from 'lodash-es/sortBy';
 import {
   arrayWithItemMovedDownward,
   arrayWithItemMovedUpward,
@@ -14,13 +14,13 @@ export default class CategoriesDataController extends Controller {
 
   sortPropertiesSortOrderField = Object.freeze(['sortOrder:asc,name:asc']);
 
-  @filter('model.@each.id', function (category) {
-    return category.id;
-  })
-  persistedCategories;
+  get persistedCategories() {
+    return this.model.filter(category => !!category.id);
+  }
 
-  @sort('persistedCategories', 'sortPropertiesSortOrderField')
-  sortedCategories;
+  get sortedCategories() {
+    return sortBy(this.persistedCategories, ['sortOrder', 'name']);
+  }
 
   @action
   goToList() {
