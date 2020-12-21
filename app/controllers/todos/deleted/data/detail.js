@@ -7,7 +7,7 @@ export default class TodosDeletedDataDetailController extends Controller {
   @service router;
 
   get sortedCategories() {
-    return sortBy(this.model.categories, ['sortOrder', 'name']);
+    return sortBy(this.model.categories.toArray(), ['sortOrder', 'name']);
   }
 
   @action
