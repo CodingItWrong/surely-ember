@@ -68,7 +68,7 @@ function status(todo) {
 
 export function availableTodoGroups(todos) {
   const availableTodos = todos.filter(
-    todo => status(todo) === Todos.STATUS.AVAILABLE,
+    todo => !!todo.id && status(todo) === Todos.STATUS.AVAILABLE,
   );
   const groupsObject = groupBy(availableTodos, todo => todo.category?.name);
   const groups = Object.entries(groupsObject).map(([, todos]) => ({

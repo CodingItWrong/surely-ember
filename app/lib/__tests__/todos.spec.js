@@ -211,7 +211,8 @@ describe('Todos', () => {
       it('only returns the available todo', () => {
         const availableTodo = { id: 1 };
         const nonAvailableTodo = { id: 2, completedAt: past };
-        const records = [availableTodo, nonAvailableTodo];
+        const unsavedTodo = { id: null };
+        const records = [availableTodo, nonAvailableTodo, unsavedTodo];
 
         const groups = availableTodoGroups(records);
 
