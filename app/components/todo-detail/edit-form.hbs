@@ -23,7 +23,11 @@
                 id="category-field"
                 as |category|
               >
-                {{category.name}}
+                <span class="category-dropdown__item">
+                  <span class="category-dropdown__item-wrapper">
+                    {{category.name}}
+                  </span>
+                </span>
               </PowerSelect>
             </div>
             {{#if this.editedCategory}}
