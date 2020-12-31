@@ -38,6 +38,11 @@ export default class TodoDetailEditFormComponent extends Component {
   }
 
   @action
+  clearCategory() {
+    this.editedCategory = null;
+  }
+
+  @action
   async handleSave(e) {
     e?.preventDefault();
     const { todo, onSave } = this.args;
