@@ -1,5 +1,10 @@
 .ember-power-select-trigger {
   min-height: calc(2.4em + 2px);
+
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+    outline: none;
+  }
 }
 
 .ember-power-select-option[aria-current="true"] {
