@@ -16,18 +16,21 @@
           <label for="category-field">Category</label>
           <div class="d-flex align-items-center">
             <div class="flex-fill">
-              <ModelSelect
-                @value={{this.editedCategory}}
+              <PowerSelect
+                @selected={{this.editedCategory}}
                 @onChange={{fn (mut this.editedCategory)}}
                 @options={{@categories}}
-                @emptyLabel="(choose)"
                 id="category-field"
-                class="form-control"
                 as |category|
               >
                 {{category.name}}
-              </ModelSelect>
+              </PowerSelect>
             </div>
+            {{#if this.editedCategory}}
+              <IconButton @onClick={{this.clearCategory}}>
+                <AppIcon @icon="clear" @alt="clear" />
+              </IconButton>
+            {{/if}}
           </div>
         </div>
       </div>
