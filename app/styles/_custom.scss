@@ -169,3 +169,15 @@
 md-toolbar .icon {
   background-color: white;
 }
+
+.category-dropdown {
+  &__item {
+    display: inline-block;
+  }
+
+  &__item-wrapper {
+    min-height: 2.4em;
+    display: flex;
+    align-items: center;
+  }
+}
