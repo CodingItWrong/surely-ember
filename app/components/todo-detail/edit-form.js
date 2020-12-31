@@ -6,7 +6,6 @@ import { formatDate, logRuntimeError, parseDate } from 'surely/utils';
 const ENTER_KEY_CODE = 13;
 
 export default class TodoDetailEditFormComponent extends Component {
-  @tracked isEditing = false;
   @tracked editedName = null;
   @tracked editedCategory = null;
   @tracked editedNotes = null;
