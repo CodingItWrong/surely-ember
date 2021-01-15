@@ -29,6 +29,7 @@ export default class TodoDetailEditFormComponent extends Component {
 
   @action
   handleTitleKeyDown(e) {
+    console.log('keyDown', e);
     if (e.keyCode === ENTER_KEY_CODE) {
       e.preventDefault();
       this.handleSave();
