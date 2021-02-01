@@ -4851,10 +4851,10 @@ clean-css@^3.4.5:
     commander "2.8.x"
     source-map "0.4.x"
 
-clean-css@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.0.0.tgz#05bedb85d015c8caf0b67b92c919bcc73b78db7b"
-  integrity sha512-UC/iVYl628WTNvLOHZVmpkRpaRa4BnLW5io10m5KL02Seq6/3BzYZ3G5D03Wuu8qraQqQcVZXw13TzZOO1IG5A==
+clean-css@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.0.1.tgz#f84c6ad82c5a8246a680206da8bceef483ccc0b6"
+  integrity sha512-F1zAGOowUCg8yxT0O4UR+nmbMauf3YwbiUS60CPxpzJU7ulpamGzQomFrJSK4w/HqHtMmQKSHJUNue+dQQYQdg==
   dependencies:
     source-map "~0.6.0"
 
