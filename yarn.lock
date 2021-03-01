@@ -1499,10 +1499,10 @@
   dependencies:
     ember-cli-babel "^7.4.0"
 
-"@ember/test-helpers@^2.2.0":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.1.tgz#584eb8359c4bf84670320a95e6af629d7526bc2a"
-  integrity sha512-S8GKP0tBkggim/8ReMREIKWRRsRilNTZGvnm4js673pnDZ1QIpxDx/EHZEf1V3loTvRGQGGmDbGFVlVIfW0vQg==
+"@ember/test-helpers@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.3.tgz#237c2de48a9e85492374b91e825cb142675858cc"
+  integrity sha512-qpLz0wwHrY49JzmS2qznpEjrfZUhrWemgSXu48xgJAZnjXBa52libZgl7mzwnHmmo4YtUBgQtJSRPUp/coYFNA==
   dependencies:
     "@ember/test-waiters" "^2.4.0"
     broccoli-debug "^0.6.5"
@@ -6844,16 +6844,7 @@ ember-data@~3.25.0:
     ember-cli-typescript "^4.0.0"
     ember-inflector "^4.0.1"
 
-ember-destroyable-polyfill@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-2.0.2.tgz#2cc7532bd3c00e351b4da9b7fc683f4daff79671"
-  integrity sha512-9t+ya+9c+FkNM5IAyJIv6ETG8jfZQaUnFCO5SeLlV0wkSw7TOexyb61jh5GVee0KmknfRhrRGGAyT4Y0TwkZ+w==
-  dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-cli-version-checker "^5.1.1"
-    ember-compatibility-helpers "^1.2.1"
-
-ember-destroyable-polyfill@^2.0.3:
+ember-destroyable-polyfill@^2.0.2, ember-destroyable-polyfill@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ember-destroyable-polyfill/-/ember-destroyable-polyfill-2.0.3.tgz#1673ed66609a82268ef270a7d917ebd3647f11e1"
   integrity sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==
