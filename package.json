@@ -35,7 +35,7 @@
     "bootstrap": "^4.6.0",
     "broccoli-asset-rev": "^3.0.0",
     "clean-css": "^5.0.1",
-    "date-fns": "^2.17.0",
+    "date-fns": "^2.19.0",
     "ember-auto-import": "^1.11.2",
     "ember-classic-decorator": "^2.0.0",
     "ember-cli": "~3.25.0",
