@@ -8,8 +8,10 @@ module.exports = {
     'no-curly-component-invocation': {
       allow: ['day-of-week-days-from'], // helper
     },
+    'no-down-event-binding': false,
     'no-implicit-this': {
       allow: ['tomorrow'], // helper
     },
+    'require-input-label': false,
   },
 };
