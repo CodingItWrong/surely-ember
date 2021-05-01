@@ -20,9 +20,9 @@
       <div class="form-group" data-test-email-field>
         <label for="email-field">Email</label>
         <Input
+          @type="email"
           @value={{this.email}}
           id="email-field"
-          type="email"
           class="form-control {{if this.errors.email "is-invalid"}}"
           aria-describedby="email-feedback"
         />
@@ -36,9 +36,9 @@
       <div class="form-group" data-test-password-field>
         <label for="password-field">Password</label>
         <Input
+          @type="password"
           @value={{this.password}}
           id="password-field"
-          type="password"
           class="form-control {{if this.errors.password "is-invalid"}}"
           aria-describedby="password-feedback"
         />
@@ -52,9 +52,9 @@
       <div class="form-group" data-test-password-confirmation-field>
         <label for="password-confirmation-field">Confirm Password</label>
         <Input
+          @type="password"
           @value={{this.passwordConfirmation}}
           id="password-confirmation-field"
-          type="password"
           class="form-control {{if this.errors.passwordConfirmation "is-invalid"}}"
           aria-describedby="password-confirmation-feedback"
         />
