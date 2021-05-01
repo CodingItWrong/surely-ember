@@ -25,3 +25,5 @@ updates:
   - dependency-name: ember-auto-import
     versions:
     - 1.11.2
+  - dependency-name: husky
+    versions: "*"
