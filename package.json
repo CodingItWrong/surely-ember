@@ -31,7 +31,7 @@
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.6.3",
+    "babel-jest": "^27.0.2",
     "bootstrap": "^4.6.0",
     "broccoli-asset-rev": "^3.0.0",
     "clean-css": "^5.1.2",
