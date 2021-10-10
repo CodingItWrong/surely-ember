@@ -1,5 +1,7 @@
 # Surely
 
+**DEPRECATED:** the Surely frontend has been migrated to [surely-expo](https://github.com/CodingItWrong/surely-expo).
+
 A todo list application.
 
 Backend is handled by [surely-api](https://github.com/CodingItWrong/surely-api).
